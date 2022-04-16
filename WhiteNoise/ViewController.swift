@@ -10,7 +10,7 @@ import UIKit
 final class ViewController: UIViewController {
     private lazy var mainView: UIView = {
         let view = MainView()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = UIColor(red: 11 / 255, green: 16 / 255, blue: 51 / 255, alpha: 1)
         
         return view
     }()
