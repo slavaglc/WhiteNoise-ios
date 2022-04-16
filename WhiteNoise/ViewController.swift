@@ -7,18 +7,15 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-    private let mainView = MainView()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        view = mainView
+final class ViewController: UIViewController {
+    private lazy var mainView: UIView = {
+        let view = MainView()
         view.backgroundColor = .systemBackground
-    }
-
-}
-
-class MainView: UIView {
+        
+        return view
+    }()
     
+    override func loadView() {
+        view = mainView
+    }
 }
