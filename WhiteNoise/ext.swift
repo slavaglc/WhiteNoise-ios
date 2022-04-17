@@ -17,3 +17,48 @@ extension UIColor {
        return UIColor(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: CGFloat(alpha) / 255.0)
    }
 }
+
+extension UIView {
+    var viewController: UIViewController? {
+        var responder: UIResponder? = self
+        while responder != nil {
+            if let responder = responder as? UIViewController {
+                return responder
+            }
+            responder = responder?.next
+        }
+        return nil
+    }
+    
+    func fadeInFromLeftSide(completionAnimation: @escaping ()->() = {}) {
+            let targetCenter = center
+            center = CGPoint(x: 0, y: targetCenter.y)
+            alpha = 0.0
+            isHidden = false
+            UIView.animate(withDuration: 0.3) { [weak self] in
+                self?.center = CGPoint(x: targetCenter.x, y: targetCenter.y)
+                self?.alpha = 1.0
+            } completion: { isFinished in
+                if isFinished {
+                    completionAnimation()
+                }
+            }
+        }
+        
+        func fadeOutToLeftSide(completionAnimation: @escaping ()->() = {}) {
+            let targetCenter = center
+            center = CGPoint(x: targetCenter.x, y: targetCenter.y)
+            alpha = 1.0
+            isHidden = false
+            UIView.animate(withDuration: 0.3) { [weak self] in
+                self?.center = CGPoint(x: 0, y: targetCenter.y)
+                self?.alpha = 0.0
+            } completion: { [weak self] isFinished in
+                if isFinished {
+                    self?.isHidden = true
+                    self?.center = targetCenter
+                    completionAnimation()
+                }
+            }
+        }
+}

@@ -8,6 +8,37 @@
 import UIKit
 
 class MainView: UIView {
+    enum ViewState {
+        case sleep
+        case wakeUp
+    }
+    
+    private var lastTime = [20, 30]
+    private var viewState: ViewState = ViewState.sleep {
+        didSet {
+            if viewState == .wakeUp {
+                lastTime[0] = picker.selectedRow(inComponent: 0)
+                lastTime[1] = picker.selectedRow(inComponent: 1)
+                
+                label2.text = "When you wake up?"
+                skipButton.setTitle("Back", for: .normal)
+                nextButton.tag = 1
+                skipButton.tag = 3
+                
+                picker.selectRow(7, inComponent: 0, animated: false)
+                picker.selectRow(30, inComponent: 1, animated: false)
+            } else if viewState == .sleep {
+                label2.text = "What time you go to bed?"
+                skipButton.setTitle("Skip", for: .normal)
+                nextButton.tag = 0
+                skipButton.tag = 2
+                
+                picker.selectRow(lastTime[0], inComponent: 0, animated: false)
+                picker.selectRow(lastTime[1], inComponent: 1, animated: false)
+            }
+        }
+    }
+    
     private lazy var label: UILabel = {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -34,6 +65,8 @@ class MainView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
         view.dataSource = self
+        view.selectRow(20, inComponent: 0, animated: false)
+        view.selectRow(0, inComponent: 1, animated: false)
         
         return view
     }()
@@ -50,6 +83,35 @@ class MainView: UIView {
         return view
     }()
     
+    // bottom skip button
+    private lazy var skipButton: UIButton = {
+        let view = UIButton()
+        view.tag = 1
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.setTitle("Skip", for: .normal)
+        view.setTitleColor(.fromNormalRgb(red: 220, green: 224, blue: 255), for: .normal)
+        view.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 18)
+        view.addTarget(self, action: #selector(buttonDidTapped(sender:)), for: .touchUpInside)
+        
+        return view
+    }()
+    
+    // bottom next button
+    private lazy var nextButton: UIButton = {
+        let view = UIButton()
+        view.tag = 0
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.setTitle("Next", for: .normal)
+        view.setTitleColor(.fromNormalRgb(red: 220, green: 224, blue: 255), for: .normal)
+        view.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 18)
+        view.backgroundColor = .fromNormalRgb(red: 90, green: 107, blue: 238)
+        view.layer.cornerRadius = 16
+        view.layer.masksToBounds = true
+        view.addTarget(self, action: #selector(buttonDidTapped(sender:)), for: .touchUpInside)
+        
+        return view
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -58,6 +120,8 @@ class MainView: UIView {
         addSubview(label2)
         addSubview(picker)
         addSubview(labelForPicker)
+        addSubview(skipButton)
+        addSubview(nextButton)
         
         setUpConstraint()
     }
@@ -66,10 +130,29 @@ class MainView: UIView {
         super.init(coder: coder)
     }
     
+    @objc
+    private func buttonDidTapped(sender: UIButton) {
+        if sender.tag == 0 { // next
+            fadeOutToLeftSide() {
+                self.viewState = .wakeUp
+                self.fadeInFromLeftSide()
+            }
+        } else if sender.tag == 1 { // finish
+            
+        } else if sender.tag == 2 { // skip
+            
+        } else if sender.tag == 3 { // back
+            fadeOutToLeftSide() {
+                self.viewState = .sleep
+                self.fadeInFromLeftSide()
+            }
+        }
+    }
+    
     private func setUpConstraint() {
         // label
         NSLayoutConstraint.activate([
-            label.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            label.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: -32),
             label.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 16),
             label.widthAnchor.constraint(equalToConstant: 200),
             label.heightAnchor.constraint(equalToConstant: 40)
@@ -97,6 +180,22 @@ class MainView: UIView {
             labelForPicker.topAnchor.constraint(equalTo: picker.topAnchor),
             labelForPicker.widthAnchor.constraint(equalTo: picker.widthAnchor),
             labelForPicker.bottomAnchor.constraint(equalTo: picker.bottomAnchor)
+        ])
+        
+        // skip button
+        NSLayoutConstraint.activate([
+            skipButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -8),
+            skipButton.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 16),
+            skipButton.widthAnchor.constraint(equalToConstant: 90),
+            skipButton.heightAnchor.constraint(equalToConstant: 60)
+        ])
+        
+        // next button
+        NSLayoutConstraint.activate([
+            nextButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -8),
+            nextButton.leftAnchor.constraint(equalTo: skipButton.rightAnchor, constant: 16),
+            nextButton.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -16),
+            nextButton.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
 }
@@ -134,7 +233,7 @@ extension MainView: UIPickerViewDataSource {
         
         label.layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         label.font = UIFont(name: "Nunito-Bold", size: 42)!
-        label.text = "\(row)"
+        label.text = "\(row)".count == 1 ? "0\(row)" : "\(row)"
         label.textColor = .fromNormalRgb(red: 220, green: 224, blue: 255)
         label.textAlignment = .center
         
