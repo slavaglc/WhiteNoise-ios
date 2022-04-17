@@ -8,6 +8,7 @@
 import UIKit
 
 extension UIColor {
+    // get uicolor for normal RGB values (0-255)
     static func fromNormalRgb(red: Int, green: Int, blue: Int, alpha: Int = 255) -> UIColor {
        assert(red >= 0 && red <= 255, "Invalid red component")
        assert(green >= 0 && green <= 255, "Invalid green component")
