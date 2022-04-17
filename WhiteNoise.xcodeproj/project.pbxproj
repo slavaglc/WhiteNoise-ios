@@ -78,9 +78,9 @@
 		5A8841B6280B4DA800A8291B /* WhiteNoise */ = {
 			isa = PBXGroup;
 			children = (
+				5A8FB7CA280C5A3200D44CA6 /* UI */,
 				5A8FB7C4280C45A000D44CA6 /* Views */,
 				5A8FB7C3280C2A7600D44CA6 /* Extensions */,
-				5A8FB7C2280C2A0400D44CA6 /* Plansleep */,
 				5A8FB7C1280C29AA00D44CA6 /* Models */,
 				5A8FB7C0280C298500D44CA6 /* Managers */,
 				5A8FB7B1280BDE0400D44CA6 /* Fonts */,
@@ -146,6 +146,14 @@
 				5A8FB7C8280C550600D44CA6 /* UICircle.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		5A8FB7CA280C5A3200D44CA6 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				5A8FB7C2280C2A0400D44CA6 /* Plansleep */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
