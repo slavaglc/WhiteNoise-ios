@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		5A8841B8280B4DA800A8291B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8841B7280B4DA800A8291B /* AppDelegate.swift */; };
 		5A8841BA280B4DA800A8291B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8841B9280B4DA800A8291B /* SceneDelegate.swift */; };
-		5A8841BC280B4DA800A8291B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8841BB280B4DA800A8291B /* ViewController.swift */; };
+		5A8841BC280B4DA800A8291B /* PlansleepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8841BB280B4DA800A8291B /* PlansleepViewController.swift */; };
 		5A8841C1280B4DAA00A8291B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A8841C0280B4DAA00A8291B /* Assets.xcassets */; };
 		5A8841C4280B4DAA00A8291B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A8841C2280B4DAA00A8291B /* LaunchScreen.storyboard */; };
-		5A8841CC280B5EA300A8291B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8841CB280B5EA300A8291B /* MainView.swift */; };
+		5A8841CC280B5EA300A8291B /* PlansleepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8841CB280B5EA300A8291B /* PlansleepView.swift */; };
 		5A8FB7AE280BDA9400D44CA6 /* MyNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8FB7AD280BDA9400D44CA6 /* MyNavigationController.swift */; };
-		5A8FB7B0280BDB6900D44CA6 /* ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8FB7AF280BDB6900D44CA6 /* ext.swift */; };
+		5A8FB7B0280BDB6900D44CA6 /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8FB7AF280BDB6900D44CA6 /* UI.swift */; };
 		5A8FB7B7280BDE6B00D44CA6 /* Nunito-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A8FB7B2280BDE5400D44CA6 /* Nunito-Light.ttf */; };
 		5A8FB7B8280BDF5200D44CA6 /* Nunito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A8FB7B4280BDE5400D44CA6 /* Nunito-Bold.ttf */; };
 		5A8FB7B9280BDF5400D44CA6 /* Nunito-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A8FB7B3280BDE5400D44CA6 /* Nunito-Italic.ttf */; };
@@ -28,13 +28,13 @@
 		5A8841B4280B4DA800A8291B /* WhiteNoise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhiteNoise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A8841B7280B4DA800A8291B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A8841B9280B4DA800A8291B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5A8841BB280B4DA800A8291B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5A8841BB280B4DA800A8291B /* PlansleepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlansleepViewController.swift; sourceTree = "<group>"; };
 		5A8841C0280B4DAA00A8291B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5A8841C3280B4DAA00A8291B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5A8841C5280B4DAA00A8291B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5A8841CB280B5EA300A8291B /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		5A8841CB280B5EA300A8291B /* PlansleepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlansleepView.swift; sourceTree = "<group>"; };
 		5A8FB7AD280BDA9400D44CA6 /* MyNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNavigationController.swift; sourceTree = "<group>"; };
-		5A8FB7AF280BDB6900D44CA6 /* ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ext.swift; sourceTree = "<group>"; };
+		5A8FB7AF280BDB6900D44CA6 /* UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
 		5A8FB7B2280BDE5400D44CA6 /* Nunito-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Light.ttf"; sourceTree = "<group>"; };
 		5A8FB7B3280BDE5400D44CA6 /* Nunito-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Italic.ttf"; sourceTree = "<group>"; };
 		5A8FB7B4280BDE5400D44CA6 /* Nunito-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Bold.ttf"; sourceTree = "<group>"; };
@@ -74,23 +74,22 @@
 		5A8841B6280B4DA800A8291B /* WhiteNoise */ = {
 			isa = PBXGroup;
 			children = (
-				5A8FB7B1280BDE0400D44CA6 /* fonts */,
+				5A8FB7C3280C2A7600D44CA6 /* Extensions */,
+				5A8FB7C2280C2A0400D44CA6 /* Plansleep */,
+				5A8FB7C1280C29AA00D44CA6 /* Models */,
+				5A8FB7C0280C298500D44CA6 /* Managers */,
+				5A8FB7B1280BDE0400D44CA6 /* Fonts */,
 				5A8841B7280B4DA800A8291B /* AppDelegate.swift */,
 				5A8841B9280B4DA800A8291B /* SceneDelegate.swift */,
-				5A8841BB280B4DA800A8291B /* ViewController.swift */,
 				5A8841C0280B4DAA00A8291B /* Assets.xcassets */,
 				5A8841C2280B4DAA00A8291B /* LaunchScreen.storyboard */,
 				5A8841C5280B4DAA00A8291B /* Info.plist */,
-				5A8841CB280B5EA300A8291B /* MainView.swift */,
 				5A8FB7AD280BDA9400D44CA6 /* MyNavigationController.swift */,
-				5A8FB7AF280BDB6900D44CA6 /* ext.swift */,
-				5A8FB7BC280C1D3D00D44CA6 /* StorageManager.swift */,
-				5A8FB7BE280C216D00D44CA6 /* Time.swift */,
 			);
 			path = WhiteNoise;
 			sourceTree = "<group>";
 		};
-		5A8FB7B1280BDE0400D44CA6 /* fonts */ = {
+		5A8FB7B1280BDE0400D44CA6 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
 				5A8FB7B4280BDE5400D44CA6 /* Nunito-Bold.ttf */,
@@ -99,7 +98,40 @@
 				5A8FB7B6280BDE5400D44CA6 /* Nunito-Medium.ttf */,
 				5A8FB7B5280BDE5400D44CA6 /* Nunito-Regular.ttf */,
 			);
-			path = fonts;
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		5A8FB7C0280C298500D44CA6 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				5A8FB7BC280C1D3D00D44CA6 /* StorageManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		5A8FB7C1280C29AA00D44CA6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5A8FB7BE280C216D00D44CA6 /* Time.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5A8FB7C2280C2A0400D44CA6 /* Plansleep */ = {
+			isa = PBXGroup;
+			children = (
+				5A8841BB280B4DA800A8291B /* PlansleepViewController.swift */,
+				5A8841CB280B5EA300A8291B /* PlansleepView.swift */,
+			);
+			path = Plansleep;
+			sourceTree = "<group>";
+		};
+		5A8FB7C3280C2A7600D44CA6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5A8FB7AF280BDB6900D44CA6 /* UI.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,9 +209,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5A8841BC280B4DA800A8291B /* ViewController.swift in Sources */,
-				5A8FB7B0280BDB6900D44CA6 /* ext.swift in Sources */,
-				5A8841CC280B5EA300A8291B /* MainView.swift in Sources */,
+				5A8841BC280B4DA800A8291B /* PlansleepViewController.swift in Sources */,
+				5A8FB7B0280BDB6900D44CA6 /* UI.swift in Sources */,
+				5A8841CC280B5EA300A8291B /* PlansleepView.swift in Sources */,
 				5A8FB7BD280C1D3D00D44CA6 /* StorageManager.swift in Sources */,
 				5A8FB7BF280C216D00D44CA6 /* Time.swift in Sources */,
 				5A8841B8280B4DA800A8291B /* AppDelegate.swift in Sources */,
