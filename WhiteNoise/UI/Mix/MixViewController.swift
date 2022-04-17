@@ -1,15 +1,15 @@
 //
-//  ViewController.swift
+//  MixViewController.swift
 //  WhiteNoise
 //
-//  Created by Victor Varenik on 16.04.2022.
+//  Created by Victor Varenik on 17.04.2022.
 //
 
 import UIKit
 
-final class PlansleepViewController: UIViewController {
+final class MixViewController: UIViewController {
     private lazy var mainView: UIView = {
-        let view = PlansleepView()
+        let view = MixView()
         view.backgroundColor = .fromNormalRgb(red: 11, green: 16, blue: 51)
         
         return view
