@@ -10,12 +10,13 @@ import UIKit
 final class ViewController: UIViewController {
     private lazy var mainView: UIView = {
         let view = MainView()
-        view.backgroundColor = UIColor(red: 11 / 255, green: 16 / 255, blue: 51 / 255, alpha: 1)
+        view.backgroundColor = .fromNormalRgb(red: 11, green: 16, blue: 51)
         
         return view
     }()
     
     override func loadView() {
+        viewRespectsSystemMinimumLayoutMargins = false
         view = mainView
     }
 }
