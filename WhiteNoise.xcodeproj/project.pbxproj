@@ -21,6 +21,7 @@
 		5A8FB7BA280BDF5A00D44CA6 /* Nunito-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A8FB7B6280BDE5400D44CA6 /* Nunito-Medium.ttf */; };
 		5A8FB7BB280BDF5D00D44CA6 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A8FB7B5280BDE5400D44CA6 /* Nunito-Regular.ttf */; };
 		5A8FB7BD280C1D3D00D44CA6 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8FB7BC280C1D3D00D44CA6 /* StorageManager.swift */; };
+		5A8FB7BF280C216D00D44CA6 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8FB7BE280C216D00D44CA6 /* Time.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		5A8FB7B5280BDE5400D44CA6 /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Regular.ttf"; sourceTree = "<group>"; };
 		5A8FB7B6280BDE5400D44CA6 /* Nunito-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Medium.ttf"; sourceTree = "<group>"; };
 		5A8FB7BC280C1D3D00D44CA6 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		5A8FB7BE280C216D00D44CA6 /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				5A8FB7AD280BDA9400D44CA6 /* MyNavigationController.swift */,
 				5A8FB7AF280BDB6900D44CA6 /* ext.swift */,
 				5A8FB7BC280C1D3D00D44CA6 /* StorageManager.swift */,
+				5A8FB7BE280C216D00D44CA6 /* Time.swift */,
 			);
 			path = WhiteNoise;
 			sourceTree = "<group>";
@@ -178,6 +181,7 @@
 				5A8FB7B0280BDB6900D44CA6 /* ext.swift in Sources */,
 				5A8841CC280B5EA300A8291B /* MainView.swift in Sources */,
 				5A8FB7BD280C1D3D00D44CA6 /* StorageManager.swift in Sources */,
+				5A8FB7BF280C216D00D44CA6 /* Time.swift in Sources */,
 				5A8841B8280B4DA800A8291B /* AppDelegate.swift in Sources */,
 				5A8FB7AE280BDA9400D44CA6 /* MyNavigationController.swift in Sources */,
 				5A8841BA280B4DA800A8291B /* SceneDelegate.swift in Sources */,
