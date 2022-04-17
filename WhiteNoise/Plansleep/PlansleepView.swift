@@ -1,5 +1,5 @@
 //
-//  MainView.swift
+//  PlansleepView.swift
 //  WhiteNoise
 //
 //  Created by Victor Varenik on 16.04.2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainView: UIView {
+class PlansleepView: UIView {
     enum ViewState {
         case sleep
         case wakeUp
@@ -27,6 +27,8 @@ class MainView: UIView {
                 
                 picker.selectRow(7, inComponent: 0, animated: false)
                 picker.selectRow(30, inComponent: 1, animated: false)
+                
+                indicator.selectItem(pos: 1)
             } else if viewState == .sleep {
                 label2.text = "What time you go to bed?"
                 skipButton.setTitle("Skip", for: .normal)
@@ -35,6 +37,8 @@ class MainView: UIView {
                 
                 picker.selectRow(lastTime[0], inComponent: 0, animated: false)
                 picker.selectRow(lastTime[1], inComponent: 1, animated: false)
+                
+                indicator.selectItem(pos: 0)
             }
         }
     }
@@ -55,6 +59,13 @@ class MainView: UIView {
         view.font = UIFont(name: "Nunito-Bold", size: 18)
         view.text = "What time you go to bed?"
         view.textColor = .fromNormalRgb(red: 162, green: 171, blue: 241)
+        
+        return view
+    }()
+
+    private lazy var indicator: UIPageIndicatorView = {
+        let view = UIPageIndicatorView()
+        view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
     }()
@@ -118,6 +129,7 @@ class MainView: UIView {
         // add all views
         addSubview(label)
         addSubview(label2)
+        addSubview(indicator)
         addSubview(picker)
         addSubview(labelForPicker)
         addSubview(skipButton)
@@ -166,6 +178,14 @@ class MainView: UIView {
             label2.heightAnchor.constraint(equalToConstant: 40)
         ])
         
+        // indicator
+        NSLayoutConstraint.activate([
+            indicator.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -16),
+            indicator.topAnchor.constraint(equalTo: label.centerYAnchor, constant: -0),
+            indicator.widthAnchor.constraint(equalToConstant: 40),
+            indicator.heightAnchor.constraint(equalToConstant: 8)
+        ])
+        
         // picker
         NSLayoutConstraint.activate([
             picker.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor),
@@ -201,12 +221,12 @@ class MainView: UIView {
 }
 
 // time picker delegate
-extension MainView: UIPickerViewDelegate {
+extension PlansleepView: UIPickerViewDelegate {
     
 }
 
 // time picker data source
-extension MainView: UIPickerViewDataSource {
+extension PlansleepView: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 2 // hour and minutes
     }

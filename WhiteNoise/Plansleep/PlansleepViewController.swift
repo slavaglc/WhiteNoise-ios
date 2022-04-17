@@ -7,9 +7,9 @@
 
 import UIKit
 
-final class ViewController: UIViewController {
+final class PlansleepViewController: UIViewController {
     private lazy var mainView: UIView = {
-        let view = MainView()
+        let view = PlansleepView()
         view.backgroundColor = .fromNormalRgb(red: 11, green: 16, blue: 51)
         
         return view
