@@ -85,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				5A8FB7CA280C5A3200D44CA6 /* UI */,
+				5A8FB7AD280BDA9400D44CA6 /* MyNavigationController.swift */,
 				5A8FB7C4280C45A000D44CA6 /* Views */,
 				5A8FB7C3280C2A7600D44CA6 /* Extensions */,
 				5A8FB7C1280C29AA00D44CA6 /* Models */,
@@ -95,7 +96,6 @@
 				5A8841C0280B4DAA00A8291B /* Assets.xcassets */,
 				5A8841C2280B4DAA00A8291B /* LaunchScreen.storyboard */,
 				5A8841C5280B4DAA00A8291B /* Info.plist */,
-				5A8FB7AD280BDA9400D44CA6 /* MyNavigationController.swift */,
 			);
 			path = WhiteNoise;
 			sourceTree = "<group>";
