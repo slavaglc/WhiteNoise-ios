@@ -27,6 +27,8 @@
 		5A8FB7CD280C70C300D44CA6 /* MixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8FB7CC280C70C300D44CA6 /* MixView.swift */; };
 		5A8FB7CF280C70E300D44CA6 /* MixViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8FB7CE280C70E300D44CA6 /* MixViewController.swift */; };
 		5A945F31280DCC60001AA3C4 /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = 5A945F30280DCC60001AA3C4 /* readme.md */; };
+		5A945F34280DCFCF001AA3C4 /* PrivacyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A945F33280DCFCF001AA3C4 /* PrivacyView.swift */; };
+		5A945F36280DCFF4001AA3C4 /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A945F35280DCFF4001AA3C4 /* PrivacyViewController.swift */; };
 		5AB9A8B0280D82E9009895BC /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9A8AF280D82E9009895BC /* HapticManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +55,8 @@
 		5A8FB7CC280C70C300D44CA6 /* MixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixView.swift; sourceTree = "<group>"; };
 		5A8FB7CE280C70E300D44CA6 /* MixViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixViewController.swift; sourceTree = "<group>"; };
 		5A945F30280DCC60001AA3C4 /* readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = "<group>"; };
+		5A945F33280DCFCF001AA3C4 /* PrivacyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyView.swift; sourceTree = "<group>"; };
+		5A945F35280DCFF4001AA3C4 /* PrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
 		5AB9A8AF280D82E9009895BC /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -161,6 +165,7 @@
 		5A8FB7CA280C5A3200D44CA6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				5A945F32280DCFC5001AA3C4 /* Privacy */,
 				5A8FB7CB280C709E00D44CA6 /* Mix */,
 				5A8FB7C2280C2A0400D44CA6 /* Plansleep */,
 			);
@@ -174,6 +179,15 @@
 				5A8FB7CE280C70E300D44CA6 /* MixViewController.swift */,
 			);
 			path = Mix;
+			sourceTree = "<group>";
+		};
+		5A945F32280DCFC5001AA3C4 /* Privacy */ = {
+			isa = PBXGroup;
+			children = (
+				5A945F33280DCFCF001AA3C4 /* PrivacyView.swift */,
+				5A945F35280DCFF4001AA3C4 /* PrivacyViewController.swift */,
+			);
+			path = Privacy;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,9 +268,11 @@
 			files = (
 				5AB9A8B0280D82E9009895BC /* HapticManager.swift in Sources */,
 				5A8841BC280B4DA800A8291B /* PlansleepViewController.swift in Sources */,
+				5A945F36280DCFF4001AA3C4 /* PrivacyViewController.swift in Sources */,
 				5A8FB7C7280C460E00D44CA6 /* UIPageIndicatorView.swift in Sources */,
 				5A8FB7B0280BDB6900D44CA6 /* UI.swift in Sources */,
 				5A8FB7CF280C70E300D44CA6 /* MixViewController.swift in Sources */,
+				5A945F34280DCFCF001AA3C4 /* PrivacyView.swift in Sources */,
 				5A8FB7CD280C70C300D44CA6 /* MixView.swift in Sources */,
 				5A8841CC280B5EA300A8291B /* PlansleepView.swift in Sources */,
 				5A8FB7BD280C1D3D00D44CA6 /* StorageManager.swift in Sources */,

@@ -97,7 +97,7 @@ class PlansleepView: UIView {
     // bottom skip button
     private lazy var skipButton: UIButton = {
         let view = UIButton()
-        view.tag = 1
+        view.tag = 2
         view.translatesAutoresizingMaskIntoConstraints = false
         view.setTitle("Skip", for: .normal)
         view.setTitleColor(.fromNormalRgb(red: 220, green: 224, blue: 255), for: .normal)
@@ -159,7 +159,8 @@ class PlansleepView: UIView {
                 )
             viewController?.navigationController?.pushViewController(MixViewController(), animated: true)
         } else if sender.tag == 2 { // skip
-            viewController?.navigationController?.pushViewController(MixViewController(), animated: true)
+            viewController?.navigationController?.pushViewController(PrivacyViewController(), animated: true)
+            //viewController?.navigationController?.pushViewController(MixViewController(), animated: true)
         } else if sender.tag == 3 { // back
             fadeOutToLeftSide() {
                 self.viewState = .sleep
