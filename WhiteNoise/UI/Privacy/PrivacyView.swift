@@ -8,6 +8,13 @@
 import UIKit
 
 class PrivacyView: UIView {
+    private lazy var scrollView: UIScrollView = {
+        let view = UIScrollView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
     private lazy var label: UILabel = {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -29,13 +36,6 @@ class PrivacyView: UIView {
         return view
     }()
     
-    private lazy var scrollView: UIScrollView = {
-        let view = UIScrollView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
-        return view
-    }()
-    
     private lazy var text: UILabel = {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -51,10 +51,9 @@ class PrivacyView: UIView {
         super.init(frame: frame)
         
         // add views
-        addSubview(label)
-        addSubview(closeBtn)
         addSubview(scrollView)
-        
+        scrollView.addSubview(label)
+        scrollView.addSubview(closeBtn)
         scrollView.addSubview(text)
     }
     
@@ -65,14 +64,24 @@ class PrivacyView: UIView {
     func viewDidAppear(_ animated: Bool) {
         setUpConstraints()
         
+        viewController?.navigationController?.navigationBar.barStyle = .black
+        viewController?.navigationController?.navigationBar.barTintColor = .fromNormalRgb(red: 11, green: 16, blue: 51)
         viewController?.navigationController?.navigationBar.topItem?.setHidesBackButton(true, animated: false)
     }
     
     private func setUpConstraints() {
+        // scrollView
+        NSLayoutConstraint.activate([
+            scrollView.rightAnchor.constraint(equalTo: rightAnchor),
+            scrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: -32),
+            scrollView.widthAnchor.constraint(equalTo: widthAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
+        ])
+        
         // label
         NSLayoutConstraint.activate([
-            label.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
-            label.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: -32),
+            label.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: 19),
+            label.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: -32),
             label.widthAnchor.constraint(equalToConstant: 100),
             label.heightAnchor.constraint(equalToConstant: 40)
         ])
@@ -80,25 +89,18 @@ class PrivacyView: UIView {
         // closeBtn
         NSLayoutConstraint.activate([
             closeBtn.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
-            closeBtn.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: -32),
+            closeBtn.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: -32),
             closeBtn.widthAnchor.constraint(equalToConstant: 40),
             closeBtn.heightAnchor.constraint(equalToConstant: 40)
-        ])
-        
-        // scrollView
-        NSLayoutConstraint.activate([
-            scrollView.rightAnchor.constraint(equalTo: rightAnchor),
-            scrollView.topAnchor.constraint(equalTo: closeBtn.bottomAnchor),
-            scrollView.widthAnchor.constraint(equalTo: widthAnchor),
-            scrollView.heightAnchor.constraint(equalTo: heightAnchor)
         ])
         
         // text
         NSLayoutConstraint.activate([
             text.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             text.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.9),
-            text.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 16),
-            text.heightAnchor.constraint(equalToConstant: scrollView.contentSize.height),
+            text.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 32),
+            text.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            text.heightAnchor.constraint(equalTo: scrollView.contentLayoutGuide.heightAnchor),
         ])
     }
 }
