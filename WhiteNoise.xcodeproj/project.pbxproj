@@ -26,6 +26,7 @@
 		5A8FB7C9280C550600D44CA6 /* UICircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8FB7C8280C550600D44CA6 /* UICircle.swift */; };
 		5A8FB7CD280C70C300D44CA6 /* MixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8FB7CC280C70C300D44CA6 /* MixView.swift */; };
 		5A8FB7CF280C70E300D44CA6 /* MixViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8FB7CE280C70E300D44CA6 /* MixViewController.swift */; };
+		5A945F31280DCC60001AA3C4 /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = 5A945F30280DCC60001AA3C4 /* readme.md */; };
 		5AB9A8B0280D82E9009895BC /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9A8AF280D82E9009895BC /* HapticManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		5A8FB7C8280C550600D44CA6 /* UICircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICircle.swift; sourceTree = "<group>"; };
 		5A8FB7CC280C70C300D44CA6 /* MixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixView.swift; sourceTree = "<group>"; };
 		5A8FB7CE280C70E300D44CA6 /* MixViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixViewController.swift; sourceTree = "<group>"; };
+		5A945F30280DCC60001AA3C4 /* readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = "<group>"; };
 		5AB9A8AF280D82E9009895BC /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -68,6 +70,7 @@
 		5A8841AB280B4DA800A8291B = {
 			isa = PBXGroup;
 			children = (
+				5A945F30280DCC60001AA3C4 /* readme.md */,
 				5A8841B6280B4DA800A8291B /* WhiteNoise */,
 				5A8841B5280B4DA800A8291B /* Products */,
 			);
@@ -237,6 +240,7 @@
 				5A8841C1280B4DAA00A8291B /* Assets.xcassets in Resources */,
 				5A8FB7BB280BDF5D00D44CA6 /* Nunito-Regular.ttf in Resources */,
 				5A8FB7B8280BDF5200D44CA6 /* Nunito-Bold.ttf in Resources */,
+				5A945F31280DCC60001AA3C4 /* readme.md in Resources */,
 				5A8FB7B7280BDE6B00D44CA6 /* Nunito-Light.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
