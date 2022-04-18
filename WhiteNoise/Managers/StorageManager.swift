@@ -8,9 +8,10 @@
 import Foundation
 
 class StorageManager {
-    struct StorageKey {
+    private struct StorageKey {
         static let sleepTime = "sleep_hour"
         static let wakeupTime = "sleep_minute"
+        static let runsCount = "runs_count"
     }
     
     static var shared: StorageManager = {
@@ -19,16 +20,22 @@ class StorageManager {
         return manager
     }()
     
-    private let defaults = UserDefaults.standard
-    
     // get sleep time
     func getSleepTime() -> Time? {
-        return defaults.object(forKey: StorageKey.sleepTime) as! Time?
+        return UserDefaults.standard
+            .object(forKey: StorageKey.sleepTime) as! Time?
     }
     
     // get wakeup time
     func getWakeUpTime() -> Time? {
-        return defaults.object(forKey: StorageKey.wakeupTime) as! Time?
+        return UserDefaults.standard
+            .object(forKey: StorageKey.wakeupTime) as! Time?
+    }
+    
+    // get app runs count
+    func getRunsCount() -> Int {
+        return UserDefaults.standard
+            .integer(forKey: StorageKey.runsCount)
     }
     
     // set sleep time
@@ -39,10 +46,18 @@ class StorageManager {
             let sleepJson = try encoder.encode(sleep)
             let wakeupJson = try encoder.encode(wakeup)
             
-            defaults.set(sleepJson, forKey: StorageKey.sleepTime)
-            defaults.set(wakeupJson, forKey: StorageKey.wakeupTime)
+            UserDefaults.standard
+                .set(sleepJson, forKey: StorageKey.sleepTime)
+            UserDefaults.standard
+                .set(wakeupJson, forKey: StorageKey.wakeupTime)
         } catch {
             fatalError("StorageManager setTimes catch exception")
         }
+    }
+    
+    // increase runs counter
+    func increaseRunsCount() {
+        UserDefaults.standard
+            .set(getRunsCount() + 1, forKey: StorageKey.runsCount)
     }
 }
