@@ -26,6 +26,7 @@
 		5A8FB7C9280C550600D44CA6 /* UICircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8FB7C8280C550600D44CA6 /* UICircle.swift */; };
 		5A8FB7CD280C70C300D44CA6 /* MixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8FB7CC280C70C300D44CA6 /* MixView.swift */; };
 		5A8FB7CF280C70E300D44CA6 /* MixViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8FB7CE280C70E300D44CA6 /* MixViewController.swift */; };
+		5AB9A8B0280D82E9009895BC /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9A8AF280D82E9009895BC /* HapticManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		5A8FB7C8280C550600D44CA6 /* UICircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICircle.swift; sourceTree = "<group>"; };
 		5A8FB7CC280C70C300D44CA6 /* MixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixView.swift; sourceTree = "<group>"; };
 		5A8FB7CE280C70E300D44CA6 /* MixViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixViewController.swift; sourceTree = "<group>"; };
+		5AB9A8AF280D82E9009895BC /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				5A8FB7BC280C1D3D00D44CA6 /* StorageManager.swift */,
+				5AB9A8AF280D82E9009895BC /* HapticManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -245,6 +248,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AB9A8B0280D82E9009895BC /* HapticManager.swift in Sources */,
 				5A8841BC280B4DA800A8291B /* PlansleepViewController.swift in Sources */,
 				5A8FB7C7280C460E00D44CA6 /* UIPageIndicatorView.swift in Sources */,
 				5A8FB7B0280BDB6900D44CA6 /* UI.swift in Sources */,
