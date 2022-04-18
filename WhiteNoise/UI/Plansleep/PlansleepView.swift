@@ -144,15 +144,22 @@ class PlansleepView: UIView {
     
     @objc
     private func buttonDidTapped(sender: UIButton) {
+        HapticManager.shared.notify(notificationType: .success)
+        
         if sender.tag == 0 { // next
             fadeOutToLeftSide() {
                 self.viewState = .wakeUp
                 self.fadeInFromLeftSide()
             }
         } else if sender.tag == 1 { // finish
-            
+            StorageManager.shared
+                .setTimes(
+                    sleep: Time(hour: lastTime[0], minute: lastTime[1]),
+                    wakeup: Time(hour: picker.selectedRow(inComponent: 0), minute: picker.selectedRow(inComponent: 1))
+                )
+            viewController?.navigationController?.pushViewController(MixViewController(), animated: true)
         } else if sender.tag == 2 { // skip
-            
+            viewController?.navigationController?.pushViewController(MixViewController(), animated: true)
         } else if sender.tag == 3 { // back
             fadeOutToLeftSide() {
                 self.viewState = .sleep
