@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A13588D280E8D0800DE431D /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A13588C280E8D0800DE431D /* PaywallView.swift */; };
+		5A13588F280E8D1400DE431D /* PaywallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A13588E280E8D1400DE431D /* PaywallViewController.swift */; };
 		5A8841B8280B4DA800A8291B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8841B7280B4DA800A8291B /* AppDelegate.swift */; };
 		5A8841BA280B4DA800A8291B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8841B9280B4DA800A8291B /* SceneDelegate.swift */; };
 		5A8841BC280B4DA800A8291B /* PlansleepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8841BB280B4DA800A8291B /* PlansleepViewController.swift */; };
@@ -33,6 +35,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5A13588C280E8D0800DE431D /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
+		5A13588E280E8D1400DE431D /* PaywallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallViewController.swift; sourceTree = "<group>"; };
 		5A8841B4280B4DA800A8291B /* WhiteNoise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhiteNoise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A8841B7280B4DA800A8291B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A8841B9280B4DA800A8291B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -194,6 +198,8 @@
 		5A945F37280E8C3A001AA3C4 /* Paywall */ = {
 			isa = PBXGroup;
 			children = (
+				5A13588C280E8D0800DE431D /* PaywallView.swift */,
+				5A13588E280E8D1400DE431D /* PaywallViewController.swift */,
 			);
 			path = Paywall;
 			sourceTree = "<group>";
@@ -275,6 +281,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5AB9A8B0280D82E9009895BC /* HapticManager.swift in Sources */,
+				5A13588D280E8D0800DE431D /* PaywallView.swift in Sources */,
+				5A13588F280E8D1400DE431D /* PaywallViewController.swift in Sources */,
 				5A8841BC280B4DA800A8291B /* PlansleepViewController.swift in Sources */,
 				5A945F36280DCFF4001AA3C4 /* PrivacyViewController.swift in Sources */,
 				5A8FB7C7280C460E00D44CA6 /* UIPageIndicatorView.swift in Sources */,

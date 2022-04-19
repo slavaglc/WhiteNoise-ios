@@ -48,7 +48,7 @@ class PlansleepView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.font = UIFont(name: "Nunito-Bold", size: 22)
         view.text = "Plan your sleep"
-        view.textColor = .fromNormalRgb(red: 241, green: 233, blue: 255)
+        view.textColor = .fromNormalRgb(red: 241, green: 233, blue: 254)
         
         return view
     }()
@@ -159,8 +159,8 @@ class PlansleepView: UIView {
                 )
             viewController?.navigationController?.pushViewController(MixViewController(), animated: true)
         } else if sender.tag == 2 { // skip
-            //viewController?.navigationController?.pushViewController(PrivacyViewController(), animated: true)
-            viewController?.navigationController?.pushViewController(MixViewController(), animated: true)
+            viewController?.navigationController?.pushViewController(PaywallViewController(), animated: true)
+            //viewController?.navigationController?.pushViewController(MixViewController(), animated: true)
         } else if sender.tag == 3 { // back
             fadeOutToLeftSide() {
                 self.viewState = .sleep

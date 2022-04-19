@@ -29,9 +29,9 @@ class PrivacyView: UIView {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.image = UIImage(named: "CloseButton")
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(closeView))
-//        view.addGestureRecognizer(tap)
-//        view.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(closeView))
+        view.addGestureRecognizer(tap)
+        view.isUserInteractionEnabled = true
         
         return view
     }()
@@ -102,6 +102,11 @@ class PrivacyView: UIView {
             text.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             text.heightAnchor.constraint(equalTo: scrollView.contentLayoutGuide.heightAnchor),
         ])
+    }
+    
+    @objc
+    private func closeView(view: UIView) {
+        viewController?.navigationController?.popViewController(animated: true)
     }
 }
 
