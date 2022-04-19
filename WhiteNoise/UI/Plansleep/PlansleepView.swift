@@ -8,7 +8,7 @@
 import UIKit
 
 class PlansleepView: UIView {
-    enum ViewState {
+    private enum ViewState {
         case sleep
         case wakeUp
     }
@@ -159,7 +159,7 @@ class PlansleepView: UIView {
                 )
             viewController?.navigationController?.pushViewController(MixViewController(), animated: true)
         } else if sender.tag == 2 { // skip
-            viewController?.navigationController?.pushViewController(PaywallViewController(), animated: true)
+            viewController?.navigationController?.pushViewController(PrivacyViewController(), animated: true)
             //viewController?.navigationController?.pushViewController(MixViewController(), animated: true)
         } else if sender.tag == 3 { // back
             fadeOutToLeftSide() {
