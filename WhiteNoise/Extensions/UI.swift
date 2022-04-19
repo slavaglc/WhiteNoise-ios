@@ -59,13 +59,3 @@ extension UIView {
             }
         }
 }
-
-extension UIViewController {
-    func installBlurEffect() {
-        let bounds = self.navigationController?.navigationBar.bounds
-        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
-        visualEffectView.frame = bounds ?? CGRect.zero
-        visualEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.navigationController?.navigationBar.addSubview(visualEffectView)
-    }
-}
