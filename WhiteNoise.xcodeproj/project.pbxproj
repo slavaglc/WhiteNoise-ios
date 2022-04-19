@@ -165,6 +165,7 @@
 		5A8FB7CA280C5A3200D44CA6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				5A945F37280E8C3A001AA3C4 /* Paywall */,
 				5A945F32280DCFC5001AA3C4 /* Privacy */,
 				5A8FB7CB280C709E00D44CA6 /* Mix */,
 				5A8FB7C2280C2A0400D44CA6 /* Plansleep */,
@@ -188,6 +189,13 @@
 				5A945F35280DCFF4001AA3C4 /* PrivacyViewController.swift */,
 			);
 			path = Privacy;
+			sourceTree = "<group>";
+		};
+		5A945F37280E8C3A001AA3C4 /* Paywall */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Paywall;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
