@@ -36,6 +36,7 @@
 		F991947C28112452009CD9F9 /* FilterTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F991947B28112452009CD9F9 /* FilterTagCollectionViewCell.swift */; };
 		F991947E28112466009CD9F9 /* SoundCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F991947D28112466009CD9F9 /* SoundCollectionViewCell.swift */; };
 		F9919482281124D7009CD9F9 /* NameOfClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9919481281124D7009CD9F9 /* NameOfClass.swift */; };
+		F9DC15EB2811A84700B1EE9B /* FilterTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DC15EA2811A84700B1EE9B /* FilterTag.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		F991947B28112452009CD9F9 /* FilterTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTagCollectionViewCell.swift; sourceTree = "<group>"; };
 		F991947D28112466009CD9F9 /* SoundCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundCollectionViewCell.swift; sourceTree = "<group>"; };
 		F9919481281124D7009CD9F9 /* NameOfClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameOfClass.swift; sourceTree = "<group>"; };
+		F9DC15EA2811A84700B1EE9B /* FilterTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTag.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 			children = (
 				5A8FB7BE280C216D00D44CA6 /* Time.swift */,
 				F99194792810A159009CD9F9 /* Sound.swift */,
+				F9DC15EA2811A84700B1EE9B /* FilterTag.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				5A945F36280DCFF4001AA3C4 /* PrivacyViewController.swift in Sources */,
 				5A8FB7C7280C460E00D44CA6 /* UIPageIndicatorView.swift in Sources */,
 				5A8FB7B0280BDB6900D44CA6 /* UI.swift in Sources */,
+				F9DC15EB2811A84700B1EE9B /* FilterTag.swift in Sources */,
 				F991947A2810A159009CD9F9 /* Sound.swift in Sources */,
 				5A8FB7CF280C70E300D44CA6 /* MixViewController.swift in Sources */,
 				5A945F34280DCFCF001AA3C4 /* PrivacyView.swift in Sources */,
