@@ -14,6 +14,7 @@ final class MixView: UIView {
         case create, saved
     }
     
+    private let filterTags = FilterTag.getAllFilterTags()
     private let sounds = Sound.getAllSounds()
     
     private weak var mixViewDisplayLogic: MixViewDisplayLogic!
@@ -28,17 +29,18 @@ final class MixView: UIView {
     }()
     
     private lazy var filterTagCollectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.collectionViewLayout = UICollectionViewFlowLayout()
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .clear
+        collectionView.register(FilterTagCollectionViewCell.self, forCellWithReuseIdentifier: FilterTagCollectionViewCell.nameOfClass)
         return collectionView
     }()
     
     private lazy var soundsCollectionView: UICollectionView = {
-       
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -99,9 +101,11 @@ final class MixView: UIView {
     }
 }
 
+// MARK: - CollectionView methods
+
 extension MixView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        collectionView == soundsCollectionView ? sounds.count : 0
+        collectionView == soundsCollectionView ? sounds.count : filterTags.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -111,15 +115,28 @@ extension MixView: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SoundCollectionViewCell.nameOfClass, for: indexPath) as? SoundCollectionViewCell else { return UICollectionViewCell() }
             cell.setCellParameters(sound: sounds[indexPath.item])
             return cell
+        case filterTagCollectionView:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterTagCollectionViewCell.nameOfClass, for: indexPath) as? FilterTagCollectionViewCell else { return UICollectionViewCell() }
+                cell.setCellParameters(filterTag: filterTags[indexPath.item])
+            return cell
         default:
             return UICollectionViewCell()
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SoundCollectionViewCell.nameOfClass, for: indexPath) as? SoundCollectionViewCell else { return CGSize(width: 100, height: 120)}
-        let height = (cell.getFontHeight() * 1.5 ) + 100
-        return CGSize(width: 100, height: height)
+        switch collectionView {
+        case soundsCollectionView:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SoundCollectionViewCell.nameOfClass, for: indexPath) as? SoundCollectionViewCell else { return CGSize(width: 100, height: 120)}
+            let height = (cell.getFontHeight() * 1.5 ) + 100
+            return CGSize(width: 100, height: height)
+        case filterTagCollectionView:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterTagCollectionViewCell.nameOfClass, for: indexPath) as? FilterTagCollectionViewCell else { return CGSize(width: 100, height: 50) }
+//            cell.setCellParameters(filterTag: filterTags[indexPath.item])
+            return CGSize(width: 100, height: 50)
+        default:
+            return CGSize(width: 100, height: 100)
+        }
     }
 }
 
