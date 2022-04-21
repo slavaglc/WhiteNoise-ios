@@ -8,7 +8,8 @@
 import UIKit
 
 protocol MixViewDisplayLogic: AnyObject {
-    
+    func addViewToNavgitaionBar(view: UIView)
+    func getNavigationController() -> UINavigationController?
 }
 
 final class MixViewController: UIViewController {
@@ -24,5 +25,12 @@ final class MixViewController: UIViewController {
 }
 
 extension MixViewController: MixViewDisplayLogic {
+    func getNavigationController() -> UINavigationController? {
+        navigationController
+    }
+    
+    func addViewToNavgitaionBar(view: UIView) {
+        navigationController?.navigationBar.addSubview(view)
+    }
     
 }

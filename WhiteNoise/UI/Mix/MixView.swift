@@ -11,7 +11,7 @@ import UIKit
 final class MixView: UIView {
     
     private enum ViewState: String {
-        case create, saved
+        case Create, Saved
     }
     
     private let filterTags = FilterTag.getAllFilterTags()
@@ -38,7 +38,7 @@ final class MixView: UIView {
     }()
     
     private lazy var upgradeButton: UIButton = {
-        let button = UIButton(type: .system)
+        let button = UIButton(type: .custom)
         let image = UIImage(named: "Lock")
         button.setTitle(" Upgrate", for: .normal)
         button.titleLabel?.font = UIFont(name: "Nunito", size: 16)
@@ -50,6 +50,7 @@ final class MixView: UIView {
         button.clipsToBounds = true
         button.backgroundColor = #colorLiteral(red: 0.662745098, green: 0.7058823529, blue: 1, alpha: 1)
             .withAlphaComponent(0.1)
+        button.tintColor = #colorLiteral(red: 0.862745098, green: 0.8784313725, blue: 1, alpha: 1)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -62,6 +63,7 @@ final class MixView: UIView {
         button.clipsToBounds = true
         button.backgroundColor = #colorLiteral(red: 0.662745098, green: 0.7058823529, blue: 1, alpha: 1)
             .withAlphaComponent(0.1)
+        button.tintColor = #colorLiteral(red: 0.862745098, green: 0.8784313725, blue: 1, alpha: 1)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -94,8 +96,8 @@ final class MixView: UIView {
     }()
     
     private lazy var segmentControl: CustomSegmentedControl = {
-        let titles = [ViewState.create.rawValue,
-                      ViewState.saved.rawValue
+        let titles = [ViewState.Create.rawValue,
+                      ViewState.Saved.rawValue
         ]
         let control = CustomSegmentedControl(frame: CGRect.zero, buttonTitle: titles)
         
@@ -122,29 +124,41 @@ final class MixView: UIView {
     private func setPrimarySettings() {
         horizontalStackView.addArrangedSubview(upgradeButton)
         horizontalStackView.addArrangedSubview(settingsButton)
-        stackView.addArrangedSubview(horizontalStackView)
+//        stackView.addArrangedSubview(horizontalStackView)
+        mixViewDisplayLogic.addViewToNavgitaionBar(view: horizontalStackView)
         stackView.addArrangedSubview(segmentControl)
         stackView.addArrangedSubview(filterTagCollectionView)
         stackView.addArrangedSubview(soundsCollectionView)
         addSubview(stackView)
         setupConstraints()
+        
     }
     
     private func setupConstraints() {
         let spacing = UIScreen.main.bounds.size.width / 2
         let horizontalBarHeight: CGFloat = 50
-        let statusBarHeight = (window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 10) * 2
-        let topSpacing = statusBarHeight + 10
+        let padding = 10.0
+        if let navigationBar = mixViewDisplayLogic.getNavigationController()?.navigationBar {
+            horizontalStackView.widthAnchor.constraint(equalTo: navigationBar.widthAnchor, constant: -padding)
+                .isActive = true
+            horizontalStackView.heightAnchor.constraint(equalTo: navigationBar.heightAnchor)
+                .isActive = true
+            horizontalStackView.centerXAnchor.constraint(equalTo: navigationBar.centerXAnchor)
+                .isActive = true
+            horizontalStackView.topAnchor.constraint(equalTo: navigationBar.topAnchor, constant: 10)
+                .isActive = true
+        }
+            
+//        let statusBarHeight = (window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 10) * 2
+//        let topSpacing = statusBarHeight + 10
         stackView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor).isActive = true
         stackView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.9).isActive = true
         stackView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.95).isActive = true
-        stackView.topAnchor.constraint(equalTo: topAnchor, constant: topSpacing)
+        stackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: padding)
             .isActive = true
         
-        horizontalStackView.widthAnchor.constraint(equalTo: stackView.widthAnchor)
-            .isActive = true
-        horizontalStackView.heightAnchor.constraint(equalToConstant: horizontalBarHeight)
-            .isActive = true
+        
+        
         horizontalStackView.setCustomSpacing(spacing, after: upgradeButton)
         upgradeButton.heightAnchor.constraint(equalTo: horizontalStackView.heightAnchor)
             .isActive = true
@@ -152,6 +166,7 @@ final class MixView: UIView {
             .isActive = true
         settingsButton.widthAnchor.constraint(equalTo: settingsButton.heightAnchor)
             .isActive = true
+        
         segmentControl.centerXAnchor.constraint(equalTo: stackView.centerXAnchor)
             .isActive = true
 
