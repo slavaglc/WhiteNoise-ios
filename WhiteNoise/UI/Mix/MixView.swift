@@ -28,6 +28,44 @@ final class MixView: UIView {
         return stackView
     }()
     
+    private lazy var horizontalStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.alignment = .center
+        stackView.spacing = 10
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    private lazy var upgradeButton: UIButton = {
+        let button = UIButton(type: .system)
+        let image = UIImage(named: "Lock")
+        button.setTitle(" Upgrate", for: .normal)
+        button.titleLabel?.font = UIFont(name: "Nunito", size: 16)
+        button.titleLabel?.adjustsFontSizeToFitWidth = true
+        button.tintColor = .white
+        button.setImage(image, for: .normal)
+        button.layer.cornerRadius = 25
+        button.backgroundImage(for: .normal)
+        button.clipsToBounds = true
+        button.backgroundColor = #colorLiteral(red: 0.662745098, green: 0.7058823529, blue: 1, alpha: 1)
+            .withAlphaComponent(0.1)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private lazy var settingsButton: UIButton = {
+        let button = UIButton(type: .system)
+        let image = UIImage(named: "Gear")
+        button.setImage(image, for: .normal)
+        button.layer.cornerRadius = 25
+        button.clipsToBounds = true
+        button.backgroundColor = #colorLiteral(red: 0.662745098, green: 0.7058823529, blue: 1, alpha: 1)
+            .withAlphaComponent(0.1)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     private lazy var filterTagCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -55,19 +93,7 @@ final class MixView: UIView {
         return collectionView
     }()
     
-//    private lazy var segmentControl: UISegmentedControl = {
-//        let segmentControl = UISegmentedControl(items: [ViewState.create.rawValue,
-//                                                        ViewState.saved.rawValue])
-//        segmentControl.addTarget(self, action: #selector(segmentDidChange(_:)), for: .valueChanged)
-//        let image = UIImage(systemName: "cross")
-////        segmentControl.setDividerImage(image, forLeftSegmentState: .selected, rightSegmentState: .normal, barMetrics: .default)
-//        segmentControl.setBackgroundImage(image, for: .selected, barMetrics: .default)
-//
-//        segmentControl.translatesAutoresizingMaskIntoConstraints = false
-//        return segmentControl
-//    }()
-    
-    private lazy var newSegment: CustomSegmentedControl = {
+    private lazy var segmentControl: CustomSegmentedControl = {
         let titles = [ViewState.create.rawValue,
                       ViewState.saved.rawValue
         ]
@@ -94,9 +120,10 @@ final class MixView: UIView {
     }
     
     private func setPrimarySettings() {
-//        segmentControl.selectedSegmentIndex = .zero
-//        stackView.addArrangedSubview(segmentControl)
-        stackView.addArrangedSubview(newSegment)
+        horizontalStackView.addArrangedSubview(upgradeButton)
+        horizontalStackView.addArrangedSubview(settingsButton)
+        stackView.addArrangedSubview(horizontalStackView)
+        stackView.addArrangedSubview(segmentControl)
         stackView.addArrangedSubview(filterTagCollectionView)
         stackView.addArrangedSubview(soundsCollectionView)
         addSubview(stackView)
@@ -104,22 +131,37 @@ final class MixView: UIView {
     }
     
     private func setupConstraints() {
+        let spacing = UIScreen.main.bounds.size.width / 2
+        let horizontalBarHeight: CGFloat = 50
+        let statusBarHeight = (window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 10) * 2
+        let topSpacing = statusBarHeight + 10
         stackView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor).isActive = true
         stackView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.9).isActive = true
         stackView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.95).isActive = true
-        stackView.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor).isActive = true
+        stackView.topAnchor.constraint(equalTo: topAnchor, constant: topSpacing)
+            .isActive = true
         
-        newSegment.centerXAnchor.constraint(equalTo: stackView.centerXAnchor)
+        horizontalStackView.widthAnchor.constraint(equalTo: stackView.widthAnchor)
             .isActive = true
-//        newSegment.centerYAnchor.constraint(equalTo: stackView.centerYAnchor)
-//            .isActive = true
-        newSegment.widthAnchor.constraint(equalTo: stackView.widthAnchor)
+        horizontalStackView.heightAnchor.constraint(equalToConstant: horizontalBarHeight)
             .isActive = true
-        newSegment.heightAnchor.constraint(equalToConstant: 50)
+        horizontalStackView.setCustomSpacing(spacing, after: upgradeButton)
+        upgradeButton.heightAnchor.constraint(equalTo: horizontalStackView.heightAnchor)
+            .isActive = true
+        settingsButton.heightAnchor.constraint(equalTo: horizontalStackView.heightAnchor)
+            .isActive = true
+        settingsButton.widthAnchor.constraint(equalTo: settingsButton.heightAnchor)
+            .isActive = true
+        segmentControl.centerXAnchor.constraint(equalTo: stackView.centerXAnchor)
+            .isActive = true
+
+        segmentControl.widthAnchor.constraint(equalTo: stackView.widthAnchor)
+            .isActive = true
+        segmentControl.heightAnchor.constraint(equalToConstant: horizontalBarHeight)
             .isActive = true
         
         filterTagCollectionView.widthAnchor.constraint(equalTo: stackView.widthAnchor).isActive = true
-        filterTagCollectionView.heightAnchor.constraint(equalTo: newSegment.heightAnchor, multiplier: 2).isActive = true
+        filterTagCollectionView.heightAnchor.constraint(equalTo: segmentControl.heightAnchor, multiplier: 2).isActive = true
         soundsCollectionView.widthAnchor.constraint(equalTo: stackView.widthAnchor).isActive = true
 
 //        segmentControl.widthAnchor.constraint(equalTo: stackView.widthAnchor).isActive = true
