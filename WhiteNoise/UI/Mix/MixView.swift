@@ -36,7 +36,10 @@ final class MixView: UIView {
         collectionView.dataSource = self
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .clear
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
         collectionView.register(FilterTagCollectionViewCell.self, forCellWithReuseIdentifier: FilterTagCollectionViewCell.nameOfClass)
+        
         return collectionView
     }()
     
@@ -52,13 +55,25 @@ final class MixView: UIView {
         return collectionView
     }()
     
-    private lazy var segmentControl: UISegmentedControl = {
-        let segmentControl = UISegmentedControl(items: [ViewState.create.rawValue,
-                                                        ViewState.saved.rawValue])
-        segmentControl.addTarget(self, action: #selector(segmentDidChange(_:)), for: .valueChanged)
+//    private lazy var segmentControl: UISegmentedControl = {
+//        let segmentControl = UISegmentedControl(items: [ViewState.create.rawValue,
+//                                                        ViewState.saved.rawValue])
+//        segmentControl.addTarget(self, action: #selector(segmentDidChange(_:)), for: .valueChanged)
+//        let image = UIImage(systemName: "cross")
+////        segmentControl.setDividerImage(image, forLeftSegmentState: .selected, rightSegmentState: .normal, barMetrics: .default)
+//        segmentControl.setBackgroundImage(image, for: .selected, barMetrics: .default)
+//
+//        segmentControl.translatesAutoresizingMaskIntoConstraints = false
+//        return segmentControl
+//    }()
+    
+    private lazy var newSegment: CustomSegmentedControl = {
+        let titles = [ViewState.create.rawValue,
+                      ViewState.saved.rawValue
+        ]
+        let control = CustomSegmentedControl(frame: CGRect.zero, buttonTitle: titles)
         
-        segmentControl.translatesAutoresizingMaskIntoConstraints = false
-        return segmentControl
+        return control
     }()
     
     convenience init(viewController: MixViewDisplayLogic) {
@@ -79,8 +94,9 @@ final class MixView: UIView {
     }
     
     private func setPrimarySettings() {
-        segmentControl.selectedSegmentIndex = .zero
-        stackView.addArrangedSubview(segmentControl)
+//        segmentControl.selectedSegmentIndex = .zero
+//        stackView.addArrangedSubview(segmentControl)
+        stackView.addArrangedSubview(newSegment)
         stackView.addArrangedSubview(filterTagCollectionView)
         stackView.addArrangedSubview(soundsCollectionView)
         addSubview(stackView)
@@ -93,11 +109,21 @@ final class MixView: UIView {
         stackView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.95).isActive = true
         stackView.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor).isActive = true
         
+        newSegment.centerXAnchor.constraint(equalTo: stackView.centerXAnchor)
+            .isActive = true
+//        newSegment.centerYAnchor.constraint(equalTo: stackView.centerYAnchor)
+//            .isActive = true
+        newSegment.widthAnchor.constraint(equalTo: stackView.widthAnchor)
+            .isActive = true
+        newSegment.heightAnchor.constraint(equalToConstant: 50)
+            .isActive = true
+        
         filterTagCollectionView.widthAnchor.constraint(equalTo: stackView.widthAnchor).isActive = true
-        filterTagCollectionView.heightAnchor.constraint(equalTo: segmentControl.heightAnchor, multiplier: 2).isActive = true
+        filterTagCollectionView.heightAnchor.constraint(equalTo: newSegment.heightAnchor, multiplier: 2).isActive = true
         soundsCollectionView.widthAnchor.constraint(equalTo: stackView.widthAnchor).isActive = true
 
-        segmentControl.widthAnchor.constraint(equalTo: stackView.widthAnchor).isActive = true
+//        segmentControl.widthAnchor.constraint(equalTo: stackView.widthAnchor).isActive = true
+//        segmentControl.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
 }
 

@@ -69,3 +69,7 @@ extension UIViewController {
         self.navigationController?.navigationBar.addSubview(visualEffectView)
     }
 }
+
+
+
+  

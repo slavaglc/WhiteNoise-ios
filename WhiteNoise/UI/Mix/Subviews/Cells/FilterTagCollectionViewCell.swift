@@ -24,7 +24,7 @@ final class FilterTagCollectionViewCell: UICollectionViewCell {
     private lazy var view: UIView = {
         let view = UIView()
         view.layer.borderColor = UIColor.white.cgColor
-        view.layer.cornerRadius = 10
+        view.layer.cornerRadius = 25
         view.layer.borderWidth = 1
         view.clipsToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -33,8 +33,10 @@ final class FilterTagCollectionViewCell: UICollectionViewCell {
     
     private lazy var label: UILabel = {
         let label = UILabel()
+        label.font = UIFont(name: "Nunito-Bold", size: 18)
         label.textAlignment = .center
         label.textColor = .white
+        label.adjustsFontSizeToFitWidth = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -77,7 +79,7 @@ final class FilterTagCollectionViewCell: UICollectionViewCell {
     }
     
     private func setSelectedStyle() {
-        gradient.colors = [#colorLiteral(red: 0.5406857133, green: 0.4216250181, blue: 1, alpha: 1).cgColor, #colorLiteral(red: 0.7745779157, green: 0.7195857167, blue: 1, alpha: 1).cgColor]
+        gradient.colors = [#colorLiteral(red: 0.465685904, green: 0.3625613451, blue: 0.8644735217, alpha: 1).cgColor, #colorLiteral(red: 0.7122805715, green: 0.6651663184, blue: 0.936873138, alpha: 1).cgColor]
         gradient.frame = view.bounds
         view.layer.addSublayer(gradient)
         view.bringSubviewToFront(label)

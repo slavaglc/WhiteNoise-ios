@@ -37,6 +37,7 @@
 		F991947E28112466009CD9F9 /* SoundCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F991947D28112466009CD9F9 /* SoundCollectionViewCell.swift */; };
 		F9919482281124D7009CD9F9 /* NameOfClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9919481281124D7009CD9F9 /* NameOfClass.swift */; };
 		F9DC15EB2811A84700B1EE9B /* FilterTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DC15EA2811A84700B1EE9B /* FilterTag.swift */; };
+		F9DC15EF2811BF2000B1EE9B /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DC15EE2811BF2000B1EE9B /* CustomSegmentedControl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 		F991947D28112466009CD9F9 /* SoundCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundCollectionViewCell.swift; sourceTree = "<group>"; };
 		F9919481281124D7009CD9F9 /* NameOfClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameOfClass.swift; sourceTree = "<group>"; };
 		F9DC15EA2811A84700B1EE9B /* FilterTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTag.swift; sourceTree = "<group>"; };
+		F9DC15EE2811BF2000B1EE9B /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				F99194802811247A009CD9F9 /* Cells */,
+				F9DC15EE2811BF2000B1EE9B /* CustomSegmentedControl.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 				5A945F34280DCFCF001AA3C4 /* PrivacyView.swift in Sources */,
 				5A8FB7CD280C70C300D44CA6 /* MixView.swift in Sources */,
 				F991947E28112466009CD9F9 /* SoundCollectionViewCell.swift in Sources */,
+				F9DC15EF2811BF2000B1EE9B /* CustomSegmentedControl.swift in Sources */,
 				5A8841CC280B5EA300A8291B /* PlansleepView.swift in Sources */,
 				5A8FB7BD280C1D3D00D44CA6 /* StorageManager.swift in Sources */,
 				5A8FB7BF280C216D00D44CA6 /* Time.swift in Sources */,

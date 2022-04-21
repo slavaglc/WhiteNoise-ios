@@ -13,12 +13,9 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
         didSet {
             colorIndex = 0
             if isSelected {
-                
                 setSelectedStyle()
-                print("selected")
             } else {
-                print("deselected")
-                setDeselectedStyle()
+                setUnselectedStyle()
             }
         }
     }
@@ -62,8 +59,10 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
     
     private lazy var label: UILabel = {
         let label = UILabel()
+        label.font = UIFont(name: "Nunito-Bold", size: 22)
         label.textColor = .white
         label.textAlignment = .center
+        label.adjustsFontSizeToFitWidth = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -129,7 +128,7 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
     }
     
     
-    private func setDeselectedStyle() {
+    private func setUnselectedStyle() {
         animateGradientDissapearing()
         gradientLayer.shouldRasterize = true
     }
