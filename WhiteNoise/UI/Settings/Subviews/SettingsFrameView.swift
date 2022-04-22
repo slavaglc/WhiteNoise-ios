@@ -135,7 +135,7 @@ class SettingsFrameView: UIView {
         
         // text1
         NSLayoutConstraint.activate([
-            text1.topAnchor.constraint(equalTo: background.bottomAnchor, constant: 0),
+            text1.topAnchor.constraint(equalTo: background.bottomAnchor, constant: 16),
             text1.leftAnchor.constraint(equalTo: background.leftAnchor, constant: 16)
         ])
         

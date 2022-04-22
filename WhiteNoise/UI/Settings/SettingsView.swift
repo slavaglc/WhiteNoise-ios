@@ -36,15 +36,31 @@ class SettingsView: UIView {
         return view
     }()
     
+    private lazy var tableView: UITableView = {
+        let view = UITableView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .clear
+        view.register(SettingItemCell.self, forCellReuseIdentifier: "ItemCell")
+        view.separatorStyle = .none
+        view.dataSource = self
+        view.delegate = self
+        
+        return view
+    }()
+    
+    let items = [
+        "SettingsContactUs", "SettingsInviteFriend", "SettingsPrivacyPolicy",
+        "SettingsRateUs", "SettingsSetReminder"
+    ]
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         // add views
         addSubview(label)
-        addSubview(closeBtn)
+        //addSubview(closeBtn)
         addSubview(framez)
-        
-        setUpConstraints()
+        addSubview(tableView)
     }
     
     required init?(coder: NSCoder) {
@@ -52,11 +68,14 @@ class SettingsView: UIView {
     }
     
     func viewDidAppear(_ animated: Bool) {
+        viewController?.navigationController?.view.addSubview(closeBtn)
         viewController?.navigationController?.navigationBar.barStyle = .black
         viewController?.navigationController?.navigationBar.barTintColor = .fromNormalRgb(red: 11, green: 16, blue: 51)
         viewController?.navigationController?.navigationBar.topItem?.setHidesBackButton(true, animated: false)
         
         framez.viewDidAppear(animated)
+        
+        setUpConstraints()
     }
     
     private func setUpConstraints() {
@@ -70,8 +89,8 @@ class SettingsView: UIView {
         
         // closeBtn
         NSLayoutConstraint.activate([
-            closeBtn.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
             closeBtn.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: -32),
+            closeBtn.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             closeBtn.widthAnchor.constraint(equalToConstant: 40),
             closeBtn.heightAnchor.constraint(equalToConstant: 40)
         ])
@@ -83,10 +102,61 @@ class SettingsView: UIView {
             framez.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 32),
             framez.heightAnchor.constraint(equalToConstant: 240),
         ])
+        
+        // tableView
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: framez.bottomAnchor, constant: 32),
+            tableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
     
     @objc
     private func closeView(view: UIView) {
         viewController?.navigationController?.popViewController(animated: true)
+        closeBtn.removeFromSuperview()
+    }
+    
+    private func itemSelected(pos: Int) {
+        closeBtn.removeFromSuperview()
+        
+        if(pos == 2) {
+            viewController?.navigationController?.pushViewController(PrivacyViewController(), animated: true)
+        }
+    }
+}
+
+extension SettingsView: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return items.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell")! as! SettingItemCell
+        let item = items[indexPath.row]
+        
+        cell.updateCell(imageName: item)
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60.0
+    }
+}
+
+extension SettingsView: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        itemSelected(pos: indexPath.row)
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        // cell.selectionStyle = .none
+        
+        let selectionColor = UIView() as UIView
+        selectionColor.backgroundColor = UIColor.fromNormalRgb(red: 22, green: 29, blue: 83)
+        cell.selectedBackgroundView = selectionColor
     }
 }
