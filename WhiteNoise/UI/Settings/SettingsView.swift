@@ -120,9 +120,14 @@ class SettingsView: UIView {
     private func itemSelected(pos: Int) {
         closeBtn.removeFromSuperview()
         
-        if(pos == 2) {
-            viewController?.navigationController?.pushViewController(PrivacyViewController(), animated: true)
-        } 
+        switch pos {
+        case 2:
+            viewController?.navigationController?
+                .pushViewController(PrivacyViewController(), animated: true)
+            break
+        default:
+            break
+        }
     }
     
     func subButtonClick() {
