@@ -1,8 +1,8 @@
 //
-//  UI.swift
+//  UIView.swift
 //  WhiteNoise
 //
-//  Created by Victor Varenik on 17.04.2022.
+//  Created by Victor Varenik on 23.04.2022.
 //
 
 import UIKit
@@ -79,6 +79,7 @@ extension UIView {
                 completionAnimation()
             }
         }
+    }
 
     
     func halfFadeOut(completionAnimation: @escaping ()->() = {}) {
@@ -100,26 +101,15 @@ extension UIView {
             }
         }
     }
-      
-      func applyGradient(colorArray: [CGColor]) {
-        let gl = CAGradientLayer()
-        gl.colors = colorArray
-        gl.cornerRadius = layer.cornerRadius
-        gl.locations = [0, 1]
-        gl.startPoint = CGPoint(x: 0.5, y: 0)
-        gl.endPoint = CGPoint(x: 0.5, y: 1)
-        gl.frame = self.bounds
-        layer.addSublayer(gl)
-    }
 }
-
-extension UIViewController {
-    func installBlurEffect() {
-        let bounds = self.navigationController?.navigationBar.bounds
-        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
-        visualEffectView.frame = bounds ?? CGRect.zero
-        visualEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.navigationController?.navigationBar.addSubview(visualEffectView)
-    }
-}
-
+    
+//
+//extension UIViewController {
+//    func installBlurEffect() {
+//        let bounds = self.navigationController?.navigationBar.bounds
+//        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
+//        visualEffectView.frame = bounds ?? CGRect.zero
+//        visualEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+//        self.navigationController?.navigationBar.addSubview(visualEffectView)
+//    }
+//}
