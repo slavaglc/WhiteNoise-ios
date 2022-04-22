@@ -53,7 +53,7 @@ class PrivacyView: UIView {
         // add views
         addSubview(scrollView)
         scrollView.addSubview(label)
-        scrollView.addSubview(closeBtn)
+        //scrollView.addSubview(closeBtn)
         scrollView.addSubview(text)
     }
     
@@ -62,11 +62,12 @@ class PrivacyView: UIView {
     }
     
     func viewDidAppear(_ animated: Bool) {
-        setUpConstraints()
-        
+        viewController?.navigationController?.view.addSubview(closeBtn)
         viewController?.navigationController?.navigationBar.barStyle = .black
         viewController?.navigationController?.navigationBar.barTintColor = .fromNormalRgb(red: 11, green: 16, blue: 51)
         viewController?.navigationController?.navigationBar.topItem?.setHidesBackButton(true, animated: false)
+        
+        setUpConstraints()
     }
     
     private func setUpConstraints() {
@@ -88,8 +89,8 @@ class PrivacyView: UIView {
         
         // closeBtn
         NSLayoutConstraint.activate([
-            closeBtn.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
-            closeBtn.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: -32),
+            closeBtn.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: -32),
+            closeBtn.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             closeBtn.widthAnchor.constraint(equalToConstant: 40),
             closeBtn.heightAnchor.constraint(equalToConstant: 40)
         ])
@@ -107,6 +108,7 @@ class PrivacyView: UIView {
     @objc
     private func closeView(view: UIView) {
         viewController?.navigationController?.popViewController(animated: true)
+        closeBtn.removeFromSuperview()
     }
 }
 
