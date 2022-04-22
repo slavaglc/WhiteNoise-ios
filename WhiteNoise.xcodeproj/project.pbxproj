@@ -37,6 +37,14 @@
 		5A945F36280DCFF4001AA3C4 /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A945F35280DCFF4001AA3C4 /* PrivacyViewController.swift */; };
 		5AAB52C628134735003C53E3 /* UIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB52C528134735003C53E3 /* UIError.swift */; };
 		5AB9A8B0280D82E9009895BC /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9A8AF280D82E9009895BC /* HapticManager.swift */; };
+		F991947A2810A159009CD9F9 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99194792810A159009CD9F9 /* Sound.swift */; };
+		F991947C28112452009CD9F9 /* FilterTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F991947B28112452009CD9F9 /* FilterTagCollectionViewCell.swift */; };
+		F991947E28112466009CD9F9 /* SoundCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F991947D28112466009CD9F9 /* SoundCollectionViewCell.swift */; };
+		F9919482281124D7009CD9F9 /* NameOfClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9919481281124D7009CD9F9 /* NameOfClass.swift */; };
+		F9DC15EB2811A84700B1EE9B /* FilterTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DC15EA2811A84700B1EE9B /* FilterTag.swift */; };
+		F9DC15EF2811BF2000B1EE9B /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DC15EE2811BF2000B1EE9B /* CustomSegmentedControl.swift */; };
+		F9DC15F12813080B00B1EE9B /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DC15F02813080B00B1EE9B /* CustomTabBar.swift */; };
+		F9DC15F32813285400B1EE9B /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DC15F22813285400B1EE9B /* Circle.swift */; };
 		5AE64C9728130650007F5CED /* SettingItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE64C9628130650007F5CED /* SettingItemCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +81,14 @@
 		5A945F35280DCFF4001AA3C4 /* PrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
 		5AAB52C528134735003C53E3 /* UIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIError.swift; sourceTree = "<group>"; };
 		5AB9A8AF280D82E9009895BC /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
+		F99194792810A159009CD9F9 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
+		F991947B28112452009CD9F9 /* FilterTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTagCollectionViewCell.swift; sourceTree = "<group>"; };
+		F991947D28112466009CD9F9 /* SoundCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundCollectionViewCell.swift; sourceTree = "<group>"; };
+		F9919481281124D7009CD9F9 /* NameOfClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameOfClass.swift; sourceTree = "<group>"; };
+		F9DC15EA2811A84700B1EE9B /* FilterTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTag.swift; sourceTree = "<group>"; };
+		F9DC15EE2811BF2000B1EE9B /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
+		F9DC15F02813080B00B1EE9B /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		F9DC15F22813285400B1EE9B /* Circle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
 		5AE64C9628130650007F5CED /* SettingItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItemCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -169,6 +185,8 @@
 			isa = PBXGroup;
 			children = (
 				5A8FB7BE280C216D00D44CA6 /* Time.swift */,
+				F99194792810A159009CD9F9 /* Sound.swift */,
+				F9DC15EA2811A84700B1EE9B /* FilterTag.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -186,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				5A8FB7AF280BDB6900D44CA6 /* UI.swift */,
+				F9919481281124D7009CD9F9 /* NameOfClass.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -216,6 +235,7 @@
 			children = (
 				5A8FB7CC280C70C300D44CA6 /* MixView.swift */,
 				5A8FB7CE280C70E300D44CA6 /* MixViewController.swift */,
+				F991947F2811246A009CD9F9 /* Subviews */,
 			);
 			path = Mix;
 			sourceTree = "<group>";
@@ -238,12 +258,24 @@
 			path = Paywall;
 			sourceTree = "<group>";
 		};
-		5AAB52C22813453F003C53E3 /* Errors */ = {
+		F991947F2811246A009CD9F9 /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
-				5AAB52C528134735003C53E3 /* UIError.swift */,
+				F99194802811247A009CD9F9 /* Cells */,
+				F9DC15EE2811BF2000B1EE9B /* CustomSegmentedControl.swift */,
+				F9DC15F02813080B00B1EE9B /* CustomTabBar.swift */,
+				F9DC15F22813285400B1EE9B /* Circle.swift */,
 			);
-			path = Errors;
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		F99194802811247A009CD9F9 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				F991947B28112452009CD9F9 /* FilterTagCollectionViewCell.swift */,
+				F991947D28112466009CD9F9 /* SoundCollectionViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -323,15 +355,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				5AB9A8B0280D82E9009895BC /* HapticManager.swift in Sources */,
+				F991947C28112452009CD9F9 /* FilterTagCollectionViewCell.swift in Sources */,
 				5A13588D280E8D0800DE431D /* PaywallView.swift in Sources */,
 				5A13588F280E8D1400DE431D /* PaywallViewController.swift in Sources */,
+				F9DC15F12813080B00B1EE9B /* CustomTabBar.swift in Sources */,
 				5A8841BC280B4DA800A8291B /* PlansleepViewController.swift in Sources */,
 				5A945F36280DCFF4001AA3C4 /* PrivacyViewController.swift in Sources */,
 				5A8FB7C7280C460E00D44CA6 /* UIPageIndicatorView.swift in Sources */,
 				5A8FB7B0280BDB6900D44CA6 /* UI.swift in Sources */,
+				F9DC15EB2811A84700B1EE9B /* FilterTag.swift in Sources */,
+				F991947A2810A159009CD9F9 /* Sound.swift in Sources */,
 				5A8FB7CF280C70E300D44CA6 /* MixViewController.swift in Sources */,
 				5A945F34280DCFCF001AA3C4 /* PrivacyView.swift in Sources */,
+				F9DC15F32813285400B1EE9B /* Circle.swift in Sources */,
 				5A8FB7CD280C70C300D44CA6 /* MixView.swift in Sources */,
+				F991947E28112466009CD9F9 /* SoundCollectionViewCell.swift in Sources */,
+				F9DC15EF2811BF2000B1EE9B /* CustomSegmentedControl.swift in Sources */,
 				5A8841CC280B5EA300A8291B /* PlansleepView.swift in Sources */,
 				5A8FB7BD280C1D3D00D44CA6 /* StorageManager.swift in Sources */,
 				5A62AAF12811A8C6003667D2 /* SettingsFrameBackgroundView.swift in Sources */,
@@ -340,6 +379,7 @@
 				5A8FB7C9280C550600D44CA6 /* UICircle.swift in Sources */,
 				5A8FB7AE280BDA9400D44CA6 /* MyNavigationController.swift in Sources */,
 				5A8841BA280B4DA800A8291B /* SceneDelegate.swift in Sources */,
+				F9919482281124D7009CD9F9 /* NameOfClass.swift in Sources */,
 				5AAB52C628134735003C53E3 /* UIError.swift in Sources */,
 				5A62AAEF28118CF8003667D2 /* SettingsFrameView.swift in Sources */,
 				5AE64C9728130650007F5CED /* SettingItemCell.swift in Sources */,

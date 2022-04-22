@@ -79,9 +79,29 @@ extension UIView {
                 completionAnimation()
             }
         }
+
+    
+    func halfFadeOut(completionAnimation: @escaping ()->() = {}) {
+        UIView.animate(withDuration: 0.2) { [weak self] in
+            self?.alpha = 0.5
+        } completion: { isFinished in
+            if isFinished {
+            completionAnimation()
+            }
+        }
     }
     
-    func applyGradient(colorArray: [CGColor]) {
+    func halfFadeIn(completionAnimation: @escaping ()->() = {}) {
+        UIView.animate(withDuration: 0.2) { [weak self] in
+            self?.alpha = 1
+        } completion: { isFinished in
+            if isFinished {
+            completionAnimation()
+            }
+        }
+    }
+      
+      func applyGradient(colorArray: [CGColor]) {
         let gl = CAGradientLayer()
         gl.colors = colorArray
         gl.cornerRadius = layer.cornerRadius
@@ -90,6 +110,16 @@ extension UIView {
         gl.endPoint = CGPoint(x: 0.5, y: 1)
         gl.frame = self.bounds
         layer.addSublayer(gl)
+    }
+}
+
+extension UIViewController {
+    func installBlurEffect() {
+        let bounds = self.navigationController?.navigationBar.bounds
+        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
+        visualEffectView.frame = bounds ?? CGRect.zero
+        visualEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.navigationController?.navigationBar.addSubview(visualEffectView)
     }
 }
 
