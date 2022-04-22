@@ -73,12 +73,16 @@ class SettingsFrameView: UIView {
         view.backgroundColor = .fromNormalRgb(red: 90, green: 107, blue: 238)
         view.layer.cornerRadius = 18
         view.layer.masksToBounds = true
-        // view.addTarget(self, action: #selector(buttonDidTapped(sender:)), for: .touchUpInside)
+        view.addTarget(self, action: #selector(subButtonClick), for: .touchUpInside)
         
         return view
     }()
     
-    init() {
+    private let settingsView: SettingsView
+    
+    init(settingsView: SettingsView) {
+        self.settingsView = settingsView
+        
         super.init(frame: CGRect())
         
         // configure border
@@ -100,6 +104,7 @@ class SettingsFrameView: UIView {
     }
     
     required init?(coder: NSCoder) {
+        self.settingsView = SettingsView()
         super.init(coder: coder)
     }
     
@@ -156,5 +161,10 @@ class SettingsFrameView: UIView {
     
     func viewDidAppear(_ animated: Bool) {
         
+    }
+    
+    @objc
+    private func subButtonClick(button: UIButton) {
+        settingsView.subButtonClick()
     }
 }

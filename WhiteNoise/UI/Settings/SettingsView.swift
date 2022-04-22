@@ -30,7 +30,7 @@ class SettingsView: UIView {
     }()
     
     private lazy var framez: SettingsFrameView = {
-        let view = SettingsFrameView()
+        let view = SettingsFrameView(settingsView: self)
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
@@ -58,9 +58,10 @@ class SettingsView: UIView {
         
         // add views
         addSubview(label)
-        //addSubview(closeBtn)
         addSubview(framez)
         addSubview(tableView)
+        
+        setUpConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -75,7 +76,13 @@ class SettingsView: UIView {
         
         framez.viewDidAppear(animated)
         
-        setUpConstraints()
+        // closeBtn
+        NSLayoutConstraint.activate([
+            closeBtn.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: -32),
+            closeBtn.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            closeBtn.widthAnchor.constraint(equalToConstant: 40),
+            closeBtn.heightAnchor.constraint(equalToConstant: 40)
+        ])
     }
     
     private func setUpConstraints() {
@@ -85,14 +92,6 @@ class SettingsView: UIView {
             label.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: -32),
             label.widthAnchor.constraint(equalToConstant: 100),
             label.heightAnchor.constraint(equalToConstant: 40)
-        ])
-        
-        // closeBtn
-        NSLayoutConstraint.activate([
-            closeBtn.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: -32),
-            closeBtn.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            closeBtn.widthAnchor.constraint(equalToConstant: 40),
-            closeBtn.heightAnchor.constraint(equalToConstant: 40)
         ])
         
         // framez
@@ -123,7 +122,12 @@ class SettingsView: UIView {
         
         if(pos == 2) {
             viewController?.navigationController?.pushViewController(PrivacyViewController(), animated: true)
-        }
+        } 
+    }
+    
+    func subButtonClick() {
+        viewController?.navigationController?.pushViewController(PaywallViewController(), animated: true)
+        closeBtn.removeFromSuperview()
     }
 }
 
