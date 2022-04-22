@@ -127,6 +127,9 @@ class PaywallView: UIView {
         addSubview(subButton)
         addSubview(sub1Button)
         addSubview(sub2Button)
+        viewController?.navigationController?.view.addSubview(closeBtn)
+        
+        setUpConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -134,10 +137,15 @@ class PaywallView: UIView {
     }
     
     func viewDidAppear(_ animated: Bool) {
-        viewController?.navigationController?.view.addSubview(closeBtn)
         viewController?.navigationController?.navigationBar.topItem?.setHidesBackButton(true, animated: false)
         
-        setUpConstraints()
+        // closeBtn
+        NSLayoutConstraint.activate([
+            closeBtn.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: -32),
+            closeBtn.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            closeBtn.widthAnchor.constraint(equalToConstant: 40),
+            closeBtn.heightAnchor.constraint(equalToConstant: 40)
+        ])
         
         subSelect = SubSelect.YEAR
     }
@@ -148,15 +156,7 @@ class PaywallView: UIView {
             backgroundImage.leadingAnchor.constraint(equalTo: leadingAnchor),
             backgroundImage.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
-        
-        // closeBtn
-        NSLayoutConstraint.activate([
-            closeBtn.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: -32),
-            closeBtn.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            closeBtn.widthAnchor.constraint(equalToConstant: 40),
-            closeBtn.heightAnchor.constraint(equalToConstant: 40)
-        ])
-        
+
         // textImage
         NSLayoutConstraint.activate([
             textImage.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 64),
@@ -191,7 +191,7 @@ class PaywallView: UIView {
     
     @objc
     private func closeView(view: UIView) {
-        viewController?.navigationController?.popToRootViewController(animated: true)
+        viewController?.navigationController?.popViewController(animated: true)
         closeBtn.removeFromSuperview()
     }
     

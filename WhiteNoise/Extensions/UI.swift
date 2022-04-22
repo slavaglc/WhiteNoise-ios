@@ -27,37 +27,59 @@ extension UIView {
         return nil
     }
     
+    func changeAnimationByAlpha(change: @escaping ()->() = {}) {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.alpha = 0.0
+        }, completion: { _ in
+            change()
+            UIView.animate(withDuration: 0.3, animations: {
+                self.alpha = 1.0
+            })
+        })
+    }
+    
+    func changeAnimationByTranslate(change: @escaping ()->() = {}) {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.transform.translatedBy(x: 10, y: 0)
+        }, completion: { _ in
+            change()
+            UIView.animate(withDuration: 0.3, animations: {
+                self.transform.translatedBy(x: 0, y: 0)
+            })
+        })
+    }
+    
     func fadeInFromLeftSide(completionAnimation: @escaping ()->() = {}) {
-            let targetCenter = center
-            center = CGPoint(x: 0, y: targetCenter.y)
-            alpha = 0.0
-            isHidden = false
-            UIView.animate(withDuration: 0.3) { [weak self] in
-                self?.center = CGPoint(x: targetCenter.x, y: targetCenter.y)
-                self?.alpha = 1.0
-            } completion: { isFinished in
-                if isFinished {
-                    completionAnimation()
-                }
+        let targetCenter = center
+        center = CGPoint(x: 0, y: targetCenter.y)
+        alpha = 0.0
+        isHidden = false
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            self?.center = CGPoint(x: targetCenter.x, y: targetCenter.y)
+            self?.alpha = 1.0
+        } completion: { isFinished in
+            if isFinished {
+                completionAnimation()
             }
         }
+    }
         
-        func fadeOutToLeftSide(completionAnimation: @escaping ()->() = {}) {
-            let targetCenter = center
-            center = CGPoint(x: targetCenter.x, y: targetCenter.y)
-            alpha = 1.0
-            isHidden = false
-            UIView.animate(withDuration: 0.3) { [weak self] in
-                self?.center = CGPoint(x: 0, y: targetCenter.y)
-                self?.alpha = 0.0
-            } completion: { [weak self] isFinished in
-                if isFinished {
-                    self?.isHidden = true
-                    self?.center = targetCenter
-                    completionAnimation()
-                }
+    func fadeOutToLeftSide(completionAnimation: @escaping ()->() = {}) {
+        let targetCenter = center
+        center = CGPoint(x: targetCenter.x, y: targetCenter.y)
+        alpha = 1.0
+        isHidden = false
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            self?.center = CGPoint(x: 0, y: targetCenter.y)
+            //self?.alpha = 0.0
+        } completion: { [weak self] isFinished in
+            if isFinished {
+                self?.isHidden = true
+                self?.center = targetCenter
+                completionAnimation()
             }
         }
+
     
     func halfFadeOut(completionAnimation: @escaping ()->() = {}) {
         UIView.animate(withDuration: 0.2) { [weak self] in
@@ -78,6 +100,17 @@ extension UIView {
             }
         }
     }
+      
+      func applyGradient(colorArray: [CGColor]) {
+        let gl = CAGradientLayer()
+        gl.colors = colorArray
+        gl.cornerRadius = layer.cornerRadius
+        gl.locations = [0, 1]
+        gl.startPoint = CGPoint(x: 0.5, y: 0)
+        gl.endPoint = CGPoint(x: 0.5, y: 1)
+        gl.frame = self.bounds
+        layer.addSublayer(gl)
+    }
 }
 
 extension UIViewController {
@@ -90,6 +123,3 @@ extension UIViewController {
     }
 }
 
-
-
-  

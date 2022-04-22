@@ -16,17 +16,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="bi2-fv-ca3">
-                                <rect key="frame" x="197" y="438" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </activityIndicatorView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Loader" translatesAutoresizingMaskIntoConstraints="NO" id="hUI-9y-4ck">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Loader" translatesAutoresizingMaskIntoConstraints="NO" id="hUI-9y-4ck">
+                                <rect key="frame" x="0.0" y="-6" width="414" height="918"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="hUI-9y-4ck" firstAttribute="trailing" secondItem="Ze5-6b-2t3" secondAttribute="trailing" id="1Gi-dS-ZQh"/>
+                            <constraint firstItem="hUI-9y-4ck" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="CRJ-Oq-82g"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="hUI-9y-4ck" secondAttribute="bottom" constant="-50" id="xRC-yq-iEw"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="hUI-9y-4ck" secondAttribute="top" constant="50" id="xUl-RI-wcj"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -35,7 +36,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Loader" width="360" height="800"/>
+        <image name="Loader" width="1440" height="3200"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -81,6 +81,8 @@ class UIPageIndicatorView: UIView {
     
     func selectItem(pos: Int) {
         selectedItem = pos
-        setUpConstrains()
+        changeAnimationByTranslate(change: {
+            self.setUpConstrains()
+        })
     }
 }
