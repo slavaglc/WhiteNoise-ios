@@ -58,6 +58,26 @@ extension UIView {
                 }
             }
         }
+    
+    func halfFadeOut(completionAnimation: @escaping ()->() = {}) {
+        UIView.animate(withDuration: 0.2) { [weak self] in
+            self?.alpha = 0.5
+        } completion: { isFinished in
+            if isFinished {
+            completionAnimation()
+            }
+        }
+    }
+    
+    func halfFadeIn(completionAnimation: @escaping ()->() = {}) {
+        UIView.animate(withDuration: 0.2) { [weak self] in
+            self?.alpha = 1
+        } completion: { isFinished in
+            if isFinished {
+            completionAnimation()
+            }
+        }
+    }
 }
 
 extension UIViewController {

@@ -116,6 +116,23 @@ final class MixView: UIView {
         setPrimarySettings()
     }
     
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        customTabBar.halfFadeOut()
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        customTabBar.halfFadeIn()
+    }
+    
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        customTabBar.halfFadeOut()
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        customTabBar.halfFadeIn()
+    }
+    
+    
     @objc private func segmentDidChange(_ segmentControl: UISegmentedControl) {
         switch segmentControl.selectedSegmentIndex {
         case 0:
@@ -227,7 +244,7 @@ extension MixView: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
         switch collectionView {
         case soundsCollectionView:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SoundCollectionViewCell.nameOfClass, for: indexPath) as? SoundCollectionViewCell else { return CGSize(width: 100, height: 120)}
-            let height = (cell.getFontHeight() * 1.5 ) + 100
+            let height = (cell.getFontHeight() * 1.5 ) + 100 + 10
             return CGSize(width: 100, height: height)
         case filterTagCollectionView:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterTagCollectionViewCell.nameOfClass, for: indexPath) as? FilterTagCollectionViewCell else { return CGSize(width: 100, height: 50) }

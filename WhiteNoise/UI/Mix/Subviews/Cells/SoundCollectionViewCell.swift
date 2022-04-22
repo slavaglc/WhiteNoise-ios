@@ -34,7 +34,6 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
     
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.spacing = 10
         stackView.axis = .vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
@@ -59,7 +58,7 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
     
     private lazy var label: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Nunito-Bold", size: 22)
+        label.font = UIFont(name: "Nunito", size: 18)
         label.textColor = .white
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
@@ -105,8 +104,7 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
         stackView.heightAnchor.constraint(equalTo: contentView.heightAnchor)
             .isActive = true
         
-        imageBackgroundView.widthAnchor.constraint(equalTo: contentView.widthAnchor)
-            .isActive = true
+
         imageBackgroundView.heightAnchor.constraint(equalTo: imageBackgroundView.widthAnchor)
             .isActive = true
         

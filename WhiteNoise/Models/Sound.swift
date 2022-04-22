@@ -17,7 +17,22 @@ struct Sound {
         [
             Sound(name: "Airplane", imageName: "source_icons_airplane-rotation", trackName: "", isLocked: false),
             Sound(name: "Heavy rain", imageName: "source_icons_heavy-rain", trackName: "", isLocked: false),
-            Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", isLocked: false)
+            Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", isLocked: false),
+            Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", isLocked: false),
+            Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", isLocked: false),
+            Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", isLocked: false),
+            Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", isLocked: false),
+            Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", isLocked: false),
+            Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", isLocked: false),
+            Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", isLocked: false),
+            Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", isLocked: false),
+            Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", isLocked: false),
+            Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", isLocked: false),
+            Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", isLocked: false),
+            Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", isLocked: false),
+            Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", isLocked: false),
+            Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", isLocked: false),
+            
         ]
     }
 }
