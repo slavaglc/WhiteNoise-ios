@@ -191,11 +191,11 @@ final class MixView: UIView {
         navigationController.view.addSubview(customTabBar)
         customTabBar.widthAnchor.constraint(equalTo: navigationController.view.widthAnchor, multiplier: 0.65)
             .isActive = true
-        customTabBar.heightAnchor.constraint(equalToConstant: 80)
+        customTabBar.heightAnchor.constraint(equalToConstant: 70)
             .isActive = true
         customTabBar.centerXAnchor.constraint(equalTo: navigationController.view.centerXAnchor)
             .isActive = true
-        customTabBar.bottomAnchor.constraint(equalTo: navigationController.view.bottomAnchor, constant: -100)
+        customTabBar.bottomAnchor.constraint(equalTo: navigationController.view.bottomAnchor, constant: -50)
             .isActive = true
     }
 }

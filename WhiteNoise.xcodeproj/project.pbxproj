@@ -39,6 +39,7 @@
 		F9DC15EB2811A84700B1EE9B /* FilterTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DC15EA2811A84700B1EE9B /* FilterTag.swift */; };
 		F9DC15EF2811BF2000B1EE9B /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DC15EE2811BF2000B1EE9B /* CustomSegmentedControl.swift */; };
 		F9DC15F12813080B00B1EE9B /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DC15F02813080B00B1EE9B /* CustomTabBar.swift */; };
+		F9DC15F32813285400B1EE9B /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DC15F22813285400B1EE9B /* Circle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 		F9DC15EA2811A84700B1EE9B /* FilterTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTag.swift; sourceTree = "<group>"; };
 		F9DC15EE2811BF2000B1EE9B /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
 		F9DC15F02813080B00B1EE9B /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		F9DC15F22813285400B1EE9B /* Circle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +230,7 @@
 				F99194802811247A009CD9F9 /* Cells */,
 				F9DC15EE2811BF2000B1EE9B /* CustomSegmentedControl.swift */,
 				F9DC15F02813080B00B1EE9B /* CustomTabBar.swift */,
+				F9DC15F22813285400B1EE9B /* Circle.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 				F991947A2810A159009CD9F9 /* Sound.swift in Sources */,
 				5A8FB7CF280C70E300D44CA6 /* MixViewController.swift in Sources */,
 				5A945F34280DCFCF001AA3C4 /* PrivacyView.swift in Sources */,
+				F9DC15F32813285400B1EE9B /* Circle.swift in Sources */,
 				5A8FB7CD280C70C300D44CA6 /* MixView.swift in Sources */,
 				F991947E28112466009CD9F9 /* SoundCollectionViewCell.swift in Sources */,
 				F9DC15EF2811BF2000B1EE9B /* CustomSegmentedControl.swift in Sources */,
