@@ -53,8 +53,9 @@ class PrivacyView: UIView {
         // add views
         addSubview(scrollView)
         scrollView.addSubview(label)
-        //scrollView.addSubview(closeBtn)
         scrollView.addSubview(text)
+        
+        setUpConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -67,7 +68,13 @@ class PrivacyView: UIView {
         viewController?.navigationController?.navigationBar.barTintColor = .fromNormalRgb(red: 11, green: 16, blue: 51)
         viewController?.navigationController?.navigationBar.topItem?.setHidesBackButton(true, animated: false)
         
-        setUpConstraints()
+        // closeBtn
+        NSLayoutConstraint.activate([
+            closeBtn.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: -32),
+            closeBtn.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            closeBtn.widthAnchor.constraint(equalToConstant: 40),
+            closeBtn.heightAnchor.constraint(equalToConstant: 40)
+        ])
     }
     
     private func setUpConstraints() {
@@ -85,14 +92,6 @@ class PrivacyView: UIView {
             label.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: -32),
             label.widthAnchor.constraint(equalToConstant: 100),
             label.heightAnchor.constraint(equalToConstant: 40)
-        ])
-        
-        // closeBtn
-        NSLayoutConstraint.activate([
-            closeBtn.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: -32),
-            closeBtn.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            closeBtn.widthAnchor.constraint(equalToConstant: 40),
-            closeBtn.heightAnchor.constraint(equalToConstant: 40)
         ])
         
         // text
