@@ -35,6 +35,7 @@
 		5A945F31280DCC60001AA3C4 /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = 5A945F30280DCC60001AA3C4 /* readme.md */; };
 		5A945F34280DCFCF001AA3C4 /* PrivacyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A945F33280DCFCF001AA3C4 /* PrivacyView.swift */; };
 		5A945F36280DCFF4001AA3C4 /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A945F35280DCFF4001AA3C4 /* PrivacyViewController.swift */; };
+		5AAB52C628134735003C53E3 /* UIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB52C528134735003C53E3 /* UIError.swift */; };
 		5AB9A8B0280D82E9009895BC /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9A8AF280D82E9009895BC /* HapticManager.swift */; };
 		5AE64C9728130650007F5CED /* SettingItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE64C9628130650007F5CED /* SettingItemCell.swift */; };
 /* End PBXBuildFile section */
@@ -70,6 +71,7 @@
 		5A945F30280DCC60001AA3C4 /* readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = "<group>"; };
 		5A945F33280DCFCF001AA3C4 /* PrivacyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyView.swift; sourceTree = "<group>"; };
 		5A945F35280DCFF4001AA3C4 /* PrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
+		5AAB52C528134735003C53E3 /* UIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIError.swift; sourceTree = "<group>"; };
 		5AB9A8AF280D82E9009895BC /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		5AE64C9628130650007F5CED /* SettingItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItemCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -125,6 +127,7 @@
 		5A8841B6280B4DA800A8291B /* WhiteNoise */ = {
 			isa = PBXGroup;
 			children = (
+				5AAB52C22813453F003C53E3 /* Errors */,
 				5A8FB7CA280C5A3200D44CA6 /* UI */,
 				5A8FB7AD280BDA9400D44CA6 /* MyNavigationController.swift */,
 				5A8FB7C4280C45A000D44CA6 /* Views */,
@@ -235,6 +238,14 @@
 			path = Paywall;
 			sourceTree = "<group>";
 		};
+		5AAB52C22813453F003C53E3 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				5AAB52C528134735003C53E3 /* UIError.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -329,6 +340,7 @@
 				5A8FB7C9280C550600D44CA6 /* UICircle.swift in Sources */,
 				5A8FB7AE280BDA9400D44CA6 /* MyNavigationController.swift in Sources */,
 				5A8841BA280B4DA800A8291B /* SceneDelegate.swift in Sources */,
+				5AAB52C628134735003C53E3 /* UIError.swift in Sources */,
 				5A62AAEF28118CF8003667D2 /* SettingsFrameView.swift in Sources */,
 				5AE64C9728130650007F5CED /* SettingItemCell.swift in Sources */,
 				5A62AAEA2811776A003667D2 /* SettingsViewController.swift in Sources */,

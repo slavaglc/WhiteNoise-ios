@@ -147,10 +147,11 @@ class PlansleepView: UIView {
         HapticManager.shared.notify(notificationType: .success)
         
         if sender.tag == 0 { // next
-            fadeOutToLeftSide() {
+            // indicator.changeAnimationByAlpha()
+            picker.changeAnimationByAlpha()
+            label2.changeAnimationByAlpha(change: {
                 self.viewState = .wakeUp
-                self.fadeInFromLeftSide()
-            }
+            })
         } else if sender.tag == 1 { // finish
             StorageManager.shared
                 .setTimes(
@@ -159,13 +160,13 @@ class PlansleepView: UIView {
                 )
             viewController?.navigationController?.pushViewController(MixViewController(), animated: true)
         } else if sender.tag == 2 { // skip
-            viewController?.navigationController?.pushViewController(SettingsViewController(), animated: true)
-            //viewController?.navigationController?.pushViewController(MixViewController(), animated: true)
+            // viewController?.navigationController?.pushViewController(SettingsViewController(), animated: true)
+            viewController?.navigationController?.pushViewController(MixViewController(), animated: true)
         } else if sender.tag == 3 { // back
-            fadeOutToLeftSide() {
+            picker.changeAnimationByAlpha()
+            label2.changeAnimationByAlpha(change: {
                 self.viewState = .sleep
-                self.fadeInFromLeftSide()
-            }
+            })
         }
     }
     
