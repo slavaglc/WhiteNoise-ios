@@ -104,6 +104,12 @@ final class MixView: UIView {
         return control
     }()
     
+    private lazy var customTabBar: CustomTabBar = {
+        let customTabBar = CustomTabBar()
+        customTabBar.translatesAutoresizingMaskIntoConstraints = false
+        return customTabBar
+    }()
+    
     convenience init(viewController: MixViewDisplayLogic) {
         self.init()
         mixViewDisplayLogic = viewController
@@ -130,6 +136,7 @@ final class MixView: UIView {
         stackView.addArrangedSubview(filterTagCollectionView)
         stackView.addArrangedSubview(soundsCollectionView)
         addSubview(stackView)
+        setCustomTabBarSettings()
         setupConstraints()
         
     }
@@ -148,17 +155,14 @@ final class MixView: UIView {
             horizontalStackView.topAnchor.constraint(equalTo: navigationBar.topAnchor, constant: 10)
                 .isActive = true
         }
-            
-//        let statusBarHeight = (window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 10) * 2
-//        let topSpacing = statusBarHeight + 10
+        
         stackView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor).isActive = true
         stackView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.9).isActive = true
         stackView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.95).isActive = true
         stackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: padding)
             .isActive = true
         
-        
-        
+
         horizontalStackView.setCustomSpacing(spacing, after: upgradeButton)
         upgradeButton.heightAnchor.constraint(equalTo: horizontalStackView.heightAnchor)
             .isActive = true
@@ -178,9 +182,21 @@ final class MixView: UIView {
         filterTagCollectionView.widthAnchor.constraint(equalTo: stackView.widthAnchor).isActive = true
         filterTagCollectionView.heightAnchor.constraint(equalTo: segmentControl.heightAnchor, multiplier: 2).isActive = true
         soundsCollectionView.widthAnchor.constraint(equalTo: stackView.widthAnchor).isActive = true
-
-//        segmentControl.widthAnchor.constraint(equalTo: stackView.widthAnchor).isActive = true
-//        segmentControl.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        
+    }
+    
+    private func setCustomTabBarSettings() {
+        guard let navigationController = mixViewDisplayLogic.getNavigationController() else { return }
+        navigationController.view.addSubview(customTabBar)
+        customTabBar.widthAnchor.constraint(equalTo: navigationController.view.widthAnchor, multiplier: 0.65)
+            .isActive = true
+        customTabBar.heightAnchor.constraint(equalToConstant: 80)
+            .isActive = true
+        customTabBar.centerXAnchor.constraint(equalTo: navigationController.view.centerXAnchor)
+            .isActive = true
+        customTabBar.bottomAnchor.constraint(equalTo: navigationController.view.bottomAnchor, constant: -100)
+            .isActive = true
     }
 }
 
