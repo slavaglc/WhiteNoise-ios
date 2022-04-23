@@ -44,6 +44,8 @@
 		5AAB52DB281357B7003C53E3 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB52D9281357B7003C53E3 /* Sound.swift */; };
 		5AAB52DD28135879003C53E3 /* NameOfClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB52DC28135879003C53E3 /* NameOfClass.swift */; };
 		5AAB52DF2813D366003C53E3 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB52DE2813D366003C53E3 /* UIColor.swift */; };
+		5AAB52E32813EC3C003C53E3 /* CustomUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB52E22813EC3C003C53E3 /* CustomUIView.swift */; };
+		5AAB52E52813EC8C003C53E3 /* CustomUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB52E42813EC8C003C53E3 /* CustomUIViewController.swift */; };
 		5AB9A8B0280D82E9009895BC /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9A8AF280D82E9009895BC /* HapticManager.swift */; };
 		5AE64C9728130650007F5CED /* SettingItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE64C9628130650007F5CED /* SettingItemCell.swift */; };
 /* End PBXBuildFile section */
@@ -88,6 +90,8 @@
 		5AAB52D9281357B7003C53E3 /* Sound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		5AAB52DC28135879003C53E3 /* NameOfClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameOfClass.swift; sourceTree = "<group>"; };
 		5AAB52DE2813D366003C53E3 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		5AAB52E22813EC3C003C53E3 /* CustomUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIView.swift; sourceTree = "<group>"; };
+		5AAB52E42813EC8C003C53E3 /* CustomUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIViewController.swift; sourceTree = "<group>"; };
 		5AB9A8AF280D82E9009895BC /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		5AE64C9628130650007F5CED /* SettingItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItemCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -214,6 +218,8 @@
 			children = (
 				5A8FB7C6280C460E00D44CA6 /* UIPageIndicatorView.swift */,
 				5A8FB7C8280C550600D44CA6 /* UICircle.swift */,
+				5AAB52E22813EC3C003C53E3 /* CustomUIView.swift */,
+				5AAB52E42813EC8C003C53E3 /* CustomUIViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -355,6 +361,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5AB9A8B0280D82E9009895BC /* HapticManager.swift in Sources */,
+				5AAB52E32813EC3C003C53E3 /* CustomUIView.swift in Sources */,
+				5AAB52E52813EC8C003C53E3 /* CustomUIViewController.swift in Sources */,
 				5A13588D280E8D0800DE431D /* PaywallView.swift in Sources */,
 				5A13588F280E8D1400DE431D /* PaywallViewController.swift in Sources */,
 				5A8841BC280B4DA800A8291B /* PlansleepViewController.swift in Sources */,

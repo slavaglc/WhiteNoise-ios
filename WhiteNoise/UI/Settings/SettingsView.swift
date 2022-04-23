@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SettingsView: UIView {
+class SettingsView: CustomUIView {
     private lazy var label: UILabel = {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -68,7 +68,7 @@ class SettingsView: UIView {
         super.init(coder: coder)
     }
     
-    func viewDidAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         removeAllViewsFromNavigation()
         
         viewController?.navigationController?.view.addSubview(closeBtn)
