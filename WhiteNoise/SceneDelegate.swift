@@ -15,9 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(windowScene: scene)
-//        window?.rootViewController = MyNavigationController(rootViewController: PlansleepViewController())
-        window?.rootViewController = MyNavigationController(rootViewController: MixViewController()) //Temporary
-        
+        window?.rootViewController = MyNavigationController(rootViewController: MixViewController())
         window?.makeKeyAndVisible()
         
         StorageManager.shared.increaseRunsCount()

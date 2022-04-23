@@ -63,6 +63,8 @@ class PrivacyView: UIView {
     }
     
     func viewDidAppear(_ animated: Bool) {
+        removeAllViewsFromNavigation()
+        
         viewController?.navigationController?.view.addSubview(closeBtn)
         viewController?.navigationController?.navigationBar.barStyle = .black
         viewController?.navigationController?.navigationBar.barTintColor = .fromNormalRgb(red: 11, green: 16, blue: 51)
@@ -107,7 +109,6 @@ class PrivacyView: UIView {
     @objc
     private func closeView(view: UIView) {
         viewController?.navigationController?.popViewController(animated: true)
-        closeBtn.removeFromSuperview()
     }
 }
 

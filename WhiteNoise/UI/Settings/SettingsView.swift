@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SettingsView: UIView {
+class SettingsView: CustomUIView {
     private lazy var label: UILabel = {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -68,7 +68,9 @@ class SettingsView: UIView {
         super.init(coder: coder)
     }
     
-    func viewDidAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
+        removeAllViewsFromNavigation()
+        
         viewController?.navigationController?.view.addSubview(closeBtn)
         viewController?.navigationController?.navigationBar.barStyle = .black
         viewController?.navigationController?.navigationBar.barTintColor = .fromNormalRgb(red: 11, green: 16, blue: 51)
@@ -114,16 +116,31 @@ class SettingsView: UIView {
     @objc
     private func closeView(view: UIView) {
         viewController?.navigationController?.popViewController(animated: true)
-        closeBtn.removeFromSuperview()
     }
     
     private func itemSelected(pos: Int) {
-        closeBtn.removeFromSuperview()
-        
         switch pos {
+        case 0:
+            var components = URLComponents(string: "youremail@test.com")
+            components?.queryItems = [URLQueryItem(name: "subject", value: "Your Subject")]
+
+            if let mailUrl = components?.url {
+                UIApplication.shared.open(mailUrl, options: [:], completionHandler: nil)
+            }
+            break
+        case 1:
+            guard let url = URL(string: "https://google.com") else { return }
+            UIApplication.shared.open(url)
+            break
         case 2:
-            viewController?.navigationController?
-                .pushViewController(PrivacyViewController(), animated: true)
+            viewController?.navigationController?.pushViewController(PrivacyViewController(), animated: true)
+            break
+        case 3:
+            guard let url = URL(string: "https://google.com") else { return }
+            UIApplication.shared.open(url)
+            break
+        case 4:
+            viewController?.navigationController?.pushViewController(PlansleepViewController(), animated: true)
             break
         default:
             break
@@ -132,7 +149,6 @@ class SettingsView: UIView {
     
     func subButtonClick() {
         viewController?.navigationController?.pushViewController(PaywallViewController(), animated: true)
-        closeBtn.removeFromSuperview()
     }
 }
 

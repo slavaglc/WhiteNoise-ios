@@ -7,9 +7,10 @@
 
 import UIKit
 
-final class MyNavigationController: UINavigationController {
+final class MyNavigationController: UINavigationController, UINavigationControllerDelegate {
     override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
+        self.delegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -18,5 +19,9 @@ final class MyNavigationController: UINavigationController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        viewController.navigationItem.setHidesBackButton(true, animated: false)
     }
 }

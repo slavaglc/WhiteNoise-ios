@@ -137,6 +137,8 @@ class PaywallView: UIView {
     }
     
     func viewDidAppear(_ animated: Bool) {
+        removeAllViewsFromNavigation()
+        
         viewController?.navigationController?.navigationBar.topItem?.setHidesBackButton(true, animated: false)
         
         // closeBtn
@@ -192,7 +194,6 @@ class PaywallView: UIView {
     @objc
     private func closeView(view: UIView) {
         viewController?.navigationController?.popViewController(animated: true)
-        closeBtn.removeFromSuperview()
     }
     
     @objc

@@ -8,7 +8,7 @@
 import UIKit
 
 final class PlansleepViewController: UIViewController {
-    private lazy var mainView: UIView = {
+    private lazy var mainView: PlansleepView = {
         let view = PlansleepView()
         view.backgroundColor = .fromNormalRgb(red: 11, green: 16, blue: 51)
         
@@ -17,5 +17,9 @@ final class PlansleepViewController: UIViewController {
     
     override func loadView() {
         view = mainView
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        mainView.viewDidAppear(animated)
     }
 }

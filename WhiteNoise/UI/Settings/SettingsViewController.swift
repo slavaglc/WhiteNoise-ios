@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: CustomUIViewController {
     private lazy var settingsView: SettingsView = {
         let view = SettingsView()
         view.backgroundColor = .fromNormalRgb(red: 11, green: 16, blue: 51)
@@ -17,9 +17,5 @@ class SettingsViewController: UIViewController {
     
     override func loadView() {
         view = settingsView
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        settingsView.viewDidAppear(animated)
     }
 }
