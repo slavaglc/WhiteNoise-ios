@@ -13,6 +13,13 @@ class PlansleepView: UIView {
         case wakeUp
     }
     
+    private class Tags {
+        static let buttonNext = 0
+        static let buttonNextFinish = 1
+        static let buttonSkip = 2
+        static let buttonBack = 3
+    }
+    
     private var lastTime = [20, 30]
     private var viewState: ViewState = ViewState.sleep {
         didSet {
@@ -22,8 +29,8 @@ class PlansleepView: UIView {
                 
                 label2.text = "When you wake up?"
                 skipButton.setTitle("Back", for: .normal)
-                nextButton.tag = 1
-                skipButton.tag = 3
+                nextButton.tag = Tags.buttonNextFinish
+                skipButton.tag = Tags.buttonBack
                 
                 picker.selectRow(7, inComponent: 0, animated: false)
                 picker.selectRow(30, inComponent: 1, animated: false)
@@ -32,8 +39,8 @@ class PlansleepView: UIView {
             } else if viewState == .sleep {
                 label2.text = "What time you go to bed?"
                 skipButton.setTitle("Skip", for: .normal)
-                nextButton.tag = 0
-                skipButton.tag = 2
+                nextButton.tag = Tags.buttonNext
+                skipButton.tag = Tags.buttonSkip
                 
                 picker.selectRow(lastTime[0], inComponent: 0, animated: false)
                 picker.selectRow(lastTime[1], inComponent: 1, animated: false)
@@ -97,7 +104,7 @@ class PlansleepView: UIView {
     // bottom skip button
     private lazy var skipButton: UIButton = {
         let view = UIButton()
-        view.tag = 2
+        view.tag = Tags.buttonSkip
         view.translatesAutoresizingMaskIntoConstraints = false
         view.setTitle("Skip", for: .normal)
         view.setTitleColor(.fromNormalRgb(red: 220, green: 224, blue: 255), for: .normal)
@@ -110,7 +117,7 @@ class PlansleepView: UIView {
     // bottom next button
     private lazy var nextButton: UIButton = {
         let view = UIButton()
-        view.tag = 0
+        view.tag = Tags.buttonNext
         view.translatesAutoresizingMaskIntoConstraints = false
         view.setTitle("Next", for: .normal)
         view.setTitleColor(.fromNormalRgb(red: 220, green: 224, blue: 255), for: .normal)
@@ -142,31 +149,40 @@ class PlansleepView: UIView {
         super.init(coder: coder)
     }
     
+    func viewDidAppear(_ animated: Bool) {
+        removeAllViewsFromNavigation()
+    }
+    
     @objc
     private func buttonDidTapped(sender: UIButton) {
         HapticManager.shared.notify(notificationType: .success)
         
-        if sender.tag == 0 { // next
-            // indicator.changeAnimationByAlpha()
+        switch sender.tag {
+        case Tags.buttonNext:
             picker.changeAnimationByAlpha()
             label2.changeAnimationByAlpha(change: {
                 self.viewState = .wakeUp
             })
-        } else if sender.tag == 1 { // finish
+            break
+        case Tags.buttonNextFinish:
             StorageManager.shared
                 .setTimes(
                     sleep: Time(hour: lastTime[0], minute: lastTime[1]),
                     wakeup: Time(hour: picker.selectedRow(inComponent: 0), minute: picker.selectedRow(inComponent: 1))
                 )
             viewController?.navigationController?.pushViewController(MixViewController(), animated: true)
-        } else if sender.tag == 2 { // skip
-            // viewController?.navigationController?.pushViewController(SettingsViewController(), animated: true)
+            break
+        case Tags.buttonSkip:
             viewController?.navigationController?.pushViewController(MixViewController(), animated: true)
-        } else if sender.tag == 3 { // back
+            break
+        case Tags.buttonBack:
             picker.changeAnimationByAlpha()
             label2.changeAnimationByAlpha(change: {
                 self.viewState = .sleep
             })
+            break
+        default:
+            break
         }
     }
     

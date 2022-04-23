@@ -69,6 +69,8 @@ class SettingsView: UIView {
     }
     
     func viewDidAppear(_ animated: Bool) {
+        removeAllViewsFromNavigation()
+        
         viewController?.navigationController?.view.addSubview(closeBtn)
         viewController?.navigationController?.navigationBar.barStyle = .black
         viewController?.navigationController?.navigationBar.barTintColor = .fromNormalRgb(red: 11, green: 16, blue: 51)
@@ -114,16 +116,12 @@ class SettingsView: UIView {
     @objc
     private func closeView(view: UIView) {
         viewController?.navigationController?.popViewController(animated: true)
-        closeBtn.removeFromSuperview()
     }
     
     private func itemSelected(pos: Int) {
-        closeBtn.removeFromSuperview()
-        
         switch pos {
         case 2:
-            viewController?.navigationController?
-                .pushViewController(PrivacyViewController(), animated: true)
+            viewController?.navigationController?.pushViewController(PrivacyViewController(), animated: true)
             break
         default:
             break
@@ -132,7 +130,6 @@ class SettingsView: UIView {
     
     func subButtonClick() {
         viewController?.navigationController?.pushViewController(PaywallViewController(), animated: true)
-        closeBtn.removeFromSuperview()
     }
 }
 

@@ -20,6 +20,14 @@ extension UIView {
         return nil
     }
     
+    func removeAllViewsFromNavigation() {
+        viewController?.navigationController?.view.subviews.forEach({ view in
+            if view is UIButton || view is UIImageView { // fixme:
+                view.removeFromSuperview()
+            }
+        })
+    }
+    
     func changeAnimationByAlpha(change: @escaping ()->() = {}) {
         UIView.animate(withDuration: 0.3, animations: {
             self.alpha = 0.0

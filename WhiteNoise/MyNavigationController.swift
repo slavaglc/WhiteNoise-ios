@@ -10,6 +10,8 @@ import UIKit
 final class MyNavigationController: UINavigationController {
     override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
+        
+        // navigationBar.isHidden = true
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -65,6 +65,8 @@ final class MixView: UIView {
             .withAlphaComponent(0.1)
         button.tintColor = #colorLiteral(red: 0.862745098, green: 0.8784313725, blue: 1, alpha: 1)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.tag = 0
+        button.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
         return button
     }()
     
@@ -134,6 +136,16 @@ final class MixView: UIView {
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         customTabBar.halfFadeIn()
+    }
+    
+    @objc
+    private func buttonClicked(button: UIButton) {
+        settingsButton.removeFromSuperview()
+        upgradeButton.removeFromSuperview()
+            
+        if button.tag == 0 {
+            viewController?.navigationController?.pushViewController(SettingsViewController(), animated: true)
+        }
     }
     
     

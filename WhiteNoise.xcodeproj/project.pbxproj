@@ -109,7 +109,6 @@
 				5A62AAED28118CDA003667D2 /* Subviews */,
 				5A62AAE92811776A003667D2 /* SettingsViewController.swift */,
 				5A62AAEB281177A0003667D2 /* SettingsView.swift */,
-				5AE64C9628130650007F5CED /* SettingItemCell.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -117,6 +116,7 @@
 		5A62AAED28118CDA003667D2 /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
+				5AE64C9628130650007F5CED /* SettingItemCell.swift */,
 				5A62AAEE28118CF8003667D2 /* SettingsFrameView.swift */,
 				5A62AAF02811A8C6003667D2 /* SettingsFrameBackgroundView.swift */,
 			);
