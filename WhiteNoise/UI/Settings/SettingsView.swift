@@ -162,8 +162,6 @@ extension SettingsView: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        // cell.selectionStyle = .none
-        
         let selectionColor = UIView() as UIView
         selectionColor.backgroundColor = UIColor.fromNormalRgb(red: 22, green: 29, blue: 83)
         cell.selectedBackgroundView = selectionColor
