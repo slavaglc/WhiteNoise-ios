@@ -31,7 +31,8 @@ final class MixView: UIView {
     private lazy var horizontalStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.alignment = .center
+        stackView.distribution = .equalCentering
+        stackView.alignment = .fill
         stackView.spacing = 10
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
@@ -140,8 +141,8 @@ final class MixView: UIView {
     
     @objc
     private func buttonClicked(button: UIButton) {
-        settingsButton.removeFromSuperview()
-        upgradeButton.removeFromSuperview()
+//        settingsButton.removeFromSuperview()
+//        upgradeButton.removeFromSuperview()
             
         if button.tag == 0 {
             viewController?.navigationController?.pushViewController(SettingsViewController(), animated: true)
@@ -164,7 +165,8 @@ final class MixView: UIView {
         horizontalStackView.addArrangedSubview(upgradeButton)
         horizontalStackView.addArrangedSubview(settingsButton)
 //        stackView.addArrangedSubview(horizontalStackView)
-        mixViewDisplayLogic.addViewToNavgitaionBar(view: horizontalStackView)
+//        mixViewDisplayLogic.addViewToNavgitaionBar(view: horizontalStackView)
+        stackView.addArrangedSubview(horizontalStackView)
         stackView.addArrangedSubview(segmentControl)
         stackView.addArrangedSubview(filterTagCollectionView)
         stackView.addArrangedSubview(soundsCollectionView)
@@ -177,21 +179,31 @@ final class MixView: UIView {
     private func setupConstraints() {
         let spacing = UIScreen.main.bounds.size.width / 2
         let horizontalBarHeight: CGFloat = 50
+        let upgrateButtonWidth = 100.0
         let padding = 10.0
-        if let navigationBar = mixViewDisplayLogic.getNavigationController()?.navigationBar {
-            horizontalStackView.widthAnchor.constraint(equalTo: navigationBar.widthAnchor, constant: -padding)
-                .isActive = true
-            horizontalStackView.heightAnchor.constraint(equalTo: navigationBar.heightAnchor)
-                .isActive = true
-            horizontalStackView.centerXAnchor.constraint(equalTo: navigationBar.centerXAnchor)
-                .isActive = true
-            horizontalStackView.topAnchor.constraint(equalTo: navigationBar.topAnchor, constant: 10)
-                .isActive = true
-        }
+//        if let navigationBar = mixViewDisplayLogic.getNavigationController()?.navigationBar {
+//            horizontalStackView.widthAnchor.constraint(equalTo: navigationBar.widthAnchor, constant: -padding)
+//                .isActive = true
+//            horizontalStackView.heightAnchor.constraint(equalTo: navigationBar.heightAnchor)
+//                .isActive = true
+//            horizontalStackView.centerXAnchor.constraint(equalTo: navigationBar.centerXAnchor)
+//                .isActive = true
+//            horizontalStackView.topAnchor.constraint(equalTo: navigationBar.topAnchor, constant: 10)
+//                .isActive = true
+//        }
+        
+        horizontalStackView.heightAnchor.constraint(equalToConstant: horizontalBarHeight)
+            .isActive = true
+        settingsButton.widthAnchor.constraint(equalToConstant: horizontalBarHeight)
+            .isActive = true
+        settingsButton.heightAnchor.constraint(equalTo: settingsButton.widthAnchor)
+            .isActive = true
+        upgradeButton.widthAnchor.constraint(equalToConstant: upgrateButtonWidth)
+            .isActive = true
         
         stackView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor).isActive = true
         stackView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.9).isActive = true
-        stackView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.95).isActive = true
+        stackView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor).isActive = true
         stackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: padding)
             .isActive = true
         
