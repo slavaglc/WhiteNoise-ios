@@ -41,7 +41,7 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
     
     private lazy var imageBackgroundView: UIView  = {
         let view = UIView()
-        view.backgroundColor = #colorLiteral(red: 0.3450980392, green: 0.337254902, blue: 0.8392156863, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.0862745098, green: 0.1137254902, blue: 0.3254901961, alpha: 1)
         view.layer.cornerRadius = 25
         view.layer.addSublayer(gradientLayer)
         view.clipsToBounds = true
@@ -75,6 +75,8 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
         super.init(coder: coder)
         initialize()
     }
+    
+    
     
     public func setCellParameters(sound: Sound) {
         imageView.image = UIImage(named: sound.imageName)
@@ -118,7 +120,16 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
             .isActive = true
     }
     
+    
+    // MARK: - Graphics and animation methods
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+            if flag {
+                setupGradient()
+            }
+        }
+    
     private func setSelectedStyle() {
+        imageView
         self.gradientLayer.frame = self.imageBackgroundView.bounds
         setupGradient()
         animateGradient()
@@ -131,14 +142,9 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
         gradientLayer.shouldRasterize = true
     }
     
-    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-            if flag {
-                setupGradient()
-            }
-       
-        }
     
-    func setupGradient(){
+    
+    private func setupGradient(){
         gradientColorSet = [
             [color1, color2],
             [color2, color3],
@@ -150,7 +156,7 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
         
     }
     
-    func animateGradient() {
+   private func animateGradient() {
         gradientLayer.colors = gradientColorSet[colorIndex]
         let gradientAnimation = CABasicAnimation(keyPath: "colors")
         let opacityAnimation = CABasicAnimation(keyPath: "opacity")
@@ -186,7 +192,7 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
            }
        }
     
-    func animateGradientDissapearing() {
+   private func animateGradientDissapearing() {
         let opacityAnimation = CABasicAnimation(keyPath: "opacity")
         opacityAnimation.delegate = self
         opacityAnimation.duration = 0.3

@@ -128,7 +128,7 @@ final class CustomTabBar: UIView {
             .isActive = true
         stackView.heightAnchor.constraint(equalTo: backgroundView.heightAnchor)
             .isActive = true
-        stackView.widthAnchor.constraint(equalTo: backgroundView.widthAnchor, multiplier: 0.9)
+        stackView.widthAnchor.constraint(equalTo: backgroundView.widthAnchor, multiplier: 0.95)
             .isActive = true
         stackView.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor)
             .isActive = true
