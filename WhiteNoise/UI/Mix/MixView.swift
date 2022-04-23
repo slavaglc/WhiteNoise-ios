@@ -116,6 +116,10 @@ final class MixView: UIView {
         setPrimarySettings()
     }
     
+    public func getCustomTabBar() -> CustomTabBar {
+        customTabBar
+    }
+    
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         customTabBar.halfFadeOut()
     }
