@@ -120,8 +120,27 @@ class SettingsView: CustomUIView {
     
     private func itemSelected(pos: Int) {
         switch pos {
+        case 0:
+            var components = URLComponents(string: "youremail@test.com")
+            components?.queryItems = [URLQueryItem(name: "subject", value: "Your Subject")]
+
+            if let mailUrl = components?.url {
+                UIApplication.shared.open(mailUrl, options: [:], completionHandler: nil)
+            }
+            break
+        case 1:
+            guard let url = URL(string: "https://google.com") else { return }
+            UIApplication.shared.open(url)
+            break
         case 2:
             viewController?.navigationController?.pushViewController(PrivacyViewController(), animated: true)
+            break
+        case 3:
+            guard let url = URL(string: "https://google.com") else { return }
+            UIApplication.shared.open(url)
+            break
+        case 4:
+            viewController?.navigationController?.pushViewController(PlansleepViewController(), animated: true)
             break
         default:
             break

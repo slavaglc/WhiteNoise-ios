@@ -170,10 +170,12 @@ class PlansleepView: UIView {
                     sleep: Time(hour: lastTime[0], minute: lastTime[1]),
                     wakeup: Time(hour: picker.selectedRow(inComponent: 0), minute: picker.selectedRow(inComponent: 1))
                 )
-            viewController?.navigationController?.pushViewController(MixViewController(), animated: true)
+            viewController?.navigationController?.popViewController(animated: true)
+            //viewController?.navigationController?.pushViewController(MixViewController(), animated: true)
             break
         case Tags.buttonSkip:
-            viewController?.navigationController?.pushViewController(MixViewController(), animated: true)
+            viewController?.navigationController?.popViewController(animated: true)
+            //viewController?.navigationController?.pushViewController(MixViewController(), animated: true)
             break
         case Tags.buttonBack:
             picker.changeAnimationByAlpha()

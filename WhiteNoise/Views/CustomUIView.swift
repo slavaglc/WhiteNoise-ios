@@ -8,15 +8,9 @@
 import UIKit
 
 class CustomUIView: UIView {
-    func viewDidAppear(_ animated: Bool) {
-        
-    }
+    func viewDidAppear(_ animated: Bool) { }
     
-    func viewDidLoad() {
-        
-    }
+    func viewDidLoad() { }
     
-    func viewDidDisappear(_ animated: Bool) {
-        
-    }
+    func viewDidDisappear(_ animated: Bool) { }
 }
