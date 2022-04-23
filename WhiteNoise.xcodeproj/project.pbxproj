@@ -43,6 +43,7 @@
 		5AAB52DA281357B7003C53E3 /* FilterTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB52D8281357B7003C53E3 /* FilterTag.swift */; };
 		5AAB52DB281357B7003C53E3 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB52D9281357B7003C53E3 /* Sound.swift */; };
 		5AAB52DD28135879003C53E3 /* NameOfClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB52DC28135879003C53E3 /* NameOfClass.swift */; };
+		5AAB52DF2813D366003C53E3 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB52DE2813D366003C53E3 /* UIColor.swift */; };
 		5AB9A8B0280D82E9009895BC /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9A8AF280D82E9009895BC /* HapticManager.swift */; };
 		5AE64C9728130650007F5CED /* SettingItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE64C9628130650007F5CED /* SettingItemCell.swift */; };
 /* End PBXBuildFile section */
@@ -86,6 +87,7 @@
 		5AAB52D8281357B7003C53E3 /* FilterTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTag.swift; sourceTree = "<group>"; };
 		5AAB52D9281357B7003C53E3 /* Sound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		5AAB52DC28135879003C53E3 /* NameOfClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameOfClass.swift; sourceTree = "<group>"; };
+		5AAB52DE2813D366003C53E3 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		5AB9A8AF280D82E9009895BC /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		5AE64C9628130650007F5CED /* SettingItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItemCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -202,6 +204,7 @@
 			children = (
 				5AAB52DC28135879003C53E3 /* NameOfClass.swift */,
 				5AAB52CA281355F7003C53E3 /* UIView.swift */,
+				5AAB52DE2813D366003C53E3 /* UIColor.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 				5A8FB7C9280C550600D44CA6 /* UICircle.swift in Sources */,
 				5A8FB7AE280BDA9400D44CA6 /* MyNavigationController.swift in Sources */,
 				5AAB52DB281357B7003C53E3 /* Sound.swift in Sources */,
+				5AAB52DF2813D366003C53E3 /* UIColor.swift in Sources */,
 				5A8841BA280B4DA800A8291B /* SceneDelegate.swift in Sources */,
 				5AAB52DA281357B7003C53E3 /* FilterTag.swift in Sources */,
 				5AAB52D728135795003C53E3 /* Circle.swift in Sources */,
