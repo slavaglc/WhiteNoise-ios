@@ -29,11 +29,17 @@ final class CustomTabBar: UIView {
         stackView.distribution = .fillEqually
         stackView.axis = .horizontal
         stackView.spacing = 12
-        stackView.layer.cornerRadius = 30
-        stackView.clipsToBounds = true
-        stackView.backgroundColor = #colorLiteral(red: 0.1215686275, green: 0.1529411765, blue: 0.4039215686, alpha: 1)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
+    }()
+    
+    private lazy var backgroundView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 30
+        view.clipsToBounds = true
+        view.backgroundColor = #colorLiteral(red: 0.1215686275, green: 0.1529411765, blue: 0.4039215686, alpha: 1)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     
@@ -105,7 +111,8 @@ final class CustomTabBar: UIView {
     }
     
     private func setPrimarySettings() {
-        addSubview(stackView)
+        backgroundView.addSubview(stackView)
+        addSubview(backgroundView)
         stackView.addArrangedSubview(playButton)
         stackView.addArrangedSubview(mixerButton)
         stackView.addArrangedSubview(saveMixButton)
@@ -115,9 +122,15 @@ final class CustomTabBar: UIView {
     }
     
     private func setConstraints() {
-        stackView.heightAnchor.constraint(equalTo: heightAnchor)
+        backgroundView.heightAnchor.constraint(equalTo: heightAnchor)
             .isActive = true
-        stackView.widthAnchor.constraint(equalTo: widthAnchor)
+        backgroundView.widthAnchor.constraint(equalTo: widthAnchor)
+            .isActive = true
+        stackView.heightAnchor.constraint(equalTo: backgroundView.heightAnchor)
+            .isActive = true
+        stackView.widthAnchor.constraint(equalTo: backgroundView.widthAnchor, multiplier: 0.9)
+            .isActive = true
+        stackView.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor)
             .isActive = true
     }
     

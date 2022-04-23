@@ -42,7 +42,7 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
     private lazy var imageBackgroundView: UIView  = {
         let view = UIView()
         view.backgroundColor = #colorLiteral(red: 0.3450980392, green: 0.337254902, blue: 0.8392156863, alpha: 1)
-        view.layer.cornerRadius = 10
+        view.layer.cornerRadius = 25
         view.layer.addSublayer(gradientLayer)
         view.clipsToBounds = true
        
