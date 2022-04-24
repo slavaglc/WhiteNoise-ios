@@ -32,6 +32,23 @@ struct Sound {
             Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", isLocked: false),
             Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", isLocked: false),
             Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", isLocked: false),
+            Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", isLocked: false),
+            Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", isLocked: false),
+            Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", isLocked: false),
+            Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", isLocked: false),
+            Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", isLocked: false),
+            Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", isLocked: false),
+            Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", isLocked: false),
+            Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", isLocked: false),
+            Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", isLocked: false),
+            Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", isLocked: false),
+            Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", isLocked: false),
+            Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", isLocked: false),
+            Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", isLocked: false),
+            Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", isLocked: false),
+            Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", isLocked: false),
+            Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", isLocked: false),
+            Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", isLocked: false),
             
         ]
     }

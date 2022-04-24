@@ -218,8 +218,6 @@ final class MixView: UIView {
         filterTagCollectionView.widthAnchor.constraint(equalTo: stackView.widthAnchor).isActive = true
         filterTagCollectionView.heightAnchor.constraint(equalTo: segmentControl.heightAnchor, multiplier: 2).isActive = true
         soundsCollectionView.widthAnchor.constraint(equalTo: stackView.widthAnchor).isActive = true
-        
-        
     }
     
     private func setCustomTabBarSettings() {
@@ -270,6 +268,27 @@ extension MixView: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
             return CGSize(width: 100, height: 100)
         }
     }
+    
+    
+
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch collectionView {
+        case soundsCollectionView:
+            guard let cell = collectionView.cellForItem(at: indexPath) as? SoundCollectionViewCell else { return }
+            cell.setSelectedStyle()
+        default:
+            return
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        switch collectionView {
+        case soundsCollectionView:
+            guard let cell = collectionView.cellForItem(at: indexPath) as? SoundCollectionViewCell else { return }
+            cell.setUnselectedStyle()
+        default:
+            return
+        }
+    }
 }
-
-
