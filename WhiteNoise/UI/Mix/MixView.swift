@@ -221,16 +221,23 @@ final class MixView: UIView {
     }
     
     private func setCustomTabBarSettings() {
+        let height = 70.0
+        let bottomPadding = 50.0
         guard let navigationController = mixViewDisplayLogic.getNavigationController() else { return }
         navigationController.view.addSubview(customTabBar)
         customTabBar.widthAnchor.constraint(equalTo: navigationController.view.widthAnchor, multiplier: 0.65)
             .isActive = true
-        customTabBar.heightAnchor.constraint(equalToConstant: 70)
+        customTabBar.heightAnchor.constraint(equalToConstant: height)
             .isActive = true
         customTabBar.centerXAnchor.constraint(equalTo: navigationController.view.centerXAnchor)
             .isActive = true
-        customTabBar.bottomAnchor.constraint(equalTo: navigationController.view.bottomAnchor, constant: -50)
+        customTabBar.bottomAnchor.constraint(equalTo: navigationController.view.bottomAnchor, constant: -bottomPadding)
             .isActive = true
+        setSoundsCollectionViewBottomInset(height+bottomPadding)
+    }
+    
+    private func setSoundsCollectionViewBottomInset(_ inset: CGFloat) {
+        soundsCollectionView.contentInset.bottom = inset
     }
 }
 

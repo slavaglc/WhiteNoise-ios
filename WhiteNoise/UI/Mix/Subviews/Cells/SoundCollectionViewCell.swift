@@ -94,10 +94,7 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
     public func setCellParameters(sound: Sound) {
         let image = UIImage(named: sound.imageName)
         imageView.image = image?.tint(with: isSelected ? .white  : .lightGray)
-        label.text = sound.name
-        print("setted")
-        
-        
+        label.text = sound.name 
     }
     
     public func getFontHeight() -> CGFloat {
