@@ -23,7 +23,7 @@ final class MixView: UIView {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .center
-        stackView.spacing = 10
+        stackView.spacing = 5
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -32,7 +32,6 @@ final class MixView: UIView {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .equalCentering
-        stackView.alignment = .fill
         stackView.spacing = 10
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
@@ -41,8 +40,8 @@ final class MixView: UIView {
     private lazy var upgradeButton: UIButton = {
         let button = UIButton(type: .custom)
         let image = UIImage(named: "Lock")
-        button.setTitle(" Upgrate", for: .normal)
-        button.titleLabel?.font = UIFont(name: "Nunito", size: 16)
+        button.setTitle("  Upgrate", for: .normal)
+        button.titleLabel?.font = UIFont(name: "Nunito-Semibold", size: 14)
         button.titleLabel?.adjustsFontSizeToFitWidth = true
         button.tintColor = .white
         button.setImage(image, for: .normal)
@@ -56,19 +55,28 @@ final class MixView: UIView {
         return button
     }()
     
-    private lazy var settingsButton: UIButton = {
-        let button = UIButton(type: .system)
-        let image = UIImage(named: "Gear")
-        button.setImage(image, for: .normal)
-        button.layer.cornerRadius = 25
-        button.clipsToBounds = true
-        button.backgroundColor = #colorLiteral(red: 0.662745098, green: 0.7058823529, blue: 1, alpha: 1)
-            .withAlphaComponent(0.1)
-        button.tintColor = #colorLiteral(red: 0.862745098, green: 0.8784313725, blue: 1, alpha: 1)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.tag = 0
-        button.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
-        return button
+//    private lazy var settingsButton: UIButton = {
+//        let button = UIButton(type: .system)
+//        let image = UIImage(named: "Gear")
+//        button.setImage(image, for: .normal)
+//        button.layer.cornerRadius = 25
+//        button.clipsToBounds = true
+//        button.backgroundColor = #colorLiteral(red: 0.662745098, green: 0.7058823529, blue: 1, alpha: 1)
+//            .withAlphaComponent(0.1)
+//        button.tintColor = #colorLiteral(red: 0.862745098, green: 0.8784313725, blue: 1, alpha: 1)
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.tag = 0
+//        button.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
+//        return button
+//    }()
+    
+    private lazy var settingsButton: UIImageView = {
+        let image = UIImage(named: "SettingsButton")
+        let imageView = UIImageView(image: image)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(buttonClicked))
+        imageView.addGestureRecognizer(tap)
+        imageView.isUserInteractionEnabled = true
+        return imageView
     }()
     
     private lazy var filterTagCollectionView: UICollectionView = {
@@ -103,7 +111,7 @@ final class MixView: UIView {
                       ViewState.Saved.rawValue
         ]
         let control = CustomSegmentedControl(frame: CGRect.zero, buttonTitle: titles)
-        
+        control.translatesAutoresizingMaskIntoConstraints = false
         return control
     }()
     
@@ -140,14 +148,11 @@ final class MixView: UIView {
     }
     
     @objc
-    private func buttonClicked(button: UIButton) {
-//        settingsButton.removeFromSuperview()
-//        upgradeButton.removeFromSuperview()
-            
-        if button.tag == 0 {
+    private func buttonClicked() {
             viewController?.navigationController?.pushViewController(SettingsViewController(), animated: true)
-        }
     }
+    
+    
     
     
     @objc private func segmentDidChange(_ segmentControl: UISegmentedControl) {
@@ -164,11 +169,14 @@ final class MixView: UIView {
     private func setPrimarySettings() {
         horizontalStackView.addArrangedSubview(upgradeButton)
         horizontalStackView.addArrangedSubview(settingsButton)
+        addSubview(horizontalStackView)
+        addSubview(segmentControl)
 //        stackView.addArrangedSubview(horizontalStackView)
 //        mixViewDisplayLogic.addViewToNavgitaionBar(view: horizontalStackView)
-        stackView.addArrangedSubview(horizontalStackView)
-        stackView.setCustomSpacing(25, after: horizontalStackView)
-        stackView.addArrangedSubview(segmentControl)
+//        stackView.addArrangedSubview(horizontalStackView)
+        
+//        stackView.setCustomSpacing(25, after: horizontalStackView)
+//        stackView.addArrangedSubview(segmentControl)
         stackView.addArrangedSubview(filterTagCollectionView)
         stackView.addArrangedSubview(soundsCollectionView)
         addSubview(stackView)
@@ -178,24 +186,34 @@ final class MixView: UIView {
     }
     
     private func setupConstraints() {
-        let spacing = UIScreen.main.bounds.size.width / 2
-        let horizontalBarHeight: CGFloat = 50
-        let upgrateButtonWidth = 100.0
-        let padding = 10.0
+//        let spacing = UIScreen.main.bounds.size.width / 4
+        let spacing = 176.0
+        let horizontalBarHeight: CGFloat = 45
+        let padding = 16.0
+        let upgrateButtonWidth = 112.0
+//        let padding = 10.0
         
+//        horizontalStackView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7)
+//            .isActive = true
         horizontalStackView.heightAnchor.constraint(equalToConstant: horizontalBarHeight)
+            .isActive = true
+        horizontalStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor)
+            .isActive = true
+        horizontalStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding)
+            .isActive = true
+        horizontalStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding)
             .isActive = true
         settingsButton.widthAnchor.constraint(equalToConstant: horizontalBarHeight)
             .isActive = true
-        settingsButton.heightAnchor.constraint(equalTo: settingsButton.widthAnchor)
+        settingsButton.heightAnchor.constraint(equalToConstant: horizontalBarHeight)
             .isActive = true
-        upgradeButton.widthAnchor.constraint(equalToConstant: upgrateButtonWidth)
-            .isActive = true
+
+        
         
         stackView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor).isActive = true
         stackView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.9).isActive = true
         stackView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor).isActive = true
-        stackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: padding)
+        stackView.topAnchor.constraint(equalTo: segmentControl.bottomAnchor)
             .isActive = true
         
 
@@ -206,11 +224,14 @@ final class MixView: UIView {
             .isActive = true
         settingsButton.widthAnchor.constraint(equalTo: settingsButton.heightAnchor)
             .isActive = true
-        
-        segmentControl.centerXAnchor.constraint(equalTo: stackView.centerXAnchor)
+        upgradeButton.widthAnchor.constraint(equalToConstant: upgrateButtonWidth)
             .isActive = true
-
-        segmentControl.widthAnchor.constraint(equalTo: stackView.widthAnchor)
+        
+        segmentControl.centerXAnchor.constraint(equalTo: centerXAnchor)
+            .isActive = true
+        segmentControl.topAnchor.constraint(equalTo: horizontalStackView.bottomAnchor, constant: 36)
+            .isActive = true
+        segmentControl.widthAnchor.constraint(equalTo: widthAnchor)
             .isActive = true
         segmentControl.heightAnchor.constraint(equalToConstant: horizontalBarHeight)
             .isActive = true
