@@ -16,6 +16,7 @@ final class MixView: UIView {
     
     private let filterTags = FilterTag.getAllFilterTags()
     private let sounds = Sound.getAllSounds()
+    private var filtredSounds = Array<Sound>()
     
     private weak var mixViewDisplayLogic: MixViewDisplayLogic!
     
@@ -264,7 +265,7 @@ final class MixView: UIView {
 
 extension MixView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        collectionView == soundsCollectionView ? sounds.count : filterTags.count
+        collectionView == soundsCollectionView ? filtredSounds.count : filterTags.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -272,7 +273,7 @@ extension MixView: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
             
         case soundsCollectionView:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SoundCollectionViewCell.nameOfClass, for: indexPath) as? SoundCollectionViewCell else { return UICollectionViewCell() }
-            cell.setCellParameters(sound: sounds[indexPath.item])
+            cell.setCellParameters(sound: filtredSounds[indexPath.item])
             return cell
         case filterTagCollectionView:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterTagCollectionViewCell.nameOfClass, for: indexPath) as? FilterTagCollectionViewCell else { return UICollectionViewCell() }
@@ -300,11 +301,17 @@ extension MixView: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch collectionView {
+        case filterTagCollectionView:
+            let selectedTag = filterTags[indexPath.row].title
+            filtredSounds = selectedTag != "All" ? sounds.filter { $0.category == selectedTag } : sounds
+            soundsCollectionView.reloadData()
+            break
         case soundsCollectionView:
             guard let cell = collectionView.cellForItem(at: indexPath) as? SoundCollectionViewCell else { return }
             guard !sounds[indexPath.item].isLocked else { collectionView.deselectItem(at: indexPath, animated: true)
                 return }
             cell.setSelectedStyle()
+            break
         default:
             return
         }
