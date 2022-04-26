@@ -153,8 +153,6 @@ final class MixView: UIView {
     }
     
     
-    
-    
     @objc private func segmentDidChange(_ segmentControl: UISegmentedControl) {
         switch segmentControl.selectedSegmentIndex {
         case 0:
@@ -304,6 +302,8 @@ extension MixView: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
         switch collectionView {
         case soundsCollectionView:
             guard let cell = collectionView.cellForItem(at: indexPath) as? SoundCollectionViewCell else { return }
+            guard !sounds[indexPath.item].isLocked else { collectionView.deselectItem(at: indexPath, animated: true)
+                return }
             cell.setSelectedStyle()
         default:
             return
@@ -314,6 +314,7 @@ extension MixView: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
         switch collectionView {
         case soundsCollectionView:
             guard let cell = collectionView.cellForItem(at: indexPath) as? SoundCollectionViewCell else { return }
+            guard !sounds[indexPath.item].isLocked else { return }
             cell.setUnselectedStyle()
         default:
             return

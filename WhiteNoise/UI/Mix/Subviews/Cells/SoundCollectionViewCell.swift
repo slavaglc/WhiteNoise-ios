@@ -67,6 +67,14 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
         return label
     }()
     
+    private lazy var soundLockImage: UIImageView = {
+        let image = UIImage(named: "sound_lock_icon")
+        let imageView = UIImageView(image: image)
+        imageView.isHidden = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         initialize()
@@ -94,7 +102,8 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
     public func setCellParameters(sound: Sound) {
         let image = UIImage(named: sound.imageName)
         imageView.image = image?.tint(with: isSelected ? .white  : .lightGray)
-        label.text = sound.name 
+        label.text = sound.name
+        soundLockImage.isHidden = !sound.isLocked
     }
     
     public func getFontHeight() -> CGFloat {
@@ -103,6 +112,7 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
     
     private func initialize() {
         imageBackgroundView.addSubview(imageView)
+        imageBackgroundView.addSubview(soundLockImage)
         stackView.addArrangedSubview(imageBackgroundView)
         stackView.addArrangedSubview(label)
         contentView.addSubview(stackView)
@@ -130,6 +140,16 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
             .isActive = true
         imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor)
             .isActive = true
+        
+        soundLockImage.heightAnchor.constraint(equalToConstant: 24)
+            .isActive = true
+        soundLockImage.widthAnchor.constraint(equalTo: soundLockImage.heightAnchor)
+            .isActive = true
+        soundLockImage.topAnchor.constraint(equalTo: imageBackgroundView.topAnchor, constant: 6)
+            .isActive = true
+        soundLockImage.trailingAnchor.constraint(equalTo: imageBackgroundView.trailingAnchor, constant: -6)
+            .isActive = true
+        
     }
     
     
@@ -152,6 +172,7 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
     func setUnselectedStyle() {
         imageBackgroundView.layer.addSublayer(gradientLayer)
         imageBackgroundView.bringSubviewToFront(imageView)
+        imageBackgroundView.bringSubviewToFront(soundLockImage)
         imageView.image = imageView.image?.tint(with: .lightGray)
         gradientLayer.shouldRasterize = true
         animateGradientDissapearing()
@@ -162,6 +183,7 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
     private func setupGradientForSelected() {
         imageBackgroundView.layer.addSublayer(gradientLayer)
         imageBackgroundView.bringSubviewToFront(imageView)
+        imageBackgroundView.bringSubviewToFront(soundLockImage)
         gradientColorSet = [
             [color1, color2],
             [color2, color3],
