@@ -13,18 +13,20 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
         didSet {
             colorIndex = 0
             if isSelected {
-                setSelectedStyle()
+                setupGradientForSelected()
             } else {
-                setUnselectedStyle()
+                setupGradientForUnselected()
             }
         }
     }
+    
+    private let opacityAnimation = CABasicAnimation(keyPath: "opacity")
     
     private let color1: CGColor = #colorLiteral(red: 0.4901960784, green: 0.3254901961, blue: 0.8352941176, alpha: 1).cgColor
     private  let color2: CGColor = #colorLiteral(red: 0.7745779157, green: 0.7195857167, blue: 1, alpha: 1).cgColor
     private   let color3: CGColor = #colorLiteral(red: 0.5406857133, green: 0.4216250181, blue: 1, alpha: 1).cgColor
     
-    private  let gradient: CAGradientLayer = CAGradientLayer()
+//    private  let gradient: CAGradientLayer = CAGradientLayer()
     private var gradientColorSet: [[CGColor]] = []
     private var colorIndex: Int = 0
     
@@ -41,9 +43,8 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
     
     private lazy var imageBackgroundView: UIView  = {
         let view = UIView()
-        view.backgroundColor = #colorLiteral(red: 0.3450980392, green: 0.337254902, blue: 0.8392156863, alpha: 1)
-        view.layer.cornerRadius = 10
-        view.layer.addSublayer(gradientLayer)
+        view.backgroundColor = #colorLiteral(red: 0.0862745098, green: 0.1137254902, blue: 0.3254901961, alpha: 1)
+        view.layer.cornerRadius = 25
         view.clipsToBounds = true
        
         return view
@@ -51,8 +52,8 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
     
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
-//        imageView.contentMode = .scaleToFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.isUserInteractionEnabled = false
         return imageView
     }()
     
@@ -66,6 +67,14 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
         return label
     }()
     
+    private lazy var soundLockImage: UIImageView = {
+        let image = UIImage(named: "sound_lock_icon")
+        let imageView = UIImageView(image: image)
+        imageView.isHidden = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         initialize()
@@ -76,10 +85,25 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
         initialize()
     }
     
+//    override func setSelected(_ selected: Bool, animated: Bool) {
+//        super.setSelected(selected, animated: animated)
+//
+//    }
+    
+    
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        label.text?.removeAll()
+    }
+    
+    
+    
     public func setCellParameters(sound: Sound) {
-        imageView.image = UIImage(named: sound.imageName)
+        let image = UIImage(named: sound.imageName)
+        imageView.image = image?.tint(with: isSelected ? .white  : .lightGray)
         label.text = sound.name
-//        contentView.backgroundColor = .blue
+        soundLockImage.isHidden = !sound.isLocked
     }
     
     public func getFontHeight() -> CGFloat {
@@ -88,6 +112,7 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
     
     private func initialize() {
         imageBackgroundView.addSubview(imageView)
+        imageBackgroundView.addSubview(soundLockImage)
         stackView.addArrangedSubview(imageBackgroundView)
         stackView.addArrangedSubview(label)
         contentView.addSubview(stackView)
@@ -107,7 +132,6 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
 
         imageBackgroundView.heightAnchor.constraint(equalTo: imageBackgroundView.widthAnchor)
             .isActive = true
-        
         imageView.centerXAnchor.constraint(equalTo: imageBackgroundView.centerXAnchor)
             .isActive = true
         imageView.centerYAnchor.constraint(equalTo: imageBackgroundView.centerYAnchor)
@@ -116,29 +140,50 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
             .isActive = true
         imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor)
             .isActive = true
+        
+        soundLockImage.heightAnchor.constraint(equalToConstant: 24)
+            .isActive = true
+        soundLockImage.widthAnchor.constraint(equalTo: soundLockImage.heightAnchor)
+            .isActive = true
+        soundLockImage.topAnchor.constraint(equalTo: imageBackgroundView.topAnchor, constant: 6)
+            .isActive = true
+        soundLockImage.trailingAnchor.constraint(equalTo: imageBackgroundView.trailingAnchor, constant: -6)
+            .isActive = true
+        
     }
     
-    private func setSelectedStyle() {
+    
+    // MARK: - Graphics and animation methods
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        if flag {
+            setupGradientForSelected()
+        }
+    }
+    
+    func setSelectedStyle() {
+        imageView.image = imageView.image?.tint(with: .white)
         self.gradientLayer.frame = self.imageBackgroundView.bounds
-        setupGradient()
+//        setupGradientForSelected()
         animateGradient()
         gradientLayer.shouldRasterize = true
     }
     
     
-    private func setUnselectedStyle() {
-        animateGradientDissapearing()
+    func setUnselectedStyle() {
+        imageBackgroundView.layer.addSublayer(gradientLayer)
+        imageBackgroundView.bringSubviewToFront(imageView)
+        imageBackgroundView.bringSubviewToFront(soundLockImage)
+        imageView.image = imageView.image?.tint(with: .lightGray)
         gradientLayer.shouldRasterize = true
+        animateGradientDissapearing()
     }
     
-    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-            if flag {
-                setupGradient()
-            }
-       
-        }
     
-    func setupGradient(){
+    
+    private func setupGradientForSelected() {
+        imageBackgroundView.layer.addSublayer(gradientLayer)
+        imageBackgroundView.bringSubviewToFront(imageView)
+        imageBackgroundView.bringSubviewToFront(soundLockImage)
         gradientColorSet = [
             [color1, color2],
             [color2, color3],
@@ -146,11 +191,17 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
         ]
         
         gradientLayer.frame = imageBackgroundView.bounds
-        gradientLayer.colors = gradientColorSet[colorIndex]
+        gradientLayer.colors = gradientColorSet[0]
         
     }
     
-    func animateGradient() {
+    private func setupGradientForUnselected() {
+        gradientLayer.removeFromSuperlayer()
+    }
+    
+    
+    
+   private func animateGradient() {
         gradientLayer.colors = gradientColorSet[colorIndex]
         let gradientAnimation = CABasicAnimation(keyPath: "colors")
         let opacityAnimation = CABasicAnimation(keyPath: "opacity")
@@ -159,7 +210,7 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
         gradientAnimation.duration = 0.3
         
         opacityAnimation.delegate = self
-        opacityAnimation.duration = 0.3
+        opacityAnimation.duration = 0.1
         opacityAnimation.toValue = 1
         opacityAnimation.fillMode = .forwards
         opacityAnimation.isRemovedOnCompletion = false
@@ -186,10 +237,9 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
            }
        }
     
-    func animateGradientDissapearing() {
-        let opacityAnimation = CABasicAnimation(keyPath: "opacity")
+   private func animateGradientDissapearing() {
         opacityAnimation.delegate = self
-        opacityAnimation.duration = 0.3
+        opacityAnimation.duration = 0.15
         opacityAnimation.toValue = 0
         opacityAnimation.fillMode = .forwards
         opacityAnimation.isRemovedOnCompletion = false

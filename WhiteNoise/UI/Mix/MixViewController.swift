@@ -25,12 +25,20 @@ final class MixViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        view.removeAllViewsFromNavigation()
         mainView.getCustomTabBar().isHidden = false
+        navigationController?.navigationBar.isHidden = true
+        
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         mainView.getCustomTabBar().isHidden = true
+        navigationController?.navigationBar.isHidden = false
     }
 }
 
