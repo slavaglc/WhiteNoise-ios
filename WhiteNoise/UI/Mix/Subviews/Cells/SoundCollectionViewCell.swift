@@ -19,7 +19,7 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
             }
         }
     }
-    
+        
     private let opacityAnimation = CABasicAnimation(keyPath: "opacity")
     
     private let color1: CGColor = #colorLiteral(red: 0.4901960784, green: 0.3254901961, blue: 0.8352941176, alpha: 1).cgColor
@@ -85,13 +85,7 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
         initialize()
     }
     
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//    }
-    
-    
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
         label.text?.removeAll()
@@ -161,9 +155,7 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
     }
     
     func setSelectedStyle() {
-        imageView.image = imageView.image?.tint(with: .white)
         self.gradientLayer.frame = self.imageBackgroundView.bounds
-//        setupGradientForSelected()
         animateGradient()
         gradientLayer.shouldRasterize = true
     }
@@ -181,6 +173,7 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
     
     
     private func setupGradientForSelected() {
+        imageView.image = imageView.image?.tint(with: .white)
         imageBackgroundView.layer.addSublayer(gradientLayer)
         imageBackgroundView.bringSubviewToFront(imageView)
         imageBackgroundView.bringSubviewToFront(soundLockImage)

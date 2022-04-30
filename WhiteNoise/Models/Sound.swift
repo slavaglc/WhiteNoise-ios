@@ -7,11 +7,22 @@
 
 import Foundation
 
-struct Sound {
+class Sound {
+    
+    internal init(name: String, imageName: String, trackName: String, category: String, isPlaying: Bool = false, isLocked: Bool) {
+        self.name = name
+        self.imageName = imageName
+        self.trackName = trackName
+        self.category = category
+        self.isPlaying = isPlaying
+        self.isLocked = isLocked
+    }
+    
     let name: String
     let imageName: String
     let trackName: String
     let category: String
+    var isPlaying = false
     var isLocked: Bool
     
     static func getAllSounds() -> [Sound] {

@@ -142,7 +142,7 @@ final class CustomTabBar: UIView {
             .isActive = true
         mixerButtonBadge.topAnchor.constraint(equalTo: mixerButton.topAnchor, constant: 12)
             .isActive = true
-        mixerButtonBadge.heightAnchor.constraint(equalTo: mixerButton.heightAnchor, multiplier: 0.3 )
+        mixerButtonBadge.heightAnchor.constraint(equalTo: mixerButton.heightAnchor, multiplier: 0.3)
             .isActive = true
         mixerButtonBadge.widthAnchor.constraint(greaterThanOrEqualTo: mixerButtonBadge.heightAnchor)
             .isActive = true
@@ -156,5 +156,4 @@ final class CustomTabBar: UIView {
         badgeLabel.widthAnchor.constraint(equalTo: mixerButtonBadge.widthAnchor, multiplier: 0.8)
             .isActive = true
     }
-    
 }

@@ -19,6 +19,7 @@ final class FilterTagCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    
     private lazy var gradient = CAGradientLayer()
     
     private lazy var view: UIView = {
@@ -78,7 +79,7 @@ final class FilterTagCollectionViewCell: UICollectionViewCell {
         
     }
     
-    private func setSelectedStyle() {
+    func setSelectedStyle() {
         gradient.colors = [#colorLiteral(red: 0.465685904, green: 0.3625613451, blue: 0.8644735217, alpha: 1).cgColor, #colorLiteral(red: 0.7122805715, green: 0.6651663184, blue: 0.936873138, alpha: 1).cgColor]
         gradient.frame = view.bounds
         view.layer.addSublayer(gradient)

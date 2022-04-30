@@ -15,7 +15,7 @@ final class MixView: UIView {
     }
     
     private let filterTags = FilterTag.getAllFilterTags()
-    private let sounds = Sound.getAllSounds()
+    private var sounds = Sound.getAllSounds()
     private var filtredSounds = Array<Sound>()
     
     private weak var mixViewDisplayLogic: MixViewDisplayLogic!
@@ -55,21 +55,6 @@ final class MixView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
-//    private lazy var settingsButton: UIButton = {
-//        let button = UIButton(type: .system)
-//        let image = UIImage(named: "Gear")
-//        button.setImage(image, for: .normal)
-//        button.layer.cornerRadius = 25
-//        button.clipsToBounds = true
-//        button.backgroundColor = #colorLiteral(red: 0.662745098, green: 0.7058823529, blue: 1, alpha: 1)
-//            .withAlphaComponent(0.1)
-//        button.tintColor = #colorLiteral(red: 0.862745098, green: 0.8784313725, blue: 1, alpha: 1)
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        button.tag = 0
-//        button.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
-//        return button
-//    }()
     
     private lazy var settingsButton: UIImageView = {
         let image = UIImage(named: "SettingsButton")
@@ -131,7 +116,7 @@ final class MixView: UIView {
     public func getCustomTabBar() -> CustomTabBar {
         customTabBar
     }
-    
+    // MARK: - Scroll methods
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         customTabBar.halfFadeOut()
     }
@@ -148,6 +133,8 @@ final class MixView: UIView {
         customTabBar.halfFadeIn()
     }
     
+    // MARK: - Actions
+    
     @objc
     private func buttonClicked() {
             viewController?.navigationController?.pushViewController(SettingsViewController(), animated: true)
@@ -163,6 +150,17 @@ final class MixView: UIView {
         default:
             break
         }
+    }
+    
+    
+    // MARK: - GUI Settings
+    
+    public func setCollectionViewSettings() {
+        let indexPath = IndexPath(item: 0, section: 0)
+        filterTagCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .left)
+        collectionView(filterTagCollectionView, didSelectItemAt: indexPath)
+        
+        
     }
     
     private func setPrimarySettings() {
@@ -190,10 +188,7 @@ final class MixView: UIView {
         let horizontalBarHeight: CGFloat = 45
         let padding = 16.0
         let upgrateButtonWidth = 112.0
-//        let padding = 10.0
-        
-//        horizontalStackView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7)
-//            .isActive = true
+
         horizontalStackView.heightAnchor.constraint(equalToConstant: horizontalBarHeight)
             .isActive = true
         horizontalStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor)
@@ -273,7 +268,11 @@ extension MixView: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
             
         case soundsCollectionView:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SoundCollectionViewCell.nameOfClass, for: indexPath) as? SoundCollectionViewCell else { return UICollectionViewCell() }
-            cell.setCellParameters(sound: filtredSounds[indexPath.item])
+            let sound = filtredSounds[indexPath.item]
+            if sound.isPlaying {
+            soundsCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .bottom)
+            }
+            cell.setCellParameters(sound: sound)
             return cell
         case filterTagCollectionView:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterTagCollectionViewCell.nameOfClass, for: indexPath) as? FilterTagCollectionViewCell else { return UICollectionViewCell() }
@@ -303,13 +302,16 @@ extension MixView: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
         switch collectionView {
         case filterTagCollectionView:
             let selectedTag = filterTags[indexPath.row].title
+            let cell = filterTagCollectionView.cellForItem(at: indexPath) as? FilterTagCollectionViewCell
+            cell?.setSelectedStyle()
             filtredSounds = selectedTag != "All" ? sounds.filter { $0.category == selectedTag } : sounds
             soundsCollectionView.reloadData()
             break
         case soundsCollectionView:
             guard let cell = collectionView.cellForItem(at: indexPath) as? SoundCollectionViewCell else { return }
-            guard !sounds[indexPath.item].isLocked else { collectionView.deselectItem(at: indexPath, animated: true)
+            guard !filtredSounds[indexPath.item].isLocked else { collectionView.deselectItem(at: indexPath, animated: true)
                 return }
+            filtredSounds[indexPath.item].isPlaying = true
             cell.setSelectedStyle()
             break
         default:
@@ -321,10 +323,12 @@ extension MixView: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
         switch collectionView {
         case soundsCollectionView:
             guard let cell = collectionView.cellForItem(at: indexPath) as? SoundCollectionViewCell else { return }
-            guard !sounds[indexPath.item].isLocked else { return }
+            guard !filtredSounds[indexPath.item].isLocked else { return }
+            filtredSounds[indexPath.item].isPlaying = false
             cell.setUnselectedStyle()
         default:
             return
         }
     }
+    
 }
