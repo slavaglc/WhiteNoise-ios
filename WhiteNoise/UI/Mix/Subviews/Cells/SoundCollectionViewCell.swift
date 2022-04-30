@@ -150,7 +150,9 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
     // MARK: - Graphics and animation methods
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         if flag {
-            setupGradientForSelected()
+            if isSelected {
+                setupGradientForSelected()
+            }
         }
     }
     
@@ -170,8 +172,6 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
         animateGradientDissapearing()
     }
     
-    
-    
     private func setupGradientForSelected() {
         imageView.image = imageView.image?.tint(with: .white)
         imageBackgroundView.layer.addSublayer(gradientLayer)
@@ -185,14 +185,12 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
         
         gradientLayer.frame = imageBackgroundView.bounds
         gradientLayer.colors = gradientColorSet[0]
-        
     }
     
     private func setupGradientForUnselected() {
         gradientLayer.removeFromSuperlayer()
+        imageView.image = imageView.image?.tint(with: .lightGray)
     }
-    
-    
     
    private func animateGradient() {
         gradientLayer.colors = gradientColorSet[colorIndex]
