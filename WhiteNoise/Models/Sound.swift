@@ -34,7 +34,23 @@ class Sound {
      Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", category: "Weather"  , isLocked: false),
      Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", category: "Weather"  , isLocked: false),
      Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", category: "Weather"  , isLocked: false),
-     Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", category: "Weather"  , isLocked: false)
+     Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", category: "Weather"  , isLocked: false),
+    Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", category: "Weather"  , isLocked: true),
+    Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", category: "Weather"  , isLocked: false),
+    Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", category: "Weather"  , isLocked: false),
+    Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", category: "Weather"  , isLocked: false),
+    Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", category: "Weather"  , isLocked: true),
+    Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", category: "Weather"  , isLocked: false),
+    Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", category: "Weather"  , isLocked: false),
+    Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", category: "Weather"  , isLocked: false),
+    Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", category: "Weather"  , isLocked: false),
+    Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", category: "Weather"  , isLocked: false),
+    Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", category: "Weather"  , isLocked: false),
+    Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", category: "Weather"  , isLocked: false),
+    Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", category: "Weather"  , isLocked: false),
+    Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", category: "Weather"  , isLocked: true),
+    Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", category: "Weather"  , isLocked: false),
+    Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "", category: "Weather"  , isLocked: false)
     ]
     }
 }

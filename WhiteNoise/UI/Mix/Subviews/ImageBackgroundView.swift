@@ -57,6 +57,7 @@ final class ImageBackgroundView: UIView, CAAnimationDelegate {
     }
     
     private func setSelectedStyle(animated: Bool) {
+        gradientLayer.isHidden = false
         gradientLayer.colors = gradientColorSet.first
         gradientLayer.startPoint = CGPoint(x: 0.25, y: 0.5)
         gradientLayer.endPoint = CGPoint(x: 0.75, y: 0.5)
@@ -68,6 +69,7 @@ final class ImageBackgroundView: UIView, CAAnimationDelegate {
     }
     
     private func setUnselectedStyle(animated: Bool) {
+        guard animated else { gradientLayer.isHidden = true; return }
         gradientLayer.opacity = 0
     }
     
@@ -76,7 +78,7 @@ final class ImageBackgroundView: UIView, CAAnimationDelegate {
         let gradientAnimation = CABasicAnimation(keyPath: "colors")
         gradientLayer.colors = startGradientColors.first
         gradientAnimation.delegate = self
-        gradientAnimation.duration = 0.75
+        gradientAnimation.duration = 0.5
         gradientAnimation.toValue = gradientColorSet.first
         gradientAnimation.fillMode = .forwards
         gradientAnimation.isRemovedOnCompletion = false

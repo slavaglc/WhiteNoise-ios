@@ -157,10 +157,8 @@ final class MixView: UIView {
     
     public func setCollectionViewSettings() {
         let indexPath = IndexPath(item: 0, section: 0)
-        filterTagCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .left)
         collectionView(filterTagCollectionView, didSelectItemAt: indexPath)
-        
-        
+        filterTagCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
     }
     
     private func setPrimarySettings() {
@@ -252,7 +250,7 @@ final class MixView: UIView {
     }
     
     private func setSoundsCollectionViewBottomInset(_ inset: CGFloat) {
-        soundsCollectionView.contentInset.bottom = inset
+        soundsCollectionView.contentInset.bottom = inset * 1.5
     }
 }
 
@@ -270,7 +268,7 @@ extension MixView: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SoundCollectionViewCell.nameOfClass, for: indexPath) as? SoundCollectionViewCell else { return UICollectionViewCell() }
             let sound = filtredSounds[indexPath.item]
             if sound.isPlaying {
-            soundsCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .bottom)
+                soundsCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
                 cell.setBackgroundStyle(selectedStyle: .selected(animated: false))
             }
             cell.setCellParameters(sound: sound)
@@ -296,15 +294,13 @@ extension MixView: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
         }
     }
     
-    
-
-    
+ 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch collectionView {
         case filterTagCollectionView:
             let selectedTag = filterTags[indexPath.row].title
-            let cell = filterTagCollectionView.cellForItem(at: indexPath) as? FilterTagCollectionViewCell
-            cell?.setSelectedStyle()
+            guard let cell = filterTagCollectionView.cellForItem(at: indexPath) as? FilterTagCollectionViewCell else { return }
+            cell.setSelectedStyle()
             filtredSounds = selectedTag != "All" ? sounds.filter { $0.category == selectedTag } : sounds
             soundsCollectionView.reloadData()
             break
@@ -326,7 +322,7 @@ extension MixView: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
             guard let cell = collectionView.cellForItem(at: indexPath) as? SoundCollectionViewCell else { return }
             guard !filtredSounds[indexPath.item].isLocked else { return }
             filtredSounds[indexPath.item].isPlaying = false
-//            cell.setUnselectedStyle()
+            cell.setBackgroundStyle(selectedStyle: .unselected(animated: true))
         default:
             return
         }

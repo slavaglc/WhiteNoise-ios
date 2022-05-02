@@ -86,6 +86,7 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
     override func prepareForReuse() {
         super.prepareForReuse()
         label.text?.removeAll()
+        setBackgroundStyle(selectedStyle: .unselected(animated: false))
     }
     
     
@@ -94,12 +95,6 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
         imageView.image = image?.tint(with: isSelected ? .white  : .lightGray)
         label.text = sound.name
         soundLockImage.isHidden = !sound.isLocked
-//        if sound.isPlaying {
-//            setupGradientForSelected()
-//        } else {
-//            setupGradientForUnselected()
-//        }
-        print("sublayers:", imageBackgroundView.layer.sublayers?.count)
     }
     
     public func getFontHeight() -> CGFloat {
