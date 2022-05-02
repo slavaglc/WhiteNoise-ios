@@ -48,6 +48,7 @@
 		5AAB52E52813EC8C003C53E3 /* CustomUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB52E42813EC8C003C53E3 /* CustomUIViewController.swift */; };
 		5AB9A8B0280D82E9009895BC /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9A8AF280D82E9009895BC /* HapticManager.swift */; };
 		5AE64C9728130650007F5CED /* SettingItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE64C9628130650007F5CED /* SettingItemCell.swift */; };
+		F928288C281F00E9003CDCDD /* ImageBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F928288B281F00E9003CDCDD /* ImageBackgroundView.swift */; };
 		F9DC15F72814679700B1EE9B /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DC15F62814679700B1EE9B /* UIImage.swift */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +96,7 @@
 		5AAB52E42813EC8C003C53E3 /* CustomUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIViewController.swift; sourceTree = "<group>"; };
 		5AB9A8AF280D82E9009895BC /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		5AE64C9628130650007F5CED /* SettingItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItemCell.swift; sourceTree = "<group>"; };
+		F928288B281F00E9003CDCDD /* ImageBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageBackgroundView.swift; sourceTree = "<group>"; };
 		F9DC15F62814679700B1EE9B /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -274,6 +276,7 @@
 				5AAB52D028135795003C53E3 /* CustomSegmentedControl.swift */,
 				5AAB52D128135795003C53E3 /* CustomTabBar.swift */,
 				5AAB52D228135795003C53E3 /* Circle.swift */,
+				F928288B281F00E9003CDCDD /* ImageBackgroundView.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				F9DC15F72814679700B1EE9B /* UIImage.swift in Sources */,
 				5AAB52DF2813D366003C53E3 /* UIColor.swift in Sources */,
 				5A8841BA280B4DA800A8291B /* SceneDelegate.swift in Sources */,
+				F928288C281F00E9003CDCDD /* ImageBackgroundView.swift in Sources */,
 				5AAB52DA281357B7003C53E3 /* FilterTag.swift in Sources */,
 				5AAB52D728135795003C53E3 /* Circle.swift in Sources */,
 				5A62AAEF28118CF8003667D2 /* SettingsFrameView.swift in Sources */,

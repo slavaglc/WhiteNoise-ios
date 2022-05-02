@@ -271,6 +271,7 @@ extension MixView: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
             let sound = filtredSounds[indexPath.item]
             if sound.isPlaying {
             soundsCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .bottom)
+                cell.setBackgroundStyle(selectedStyle: .selected(animated: false))
             }
             cell.setCellParameters(sound: sound)
             return cell
@@ -312,7 +313,7 @@ extension MixView: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
             guard !filtredSounds[indexPath.item].isLocked else { collectionView.deselectItem(at: indexPath, animated: true)
                 return }
             filtredSounds[indexPath.item].isPlaying = true
-            cell.setSelectedStyle()
+            cell.setBackgroundStyle(selectedStyle: .selected(animated: true))
             break
         default:
             return
@@ -325,7 +326,7 @@ extension MixView: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
             guard let cell = collectionView.cellForItem(at: indexPath) as? SoundCollectionViewCell else { return }
             guard !filtredSounds[indexPath.item].isLocked else { return }
             filtredSounds[indexPath.item].isPlaying = false
-            cell.setUnselectedStyle()
+//            cell.setUnselectedStyle()
         default:
             return
         }
