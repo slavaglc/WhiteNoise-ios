@@ -29,7 +29,7 @@ final class MixView: UIView {
         return stackView
     }()
     
-    private lazy var horizontalStackView: UIStackView = {
+    private lazy var headerStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .equalCentering
@@ -75,6 +75,7 @@ final class MixView: UIView {
         collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
+        collectionView.contentInset.left = 15
         collectionView.register(FilterTagCollectionViewCell.self, forCellWithReuseIdentifier: FilterTagCollectionViewCell.nameOfClass)
         
         return collectionView
@@ -152,6 +153,22 @@ final class MixView: UIView {
         }
     }
     
+    private func playButtonTapped() {
+        print("playButton")
+    }
+    
+    private func mixerButtonTapped() {
+        viewController?.show(YourMixViewController(), sender: nil)
+    }
+    
+    private func saveMixTapped() {
+        print("saveMixButton tapped")
+    }
+    
+    private func setTimerButtonTapped() {
+        print("saveTimerButton tapped")
+    }
+    
     
     // MARK: - GUI Settings
     
@@ -162,22 +179,22 @@ final class MixView: UIView {
     }
     
     private func setPrimarySettings() {
-        horizontalStackView.addArrangedSubview(upgradeButton)
-        horizontalStackView.addArrangedSubview(settingsButton)
-        addSubview(horizontalStackView)
+        headerStackView.addArrangedSubview(upgradeButton)
+        headerStackView.addArrangedSubview(settingsButton)
+        addSubview(headerStackView)
         addSubview(segmentControl)
-//        stackView.addArrangedSubview(horizontalStackView)
-//        mixViewDisplayLogic.addViewToNavgitaionBar(view: horizontalStackView)
-//        stackView.addArrangedSubview(horizontalStackView)
-        
-//        stackView.setCustomSpacing(25, after: horizontalStackView)
-//        stackView.addArrangedSubview(segmentControl)
-        stackView.addArrangedSubview(filterTagCollectionView)
-        stackView.addArrangedSubview(soundsCollectionView)
-        addSubview(stackView)
+        addSubview(filterTagCollectionView)
+        addSubview(soundsCollectionView)
         setCustomTabBarSettings()
         setupConstraints()
-        
+        setActions()
+    }
+    
+    private func setActions() {
+        customTabBar.setAction(for: .play, action: playButtonTapped)
+        customTabBar.setAction(for: .mixer, action: mixerButtonTapped)
+        customTabBar.setAction(for: .saveMix, action: saveMixTapped)
+        customTabBar.setAction(for: .timer, action: setTimerButtonTapped)
     }
     
     private func setupConstraints() {
@@ -187,13 +204,13 @@ final class MixView: UIView {
         let padding = 16.0
         let upgrateButtonWidth = 112.0
 
-        horizontalStackView.heightAnchor.constraint(equalToConstant: horizontalBarHeight)
+        headerStackView.heightAnchor.constraint(equalToConstant: horizontalBarHeight)
             .isActive = true
-        horizontalStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor)
+        headerStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor)
             .isActive = true
-        horizontalStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding)
+        headerStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding)
             .isActive = true
-        horizontalStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding)
+        headerStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding)
             .isActive = true
         settingsButton.widthAnchor.constraint(equalToConstant: horizontalBarHeight)
             .isActive = true
@@ -201,18 +218,28 @@ final class MixView: UIView {
             .isActive = true
 
         
-        
-        stackView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor).isActive = true
-        stackView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.9).isActive = true
-        stackView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor).isActive = true
-        stackView.topAnchor.constraint(equalTo: segmentControl.bottomAnchor)
-            .isActive = true
-        
 
-        horizontalStackView.setCustomSpacing(spacing, after: upgradeButton)
-        upgradeButton.heightAnchor.constraint(equalTo: horizontalStackView.heightAnchor)
+        filterTagCollectionView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor).isActive = true
+        filterTagCollectionView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor).isActive = true
+        filterTagCollectionView.heightAnchor.constraint(equalTo: segmentControl.heightAnchor, multiplier: 2).isActive = true
+        filterTagCollectionView.topAnchor.constraint(equalTo: segmentControl.bottomAnchor)
             .isActive = true
-        settingsButton.heightAnchor.constraint(equalTo: horizontalStackView.heightAnchor)
+        
+        
+        
+        soundsCollectionView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.9).isActive = true
+        soundsCollectionView.topAnchor.constraint(equalTo: filterTagCollectionView.bottomAnchor, constant: 10)
+            .isActive = true
+        soundsCollectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
+            .isActive = true
+        soundsCollectionView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor)
+            .isActive = true
+        
+        
+        headerStackView.setCustomSpacing(spacing, after: upgradeButton)
+        upgradeButton.heightAnchor.constraint(equalTo: headerStackView.heightAnchor)
+            .isActive = true
+        settingsButton.heightAnchor.constraint(equalTo: headerStackView.heightAnchor)
             .isActive = true
         settingsButton.widthAnchor.constraint(equalTo: settingsButton.heightAnchor)
             .isActive = true
@@ -221,16 +248,12 @@ final class MixView: UIView {
         
         segmentControl.centerXAnchor.constraint(equalTo: centerXAnchor)
             .isActive = true
-        segmentControl.topAnchor.constraint(equalTo: horizontalStackView.bottomAnchor, constant: 36)
+        segmentControl.topAnchor.constraint(equalTo: headerStackView.bottomAnchor, constant: 36)
             .isActive = true
         segmentControl.widthAnchor.constraint(equalTo: widthAnchor)
             .isActive = true
         segmentControl.heightAnchor.constraint(equalToConstant: horizontalBarHeight)
             .isActive = true
-        
-        filterTagCollectionView.widthAnchor.constraint(equalTo: stackView.widthAnchor).isActive = true
-        filterTagCollectionView.heightAnchor.constraint(equalTo: segmentControl.heightAnchor, multiplier: 2).isActive = true
-        soundsCollectionView.widthAnchor.constraint(equalTo: stackView.widthAnchor).isActive = true
     }
     
     private func setCustomTabBarSettings() {
@@ -240,6 +263,7 @@ final class MixView: UIView {
         navigationController.view.addSubview(customTabBar)
         customTabBar.widthAnchor.constraint(equalTo: navigationController.view.widthAnchor, multiplier: 0.65)
             .isActive = true
+        
         customTabBar.heightAnchor.constraint(equalToConstant: height)
             .isActive = true
         customTabBar.centerXAnchor.constraint(equalTo: navigationController.view.centerXAnchor)
@@ -269,7 +293,7 @@ extension MixView: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
             let sound = filtredSounds[indexPath.item]
             if sound.isPlaying {
                 soundsCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
-                cell.setBackgroundStyle(selectedStyle: .selected(animated: false))
+//                cell.setBackgroundStyle(selectedStyle: .selected(animated: false))
             }
             cell.setCellParameters(sound: sound)
             return cell

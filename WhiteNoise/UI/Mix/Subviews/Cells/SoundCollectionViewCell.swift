@@ -85,12 +85,16 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
 
     override func prepareForReuse() {
         super.prepareForReuse()
+        imageBackgroundView.isHidden = true
         label.text?.removeAll()
+        imageView.image = nil
         setBackgroundStyle(selectedStyle: .unselected(animated: false))
+        
     }
     
     
     public func setCellParameters(sound: Sound) {
+        imageBackgroundView.isHidden = false
         let image = UIImage(named: sound.imageName)
         imageView.image = image?.tint(with: isSelected ? .white  : .lightGray)
         label.text = sound.name

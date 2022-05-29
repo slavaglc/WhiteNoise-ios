@@ -44,6 +44,10 @@ final class MixViewController: UIViewController {
         mainView.getCustomTabBar().isHidden = true
         navigationController?.navigationBar.isHidden = false
     }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 }
 
 extension MixViewController: MixViewDisplayLogic {

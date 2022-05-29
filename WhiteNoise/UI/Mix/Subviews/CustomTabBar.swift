@@ -9,6 +9,10 @@ import UIKit
 
 
 
+enum BarButtonType: Int, CaseIterable {
+    case play, mixer, saveMix, timer
+}
+
 final class CustomTabBar: UIView {
     
     private enum PlayingState: String {
@@ -21,6 +25,8 @@ final class CustomTabBar: UIView {
             playButton.setImage(UIImage(named: playingState.rawValue), for: .normal)
         }
     }
+    
+    private var actions: [BarButtonType: ()->()] = [:]
     
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
@@ -46,14 +52,18 @@ final class CustomTabBar: UIView {
     private lazy var playButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(named: playingState.rawValue), for: .normal)
+        button.addTarget(self, action: #selector(buttonPressed(button:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.tag = BarButtonType.play.rawValue
         return button
     }()
     
     private lazy var mixerButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(named: "mixer_icon"), for: .normal)
+        button.addTarget(self, action: #selector(buttonPressed(button:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.tag = BarButtonType.mixer.rawValue
         return button
     }()
     
@@ -80,14 +90,18 @@ final class CustomTabBar: UIView {
     private lazy var saveMixButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(named: "save_mix_icon"), for: .normal)
+        button.addTarget(self, action: #selector(buttonPressed(button:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.tag = BarButtonType.saveMix.rawValue
         return button
     }()
     
     private lazy var setTimerButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(named: "set_timer_icon"), for: .normal)
+        button.addTarget(self, action: #selector(buttonPressed(button:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.tag = BarButtonType.timer.rawValue
         return button
     }()
     
@@ -108,6 +122,14 @@ final class CustomTabBar: UIView {
     
     public func hideBadge() {
         mixerButtonBadge.isHidden = true
+    }
+    
+    public func setAction(for buttonType: BarButtonType, action: @escaping ()->()) {
+            actions[buttonType] = action
+    }
+    
+    @objc private func buttonPressed(button: UIButton) {
+        (actions[BarButtonType.allCases[button.tag]] ??  {})()
     }
     
     private func setPrimarySettings() {
