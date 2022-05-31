@@ -158,7 +158,8 @@ final class MixView: UIView {
     }
     
     private func mixerButtonTapped() {
-        viewController?.show(YourMixViewController(), sender: nil)
+        let playingSounds  = sounds.filter {$0.isPlaying}
+        viewController?.show(YourMixViewController(sounds: playingSounds), sender: nil)
     }
     
     private func saveMixTapped() {

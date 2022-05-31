@@ -54,6 +54,7 @@
 		F9DA4F7E284155C8008F703D /* YourMixTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA4F7D284155C8008F703D /* YourMixTableViewCell.swift */; };
 		F9DA4F80284229C2008F703D /* BottomMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA4F7F284229C2008F703D /* BottomMenu.swift */; };
 		F9DA4F8428436BF6008F703D /* VerticalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA4F8328436BF6008F703D /* VerticalButton.swift */; };
+		F9DA4F8628469DA0008F703D /* MixManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA4F8528469DA0008F703D /* MixManager.swift */; };
 		F9DC15F72814679700B1EE9B /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DC15F62814679700B1EE9B /* UIImage.swift */; };
 /* End PBXBuildFile section */
 
@@ -107,6 +108,7 @@
 		F9DA4F7D284155C8008F703D /* YourMixTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourMixTableViewCell.swift; sourceTree = "<group>"; };
 		F9DA4F7F284229C2008F703D /* BottomMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomMenu.swift; sourceTree = "<group>"; };
 		F9DA4F8328436BF6008F703D /* VerticalButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalButton.swift; sourceTree = "<group>"; };
+		F9DA4F8528469DA0008F703D /* MixManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixManager.swift; sourceTree = "<group>"; };
 		F9DC15F62814679700B1EE9B /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -193,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				5A8FB7BC280C1D3D00D44CA6 /* StorageManager.swift */,
+				F9DA4F8528469DA0008F703D /* MixManager.swift */,
 				5AB9A8AF280D82E9009895BC /* HapticManager.swift */,
 			);
 			path = Managers;
@@ -425,6 +428,7 @@
 				5AAB52DB281357B7003C53E3 /* Sound.swift in Sources */,
 				F9DC15F72814679700B1EE9B /* UIImage.swift in Sources */,
 				5AAB52DF2813D366003C53E3 /* UIColor.swift in Sources */,
+				F9DA4F8628469DA0008F703D /* MixManager.swift in Sources */,
 				5A8841BA280B4DA800A8291B /* SceneDelegate.swift in Sources */,
 				F928288C281F00E9003CDCDD /* ImageBackgroundView.swift in Sources */,
 				5AAB52DA281357B7003C53E3 /* FilterTag.swift in Sources */,

@@ -19,6 +19,7 @@ final class MixViewController: UIViewController {
         return view
     }()
     
+    
     override func loadView() {
         view = mainView
     }

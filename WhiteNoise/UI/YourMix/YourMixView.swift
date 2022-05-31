@@ -11,7 +11,7 @@ import UIKit
 final class YourMixView: UIView {
 
     
-    private let sounds = Sound.getAllSounds()
+    private var sounds = Array<Sound>()
     
     private weak var yourMixViewController: YourMixViewController?
     
@@ -62,6 +62,7 @@ final class YourMixView: UIView {
     convenience init(viewController: YourMixViewController) {
         self.init()
         self.yourMixViewController = viewController
+        self.sounds = viewController.sounds
     }
     
     override init(frame: CGRect) {

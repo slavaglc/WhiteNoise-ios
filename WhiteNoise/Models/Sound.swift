@@ -24,6 +24,7 @@ class Sound {
     let category: String
     var isPlaying = false
     var isLocked: Bool
+    var volume: Float = 0.0
     
     static func getAllSounds() -> [Sound] {
     [

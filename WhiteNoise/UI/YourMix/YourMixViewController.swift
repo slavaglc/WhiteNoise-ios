@@ -10,8 +10,13 @@ import UIKit
 
 final class YourMixViewController: UIViewController {
 
-    
+    var sounds = Array<Sound>()
     private lazy var yourMixView: YourMixView = YourMixView(viewController: self)
+    
+    convenience init(sounds: [Sound]) {
+        self.init()
+        self.sounds = sounds
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

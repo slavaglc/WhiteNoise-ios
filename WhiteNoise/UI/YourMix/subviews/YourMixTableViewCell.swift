@@ -9,6 +9,7 @@ import UIKit
 
 class YourMixTableViewCell: UITableViewCell {
 
+    private var sound: Sound?
     
     private lazy var horizontalStackView: UIStackView = {
         let stackView = UIStackView()
@@ -59,6 +60,7 @@ class YourMixTableViewCell: UITableViewCell {
           }
         
         slider.thumbTintColor = #colorLiteral(red: 0.6352941176, green: 0.6705882353, blue: 0.9450980392, alpha: 1) // #A2ABF1
+        slider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
         
         return slider
     }()
@@ -82,13 +84,6 @@ class YourMixTableViewCell: UITableViewCell {
         return imageView
     }()
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setPrimarySettings()
@@ -100,15 +95,22 @@ class YourMixTableViewCell: UITableViewCell {
         setPrimarySettings()
         setupConstraints()
     }
+    // MARK: - Actions
+    @objc private func removeButtonTapped() {
+        sound?.isPlaying = false
+    }
     
-    @objc func removeButtonTapped() {
-        
+    @objc private func sliderValueChanged() {
+        sound?.volume = volumeSlider.value
     }
     
     public func setCellParameters(sound: Sound)  {
+        self.sound = sound
         label.text = sound.name
         soundImageView.image = UIImage(named: sound.imageName)
+        volumeSlider.value = sound.volume
     }
+    
     
     private func setPrimarySettings() {
         backgroundColor = .clear
