@@ -79,6 +79,21 @@ final class YourMixView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+//    MARK: - Actions
+    
+    private func setActions() {
+        bottomMenu.setAction(for: .saveMix, action: showSaveMixAlert)
+    }
+    
+    private func showSaveMixAlert() {
+        
+        let advancedAlertVC = AdvancedAlertViewController(elements: [.button(title: "Deny", action: {}), .button(title: "Apply", action: {})])
+        advancedAlertVC.modalPresentationStyle = .overCurrentContext
+        yourMixViewController?.present(advancedAlertVC, animated: false)
+    }
+                             
+//   MARK: - Layout
+    
     private func setPrimarySettings() {
         backgroundColor = .fromNormalRgb(red: 11, green: 16, blue: 51)
         headerStackView.addArrangedSubview(titleLabel)
@@ -86,6 +101,7 @@ final class YourMixView: UIView {
         addSubview(headerStackView)
         addSubview(mixesTableView)
         addSubview(bottomMenu)
+        setActions()
     }
     
     private func setupConstraints() {
@@ -128,7 +144,7 @@ final class YourMixView: UIView {
     }
 }
 
-
+// MARK: - TableView extesion
 extension YourMixView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         sounds.count

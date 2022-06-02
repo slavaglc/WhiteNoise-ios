@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BottomMenu: UIView {
+final class BottomMenu: UIView {
 
     private enum PlayingState: String {
         case play = "play.fill"
@@ -110,7 +110,6 @@ class BottomMenu: UIView {
         super.init(coder: coder)
         setPrimarySettings()
     }
-    
     
     
     public func setAction(for buttonType: BarButtonType, action: @escaping ()->()) {

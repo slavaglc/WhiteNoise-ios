@@ -55,6 +55,9 @@
 		F9DA4F80284229C2008F703D /* BottomMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA4F7F284229C2008F703D /* BottomMenu.swift */; };
 		F9DA4F8428436BF6008F703D /* VerticalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA4F8328436BF6008F703D /* VerticalButton.swift */; };
 		F9DA4F8628469DA0008F703D /* MixManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA4F8528469DA0008F703D /* MixManager.swift */; };
+		F9DA4F8928493CB8008F703D /* AdvancedAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA4F8828493CB8008F703D /* AdvancedAlertViewController.swift */; };
+		F9DA4F8B28493CD4008F703D /* AdvancedAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA4F8A28493CD4008F703D /* AdvancedAlertView.swift */; };
+		F9DA4F8D284964DA008F703D /* CustomVisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA4F8C284964DA008F703D /* CustomVisualEffect.swift */; };
 		F9DC15F72814679700B1EE9B /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DC15F62814679700B1EE9B /* UIImage.swift */; };
 /* End PBXBuildFile section */
 
@@ -109,6 +112,9 @@
 		F9DA4F7F284229C2008F703D /* BottomMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomMenu.swift; sourceTree = "<group>"; };
 		F9DA4F8328436BF6008F703D /* VerticalButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalButton.swift; sourceTree = "<group>"; };
 		F9DA4F8528469DA0008F703D /* MixManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixManager.swift; sourceTree = "<group>"; };
+		F9DA4F8828493CB8008F703D /* AdvancedAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedAlertViewController.swift; sourceTree = "<group>"; };
+		F9DA4F8A28493CD4008F703D /* AdvancedAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedAlertView.swift; sourceTree = "<group>"; };
+		F9DA4F8C284964DA008F703D /* CustomVisualEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomVisualEffect.swift; sourceTree = "<group>"; };
 		F9DC15F62814679700B1EE9B /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -245,6 +251,7 @@
 		5A8FB7CA280C5A3200D44CA6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				F9DA4F8728493C91008F703D /* AdvancedAlert */,
 				F9688C0A28412A80005542B0 /* YourMix */,
 				5A62AAE82811774C003667D2 /* Settings */,
 				5A945F37280E8C3A001AA3C4 /* Paywall */,
@@ -322,6 +329,16 @@
 				F9DA4F8328436BF6008F703D /* VerticalButton.swift */,
 			);
 			path = subviews;
+			sourceTree = "<group>";
+		};
+		F9DA4F8728493C91008F703D /* AdvancedAlert */ = {
+			isa = PBXGroup;
+			children = (
+				F9DA4F8828493CB8008F703D /* AdvancedAlertViewController.swift */,
+				F9DA4F8A28493CD4008F703D /* AdvancedAlertView.swift */,
+				F9DA4F8C284964DA008F703D /* CustomVisualEffect.swift */,
+			);
+			path = AdvancedAlert;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -413,7 +430,9 @@
 				5AAB52CB281355F7003C53E3 /* UIView.swift in Sources */,
 				5A945F34280DCFCF001AA3C4 /* PrivacyView.swift in Sources */,
 				5AAB52D328135795003C53E3 /* SoundCollectionViewCell.swift in Sources */,
+				F9DA4F8928493CB8008F703D /* AdvancedAlertViewController.swift in Sources */,
 				5A8FB7CD280C70C300D44CA6 /* MixView.swift in Sources */,
+				F9DA4F8D284964DA008F703D /* CustomVisualEffect.swift in Sources */,
 				5A8841CC280B5EA300A8291B /* PlansleepView.swift in Sources */,
 				5A8FB7BD280C1D3D00D44CA6 /* StorageManager.swift in Sources */,
 				5A62AAF12811A8C6003667D2 /* SettingsFrameBackgroundView.swift in Sources */,
@@ -423,6 +442,7 @@
 				5AAB52D628135795003C53E3 /* CustomTabBar.swift in Sources */,
 				F9DA4F80284229C2008F703D /* BottomMenu.swift in Sources */,
 				5A8FB7C9280C550600D44CA6 /* UICircle.swift in Sources */,
+				F9DA4F8B28493CD4008F703D /* AdvancedAlertView.swift in Sources */,
 				F9688C0E28412AED005542B0 /* YourMixViewController.swift in Sources */,
 				5A8FB7AE280BDA9400D44CA6 /* MyNavigationController.swift in Sources */,
 				5AAB52DB281357B7003C53E3 /* Sound.swift in Sources */,

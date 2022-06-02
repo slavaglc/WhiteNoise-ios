@@ -7,7 +7,7 @@
 
 import UIKit
 
-class YourMixTableViewCell: UITableViewCell {
+final class YourMixTableViewCell: UITableViewCell {
 
     private var sound: Sound?
     

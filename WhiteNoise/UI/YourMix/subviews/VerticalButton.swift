@@ -8,7 +8,7 @@
 import UIKit
 
 
-class SVVerticalButton: UIButton {
+final class SVVerticalButton: UIButton {
 
     override func layoutSubviews() {
         super.layoutSubviews()
