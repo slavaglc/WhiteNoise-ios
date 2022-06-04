@@ -48,6 +48,8 @@
 		5AAB52E52813EC8C003C53E3 /* CustomUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB52E42813EC8C003C53E3 /* CustomUIViewController.swift */; };
 		5AB9A8B0280D82E9009895BC /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9A8AF280D82E9009895BC /* HapticManager.swift */; };
 		5AE64C9728130650007F5CED /* SettingItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE64C9628130650007F5CED /* SettingItemCell.swift */; };
+		F91EF2DA284A85BC00CE84DC /* AdvancedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91EF2D9284A85BC00CE84DC /* AdvancedTextField.swift */; };
+		F91EF2DC284BD14000CE84DC /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91EF2DB284BD14000CE84DC /* UIViewController.swift */; };
 		F928288C281F00E9003CDCDD /* ImageBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F928288B281F00E9003CDCDD /* ImageBackgroundView.swift */; };
 		F9688C0C28412ADF005542B0 /* YourMixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9688C0B28412ADF005542B0 /* YourMixView.swift */; };
 		F9688C0E28412AED005542B0 /* YourMixViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9688C0D28412AED005542B0 /* YourMixViewController.swift */; };
@@ -105,6 +107,8 @@
 		5AAB52E42813EC8C003C53E3 /* CustomUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIViewController.swift; sourceTree = "<group>"; };
 		5AB9A8AF280D82E9009895BC /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		5AE64C9628130650007F5CED /* SettingItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItemCell.swift; sourceTree = "<group>"; };
+		F91EF2D9284A85BC00CE84DC /* AdvancedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedTextField.swift; sourceTree = "<group>"; };
+		F91EF2DB284BD14000CE84DC /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		F928288B281F00E9003CDCDD /* ImageBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageBackgroundView.swift; sourceTree = "<group>"; };
 		F9688C0B28412ADF005542B0 /* YourMixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourMixView.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		F9688C0D28412AED005542B0 /* YourMixViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourMixViewController.swift; sourceTree = "<group>"; };
@@ -230,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				5AAB52DC28135879003C53E3 /* NameOfClass.swift */,
+				F91EF2DB284BD14000CE84DC /* UIViewController.swift */,
 				5AAB52CA281355F7003C53E3 /* UIView.swift */,
 				F9DC15F62814679700B1EE9B /* UIImage.swift */,
 				5AAB52DE2813D366003C53E3 /* UIColor.swift */,
@@ -311,6 +316,15 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		F91EF2D8284A859500CE84DC /* subviews */ = {
+			isa = PBXGroup;
+			children = (
+				F9DA4F8C284964DA008F703D /* CustomVisualEffect.swift */,
+				F91EF2D9284A85BC00CE84DC /* AdvancedTextField.swift */,
+			);
+			path = subviews;
+			sourceTree = "<group>";
+		};
 		F9688C0A28412A80005542B0 /* YourMix */ = {
 			isa = PBXGroup;
 			children = (
@@ -336,7 +350,7 @@
 			children = (
 				F9DA4F8828493CB8008F703D /* AdvancedAlertViewController.swift */,
 				F9DA4F8A28493CD4008F703D /* AdvancedAlertView.swift */,
-				F9DA4F8C284964DA008F703D /* CustomVisualEffect.swift */,
+				F91EF2D8284A859500CE84DC /* subviews */,
 			);
 			path = AdvancedAlert;
 			sourceTree = "<group>";
@@ -417,11 +431,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F91EF2DA284A85BC00CE84DC /* AdvancedTextField.swift in Sources */,
 				5AB9A8B0280D82E9009895BC /* HapticManager.swift in Sources */,
 				F9688C0C28412ADF005542B0 /* YourMixView.swift in Sources */,
 				5AAB52E32813EC3C003C53E3 /* CustomUIView.swift in Sources */,
 				5AAB52E52813EC8C003C53E3 /* CustomUIViewController.swift in Sources */,
 				5A13588D280E8D0800DE431D /* PaywallView.swift in Sources */,
+				F91EF2DC284BD14000CE84DC /* UIViewController.swift in Sources */,
 				5A13588F280E8D1400DE431D /* PaywallViewController.swift in Sources */,
 				5A8841BC280B4DA800A8291B /* PlansleepViewController.swift in Sources */,
 				5A945F36280DCFF4001AA3C4 /* PrivacyViewController.swift in Sources */,
@@ -599,7 +615,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 534C989ZLQ;
+				DEVELOPMENT_TEAM = R2TF4J9L8G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WhiteNoise/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -627,7 +643,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 534C989ZLQ;
+				DEVELOPMENT_TEAM = R2TF4J9L8G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WhiteNoise/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

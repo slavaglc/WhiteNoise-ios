@@ -207,7 +207,7 @@ final class MixView: UIView {
 
         headerStackView.heightAnchor.constraint(equalToConstant: horizontalBarHeight)
             .isActive = true
-        headerStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor)
+        headerStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 5)
             .isActive = true
         headerStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding)
             .isActive = true

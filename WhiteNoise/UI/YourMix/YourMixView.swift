@@ -85,11 +85,33 @@ final class YourMixView: UIView {
         bottomMenu.setAction(for: .saveMix, action: showSaveMixAlert)
     }
     
+    private func saveMix(button: UIButton, alertController: AdvancedAlertViewController) {
+        print("saved")
+        alertController.close()
+    }
+    
+    private func denySaving(button: UIButton, alertController: AdvancedAlertViewController) {
+        alertController.close()
+    }
+    
     private func showSaveMixAlert() {
-        
-        let advancedAlertVC = AdvancedAlertViewController(elements: [.button(title: "Deny", action: {}), .button(title: "Apply", action: {})])
-        advancedAlertVC.modalPresentationStyle = .overCurrentContext
+        let elements: [AlertElementType] = [
+            .title(text: "Name your mix"),
+            .textField(placeholder: "Name"),
+            .button(title: "Deny", action: denySaving(button:alertController:)),
+            .button(title: "Apply", action: saveMix(button:alertController:))
+        ]
+        let advancedAlertVC = AdvancedAlertViewController(elements: elements)
         yourMixViewController?.present(advancedAlertVC, animated: false)
+    }
+    
+    private func removeSound(in cell: YourMixTableViewCell) {
+        guard let indexPath = mixesTableView.indexPath(for: cell) else { return }
+        let sound = sounds[indexPath.row]
+        sound.isPlaying = false
+        sound.volume = 0.0
+        sounds.remove(at: indexPath.row)
+        mixesTableView.deleteRows(at: [indexPath], with: .fade)
     }
                              
 //   MARK: - Layout
@@ -111,7 +133,7 @@ final class YourMixView: UIView {
         
         headerStackView.heightAnchor.constraint(equalToConstant: horizontalBarHeight)
             .isActive = true
-        headerStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor)
+        headerStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 5)
             .isActive = true
         headerStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding)
             .isActive = true
@@ -153,7 +175,14 @@ extension YourMixView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: YourMixTableViewCell.nameOfClass, for: indexPath) as? YourMixTableViewCell else { return UITableViewCell() }
+        cell.delegate = self
         cell.setCellParameters(sound: sounds[indexPath.row])
         return cell
+    }
+}
+
+extension YourMixView: YourMixTableViewCellDelegate {
+    func removeButtonTapped(in cell: YourMixTableViewCell) {
+        removeSound(in: cell)
     }
 }

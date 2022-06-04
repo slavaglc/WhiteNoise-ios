@@ -12,12 +12,13 @@ final class AdvancedAlertViewController: UIViewController {
 
     
     public var elements: [AlertElementType]?
-    private lazy var advancedAlertView = AdvancedAlertView(viewController: self, elements: elements)
+    public lazy var advancedAlertView = AdvancedAlertView(viewController: self, elements: elements)
     
     
     convenience init(elements: [AlertElementType]? = nil) {
         self.init()
         self.elements = elements
+        modalPresentationStyle = .overCurrentContext
     }
     
     override func loadView() {
@@ -28,6 +29,11 @@ final class AdvancedAlertViewController: UIViewController {
         super.viewDidAppear(animated)
         advancedAlertView.alpha = 1
         advancedAlertView.alertBackground.fadeInFromLeftSide()
+    }
+    
+    public func close() {
+        dismissKeyboard()
+        advancedAlertView.close()
     }
 
 }

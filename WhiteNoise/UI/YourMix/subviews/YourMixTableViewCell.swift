@@ -7,8 +7,14 @@
 
 import UIKit
 
-final class YourMixTableViewCell: UITableViewCell {
 
+protocol YourMixTableViewCellDelegate: AnyObject {
+    func removeButtonTapped(in cell: YourMixTableViewCell)
+}
+
+final class YourMixTableViewCell: UITableViewCell {
+    
+    weak var delegate: YourMixTableViewCellDelegate!
     private var sound: Sound?
     
     private lazy var horizontalStackView: UIStackView = {
@@ -97,7 +103,7 @@ final class YourMixTableViewCell: UITableViewCell {
     }
     // MARK: - Actions
     @objc private func removeButtonTapped() {
-        sound?.isPlaying = false
+        delegate?.removeButtonTapped(in: self)
     }
     
     @objc private func sliderValueChanged() {
