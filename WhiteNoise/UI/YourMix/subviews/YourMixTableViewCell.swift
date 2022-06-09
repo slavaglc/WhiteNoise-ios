@@ -103,11 +103,15 @@ final class YourMixTableViewCell: UITableViewCell {
     }
     // MARK: - Actions
     @objc private func removeButtonTapped() {
+        guard let sound = sound else { return }
+        AudioManager.shared.stopPlayback(sound: sound)
         delegate?.removeButtonTapped(in: self)
     }
     
     @objc private func sliderValueChanged() {
         sound?.volume = volumeSlider.value
+        guard let sound = sound else { return }
+        AudioManager.shared.setVolume(for: sound)
     }
     
     public func setCellParameters(sound: Sound)  {

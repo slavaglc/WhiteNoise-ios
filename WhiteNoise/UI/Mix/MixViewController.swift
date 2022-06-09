@@ -13,6 +13,7 @@ protocol MixViewDisplayLogic: AnyObject {
 }
 
 final class MixViewController: UIViewController {
+    
     private lazy var mainView: MixView = {
         let view = MixView(viewController: self)
         view.backgroundColor = .fromNormalRgb(red: 11, green: 16, blue: 51)

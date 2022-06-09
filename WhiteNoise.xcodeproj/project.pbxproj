@@ -61,6 +61,47 @@
 		F9DA4F8B28493CD4008F703D /* AdvancedAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA4F8A28493CD4008F703D /* AdvancedAlertView.swift */; };
 		F9DA4F8D284964DA008F703D /* CustomVisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA4F8C284964DA008F703D /* CustomVisualEffect.swift */; };
 		F9DC15F72814679700B1EE9B /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DC15F62814679700B1EE9B /* UIImage.swift */; };
+		F9EEF53C28526CCB00ED109F /* music.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF51428526CCB00ED109F /* music.wav */; };
+		F9EEF53D28526CCB00ED109F /* shower.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF51528526CCB00ED109F /* shower.wav */; };
+		F9EEF53E28526CCB00ED109F /* whitenoise.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF51628526CCB00ED109F /* whitenoise.wav */; };
+		F9EEF53F28526CCB00ED109F /* ventilator2.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF51728526CCB00ED109F /* ventilator2.wav */; };
+		F9EEF54028526CCB00ED109F /* wind.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF51828526CCB00ED109F /* wind.wav */; };
+		F9EEF54128526CCB00ED109F /* mother.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF51928526CCB00ED109F /* mother.wav */; };
+		F9EEF54228526CCB00ED109F /* dryer.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF51A28526CCB00ED109F /* dryer.wav */; };
+		F9EEF54328526CCB00ED109F /* creek.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF51B28526CCB00ED109F /* creek.wav */; };
+		F9EEF54428526CCB00ED109F /* fireplace.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF51C28526CCB00ED109F /* fireplace.wav */; };
+		F9EEF54528526CCB00ED109F /* train.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF51D28526CCB00ED109F /* train.wav */; };
+		F9EEF54628526CCB00ED109F /* music2.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF51E28526CCB00ED109F /* music2.wav */; };
+		F9EEF54728526CCB00ED109F /* rainonpuddle.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF51F28526CCB00ED109F /* rainonpuddle.wav */; };
+		F9EEF54828526CCB00ED109F /* brownnoise.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF52028526CCB00ED109F /* brownnoise.wav */; };
+		F9EEF54928526CCB00ED109F /* music3.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF52128526CCB00ED109F /* music3.wav */; };
+		F9EEF54A28526CCB00ED109F /* bluenoise.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF52228526CCB00ED109F /* bluenoise.wav */; };
+		F9EEF54B28526CCB00ED109F /* music4.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF52328526CCB00ED109F /* music4.wav */; };
+		F9EEF54C28526CCB00ED109F /* ventilator.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF52428526CCB00ED109F /* ventilator.wav */; };
+		F9EEF54D28526CCB00ED109F /* thunder.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF52528526CCB00ED109F /* thunder.wav */; };
+		F9EEF54E28526CCB00ED109F /* river.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF52628526CCB00ED109F /* river.wav */; };
+		F9EEF54F28526CCB00ED109F /* ocean.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF52728526CCB00ED109F /* ocean.wav */; };
+		F9EEF55028526CCB00ED109F /* doppler.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF52828526CCB00ED109F /* doppler.wav */; };
+		F9EEF55128526CCB00ED109F /* cleaner2.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF52928526CCB00ED109F /* cleaner2.wav */; };
+		F9EEF55228526CCB00ED109F /* aircraft.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF52A28526CCB00ED109F /* aircraft.wav */; };
+		F9EEF55328526CCB00ED109F /* wash.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF52B28526CCB00ED109F /* wash.wav */; };
+		F9EEF55428526CCB00ED109F /* rain.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF52C28526CCB00ED109F /* rain.wav */; };
+		F9EEF55528526CCB00ED109F /* mother2.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF52D28526CCB00ED109F /* mother2.wav */; };
+		F9EEF55628526CCB00ED109F /* forestriverslow.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF52E28526CCB00ED109F /* forestriverslow.wav */; };
+		F9EEF55728526CCB00ED109F /* cleaner.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF52F28526CCB00ED109F /* cleaner.wav */; };
+		F9EEF55828526CCB00ED109F /* forestriver.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF53028526CCB00ED109F /* forestriver.wav */; };
+		F9EEF55928526CCB00ED109F /* waterfall.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF53128526CCB00ED109F /* waterfall.wav */; };
+		F9EEF55A28526CCB00ED109F /* sea.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF53228526CCB00ED109F /* sea.wav */; };
+		F9EEF55B28526CCB00ED109F /* cat.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF53328526CCB00ED109F /* cat.wav */; };
+		F9EEF55C28526CCB00ED109F /* kettle.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF53428526CCB00ED109F /* kettle.wav */; };
+		F9EEF55D28526CCB00ED109F /* heart.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF53528526CCB00ED109F /* heart.wav */; };
+		F9EEF55E28526CCB00ED109F /* heavyrain.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF53628526CCB00ED109F /* heavyrain.wav */; };
+		F9EEF55F28526CCB00ED109F /* lake.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF53728526CCB00ED109F /* lake.wav */; };
+		F9EEF56028526CCB00ED109F /* car.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF53828526CCB00ED109F /* car.wav */; };
+		F9EEF56128526CCB00ED109F /* pinknoise.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF53928526CCB00ED109F /* pinknoise.wav */; };
+		F9EEF56228526CCB00ED109F /* rainonleaves.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF53A28526CCB00ED109F /* rainonleaves.wav */; };
+		F9EEF56328526CCB00ED109F /* conditioner.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF53B28526CCB00ED109F /* conditioner.wav */; };
+		F9EEF5652852737C00ED109F /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EEF5642852737C00ED109F /* AudioManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -120,6 +161,47 @@
 		F9DA4F8A28493CD4008F703D /* AdvancedAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedAlertView.swift; sourceTree = "<group>"; };
 		F9DA4F8C284964DA008F703D /* CustomVisualEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomVisualEffect.swift; sourceTree = "<group>"; };
 		F9DC15F62814679700B1EE9B /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		F9EEF51428526CCB00ED109F /* music.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = music.wav; sourceTree = "<group>"; };
+		F9EEF51528526CCB00ED109F /* shower.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = shower.wav; sourceTree = "<group>"; };
+		F9EEF51628526CCB00ED109F /* whitenoise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = whitenoise.wav; sourceTree = "<group>"; };
+		F9EEF51728526CCB00ED109F /* ventilator2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ventilator2.wav; sourceTree = "<group>"; };
+		F9EEF51828526CCB00ED109F /* wind.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = wind.wav; sourceTree = "<group>"; };
+		F9EEF51928526CCB00ED109F /* mother.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = mother.wav; sourceTree = "<group>"; };
+		F9EEF51A28526CCB00ED109F /* dryer.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = dryer.wav; sourceTree = "<group>"; };
+		F9EEF51B28526CCB00ED109F /* creek.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = creek.wav; sourceTree = "<group>"; };
+		F9EEF51C28526CCB00ED109F /* fireplace.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = fireplace.wav; sourceTree = "<group>"; };
+		F9EEF51D28526CCB00ED109F /* train.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = train.wav; sourceTree = "<group>"; };
+		F9EEF51E28526CCB00ED109F /* music2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = music2.wav; sourceTree = "<group>"; };
+		F9EEF51F28526CCB00ED109F /* rainonpuddle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = rainonpuddle.wav; sourceTree = "<group>"; };
+		F9EEF52028526CCB00ED109F /* brownnoise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = brownnoise.wav; sourceTree = "<group>"; };
+		F9EEF52128526CCB00ED109F /* music3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = music3.wav; sourceTree = "<group>"; };
+		F9EEF52228526CCB00ED109F /* bluenoise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bluenoise.wav; sourceTree = "<group>"; };
+		F9EEF52328526CCB00ED109F /* music4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = music4.wav; sourceTree = "<group>"; };
+		F9EEF52428526CCB00ED109F /* ventilator.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ventilator.wav; sourceTree = "<group>"; };
+		F9EEF52528526CCB00ED109F /* thunder.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = thunder.wav; sourceTree = "<group>"; };
+		F9EEF52628526CCB00ED109F /* river.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = river.wav; sourceTree = "<group>"; };
+		F9EEF52728526CCB00ED109F /* ocean.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ocean.wav; sourceTree = "<group>"; };
+		F9EEF52828526CCB00ED109F /* doppler.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = doppler.wav; sourceTree = "<group>"; };
+		F9EEF52928526CCB00ED109F /* cleaner2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cleaner2.wav; sourceTree = "<group>"; };
+		F9EEF52A28526CCB00ED109F /* aircraft.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = aircraft.wav; sourceTree = "<group>"; };
+		F9EEF52B28526CCB00ED109F /* wash.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = wash.wav; sourceTree = "<group>"; };
+		F9EEF52C28526CCB00ED109F /* rain.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = rain.wav; sourceTree = "<group>"; };
+		F9EEF52D28526CCB00ED109F /* mother2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = mother2.wav; sourceTree = "<group>"; };
+		F9EEF52E28526CCB00ED109F /* forestriverslow.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = forestriverslow.wav; sourceTree = "<group>"; };
+		F9EEF52F28526CCB00ED109F /* cleaner.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cleaner.wav; sourceTree = "<group>"; };
+		F9EEF53028526CCB00ED109F /* forestriver.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = forestriver.wav; sourceTree = "<group>"; };
+		F9EEF53128526CCB00ED109F /* waterfall.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = waterfall.wav; sourceTree = "<group>"; };
+		F9EEF53228526CCB00ED109F /* sea.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sea.wav; sourceTree = "<group>"; };
+		F9EEF53328526CCB00ED109F /* cat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cat.wav; sourceTree = "<group>"; };
+		F9EEF53428526CCB00ED109F /* kettle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = kettle.wav; sourceTree = "<group>"; };
+		F9EEF53528526CCB00ED109F /* heart.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = heart.wav; sourceTree = "<group>"; };
+		F9EEF53628526CCB00ED109F /* heavyrain.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = heavyrain.wav; sourceTree = "<group>"; };
+		F9EEF53728526CCB00ED109F /* lake.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = lake.wav; sourceTree = "<group>"; };
+		F9EEF53828526CCB00ED109F /* car.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = car.wav; sourceTree = "<group>"; };
+		F9EEF53928526CCB00ED109F /* pinknoise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pinknoise.wav; sourceTree = "<group>"; };
+		F9EEF53A28526CCB00ED109F /* rainonleaves.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = rainonleaves.wav; sourceTree = "<group>"; };
+		F9EEF53B28526CCB00ED109F /* conditioner.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = conditioner.wav; sourceTree = "<group>"; };
+		F9EEF5642852737C00ED109F /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,8 +262,9 @@
 				5A8FB7C1280C29AA00D44CA6 /* Models */,
 				5A8FB7C0280C298500D44CA6 /* Managers */,
 				5A8FB7B1280BDE0400D44CA6 /* Fonts */,
-				5A8841B7280B4DA800A8291B /* AppDelegate.swift */,
+				F9EEF51328526CCB00ED109F /* sounds */,
 				5A8841B9280B4DA800A8291B /* SceneDelegate.swift */,
+				5A8841B7280B4DA800A8291B /* AppDelegate.swift */,
 				5A8841C0280B4DAA00A8291B /* Assets.xcassets */,
 				5A8841C2280B4DAA00A8291B /* LaunchScreen.storyboard */,
 				5A8841C5280B4DAA00A8291B /* Info.plist */,
@@ -207,6 +290,7 @@
 				5A8FB7BC280C1D3D00D44CA6 /* StorageManager.swift */,
 				F9DA4F8528469DA0008F703D /* MixManager.swift */,
 				5AB9A8AF280D82E9009895BC /* HapticManager.swift */,
+				F9EEF5642852737C00ED109F /* AudioManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -355,6 +439,53 @@
 			path = AdvancedAlert;
 			sourceTree = "<group>";
 		};
+		F9EEF51328526CCB00ED109F /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				F9EEF51428526CCB00ED109F /* music.wav */,
+				F9EEF51528526CCB00ED109F /* shower.wav */,
+				F9EEF51628526CCB00ED109F /* whitenoise.wav */,
+				F9EEF51728526CCB00ED109F /* ventilator2.wav */,
+				F9EEF51828526CCB00ED109F /* wind.wav */,
+				F9EEF51928526CCB00ED109F /* mother.wav */,
+				F9EEF51A28526CCB00ED109F /* dryer.wav */,
+				F9EEF51B28526CCB00ED109F /* creek.wav */,
+				F9EEF51C28526CCB00ED109F /* fireplace.wav */,
+				F9EEF51D28526CCB00ED109F /* train.wav */,
+				F9EEF51E28526CCB00ED109F /* music2.wav */,
+				F9EEF51F28526CCB00ED109F /* rainonpuddle.wav */,
+				F9EEF52028526CCB00ED109F /* brownnoise.wav */,
+				F9EEF52128526CCB00ED109F /* music3.wav */,
+				F9EEF52228526CCB00ED109F /* bluenoise.wav */,
+				F9EEF52328526CCB00ED109F /* music4.wav */,
+				F9EEF52428526CCB00ED109F /* ventilator.wav */,
+				F9EEF52528526CCB00ED109F /* thunder.wav */,
+				F9EEF52628526CCB00ED109F /* river.wav */,
+				F9EEF52728526CCB00ED109F /* ocean.wav */,
+				F9EEF52828526CCB00ED109F /* doppler.wav */,
+				F9EEF52928526CCB00ED109F /* cleaner2.wav */,
+				F9EEF52A28526CCB00ED109F /* aircraft.wav */,
+				F9EEF52B28526CCB00ED109F /* wash.wav */,
+				F9EEF52C28526CCB00ED109F /* rain.wav */,
+				F9EEF52D28526CCB00ED109F /* mother2.wav */,
+				F9EEF52E28526CCB00ED109F /* forestriverslow.wav */,
+				F9EEF52F28526CCB00ED109F /* cleaner.wav */,
+				F9EEF53028526CCB00ED109F /* forestriver.wav */,
+				F9EEF53128526CCB00ED109F /* waterfall.wav */,
+				F9EEF53228526CCB00ED109F /* sea.wav */,
+				F9EEF53328526CCB00ED109F /* cat.wav */,
+				F9EEF53428526CCB00ED109F /* kettle.wav */,
+				F9EEF53528526CCB00ED109F /* heart.wav */,
+				F9EEF53628526CCB00ED109F /* heavyrain.wav */,
+				F9EEF53728526CCB00ED109F /* lake.wav */,
+				F9EEF53828526CCB00ED109F /* car.wav */,
+				F9EEF53928526CCB00ED109F /* pinknoise.wav */,
+				F9EEF53A28526CCB00ED109F /* rainonleaves.wav */,
+				F9EEF53B28526CCB00ED109F /* conditioner.wav */,
+			);
+			path = sounds;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -413,14 +544,54 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9EEF56028526CCB00ED109F /* car.wav in Resources */,
+				F9EEF55C28526CCB00ED109F /* kettle.wav in Resources */,
+				F9EEF53D28526CCB00ED109F /* shower.wav in Resources */,
+				F9EEF54728526CCB00ED109F /* rainonpuddle.wav in Resources */,
 				5A8841C4280B4DAA00A8291B /* LaunchScreen.storyboard in Resources */,
+				F9EEF55B28526CCB00ED109F /* cat.wav in Resources */,
+				F9EEF54E28526CCB00ED109F /* river.wav in Resources */,
 				5A8FB7B9280BDF5400D44CA6 /* Nunito-Italic.ttf in Resources */,
+				F9EEF53C28526CCB00ED109F /* music.wav in Resources */,
+				F9EEF55E28526CCB00ED109F /* heavyrain.wav in Resources */,
 				5A8FB7BA280BDF5A00D44CA6 /* Nunito-Medium.ttf in Resources */,
+				F9EEF54928526CCB00ED109F /* music3.wav in Resources */,
+				F9EEF54828526CCB00ED109F /* brownnoise.wav in Resources */,
+				F9EEF54128526CCB00ED109F /* mother.wav in Resources */,
 				5A8841C1280B4DAA00A8291B /* Assets.xcassets in Resources */,
+				F9EEF54A28526CCB00ED109F /* bluenoise.wav in Resources */,
+				F9EEF55A28526CCB00ED109F /* sea.wav in Resources */,
+				F9EEF54C28526CCB00ED109F /* ventilator.wav in Resources */,
+				F9EEF54B28526CCB00ED109F /* music4.wav in Resources */,
 				5A8FB7BB280BDF5D00D44CA6 /* Nunito-Regular.ttf in Resources */,
+				F9EEF56228526CCB00ED109F /* rainonleaves.wav in Resources */,
+				F9EEF54628526CCB00ED109F /* music2.wav in Resources */,
+				F9EEF55228526CCB00ED109F /* aircraft.wav in Resources */,
 				5A8FB7B8280BDF5200D44CA6 /* Nunito-Bold.ttf in Resources */,
+				F9EEF55828526CCB00ED109F /* forestriver.wav in Resources */,
+				F9EEF55628526CCB00ED109F /* forestriverslow.wav in Resources */,
 				5A945F31280DCC60001AA3C4 /* readme.md in Resources */,
+				F9EEF55928526CCB00ED109F /* waterfall.wav in Resources */,
+				F9EEF56128526CCB00ED109F /* pinknoise.wav in Resources */,
+				F9EEF54228526CCB00ED109F /* dryer.wav in Resources */,
+				F9EEF55528526CCB00ED109F /* mother2.wav in Resources */,
+				F9EEF54028526CCB00ED109F /* wind.wav in Resources */,
+				F9EEF53F28526CCB00ED109F /* ventilator2.wav in Resources */,
 				5A8FB7B7280BDE6B00D44CA6 /* Nunito-Light.ttf in Resources */,
+				F9EEF55728526CCB00ED109F /* cleaner.wav in Resources */,
+				F9EEF55328526CCB00ED109F /* wash.wav in Resources */,
+				F9EEF53E28526CCB00ED109F /* whitenoise.wav in Resources */,
+				F9EEF54428526CCB00ED109F /* fireplace.wav in Resources */,
+				F9EEF54D28526CCB00ED109F /* thunder.wav in Resources */,
+				F9EEF54328526CCB00ED109F /* creek.wav in Resources */,
+				F9EEF55128526CCB00ED109F /* cleaner2.wav in Resources */,
+				F9EEF56328526CCB00ED109F /* conditioner.wav in Resources */,
+				F9EEF55D28526CCB00ED109F /* heart.wav in Resources */,
+				F9EEF55028526CCB00ED109F /* doppler.wav in Resources */,
+				F9EEF55428526CCB00ED109F /* rain.wav in Resources */,
+				F9EEF55F28526CCB00ED109F /* lake.wav in Resources */,
+				F9EEF54528526CCB00ED109F /* train.wav in Resources */,
+				F9EEF54F28526CCB00ED109F /* ocean.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,6 +625,7 @@
 				5A62AAF12811A8C6003667D2 /* SettingsFrameBackgroundView.swift in Sources */,
 				5AAB52DD28135879003C53E3 /* NameOfClass.swift in Sources */,
 				5A8FB7BF280C216D00D44CA6 /* Time.swift in Sources */,
+				F9EEF5652852737C00ED109F /* AudioManager.swift in Sources */,
 				5A8841B8280B4DA800A8291B /* AppDelegate.swift in Sources */,
 				5AAB52D628135795003C53E3 /* CustomTabBar.swift in Sources */,
 				F9DA4F80284229C2008F703D /* BottomMenu.swift in Sources */,
