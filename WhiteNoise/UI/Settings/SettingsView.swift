@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SettingsView: CustomUIView {
+final class SettingsView: CustomUIView {
     private lazy var label: UILabel = {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -57,6 +57,7 @@ class SettingsView: CustomUIView {
         super.init(frame: frame)
         
         // add views
+        addSubview(closeBtn)
         addSubview(label)
         addSubview(framez)
         addSubview(tableView)
@@ -71,27 +72,26 @@ class SettingsView: CustomUIView {
     override func viewDidAppear(_ animated: Bool) {
         removeAllViewsFromNavigation()
         
-        viewController?.navigationController?.view.addSubview(closeBtn)
-        viewController?.navigationController?.navigationBar.barStyle = .black
-        viewController?.navigationController?.navigationBar.barTintColor = .fromNormalRgb(red: 11, green: 16, blue: 51)
-        viewController?.navigationController?.navigationBar.topItem?.setHidesBackButton(true, animated: false)
+//        viewController?.navigationController?.navigationBar.barStyle = .black
+//        viewController?.navigationController?.navigationBar.barTintColor = .fromNormalRgb(red: 11, green: 16, blue: 51)
+//        viewController?.navigationController?.navigationBar.topItem?.setHidesBackButton(true, animated: false)
         
         framez.viewDidAppear(animated)
-        
+    }
+    
+    private func setUpConstraints() {
         // closeBtn
         NSLayoutConstraint.activate([
-            closeBtn.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: -32),
+            closeBtn.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
             closeBtn.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             closeBtn.widthAnchor.constraint(equalToConstant: 40),
             closeBtn.heightAnchor.constraint(equalToConstant: 40)
         ])
-    }
-    
-    private func setUpConstraints() {
+        
         // label
         NSLayoutConstraint.activate([
+            label.centerYAnchor.constraint(equalTo: closeBtn.centerYAnchor),
             label.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 19),
-            label.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: -32),
             label.widthAnchor.constraint(equalToConstant: 100),
             label.heightAnchor.constraint(equalToConstant: 40)
         ])
@@ -100,7 +100,7 @@ class SettingsView: CustomUIView {
         NSLayoutConstraint.activate([
             framez.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
             framez.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.9),
-            framez.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 32),
+            framez.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 10),
             framez.heightAnchor.constraint(equalToConstant: 240),
         ])
         

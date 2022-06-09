@@ -19,13 +19,14 @@ enum AlertElementType {
 }
 
 final class AdvancedAlertView: UIScrollView {
-
+//   MARK: - Properties
     public var textField: UITextField?
     public var elements: [AlertElementType]?
     public var beforeCloseAction = {}
-   
     private weak var advancedAlertVC: AdvancedAlertViewController?
     
+    
+//    MARK: - UI-Elements
     lazy var alertBackground: UIView = {
         let view = UIView()
         view.backgroundColor = #colorLiteral(red: 0.0862745098, green: 0.1137254902, blue: 0.3254901961, alpha: 1) //#161D53
@@ -115,6 +116,7 @@ final class AdvancedAlertView: UIScrollView {
     
 //    MARK: - Layout
     private func setPrimarySettings() {
+        
         delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
@@ -266,6 +268,8 @@ final class AdvancedAlertView: UIScrollView {
 
 }
 
+//MARK: - Extensions
+
 extension AdvancedAlertView: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
 //        setContentOffset(CGPoint(x: 0, y: 300), animated: true)
@@ -276,5 +280,12 @@ extension AdvancedAlertView: UITextFieldDelegate {
 extension AdvancedAlertView: UIScrollViewDelegate {
     func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
         false
+    }
+}
+
+extension AdvancedAlertView: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        gestureRecognizer.isEnabled = false
+        return true
     }
 }

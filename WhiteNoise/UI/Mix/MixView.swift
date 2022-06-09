@@ -222,14 +222,14 @@ final class MixView: UIView {
 
         filterTagCollectionView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor).isActive = true
         filterTagCollectionView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor).isActive = true
-        filterTagCollectionView.heightAnchor.constraint(equalTo: segmentControl.heightAnchor, multiplier: 2).isActive = true
-        filterTagCollectionView.topAnchor.constraint(equalTo: segmentControl.bottomAnchor)
+        filterTagCollectionView.heightAnchor.constraint(equalTo: segmentControl.heightAnchor, multiplier: 1.5).isActive = true
+        filterTagCollectionView.topAnchor.constraint(equalTo: segmentControl.bottomAnchor, constant: 10)
             .isActive = true
         
         
         
         soundsCollectionView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.9).isActive = true
-        soundsCollectionView.topAnchor.constraint(equalTo: filterTagCollectionView.bottomAnchor, constant: 10)
+        soundsCollectionView.topAnchor.constraint(equalTo: filterTagCollectionView.bottomAnchor)
             .isActive = true
         soundsCollectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
             .isActive = true

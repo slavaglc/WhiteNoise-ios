@@ -127,7 +127,8 @@ class PaywallView: UIView {
         addSubview(subButton)
         addSubview(sub1Button)
         addSubview(sub2Button)
-        viewController?.navigationController?.view.addSubview(closeBtn)
+        addSubview(closeBtn)
+//        viewController?.navigationController?.view.addSubview(closeBtn)
         
         setUpConstraints()
     }

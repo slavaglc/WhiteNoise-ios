@@ -11,6 +11,7 @@ final class MyNavigationController: UINavigationController, UINavigationControll
     override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
         self.delegate = self
+        isNavigationBarHidden = true
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -23,6 +24,7 @@ final class MyNavigationController: UINavigationController, UINavigationControll
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         viewController.navigationItem.setHidesBackButton(true, animated: false)
+        
         
     }
 }
