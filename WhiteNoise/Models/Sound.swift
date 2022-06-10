@@ -33,7 +33,7 @@ class Sound: Hashable {
     var isPlaying = false
     var isLocked: Bool
     var volume: Float = 0.5
-    //
+    //Sounds
     static func getAllSounds() -> [Sound] {
     [
     Sound(name: "Airplane", imageName: "source_icons_airplane-rotation", trackName: "aircraft", category: "Vehicle", isLocked: false),
