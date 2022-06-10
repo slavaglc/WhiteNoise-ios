@@ -347,7 +347,7 @@ extension MixView: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
         case soundsCollectionView:
             guard let cell = collectionView.cellForItem(at: indexPath) as? SoundCollectionViewCell else { return }
             guard !filtredSounds[indexPath.item].isLocked else { return }
-            filtredSounds[indexPath.item].isPlaying = false
+//            filtredSounds[indexPath.item].isPlaying = false
             AudioManager.shared.stopPlayback(sound: filtredSounds[indexPath.item])
             cell.setBackgroundStyle(selectedStyle: .unselected(animated: true))
         default:

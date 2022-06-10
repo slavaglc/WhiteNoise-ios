@@ -92,12 +92,8 @@ final class AudioManager {
 //    }
     
     func stopPlayback(sound: Sound) {
-        let soundFileNameURL = URL(fileURLWithPath: Bundle.main.path(forResource: sound.trackName, ofType: "wav")!)
-        guard let player = players[soundFileNameURL] else { return }
-        player.stop()
-        sound.isPlaying = player.isPlaying
-        players.removeValue(forKey: soundFileNameURL)
-        print("Count of players:", players.count)
+        smoothlyStop(sound: sound, duration: 0.7)
+        sound.isPlaying = false
     }
     
     func setVolume(for sound: Sound) {
@@ -106,8 +102,16 @@ final class AudioManager {
         player.setVolume(sound.volume, fadeDuration: 1)
     }
     
-//    func playSounds(_ sounds: Set<Sound>) {
-//
-//    }
+    private func smoothlyStop(sound: Sound ,duration: Double) {
+        let soundFileNameURL = URL(fileURLWithPath: Bundle.main.path(forResource: sound.trackName, ofType: "wav")!)
+        guard let player = players[soundFileNameURL] else { return }
+        player.setVolume(0.0, fadeDuration: duration)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + duration) { [weak self] in
+            player.stop()
+            self?.players.removeValue(forKey: soundFileNameURL)
+            sound.volume = 0.5 // return to default value
+        }
+    }
     
 }
