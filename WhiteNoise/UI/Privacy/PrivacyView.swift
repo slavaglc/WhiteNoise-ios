@@ -72,7 +72,7 @@ class PrivacyView: UIView {
         
         // closeBtn
         NSLayoutConstraint.activate([
-            closeBtn.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: -32),
+            closeBtn.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 8),
             closeBtn.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             closeBtn.widthAnchor.constraint(equalToConstant: 40),
             closeBtn.heightAnchor.constraint(equalToConstant: 40)
@@ -83,7 +83,7 @@ class PrivacyView: UIView {
         // scrollView
         NSLayoutConstraint.activate([
             scrollView.rightAnchor.constraint(equalTo: rightAnchor),
-            scrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: -32),
+            scrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
             scrollView.widthAnchor.constraint(equalTo: widthAnchor),
             scrollView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
         ])
