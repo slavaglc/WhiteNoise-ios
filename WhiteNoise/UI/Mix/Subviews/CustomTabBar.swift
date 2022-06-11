@@ -9,18 +9,20 @@ import UIKit
 
 
 
+enum BarButtonType: Int, CaseIterable {
+    case play, mixer, saveMix, timer, clearAll
+}
+
 final class CustomTabBar: UIView {
     
-    private enum PlayingState: String {
-        case play = "play_icon"
-        case pause = "pause_icon"
-    }
-    
-    private var playingState = PlayingState.play {
+    var playingState = AudioManager.shared.playbackState {
         didSet {
+            AudioManager.shared.playbackState = playingState
             playButton.setImage(UIImage(named: playingState.rawValue), for: .normal)
         }
     }
+    
+    private var actions: [BarButtonType: ()->()] = [:]
     
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
@@ -46,14 +48,18 @@ final class CustomTabBar: UIView {
     private lazy var playButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(named: playingState.rawValue), for: .normal)
+        button.addTarget(self, action: #selector(buttonPressed(button:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.tag = BarButtonType.play.rawValue
         return button
     }()
     
     private lazy var mixerButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(named: "mixer_icon"), for: .normal)
+        button.addTarget(self, action: #selector(buttonPressed(button:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.tag = BarButtonType.mixer.rawValue
         return button
     }()
     
@@ -80,14 +86,18 @@ final class CustomTabBar: UIView {
     private lazy var saveMixButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(named: "save_mix_icon"), for: .normal)
+        button.addTarget(self, action: #selector(buttonPressed(button:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.tag = BarButtonType.saveMix.rawValue
         return button
     }()
     
     private lazy var setTimerButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(named: "set_timer_icon"), for: .normal)
+        button.addTarget(self, action: #selector(buttonPressed(button:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.tag = BarButtonType.timer.rawValue
         return button
     }()
     
@@ -102,12 +112,25 @@ final class CustomTabBar: UIView {
     }
     
     public func setNumberForBadge(number: Int) {
-        mixerButtonBadge.isHidden = false
+        mixerButtonBadge.isHidden = number <= 0
         badgeLabel.text = number <= 10000 ? String(number) : "10K+"
     }
     
     public func hideBadge() {
         mixerButtonBadge.isHidden = true
+    }
+    
+    public func setAction(for buttonType: BarButtonType, action: @escaping ()->()) {
+            actions[buttonType] = action
+    }
+    
+    public func togglePlaybackState() {
+//        AudioManager.shared.playbackState = playingState
+        playingState = playingState == .play ? .pause : .play
+    }
+    
+    @objc private func buttonPressed(button: UIButton) {
+        (actions[BarButtonType.allCases[button.tag]] ??  {})()
     }
     
     private func setPrimarySettings() {
@@ -142,7 +165,7 @@ final class CustomTabBar: UIView {
             .isActive = true
         mixerButtonBadge.topAnchor.constraint(equalTo: mixerButton.topAnchor, constant: 12)
             .isActive = true
-        mixerButtonBadge.heightAnchor.constraint(equalTo: mixerButton.heightAnchor, multiplier: 0.3 )
+        mixerButtonBadge.heightAnchor.constraint(equalTo: mixerButton.heightAnchor, multiplier: 0.3)
             .isActive = true
         mixerButtonBadge.widthAnchor.constraint(greaterThanOrEqualTo: mixerButtonBadge.heightAnchor)
             .isActive = true
@@ -156,5 +179,4 @@ final class CustomTabBar: UIView {
         badgeLabel.widthAnchor.constraint(equalTo: mixerButtonBadge.widthAnchor, multiplier: 0.8)
             .isActive = true
     }
-    
 }

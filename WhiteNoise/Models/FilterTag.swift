@@ -14,6 +14,9 @@ struct FilterTag {
     static func getAllFilterTags() -> [FilterTag] {
         [
             FilterTag(title: "All"),
+            FilterTag(title: "Water"),
+            FilterTag(title: "Rain"),
+            FilterTag(title: "Noise"),
             FilterTag(title: "Weather"),
             FilterTag(title: "Animals"),
             FilterTag(title: "Vehicle")

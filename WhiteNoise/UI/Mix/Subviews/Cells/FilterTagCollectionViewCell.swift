@@ -19,11 +19,12 @@ final class FilterTagCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    
     private lazy var gradient = CAGradientLayer()
     
     private lazy var view: UIView = {
         let view = UIView()
-        view.layer.borderColor = UIColor.white.cgColor
+        view.layer.borderColor =  #colorLiteral(red: 0.6352941176, green: 0.6705882353, blue: 0.9450980392, alpha: 1).cgColor //#A2ABF1
         view.layer.cornerRadius = 25
         view.layer.borderWidth = 1
         view.clipsToBounds = true
@@ -78,14 +79,20 @@ final class FilterTagCollectionViewCell: UICollectionViewCell {
         
     }
     
-    private func setSelectedStyle() {
-        gradient.colors = [#colorLiteral(red: 0.465685904, green: 0.3625613451, blue: 0.8644735217, alpha: 1).cgColor, #colorLiteral(red: 0.7122805715, green: 0.6651663184, blue: 0.936873138, alpha: 1).cgColor]
+    func setSelectedStyle() {
+        gradient.colors = [#colorLiteral(red: 0.7882352941, green: 0.6352941176, blue: 0.9450980392, alpha: 1).cgColor, #colorLiteral(red: 0.4549019608, green: 0.2196078431, blue: 0.9568627451, alpha: 1).cgColor] //#C9A2F1 #7438F4
         gradient.frame = view.bounds
+        gradient.locations = [0, 1]
+        gradient.startPoint = CGPoint(x: 0.25, y: 0.5)
+        gradient.endPoint = CGPoint(x: 0.75, y: 0.5)
+        view.layer.borderColor = UIColor.clear.cgColor
         view.layer.addSublayer(gradient)
         view.bringSubviewToFront(label)
+        
     }
     
     private func setUnselectedStyle() {
         gradient.colors = [UIColor.clear.cgColor]
+        view.layer.borderColor = #colorLiteral(red: 0.6352941176, green: 0.6705882353, blue: 0.9450980392, alpha: 1).cgColor //#A2ABF1
     }
 }

@@ -104,6 +104,4 @@ extension CustomSegmentedControl {
         }
         buttons[0].setTitleColor(selectorTextColor, for: .normal)
     }
-    
-    
 }

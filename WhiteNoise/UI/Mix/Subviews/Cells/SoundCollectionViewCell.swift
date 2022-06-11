@@ -13,13 +13,13 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
         didSet {
             colorIndex = 0
             if isSelected {
-                setupGradientForSelected()
+                setBackgroundStyle(selectedStyle: .selected(animated: false))
             } else {
-                setupGradientForUnselected()
+                setBackgroundStyle(selectedStyle: .unselected(animated: false))
             }
         }
     }
-    
+        
     private let opacityAnimation = CABasicAnimation(keyPath: "opacity")
     
     private let color1: CGColor = #colorLiteral(red: 0.4901960784, green: 0.3254901961, blue: 0.8352941176, alpha: 1).cgColor
@@ -41,12 +41,9 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
         return stackView
     }()
     
-    private lazy var imageBackgroundView: UIView  = {
-        let view = UIView()
-        view.backgroundColor = #colorLiteral(red: 0.0862745098, green: 0.1137254902, blue: 0.3254901961, alpha: 1)
-        view.layer.cornerRadius = 25
-        view.clipsToBounds = true
-       
+    private lazy var imageBackgroundView: ImageBackgroundView  = {
+        let view = ImageBackgroundView()
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -85,21 +82,19 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
         initialize()
     }
     
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//    }
-    
-    
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
+        imageBackgroundView.isHidden = true
         label.text?.removeAll()
+        imageView.image = nil
+        setBackgroundStyle(selectedStyle: .unselected(animated: false))
+        
     }
     
     
-    
     public func setCellParameters(sound: Sound) {
+        imageBackgroundView.isHidden = false
         let image = UIImage(named: sound.imageName)
         imageView.image = image?.tint(with: isSelected ? .white  : .lightGray)
         label.text = sound.name
@@ -154,88 +149,94 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
     
     
     // MARK: - Graphics and animation methods
-    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        if flag {
-            setupGradientForSelected()
+//    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+//        if flag {
+//            if isSelected {
+//                setupGradientForSelected()
+//            }
+//        }
+//    }
+    
+//    func setSelectedStyle() {
+//        self.gradientLayer.frame = self.imageBackgroundView.bounds
+//        animateGradient()
+//        gradientLayer.shouldRasterize = true
+//    }
+//
+//
+//    func setUnselectedStyle() {
+//        imageBackgroundView.layer.addSublayer(gradientLayer)
+//        imageBackgroundView.bringSubviewToFront(imageView)
+//        imageBackgroundView.bringSubviewToFront(soundLockImage)
+//        imageView.image = imageView.image?.tint(with: .lightGray)
+//        gradientLayer.shouldRasterize = true
+//        animateGradientDissapearing()
+//    }
+    
+    
+    func setBackgroundStyle(selectedStyle: SelectedStyle) {
+        imageBackgroundView.setStyle(selectedStyle: selectedStyle)
+        switch selectedStyle {
+        case .selected(_):
+            imageView.image = imageView.image?.tint(with: .white)
+        case .unselected(_):
+            imageView.image = imageView.image?.tint(with: .lightGray)
         }
-    }
-    
-    func setSelectedStyle() {
-        imageView.image = imageView.image?.tint(with: .white)
-        self.gradientLayer.frame = self.imageBackgroundView.bounds
-//        setupGradientForSelected()
-        animateGradient()
-        gradientLayer.shouldRasterize = true
-    }
-    
-    
-    func setUnselectedStyle() {
-        imageBackgroundView.layer.addSublayer(gradientLayer)
-        imageBackgroundView.bringSubviewToFront(imageView)
-        imageBackgroundView.bringSubviewToFront(soundLockImage)
-        imageView.image = imageView.image?.tint(with: .lightGray)
-        gradientLayer.shouldRasterize = true
-        animateGradientDissapearing()
-    }
-    
-    
-    
-    private func setupGradientForSelected() {
-        imageBackgroundView.layer.addSublayer(gradientLayer)
-        imageBackgroundView.bringSubviewToFront(imageView)
-        imageBackgroundView.bringSubviewToFront(soundLockImage)
-        gradientColorSet = [
-            [color1, color2],
-            [color2, color3],
-            [color3, color1]
-        ]
         
-        gradientLayer.frame = imageBackgroundView.bounds
-        gradientLayer.colors = gradientColorSet[0]
         
+//        imageBackgroundView.layer.addSublayer(gradientLayer)
+//        imageBackgroundView.bringSubviewToFront(imageView)
+//        imageBackgroundView.bringSubviewToFront(soundLockImage)
+//        gradientColorSet = [
+//            [color1, color2],
+//            [color2, color3],
+//            [color3, color1]
+//        ]
+//
+//        gradientLayer.frame = imageBackgroundView.bounds
+//        gradientLayer.colors = gradientColorSet[0]
     }
     
     private func setupGradientForUnselected() {
         gradientLayer.removeFromSuperlayer()
+        imageView.image = imageView.image?.tint(with: .lightGray)
     }
-    
-    
-    
-   private func animateGradient() {
-        gradientLayer.colors = gradientColorSet[colorIndex]
-        let gradientAnimation = CABasicAnimation(keyPath: "colors")
-        let opacityAnimation = CABasicAnimation(keyPath: "opacity")
-    
-        gradientAnimation.delegate = self
-        gradientAnimation.duration = 0.3
-        
-        opacityAnimation.delegate = self
-        opacityAnimation.duration = 0.1
-        opacityAnimation.toValue = 1
-        opacityAnimation.fillMode = .forwards
-        opacityAnimation.isRemovedOnCompletion = false
-        gradientLayer.add(opacityAnimation, forKey: "opacity")
-        
-           updateColorIndex()
-           gradientAnimation.toValue = gradientColorSet[colorIndex]
-           
-           gradientAnimation.fillMode = .forwards
-           gradientAnimation.isRemovedOnCompletion = false
-        
-        opacityAnimation.fillMode = .forwards
-        opacityAnimation.isRemovedOnCompletion = false
-        gradientLayer.add(opacityAnimation, forKey: "opacity")
-        
-        gradientLayer.add(gradientAnimation, forKey: "colors")
-       }
-       
-       func updateColorIndex() {
-           if colorIndex < gradientColorSet.count - 1 {
-               colorIndex += 1
-           } else {
-               colorIndex = 0
-           }
-       }
+//    
+//   private func animateGradient() {
+//        gradientLayer.colors = gradientColorSet[colorIndex]
+//        let gradientAnimation = CABasicAnimation(keyPath: "colors")
+//        let opacityAnimation = CABasicAnimation(keyPath: "opacity")
+//    
+//        gradientAnimation.delegate = self
+//        gradientAnimation.duration = 0.3
+//        
+//        opacityAnimation.delegate = self
+//        opacityAnimation.duration = 0.1
+//        opacityAnimation.toValue = 1
+//        opacityAnimation.fillMode = .forwards
+//        opacityAnimation.isRemovedOnCompletion = false
+//        gradientLayer.add(opacityAnimation, forKey: "opacity")
+//        
+//           updateColorIndex()
+//           gradientAnimation.toValue = gradientColorSet[colorIndex]
+//           
+//           gradientAnimation.fillMode = .forwards
+//           gradientAnimation.isRemovedOnCompletion = false
+//        
+//        opacityAnimation.fillMode = .forwards
+//        opacityAnimation.isRemovedOnCompletion = false
+//        gradientLayer.add(opacityAnimation, forKey: "opacity")
+//        
+//        gradientLayer.add(gradientAnimation, forKey: "colors")
+//       }
+//       
+//       func updateColorIndex() {
+//           if colorIndex < gradientColorSet.count - 1 {
+//               colorIndex += 1
+//           } else {
+//               colorIndex = 0
+//           }
+//       }
     
    private func animateGradientDissapearing() {
         opacityAnimation.delegate = self

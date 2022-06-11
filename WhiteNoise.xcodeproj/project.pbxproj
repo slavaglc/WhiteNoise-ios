@@ -48,7 +48,60 @@
 		5AAB52E52813EC8C003C53E3 /* CustomUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB52E42813EC8C003C53E3 /* CustomUIViewController.swift */; };
 		5AB9A8B0280D82E9009895BC /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9A8AF280D82E9009895BC /* HapticManager.swift */; };
 		5AE64C9728130650007F5CED /* SettingItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE64C9628130650007F5CED /* SettingItemCell.swift */; };
+		F91EF2DA284A85BC00CE84DC /* AdvancedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91EF2D9284A85BC00CE84DC /* AdvancedTextField.swift */; };
+		F91EF2DC284BD14000CE84DC /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91EF2DB284BD14000CE84DC /* UIViewController.swift */; };
+		F928288C281F00E9003CDCDD /* ImageBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F928288B281F00E9003CDCDD /* ImageBackgroundView.swift */; };
+		F9688C0C28412ADF005542B0 /* YourMixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9688C0B28412ADF005542B0 /* YourMixView.swift */; };
+		F9688C0E28412AED005542B0 /* YourMixViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9688C0D28412AED005542B0 /* YourMixViewController.swift */; };
+		F9DA4F7E284155C8008F703D /* YourMixTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA4F7D284155C8008F703D /* YourMixTableViewCell.swift */; };
+		F9DA4F80284229C2008F703D /* BottomMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA4F7F284229C2008F703D /* BottomMenu.swift */; };
+		F9DA4F8428436BF6008F703D /* VerticalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA4F8328436BF6008F703D /* VerticalButton.swift */; };
+		F9DA4F8628469DA0008F703D /* MixManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA4F8528469DA0008F703D /* MixManager.swift */; };
+		F9DA4F8928493CB8008F703D /* AdvancedAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA4F8828493CB8008F703D /* AdvancedAlertViewController.swift */; };
+		F9DA4F8B28493CD4008F703D /* AdvancedAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA4F8A28493CD4008F703D /* AdvancedAlertView.swift */; };
+		F9DA4F8D284964DA008F703D /* CustomVisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA4F8C284964DA008F703D /* CustomVisualEffect.swift */; };
 		F9DC15F72814679700B1EE9B /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DC15F62814679700B1EE9B /* UIImage.swift */; };
+		F9EEF53C28526CCB00ED109F /* music.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF51428526CCB00ED109F /* music.wav */; };
+		F9EEF53D28526CCB00ED109F /* shower.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF51528526CCB00ED109F /* shower.wav */; };
+		F9EEF53E28526CCB00ED109F /* whitenoise.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF51628526CCB00ED109F /* whitenoise.wav */; };
+		F9EEF53F28526CCB00ED109F /* ventilator2.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF51728526CCB00ED109F /* ventilator2.wav */; };
+		F9EEF54028526CCB00ED109F /* wind.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF51828526CCB00ED109F /* wind.wav */; };
+		F9EEF54128526CCB00ED109F /* mother.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF51928526CCB00ED109F /* mother.wav */; };
+		F9EEF54228526CCB00ED109F /* dryer.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF51A28526CCB00ED109F /* dryer.wav */; };
+		F9EEF54328526CCB00ED109F /* creek.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF51B28526CCB00ED109F /* creek.wav */; };
+		F9EEF54428526CCB00ED109F /* fireplace.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF51C28526CCB00ED109F /* fireplace.wav */; };
+		F9EEF54528526CCB00ED109F /* train.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF51D28526CCB00ED109F /* train.wav */; };
+		F9EEF54628526CCB00ED109F /* music2.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF51E28526CCB00ED109F /* music2.wav */; };
+		F9EEF54728526CCB00ED109F /* rainonpuddle.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF51F28526CCB00ED109F /* rainonpuddle.wav */; };
+		F9EEF54828526CCB00ED109F /* brownnoise.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF52028526CCB00ED109F /* brownnoise.wav */; };
+		F9EEF54928526CCB00ED109F /* music3.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF52128526CCB00ED109F /* music3.wav */; };
+		F9EEF54A28526CCB00ED109F /* bluenoise.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF52228526CCB00ED109F /* bluenoise.wav */; };
+		F9EEF54B28526CCB00ED109F /* music4.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF52328526CCB00ED109F /* music4.wav */; };
+		F9EEF54C28526CCB00ED109F /* ventilator.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF52428526CCB00ED109F /* ventilator.wav */; };
+		F9EEF54D28526CCB00ED109F /* thunder.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF52528526CCB00ED109F /* thunder.wav */; };
+		F9EEF54E28526CCB00ED109F /* river.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF52628526CCB00ED109F /* river.wav */; };
+		F9EEF54F28526CCB00ED109F /* ocean.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF52728526CCB00ED109F /* ocean.wav */; };
+		F9EEF55028526CCB00ED109F /* doppler.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF52828526CCB00ED109F /* doppler.wav */; };
+		F9EEF55128526CCB00ED109F /* cleaner2.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF52928526CCB00ED109F /* cleaner2.wav */; };
+		F9EEF55228526CCB00ED109F /* aircraft.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF52A28526CCB00ED109F /* aircraft.wav */; };
+		F9EEF55328526CCB00ED109F /* wash.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF52B28526CCB00ED109F /* wash.wav */; };
+		F9EEF55428526CCB00ED109F /* rain.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF52C28526CCB00ED109F /* rain.wav */; };
+		F9EEF55528526CCB00ED109F /* mother2.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF52D28526CCB00ED109F /* mother2.wav */; };
+		F9EEF55628526CCB00ED109F /* forestriverslow.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF52E28526CCB00ED109F /* forestriverslow.wav */; };
+		F9EEF55728526CCB00ED109F /* cleaner.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF52F28526CCB00ED109F /* cleaner.wav */; };
+		F9EEF55828526CCB00ED109F /* forestriver.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF53028526CCB00ED109F /* forestriver.wav */; };
+		F9EEF55928526CCB00ED109F /* waterfall.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF53128526CCB00ED109F /* waterfall.wav */; };
+		F9EEF55A28526CCB00ED109F /* sea.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF53228526CCB00ED109F /* sea.wav */; };
+		F9EEF55B28526CCB00ED109F /* cat.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF53328526CCB00ED109F /* cat.wav */; };
+		F9EEF55C28526CCB00ED109F /* kettle.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF53428526CCB00ED109F /* kettle.wav */; };
+		F9EEF55D28526CCB00ED109F /* heart.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF53528526CCB00ED109F /* heart.wav */; };
+		F9EEF55E28526CCB00ED109F /* heavyrain.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF53628526CCB00ED109F /* heavyrain.wav */; };
+		F9EEF55F28526CCB00ED109F /* lake.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF53728526CCB00ED109F /* lake.wav */; };
+		F9EEF56028526CCB00ED109F /* car.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF53828526CCB00ED109F /* car.wav */; };
+		F9EEF56128526CCB00ED109F /* pinknoise.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF53928526CCB00ED109F /* pinknoise.wav */; };
+		F9EEF56228526CCB00ED109F /* rainonleaves.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF53A28526CCB00ED109F /* rainonleaves.wav */; };
+		F9EEF56328526CCB00ED109F /* conditioner.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF53B28526CCB00ED109F /* conditioner.wav */; };
+		F9EEF5652852737C00ED109F /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EEF5642852737C00ED109F /* AudioManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,7 +148,60 @@
 		5AAB52E42813EC8C003C53E3 /* CustomUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIViewController.swift; sourceTree = "<group>"; };
 		5AB9A8AF280D82E9009895BC /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		5AE64C9628130650007F5CED /* SettingItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItemCell.swift; sourceTree = "<group>"; };
+		F91EF2D9284A85BC00CE84DC /* AdvancedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedTextField.swift; sourceTree = "<group>"; };
+		F91EF2DB284BD14000CE84DC /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		F928288B281F00E9003CDCDD /* ImageBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageBackgroundView.swift; sourceTree = "<group>"; };
+		F9688C0B28412ADF005542B0 /* YourMixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourMixView.swift; sourceTree = "<group>"; wrapsLines = 1; };
+		F9688C0D28412AED005542B0 /* YourMixViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourMixViewController.swift; sourceTree = "<group>"; };
+		F9DA4F7D284155C8008F703D /* YourMixTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourMixTableViewCell.swift; sourceTree = "<group>"; };
+		F9DA4F7F284229C2008F703D /* BottomMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomMenu.swift; sourceTree = "<group>"; };
+		F9DA4F8328436BF6008F703D /* VerticalButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalButton.swift; sourceTree = "<group>"; };
+		F9DA4F8528469DA0008F703D /* MixManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixManager.swift; sourceTree = "<group>"; };
+		F9DA4F8828493CB8008F703D /* AdvancedAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedAlertViewController.swift; sourceTree = "<group>"; };
+		F9DA4F8A28493CD4008F703D /* AdvancedAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedAlertView.swift; sourceTree = "<group>"; };
+		F9DA4F8C284964DA008F703D /* CustomVisualEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomVisualEffect.swift; sourceTree = "<group>"; };
 		F9DC15F62814679700B1EE9B /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		F9EEF51428526CCB00ED109F /* music.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = music.wav; sourceTree = "<group>"; };
+		F9EEF51528526CCB00ED109F /* shower.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = shower.wav; sourceTree = "<group>"; };
+		F9EEF51628526CCB00ED109F /* whitenoise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = whitenoise.wav; sourceTree = "<group>"; };
+		F9EEF51728526CCB00ED109F /* ventilator2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ventilator2.wav; sourceTree = "<group>"; };
+		F9EEF51828526CCB00ED109F /* wind.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = wind.wav; sourceTree = "<group>"; };
+		F9EEF51928526CCB00ED109F /* mother.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = mother.wav; sourceTree = "<group>"; };
+		F9EEF51A28526CCB00ED109F /* dryer.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = dryer.wav; sourceTree = "<group>"; };
+		F9EEF51B28526CCB00ED109F /* creek.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = creek.wav; sourceTree = "<group>"; };
+		F9EEF51C28526CCB00ED109F /* fireplace.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = fireplace.wav; sourceTree = "<group>"; };
+		F9EEF51D28526CCB00ED109F /* train.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = train.wav; sourceTree = "<group>"; };
+		F9EEF51E28526CCB00ED109F /* music2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = music2.wav; sourceTree = "<group>"; };
+		F9EEF51F28526CCB00ED109F /* rainonpuddle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = rainonpuddle.wav; sourceTree = "<group>"; };
+		F9EEF52028526CCB00ED109F /* brownnoise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = brownnoise.wav; sourceTree = "<group>"; };
+		F9EEF52128526CCB00ED109F /* music3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = music3.wav; sourceTree = "<group>"; };
+		F9EEF52228526CCB00ED109F /* bluenoise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bluenoise.wav; sourceTree = "<group>"; };
+		F9EEF52328526CCB00ED109F /* music4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = music4.wav; sourceTree = "<group>"; };
+		F9EEF52428526CCB00ED109F /* ventilator.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ventilator.wav; sourceTree = "<group>"; };
+		F9EEF52528526CCB00ED109F /* thunder.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = thunder.wav; sourceTree = "<group>"; };
+		F9EEF52628526CCB00ED109F /* river.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = river.wav; sourceTree = "<group>"; };
+		F9EEF52728526CCB00ED109F /* ocean.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ocean.wav; sourceTree = "<group>"; };
+		F9EEF52828526CCB00ED109F /* doppler.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = doppler.wav; sourceTree = "<group>"; };
+		F9EEF52928526CCB00ED109F /* cleaner2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cleaner2.wav; sourceTree = "<group>"; };
+		F9EEF52A28526CCB00ED109F /* aircraft.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = aircraft.wav; sourceTree = "<group>"; };
+		F9EEF52B28526CCB00ED109F /* wash.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = wash.wav; sourceTree = "<group>"; };
+		F9EEF52C28526CCB00ED109F /* rain.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = rain.wav; sourceTree = "<group>"; };
+		F9EEF52D28526CCB00ED109F /* mother2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = mother2.wav; sourceTree = "<group>"; };
+		F9EEF52E28526CCB00ED109F /* forestriverslow.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = forestriverslow.wav; sourceTree = "<group>"; };
+		F9EEF52F28526CCB00ED109F /* cleaner.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cleaner.wav; sourceTree = "<group>"; };
+		F9EEF53028526CCB00ED109F /* forestriver.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = forestriver.wav; sourceTree = "<group>"; };
+		F9EEF53128526CCB00ED109F /* waterfall.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = waterfall.wav; sourceTree = "<group>"; };
+		F9EEF53228526CCB00ED109F /* sea.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sea.wav; sourceTree = "<group>"; };
+		F9EEF53328526CCB00ED109F /* cat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cat.wav; sourceTree = "<group>"; };
+		F9EEF53428526CCB00ED109F /* kettle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = kettle.wav; sourceTree = "<group>"; };
+		F9EEF53528526CCB00ED109F /* heart.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = heart.wav; sourceTree = "<group>"; };
+		F9EEF53628526CCB00ED109F /* heavyrain.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = heavyrain.wav; sourceTree = "<group>"; };
+		F9EEF53728526CCB00ED109F /* lake.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = lake.wav; sourceTree = "<group>"; };
+		F9EEF53828526CCB00ED109F /* car.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = car.wav; sourceTree = "<group>"; };
+		F9EEF53928526CCB00ED109F /* pinknoise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pinknoise.wav; sourceTree = "<group>"; };
+		F9EEF53A28526CCB00ED109F /* rainonleaves.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = rainonleaves.wav; sourceTree = "<group>"; };
+		F9EEF53B28526CCB00ED109F /* conditioner.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = conditioner.wav; sourceTree = "<group>"; };
+		F9EEF5642852737C00ED109F /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,8 +262,9 @@
 				5A8FB7C1280C29AA00D44CA6 /* Models */,
 				5A8FB7C0280C298500D44CA6 /* Managers */,
 				5A8FB7B1280BDE0400D44CA6 /* Fonts */,
-				5A8841B7280B4DA800A8291B /* AppDelegate.swift */,
+				F9EEF51328526CCB00ED109F /* sounds */,
 				5A8841B9280B4DA800A8291B /* SceneDelegate.swift */,
+				5A8841B7280B4DA800A8291B /* AppDelegate.swift */,
 				5A8841C0280B4DAA00A8291B /* Assets.xcassets */,
 				5A8841C2280B4DAA00A8291B /* LaunchScreen.storyboard */,
 				5A8841C5280B4DAA00A8291B /* Info.plist */,
@@ -181,7 +288,9 @@
 			isa = PBXGroup;
 			children = (
 				5A8FB7BC280C1D3D00D44CA6 /* StorageManager.swift */,
+				F9DA4F8528469DA0008F703D /* MixManager.swift */,
 				5AB9A8AF280D82E9009895BC /* HapticManager.swift */,
+				F9EEF5642852737C00ED109F /* AudioManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -209,6 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				5AAB52DC28135879003C53E3 /* NameOfClass.swift */,
+				F91EF2DB284BD14000CE84DC /* UIViewController.swift */,
 				5AAB52CA281355F7003C53E3 /* UIView.swift */,
 				F9DC15F62814679700B1EE9B /* UIImage.swift */,
 				5AAB52DE2813D366003C53E3 /* UIColor.swift */,
@@ -230,6 +340,8 @@
 		5A8FB7CA280C5A3200D44CA6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				F9DA4F8728493C91008F703D /* AdvancedAlert */,
+				F9688C0A28412A80005542B0 /* YourMix */,
 				5A62AAE82811774C003667D2 /* Settings */,
 				5A945F37280E8C3A001AA3C4 /* Paywall */,
 				5A945F32280DCFC5001AA3C4 /* Privacy */,
@@ -274,6 +386,7 @@
 				5AAB52D028135795003C53E3 /* CustomSegmentedControl.swift */,
 				5AAB52D128135795003C53E3 /* CustomTabBar.swift */,
 				5AAB52D228135795003C53E3 /* Circle.swift */,
+				F928288B281F00E9003CDCDD /* ImageBackgroundView.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -285,6 +398,92 @@
 				5AAB52CF28135795003C53E3 /* FilterTagCollectionViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		F91EF2D8284A859500CE84DC /* subviews */ = {
+			isa = PBXGroup;
+			children = (
+				F9DA4F8C284964DA008F703D /* CustomVisualEffect.swift */,
+				F91EF2D9284A85BC00CE84DC /* AdvancedTextField.swift */,
+			);
+			path = subviews;
+			sourceTree = "<group>";
+		};
+		F9688C0A28412A80005542B0 /* YourMix */ = {
+			isa = PBXGroup;
+			children = (
+				F9688C0F28412F8E005542B0 /* subviews */,
+				F9688C0B28412ADF005542B0 /* YourMixView.swift */,
+				F9688C0D28412AED005542B0 /* YourMixViewController.swift */,
+			);
+			path = YourMix;
+			sourceTree = "<group>";
+		};
+		F9688C0F28412F8E005542B0 /* subviews */ = {
+			isa = PBXGroup;
+			children = (
+				F9DA4F7D284155C8008F703D /* YourMixTableViewCell.swift */,
+				F9DA4F7F284229C2008F703D /* BottomMenu.swift */,
+				F9DA4F8328436BF6008F703D /* VerticalButton.swift */,
+			);
+			path = subviews;
+			sourceTree = "<group>";
+		};
+		F9DA4F8728493C91008F703D /* AdvancedAlert */ = {
+			isa = PBXGroup;
+			children = (
+				F9DA4F8828493CB8008F703D /* AdvancedAlertViewController.swift */,
+				F9DA4F8A28493CD4008F703D /* AdvancedAlertView.swift */,
+				F91EF2D8284A859500CE84DC /* subviews */,
+			);
+			path = AdvancedAlert;
+			sourceTree = "<group>";
+		};
+		F9EEF51328526CCB00ED109F /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				F9EEF51428526CCB00ED109F /* music.wav */,
+				F9EEF51528526CCB00ED109F /* shower.wav */,
+				F9EEF51628526CCB00ED109F /* whitenoise.wav */,
+				F9EEF51728526CCB00ED109F /* ventilator2.wav */,
+				F9EEF51828526CCB00ED109F /* wind.wav */,
+				F9EEF51928526CCB00ED109F /* mother.wav */,
+				F9EEF51A28526CCB00ED109F /* dryer.wav */,
+				F9EEF51B28526CCB00ED109F /* creek.wav */,
+				F9EEF51C28526CCB00ED109F /* fireplace.wav */,
+				F9EEF51D28526CCB00ED109F /* train.wav */,
+				F9EEF51E28526CCB00ED109F /* music2.wav */,
+				F9EEF51F28526CCB00ED109F /* rainonpuddle.wav */,
+				F9EEF52028526CCB00ED109F /* brownnoise.wav */,
+				F9EEF52128526CCB00ED109F /* music3.wav */,
+				F9EEF52228526CCB00ED109F /* bluenoise.wav */,
+				F9EEF52328526CCB00ED109F /* music4.wav */,
+				F9EEF52428526CCB00ED109F /* ventilator.wav */,
+				F9EEF52528526CCB00ED109F /* thunder.wav */,
+				F9EEF52628526CCB00ED109F /* river.wav */,
+				F9EEF52728526CCB00ED109F /* ocean.wav */,
+				F9EEF52828526CCB00ED109F /* doppler.wav */,
+				F9EEF52928526CCB00ED109F /* cleaner2.wav */,
+				F9EEF52A28526CCB00ED109F /* aircraft.wav */,
+				F9EEF52B28526CCB00ED109F /* wash.wav */,
+				F9EEF52C28526CCB00ED109F /* rain.wav */,
+				F9EEF52D28526CCB00ED109F /* mother2.wav */,
+				F9EEF52E28526CCB00ED109F /* forestriverslow.wav */,
+				F9EEF52F28526CCB00ED109F /* cleaner.wav */,
+				F9EEF53028526CCB00ED109F /* forestriver.wav */,
+				F9EEF53128526CCB00ED109F /* waterfall.wav */,
+				F9EEF53228526CCB00ED109F /* sea.wav */,
+				F9EEF53328526CCB00ED109F /* cat.wav */,
+				F9EEF53428526CCB00ED109F /* kettle.wav */,
+				F9EEF53528526CCB00ED109F /* heart.wav */,
+				F9EEF53628526CCB00ED109F /* heavyrain.wav */,
+				F9EEF53728526CCB00ED109F /* lake.wav */,
+				F9EEF53828526CCB00ED109F /* car.wav */,
+				F9EEF53928526CCB00ED109F /* pinknoise.wav */,
+				F9EEF53A28526CCB00ED109F /* rainonleaves.wav */,
+				F9EEF53B28526CCB00ED109F /* conditioner.wav */,
+			);
+			path = sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -345,14 +544,54 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9EEF56028526CCB00ED109F /* car.wav in Resources */,
+				F9EEF55C28526CCB00ED109F /* kettle.wav in Resources */,
+				F9EEF53D28526CCB00ED109F /* shower.wav in Resources */,
+				F9EEF54728526CCB00ED109F /* rainonpuddle.wav in Resources */,
 				5A8841C4280B4DAA00A8291B /* LaunchScreen.storyboard in Resources */,
+				F9EEF55B28526CCB00ED109F /* cat.wav in Resources */,
+				F9EEF54E28526CCB00ED109F /* river.wav in Resources */,
 				5A8FB7B9280BDF5400D44CA6 /* Nunito-Italic.ttf in Resources */,
+				F9EEF53C28526CCB00ED109F /* music.wav in Resources */,
+				F9EEF55E28526CCB00ED109F /* heavyrain.wav in Resources */,
 				5A8FB7BA280BDF5A00D44CA6 /* Nunito-Medium.ttf in Resources */,
+				F9EEF54928526CCB00ED109F /* music3.wav in Resources */,
+				F9EEF54828526CCB00ED109F /* brownnoise.wav in Resources */,
+				F9EEF54128526CCB00ED109F /* mother.wav in Resources */,
 				5A8841C1280B4DAA00A8291B /* Assets.xcassets in Resources */,
+				F9EEF54A28526CCB00ED109F /* bluenoise.wav in Resources */,
+				F9EEF55A28526CCB00ED109F /* sea.wav in Resources */,
+				F9EEF54C28526CCB00ED109F /* ventilator.wav in Resources */,
+				F9EEF54B28526CCB00ED109F /* music4.wav in Resources */,
 				5A8FB7BB280BDF5D00D44CA6 /* Nunito-Regular.ttf in Resources */,
+				F9EEF56228526CCB00ED109F /* rainonleaves.wav in Resources */,
+				F9EEF54628526CCB00ED109F /* music2.wav in Resources */,
+				F9EEF55228526CCB00ED109F /* aircraft.wav in Resources */,
 				5A8FB7B8280BDF5200D44CA6 /* Nunito-Bold.ttf in Resources */,
+				F9EEF55828526CCB00ED109F /* forestriver.wav in Resources */,
+				F9EEF55628526CCB00ED109F /* forestriverslow.wav in Resources */,
 				5A945F31280DCC60001AA3C4 /* readme.md in Resources */,
+				F9EEF55928526CCB00ED109F /* waterfall.wav in Resources */,
+				F9EEF56128526CCB00ED109F /* pinknoise.wav in Resources */,
+				F9EEF54228526CCB00ED109F /* dryer.wav in Resources */,
+				F9EEF55528526CCB00ED109F /* mother2.wav in Resources */,
+				F9EEF54028526CCB00ED109F /* wind.wav in Resources */,
+				F9EEF53F28526CCB00ED109F /* ventilator2.wav in Resources */,
 				5A8FB7B7280BDE6B00D44CA6 /* Nunito-Light.ttf in Resources */,
+				F9EEF55728526CCB00ED109F /* cleaner.wav in Resources */,
+				F9EEF55328526CCB00ED109F /* wash.wav in Resources */,
+				F9EEF53E28526CCB00ED109F /* whitenoise.wav in Resources */,
+				F9EEF54428526CCB00ED109F /* fireplace.wav in Resources */,
+				F9EEF54D28526CCB00ED109F /* thunder.wav in Resources */,
+				F9EEF54328526CCB00ED109F /* creek.wav in Resources */,
+				F9EEF55128526CCB00ED109F /* cleaner2.wav in Resources */,
+				F9EEF56328526CCB00ED109F /* conditioner.wav in Resources */,
+				F9EEF55D28526CCB00ED109F /* heart.wav in Resources */,
+				F9EEF55028526CCB00ED109F /* doppler.wav in Resources */,
+				F9EEF55428526CCB00ED109F /* rain.wav in Resources */,
+				F9EEF55F28526CCB00ED109F /* lake.wav in Resources */,
+				F9EEF54528526CCB00ED109F /* train.wav in Resources */,
+				F9EEF54F28526CCB00ED109F /* ocean.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,10 +602,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F91EF2DA284A85BC00CE84DC /* AdvancedTextField.swift in Sources */,
 				5AB9A8B0280D82E9009895BC /* HapticManager.swift in Sources */,
+				F9688C0C28412ADF005542B0 /* YourMixView.swift in Sources */,
 				5AAB52E32813EC3C003C53E3 /* CustomUIView.swift in Sources */,
 				5AAB52E52813EC8C003C53E3 /* CustomUIViewController.swift in Sources */,
 				5A13588D280E8D0800DE431D /* PaywallView.swift in Sources */,
+				F91EF2DC284BD14000CE84DC /* UIViewController.swift in Sources */,
 				5A13588F280E8D1400DE431D /* PaywallViewController.swift in Sources */,
 				5A8841BC280B4DA800A8291B /* PlansleepViewController.swift in Sources */,
 				5A945F36280DCFF4001AA3C4 /* PrivacyViewController.swift in Sources */,
@@ -375,22 +617,32 @@
 				5AAB52CB281355F7003C53E3 /* UIView.swift in Sources */,
 				5A945F34280DCFCF001AA3C4 /* PrivacyView.swift in Sources */,
 				5AAB52D328135795003C53E3 /* SoundCollectionViewCell.swift in Sources */,
+				F9DA4F8928493CB8008F703D /* AdvancedAlertViewController.swift in Sources */,
 				5A8FB7CD280C70C300D44CA6 /* MixView.swift in Sources */,
+				F9DA4F8D284964DA008F703D /* CustomVisualEffect.swift in Sources */,
 				5A8841CC280B5EA300A8291B /* PlansleepView.swift in Sources */,
 				5A8FB7BD280C1D3D00D44CA6 /* StorageManager.swift in Sources */,
 				5A62AAF12811A8C6003667D2 /* SettingsFrameBackgroundView.swift in Sources */,
 				5AAB52DD28135879003C53E3 /* NameOfClass.swift in Sources */,
 				5A8FB7BF280C216D00D44CA6 /* Time.swift in Sources */,
+				F9EEF5652852737C00ED109F /* AudioManager.swift in Sources */,
 				5A8841B8280B4DA800A8291B /* AppDelegate.swift in Sources */,
 				5AAB52D628135795003C53E3 /* CustomTabBar.swift in Sources */,
+				F9DA4F80284229C2008F703D /* BottomMenu.swift in Sources */,
 				5A8FB7C9280C550600D44CA6 /* UICircle.swift in Sources */,
+				F9DA4F8B28493CD4008F703D /* AdvancedAlertView.swift in Sources */,
+				F9688C0E28412AED005542B0 /* YourMixViewController.swift in Sources */,
 				5A8FB7AE280BDA9400D44CA6 /* MyNavigationController.swift in Sources */,
 				5AAB52DB281357B7003C53E3 /* Sound.swift in Sources */,
 				F9DC15F72814679700B1EE9B /* UIImage.swift in Sources */,
 				5AAB52DF2813D366003C53E3 /* UIColor.swift in Sources */,
+				F9DA4F8628469DA0008F703D /* MixManager.swift in Sources */,
 				5A8841BA280B4DA800A8291B /* SceneDelegate.swift in Sources */,
+				F928288C281F00E9003CDCDD /* ImageBackgroundView.swift in Sources */,
 				5AAB52DA281357B7003C53E3 /* FilterTag.swift in Sources */,
 				5AAB52D728135795003C53E3 /* Circle.swift in Sources */,
+				F9DA4F7E284155C8008F703D /* YourMixTableViewCell.swift in Sources */,
+				F9DA4F8428436BF6008F703D /* VerticalButton.swift in Sources */,
 				5A62AAEF28118CF8003667D2 /* SettingsFrameView.swift in Sources */,
 				5AE64C9728130650007F5CED /* SettingItemCell.swift in Sources */,
 				5A62AAEA2811776A003667D2 /* SettingsViewController.swift in Sources */,
@@ -535,7 +787,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 534C989ZLQ;
+				DEVELOPMENT_TEAM = R2TF4J9L8G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WhiteNoise/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -563,7 +815,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 534C989ZLQ;
+				DEVELOPMENT_TEAM = R2TF4J9L8G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WhiteNoise/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
