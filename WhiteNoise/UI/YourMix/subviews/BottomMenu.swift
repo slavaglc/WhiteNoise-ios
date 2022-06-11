@@ -18,6 +18,7 @@ final class BottomMenu: UIView {
         didSet {
             playButton.setImage(UIImage(systemName: playingState == .play ? "pause.fill" : "play.fill")?
                 .scalePreservingAspectRatio(targetSize: CGSize(width: 30, height: 30)), for: .normal)
+            playButton.setTitle(playingState == .play ? "Pause" : "Play", for: .normal)
             AudioManager.shared.playbackState = playingState
         }
     }
@@ -67,13 +68,11 @@ final class BottomMenu: UIView {
         button.tintColor = #colorLiteral(red: 0.6352941176, green: 0.6705882353, blue: 0.9450980392, alpha: 1)
         let image = UIImage(systemName: "xmark.circle.fill")?.scalePreservingAspectRatio(targetSize: CGSize(width: 30, height: 30)).withTintColor(#colorLiteral(red: 0.6352941176, green: 0.6705882353, blue: 0.9450980392, alpha: 1)) //#A2ABF1
         button.setImage(image, for: .normal)
+        button.tag = BarButtonType.clearAll.rawValue
         button.setTitle("Clear all", for: .normal)
-        
-//        button.tintColor = #colorLiteral(red: 0.6352941176, green: 0.6705882353, blue: 0.9450980392, alpha: 1) //#A2ABF1
-        
+  
         button.addTarget(self, action: #selector(buttonPressed(button:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.tag = BarButtonType.mixer.rawValue
         return button
     }()
     

@@ -10,17 +10,12 @@ import UIKit
 
 
 enum BarButtonType: Int, CaseIterable {
-    case play, mixer, saveMix, timer
+    case play, mixer, saveMix, timer, clearAll
 }
 
 final class CustomTabBar: UIView {
     
-//    private enum PlayingState: String {
-//        case play = "play_icon"
-//        case pause = "pause_icon"
-//    }
-    
-    private var playingState = AudioManager.shared.playbackState {
+    var playingState = AudioManager.shared.playbackState {
         didSet {
             AudioManager.shared.playbackState = playingState
             playButton.setImage(UIImage(named: playingState.rawValue), for: .normal)

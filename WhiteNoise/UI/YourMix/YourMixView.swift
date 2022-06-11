@@ -84,6 +84,7 @@ final class YourMixView: UIView {
     private func setActions() {
         bottomMenu.setAction(for: .saveMix, action: showSaveMixAlert)
         bottomMenu.setAction(for: .play, action: playSounds)
+        bottomMenu.setAction(for: .clearAll, action: clearAllSounds)
     }
     
     private func saveMix(button: UIButton, alertController: AdvancedAlertViewController) {
@@ -118,6 +119,16 @@ final class YourMixView: UIView {
     
     private func playSounds() {
         bottomMenu.tooglePlaybackState()
+    }
+    
+    private func clearAllSounds() {
+        let count = mixesTableView.numberOfRows(inSection: .zero)
+        let indexPaths = (0..<count).map { IndexPath(row: $0, section: .zero) }
+        AudioManager.shared.stopSounds(sounds: sounds)
+        mixesTableView.performBatchUpdates {
+            sounds.removeAll()
+            mixesTableView.deleteRows(at: indexPaths, with: .automatic)
+        }
     }
 //   MARK: - Layout
     

@@ -184,6 +184,10 @@ final class MixView: UIView {
         filterTagCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
     }
     
+    public func setCustomBarAppearence() {
+        customTabBar.playingState = AudioManager.shared.playbackState
+    }
+    
     private func setPrimarySettings() {
         headerStackView.addArrangedSubview(upgradeButton)
         headerStackView.addArrangedSubview(settingsButton)
