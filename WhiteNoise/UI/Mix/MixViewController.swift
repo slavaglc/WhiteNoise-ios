@@ -10,6 +10,7 @@ import UIKit
 protocol MixViewDisplayLogic: AnyObject {
     func addViewToNavgitaionBar(view: UIView)
     func getNavigationController() -> UINavigationController?
+    func showSaveMixAlert()
 }
 
 final class MixViewController: UIViewController {
@@ -20,6 +21,9 @@ final class MixViewController: UIViewController {
         return view
     }()
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     override func loadView() {
         view = mainView
@@ -47,12 +51,29 @@ final class MixViewController: UIViewController {
         navigationController?.navigationBar.isHidden = false
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+    private func saveMix(button: UIButton, alertController: AdvancedAlertViewController) {
+        print("saved")
+        alertController.close()
     }
+    
+    private func denySaving(button: UIButton, alertController: AdvancedAlertViewController) {
+        alertController.close()
+    }
+    
+    
 }
 
 extension MixViewController: MixViewDisplayLogic {
+    func showSaveMixAlert() {
+        let elements: [AlertElementType] = [
+            .title(text: "Name your mix"),
+            .textField(placeholder: "Name"),
+            .button(title: "Deny", action: denySaving(button:alertController:)),
+            .button(title: "Apply", action: saveMix(button:alertController:))
+        ]
+        let advancedAlertVC = AdvancedAlertViewController(elements: elements)
+        present(advancedAlertVC, animated: false)
+    }
     
     func getNavigationController() -> UINavigationController? {
         navigationController

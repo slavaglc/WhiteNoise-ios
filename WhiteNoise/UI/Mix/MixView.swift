@@ -167,11 +167,13 @@ final class MixView: UIView {
     
     private func saveMixTapped() {
         print("saveMixButton tapped")
+        mixViewDisplayLogic.showSaveMixAlert()
     }
     
     private func setTimerButtonTapped() {
         print("saveTimerButton tapped")
     }
+    
     
     
     // MARK: - GUI Settings
