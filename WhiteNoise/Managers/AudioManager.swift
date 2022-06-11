@@ -102,7 +102,7 @@ final class AudioManager {
         player.setVolume(sound.volume, fadeDuration: 1)
     }
     
-    private func smoothlyStop(sound: Sound ,duration: Double) {
+    private func smoothlyStop(sound: Sound, duration: Double) {
         let soundFileNameURL = URL(fileURLWithPath: Bundle.main.path(forResource: sound.trackName, ofType: "wav")!)
         guard let player = players[soundFileNameURL] else { return }
         player.setVolume(0.0, fadeDuration: duration)
