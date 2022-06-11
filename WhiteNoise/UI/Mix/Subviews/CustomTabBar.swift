@@ -15,13 +15,14 @@ enum BarButtonType: Int, CaseIterable {
 
 final class CustomTabBar: UIView {
     
-    private enum PlayingState: String {
-        case play = "play_icon"
-        case pause = "pause_icon"
-    }
+//    private enum PlayingState: String {
+//        case play = "play_icon"
+//        case pause = "pause_icon"
+//    }
     
-    private var playingState = PlayingState.play {
+    private var playingState = AudioManager.shared.playbackState {
         didSet {
+            AudioManager.shared.playbackState = playingState
             playButton.setImage(UIImage(named: playingState.rawValue), for: .normal)
         }
     }
@@ -116,7 +117,7 @@ final class CustomTabBar: UIView {
     }
     
     public func setNumberForBadge(number: Int) {
-        mixerButtonBadge.isHidden = false
+        mixerButtonBadge.isHidden = number <= 0
         badgeLabel.text = number <= 10000 ? String(number) : "10K+"
     }
     
@@ -126,6 +127,11 @@ final class CustomTabBar: UIView {
     
     public func setAction(for buttonType: BarButtonType, action: @escaping ()->()) {
             actions[buttonType] = action
+    }
+    
+    public func togglePlaybackState() {
+//        AudioManager.shared.playbackState = playingState
+        playingState = playingState == .play ? .pause : .play
     }
     
     @objc private func buttonPressed(button: UIButton) {

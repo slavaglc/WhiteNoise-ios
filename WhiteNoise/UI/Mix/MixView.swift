@@ -17,7 +17,10 @@ final class MixView: UIView {
     private let filterTags = FilterTag.getAllFilterTags()
     private var sounds = Sound.getAllSounds()
     private var filtredSounds = Array<Sound>()
-    
+    private var playingSounds: [Sound] {
+        sounds.filter {$0.isPlaying}
+    }
+        
     private weak var mixViewDisplayLogic: MixViewDisplayLogic!
     
     private lazy var stackView: UIStackView = {
@@ -154,11 +157,11 @@ final class MixView: UIView {
     }
     
     private func playButtonTapped() {
+        customTabBar.togglePlaybackState()
         print("playButton")
     }
     
     private func mixerButtonTapped() {
-        let playingSounds  = sounds.filter {$0.isPlaying}
         viewController?.show(YourMixViewController(sounds: playingSounds), sender: nil)
     }
     
@@ -296,6 +299,8 @@ extension MixView: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
                 soundsCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
 //                cell.setBackgroundStyle(selectedStyle: .selected(animated: false))
             }
+            customTabBar.setNumberForBadge(number: playingSounds.count)
+            
             cell.setCellParameters(sound: sound)
             return cell
         case filterTagCollectionView:
@@ -334,12 +339,17 @@ extension MixView: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
             guard !filtredSounds[indexPath.item].isLocked else { collectionView.deselectItem(at: indexPath, animated: true)
                 return }
             let sound = filtredSounds[indexPath.item]
-            AudioManager.shared.playSound(sound: sound)
+            cell.isUserInteractionEnabled = false
+            AudioManager.shared.prepareToPlay(sound: sound) {
+                cell.isUserInteractionEnabled = true
+            }
+            
             cell.setBackgroundStyle(selectedStyle: .selected(animated: true))
             break
         default:
             return
         }
+        customTabBar.setNumberForBadge(number: playingSounds.count)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -348,11 +358,15 @@ extension MixView: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
             guard let cell = collectionView.cellForItem(at: indexPath) as? SoundCollectionViewCell else { return }
             guard !filtredSounds[indexPath.item].isLocked else { return }
 //            filtredSounds[indexPath.item].isPlaying = false
-            AudioManager.shared.stopPlayback(sound: filtredSounds[indexPath.item])
+            cell.isUserInteractionEnabled = false
+            AudioManager.shared.stopPlayback(sound: filtredSounds[indexPath.item]) {
+                cell.isUserInteractionEnabled = true
+            }
             cell.setBackgroundStyle(selectedStyle: .unselected(animated: true))
         default:
             return
         }
+        customTabBar.setNumberForBadge(number: playingSounds.count)
     }
     
 }

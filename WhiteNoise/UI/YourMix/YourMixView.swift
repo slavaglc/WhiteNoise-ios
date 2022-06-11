@@ -83,6 +83,7 @@ final class YourMixView: UIView {
     
     private func setActions() {
         bottomMenu.setAction(for: .saveMix, action: showSaveMixAlert)
+        bottomMenu.setAction(for: .play, action: playSounds)
     }
     
     private func saveMix(button: UIButton, alertController: AdvancedAlertViewController) {
@@ -113,7 +114,11 @@ final class YourMixView: UIView {
         sounds.remove(at: indexPath.row)
         mixesTableView.deleteRows(at: [indexPath], with: .fade)
     }
-                             
+           
+    
+    private func playSounds() {
+        bottomMenu.tooglePlaybackState()
+    }
 //   MARK: - Layout
     
     private func setPrimarySettings() {

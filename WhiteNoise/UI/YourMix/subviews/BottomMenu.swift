@@ -9,14 +9,16 @@ import UIKit
 
 final class BottomMenu: UIView {
 
-    private enum PlayingState: String {
-        case play = "play.fill"
-        case pause = "pause.fill"
-    }
+//    private enum PlayingState: String {
+//        case play = "play.fill"
+//        case pause = "pause.fill"
+//    }
     
-    private var playingState = PlayingState.play {
+    private var playingState = AudioManager.shared.playbackState {
         didSet {
-            playButton.setImage(UIImage(named: playingState.rawValue), for: .normal)
+            playButton.setImage(UIImage(systemName: playingState == .play ? "pause.fill" : "play.fill")?
+                .scalePreservingAspectRatio(targetSize: CGSize(width: 30, height: 30)), for: .normal)
+            AudioManager.shared.playbackState = playingState
         }
     }
     
@@ -50,7 +52,7 @@ final class BottomMenu: UIView {
     
     private lazy var playButton: SVVerticalButton = {
         let button = SVVerticalButton(type: .system)
-        let image = UIImage(systemName: playingState.rawValue)?.scalePreservingAspectRatio(targetSize: CGSize(width: 30, height: 30)).withTintColor(#colorLiteral(red: 0.6352941176, green: 0.6705882353, blue: 0.9450980392, alpha: 1)) //#A2ABF1
+        let image = UIImage(systemName: playingState == .play ? "pause.fill" : "play.fill" )?.scalePreservingAspectRatio(targetSize: CGSize(width: 30, height: 30)).withTintColor(#colorLiteral(red: 0.6352941176, green: 0.6705882353, blue: 0.9450980392, alpha: 1)) //#A2ABF1
         button.setImage(image, for: .normal)
         button.setTitle("Play", for: .normal)
         button.addTarget(self, action: #selector(buttonPressed(button:)), for: .touchUpInside)
@@ -114,6 +116,10 @@ final class BottomMenu: UIView {
     
     public func setAction(for buttonType: BarButtonType, action: @escaping ()->()) {
             actions[buttonType] = action
+    }
+    
+    public func tooglePlaybackState() {
+        playingState = playingState == .play ? .pause : .play
     }
     
     @objc private func buttonPressed(button: UIButton) {

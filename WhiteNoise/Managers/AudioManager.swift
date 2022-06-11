@@ -8,54 +8,49 @@
 import AVFoundation
 
 
+enum PlayingState: String {
+    case play = "pause_icon"
+    case pause = "play_icon"
+    
+}
+
 final class AudioManager {
 
     
     static let shared = AudioManager()
     
-//    private var player: AVAudioPlayer?
-//    private var sounds = Set<Sound>()
+    var playbackState = PlayingState.pause {
+        didSet {
+            switch playbackState {
+            case .play:
+                playAllSounds()
+            case .pause:
+                pauseAllSounds()
+            }
+        }
+    }
+    
+    
     var players = [URL:AVAudioPlayer]()
     var duplicatePlayers = [AVAudioPlayer]()
     
     
-//    func playSound(sound: Sound) {
-//        do {
-//            sound.isPlaying = true
-//            let urlString = Bundle.main.path(forResource: sound.trackName, ofType: "wav")
-//
-//            try AVAudioSession.sharedInstance().setMode(.default)
-//            try AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
-//
-//            guard let urlString = urlString else {
-//                return
-//            }
-//
-//            player = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: urlString))
-//            player?.numberOfLoops = -1
-//            guard let player = player else {
-//                return
-//            }
-//
-//            player.play()
-//
-//
-//        } catch {
-//            print("Error with playing sound")
-//        }
-//    }
-    
-    func playSound(sound: Sound){
+    func prepareToPlay(sound: Sound, completion: ()->() = {}) {
 
         sound.isPlaying = true
         let soundFileNameURL = URL(fileURLWithPath: Bundle.main.path(forResource: sound.trackName, ofType: "wav")!)
+        guard !players.contains(where: { element in
+            element.key == soundFileNameURL
+        }) else { return }
 
            if let player = players[soundFileNameURL] { //player for sound has been found
                if player.isPlaying == false { //player is not in use, so use that one
                    player.numberOfLoops = -1
                    player.volume = sound.volume
                    player.prepareToPlay()
-                   player.play()
+                   if playbackState == .play {
+                       player.play()
+                   }
 
                } else { // player is in use, create a new, duplicate, player and use that instead
 
@@ -69,8 +64,9 @@ final class AudioManager {
                    //add duplicate to array so it doesn't get removed from memory before finishing
 
                    duplicatePlayer.prepareToPlay()
-                   duplicatePlayer.play()
-
+                   if playbackState == .play {
+                       duplicatePlayer.play()
+                   }
                }
            } else { //player has not been found, create a new player with the URL if possible
                do{
@@ -79,21 +75,38 @@ final class AudioManager {
                    player.volume = sound.volume
                    player.numberOfLoops = -1
                    player.prepareToPlay()
-                   player.play()
+                   if playbackState == .play {
+                       player.play()
+                   }
                } catch {
                    print("Could not play sound file!")
                }
            }
+        completion()
        }
     
-//    func appendToPlayer(sound: Sound) {
-//        let soundFileNameURL = URL(fileURLWithPath: Bundle.main.path(forResource: sound.trackName, ofType: "wav")!)
-//
-//    }
     
-    func stopPlayback(sound: Sound) {
-        smoothlyStop(sound: sound, duration: 0.7)
+    func playAllSounds() {
+        players.forEach { playerDict in
+            playerDict.value.play()
+        }
+    }
+    
+    func stopSounds(sounds: [Sound]) {
+        sounds.forEach { sound in
+            stopPlayback(sound: sound)
+        }
+    }
+    
+    func pauseAllSounds() {
+        players.forEach { playerDict in
+            playerDict.value.pause()
+        }
+    }
+    
+    func stopPlayback(sound: Sound, completion: @escaping ()->() = {}) {
         sound.isPlaying = false
+        smoothlyStop(sound: sound, duration: 0.7, completion: completion)
     }
     
     func setVolume(for sound: Sound) {
@@ -102,7 +115,7 @@ final class AudioManager {
         player.setVolume(sound.volume, fadeDuration: 1)
     }
     
-    private func smoothlyStop(sound: Sound, duration: Double) {
+    private func smoothlyStop(sound: Sound, duration: Double, completion: @escaping ()->() = {}) {
         let soundFileNameURL = URL(fileURLWithPath: Bundle.main.path(forResource: sound.trackName, ofType: "wav")!)
         guard let player = players[soundFileNameURL] else { return }
         player.setVolume(0.0, fadeDuration: duration)
@@ -111,6 +124,7 @@ final class AudioManager {
             player.stop()
             self?.players.removeValue(forKey: soundFileNameURL)
             sound.volume = 0.5 // return to default value
+            completion()
         }
     }
     
