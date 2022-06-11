@@ -182,6 +182,11 @@ final class MixView: UIView {
         let indexPath = IndexPath(item: 0, section: 0)
         collectionView(filterTagCollectionView, didSelectItemAt: indexPath)
         filterTagCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+        
+    }
+    
+    public func setCollectionViewAppearence() {
+        setCollectionViewSettings()
     }
     
     public func setCustomBarAppearence() {
