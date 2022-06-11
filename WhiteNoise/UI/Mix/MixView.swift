@@ -243,7 +243,7 @@ final class MixView: UIView {
         
         
         soundsCollectionView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.9).isActive = true
-        soundsCollectionView.topAnchor.constraint(equalTo: filterTagCollectionView.bottomAnchor)
+        soundsCollectionView.topAnchor.constraint(equalTo: filterTagCollectionView.bottomAnchor, constant: 16)
             .isActive = true
         soundsCollectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
             .isActive = true
