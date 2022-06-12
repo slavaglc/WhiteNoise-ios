@@ -8,6 +8,11 @@
 import UIKit
 
 class PrivacyViewController: UIViewController {
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     private lazy var privacyView: PrivacyView = {
         let view = PrivacyView()
         view.backgroundColor = .fromNormalRgb(red: 11, green: 16, blue: 51)

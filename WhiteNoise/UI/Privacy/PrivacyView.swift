@@ -8,10 +8,21 @@
 import UIKit
 
 class PrivacyView: UIView {
+    
+    private lazy var headerStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.distribution = .equalCentering
+        stackView.spacing = 10
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
     private lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        
+        view.contentInset.top = 16
+        view.contentInset.bottom = 300
         return view
     }()
     
@@ -29,6 +40,7 @@ class PrivacyView: UIView {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.image = UIImage(named: "CloseButton")
+        view.alpha = 0.8
         let tap = UITapGestureRecognizer(target: self, action: #selector(closeView))
         view.addGestureRecognizer(tap)
         view.isUserInteractionEnabled = true
@@ -51,11 +63,14 @@ class PrivacyView: UIView {
         super.init(frame: frame)
         
         // add views
+        headerStackView.addArrangedSubview(label)
+        headerStackView.addArrangedSubview(closeBtn)
         addSubview(scrollView)
-        scrollView.addSubview(label)
+        addSubview(headerStackView)
         scrollView.addSubview(text)
-        
+       
         setUpConstraints()
+        setBlurEffect()
     }
     
     required init?(coder: NSCoder) {
@@ -63,46 +78,51 @@ class PrivacyView: UIView {
     }
     
     func viewDidAppear(_ animated: Bool) {
-        removeAllViewsFromNavigation()
-        
-        viewController?.navigationController?.view.addSubview(closeBtn)
-        viewController?.navigationController?.navigationBar.barStyle = .black
-        viewController?.navigationController?.navigationBar.barTintColor = .fromNormalRgb(red: 11, green: 16, blue: 51)
-        viewController?.navigationController?.navigationBar.topItem?.setHidesBackButton(true, animated: false)
-        
-        // closeBtn
-        NSLayoutConstraint.activate([
-            closeBtn.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 8),
-            closeBtn.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            closeBtn.widthAnchor.constraint(equalToConstant: 40),
-            closeBtn.heightAnchor.constraint(equalToConstant: 40)
-        ])
+        setBlurEffectForStatusBar() //In viewDidAppear because statusBar height avaible after view loaded only
     }
     
     private func setUpConstraints() {
+        //headerStackView
+        let horizontalBarHeight: CGFloat = 45
+        let padding = 16.0
+        
+        NSLayoutConstraint.activate([
+            headerStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            headerStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
+            headerStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
+            headerStackView.heightAnchor.constraint(equalToConstant: horizontalBarHeight)
+        ])
+        
+        //closeBtn
+        NSLayoutConstraint.activate([
+            closeBtn.widthAnchor.constraint(equalToConstant: horizontalBarHeight),
+            closeBtn.heightAnchor.constraint(equalToConstant: horizontalBarHeight)
+        ])
+            
+        
         // scrollView
         NSLayoutConstraint.activate([
-            scrollView.rightAnchor.constraint(equalTo: rightAnchor),
-            scrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
+//            scrollView.rightAnchor.constraint(equalTo: rightAnchor),
+            scrollView.topAnchor.constraint(equalTo: topAnchor),
             scrollView.widthAnchor.constraint(equalTo: widthAnchor),
             scrollView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
         ])
         
         // label
-        NSLayoutConstraint.activate([
-            label.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: 19),
-            label.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: -32),
-            label.widthAnchor.constraint(equalToConstant: 100),
-            label.heightAnchor.constraint(equalToConstant: 40)
-        ])
+//        NSLayoutConstraint.activate([
+//            label.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: 19),
+//            label.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: -32),
+//            label.widthAnchor.constraint(equalToConstant: 100),
+//            label.heightAnchor.constraint(equalToConstant: 40)
+//        ])
         
         // text
         NSLayoutConstraint.activate([
             text.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             text.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.9),
             text.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 32),
-            text.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            text.heightAnchor.constraint(equalTo: scrollView.contentLayoutGuide.heightAnchor),
+            text.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
+//            text.heightAnchor.constraint(equalTo: scrollView.contentLayoutGuide.heightAnchor),
         ])
     }
     
@@ -110,6 +130,27 @@ class PrivacyView: UIView {
     private func closeView(view: UIView) {
         viewController?.navigationController?.popViewController(animated: true)
     }
+    
+    private func setBlurEffect() {
+//        let blurEffect = UIBlurEffect(style: .systemUltraThinMaterialDark)
+//        let blurEffectView = CustomVisualEffectView(effect: blurEffect, intensity: 0.08)
+//        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+//        headerStackView.insertSubview(blurEffectView, at: .zero)
+    }
+    
+    private func setBlurEffectForStatusBar() {
+        guard let statusBarFrame = window?.windowScene?.statusBarManager?.statusBarFrame else { return }
+        let blurEffect = UIBlurEffect(style: .dark)
+        let blurEffectView = CustomVisualEffectView(effect: blurEffect, intensity: 0.08)
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        let headerHeight = headerStackView.frame.height
+        blurEffectView.frame = CGRect(x: statusBarFrame.minX, y: statusBarFrame.minY, width: statusBarFrame.width, height: headerHeight + statusBarFrame.height)
+        guard let blurEffectIndex =  subviews.firstIndex(of: headerStackView) else { return }
+        insertSubview(blurEffectView, at: blurEffectIndex)
+
+    }
+    
+    
 }
 
 let magicString = """

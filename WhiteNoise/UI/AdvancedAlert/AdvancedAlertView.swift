@@ -101,11 +101,8 @@ final class AdvancedAlertView: UIScrollView {
         keyboardFrame = convert(keyboardFrame, from: nil)
         var contentInset:UIEdgeInsets = contentInset
         contentInset.bottom = keyboardFrame.size.height + alertBackground.frame.height
-        print("keyboard height:", keyboardFrame.size.height)
-        print("alertBackground height:", alertBackground.frame.height)
         self.contentInset = contentInset
         contentSize = self.frame.size
-//        setContentOffset(CGPoint(x: 0, y: keyboardFrame.size.height), animated: true)
     }
 
     @objc func keyboardWillHide(notification:NSNotification) {
