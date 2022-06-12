@@ -82,7 +82,7 @@ final class YourMixTableViewCell: UITableViewCell {
     }()
     
     private lazy var removeButton: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "CloseButton"))
+        let imageView = UIImageView(image: UIImage(named: "close_button_icon_hd"))
         let tap = UITapGestureRecognizer(target: self, action: #selector(removeButtonTapped))
         imageView.addGestureRecognizer(tap)
         imageView.translatesAutoresizingMaskIntoConstraints = false

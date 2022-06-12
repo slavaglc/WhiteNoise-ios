@@ -21,7 +21,7 @@ final class SettingsView: CustomUIView {
     private lazy var closeBtn: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.image = UIImage(named: "CloseButton")
+        view.image = UIImage(named: "close_button_icon_hd")
         let tap = UITapGestureRecognizer(target: self, action: #selector(closeView))
         view.addGestureRecognizer(tap)
         view.isUserInteractionEnabled = true
