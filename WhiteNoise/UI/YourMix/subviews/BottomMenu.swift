@@ -79,7 +79,7 @@ final class BottomMenu: UIView {
     private lazy var saveMixButton: SVVerticalButton = {
         let button = SVVerticalButton(type: .system)
         button.tintColor = #colorLiteral(red: 0.6352941176, green: 0.6705882353, blue: 0.9450980392, alpha: 1)
-        let image = UIImage(named: "save_mix_icon")?
+        let image = UIImage(named: "save_mix_icon_hd")?
             .scalePreservingAspectRatio(targetSize: CGSize(width: 30, height: 30)).withTintColor(#colorLiteral(red: 0.6352941176, green: 0.6705882353, blue: 0.9450980392, alpha: 1)) //#A2ABF1
         
         button.setImage(image , for: .normal)
@@ -93,7 +93,7 @@ final class BottomMenu: UIView {
     private lazy var setTimerButton: SVVerticalButton = {
         let button = SVVerticalButton(type: .system)
         button.tintColor = #colorLiteral(red: 0.6352941176, green: 0.6705882353, blue: 0.9450980392, alpha: 1)
-        let image = UIImage(named: "set_timer_icon")?.scalePreservingAspectRatio(targetSize: CGSize(width: 30, height: 30)).withTintColor(#colorLiteral(red: 0.6352941176, green: 0.6705882353, blue: 0.9450980392, alpha: 1)) //#A2ABF1
+        let image = UIImage(named: "set_timer_icon_hd")?.scalePreservingAspectRatio(targetSize: CGSize(width: 30, height: 30)).withTintColor(#colorLiteral(red: 0.6352941176, green: 0.6705882353, blue: 0.9450980392, alpha: 1)) //#A2ABF1
         button.setImage(image, for: .normal)
         button.setTitle("Set timer", for: .normal)
         button.addTarget(self, action: #selector(buttonPressed(button:)), for: .touchUpInside)

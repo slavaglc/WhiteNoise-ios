@@ -42,14 +42,14 @@ final class MixView: UIView {
     }()
     
     private lazy var upgradeButton: UIButton = {
-        let button = UIButton(type: .custom)
-        let image = UIImage(named: "Lock")
-        button.setTitle("  Upgrate", for: .normal)
+        let button = UIButton(type: .system)
+        let image = UIImage(named: "lock_icon_hd")
+        button.setTitle(" Upgrate", for: .normal)
         button.titleLabel?.font = UIFont(name: "Nunito-Semibold", size: 14)
         button.titleLabel?.adjustsFontSizeToFitWidth = true
         button.tintColor = .white
         button.setImage(image, for: .normal)
-        button.layer.cornerRadius = 25
+        button.layer.cornerRadius = 23
         button.backgroundImage(for: .normal)
         button.clipsToBounds = true
         button.backgroundColor = #colorLiteral(red: 0.662745098, green: 0.7058823529, blue: 1, alpha: 1)
@@ -60,7 +60,7 @@ final class MixView: UIView {
     }()
     
     private lazy var settingsButton: UIImageView = {
-        let image = UIImage(named: "SettingsButton")
+        let image = UIImage(named: "settings_icon_hd")
         let imageView = UIImageView(image: image)
         let tap = UITapGestureRecognizer(target: self, action: #selector(buttonClicked))
         imageView.addGestureRecognizer(tap)
@@ -191,6 +191,10 @@ final class MixView: UIView {
     
     public func setCustomBarAppearence() {
         customTabBar.playingState = AudioManager.shared.playbackState
+    }
+    
+    public func setCustomTabBarAppearence() {
+        customTabBar.setPlaybackState()
     }
     
     private func setPrimarySettings() {

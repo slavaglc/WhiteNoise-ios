@@ -56,7 +56,7 @@ final class CustomTabBar: UIView {
     
     private lazy var mixerButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.setImage(UIImage(named: "mixer_icon"), for: .normal)
+        button.setImage(UIImage(named: "mixer_icon_hd"), for: .normal)
         button.addTarget(self, action: #selector(buttonPressed(button:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.tag = BarButtonType.mixer.rawValue
@@ -85,7 +85,7 @@ final class CustomTabBar: UIView {
     
     private lazy var saveMixButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.setImage(UIImage(named: "save_mix_icon"), for: .normal)
+        button.setImage(UIImage(named: "save_mix_icon_hd"), for: .normal)
         button.addTarget(self, action: #selector(buttonPressed(button:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.tag = BarButtonType.saveMix.rawValue
@@ -94,7 +94,7 @@ final class CustomTabBar: UIView {
     
     private lazy var setTimerButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.setImage(UIImage(named: "set_timer_icon"), for: .normal)
+        button.setImage(UIImage(named: "set_timer_icon_hd"), for: .normal)
         button.addTarget(self, action: #selector(buttonPressed(button:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.tag = BarButtonType.timer.rawValue
@@ -127,6 +127,10 @@ final class CustomTabBar: UIView {
     public func togglePlaybackState() {
 //        AudioManager.shared.playbackState = playingState
         playingState = playingState == .play ? .pause : .play
+    }
+    
+    public func setPlaybackState() {
+        playingState = AudioManager.shared.playbackState
     }
     
     @objc private func buttonPressed(button: UIButton) {

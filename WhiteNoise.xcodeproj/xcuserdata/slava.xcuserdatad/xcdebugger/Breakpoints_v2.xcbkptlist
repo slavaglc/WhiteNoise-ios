@@ -14,8 +14,8 @@
             filePath = "WhiteNoise/UI/Mix/MixView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "289"
-            endingLineNumber = "289"
+            startingLineNumber = "293"
+            endingLineNumber = "293"
             landmarkName = "setCustomTabBarSettings()"
             landmarkType = "7">
          </BreakpointContent>
@@ -30,8 +30,8 @@
             filePath = "WhiteNoise/UI/Mix/MixView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "303"
-            endingLineNumber = "303"
+            startingLineNumber = "307"
+            endingLineNumber = "307"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -46,8 +46,8 @@
             filePath = "WhiteNoise/UI/Mix/MixView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "342"
-            endingLineNumber = "342"
+            startingLineNumber = "346"
+            endingLineNumber = "346"
             landmarkName = "collectionView(_:didSelectItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -158,8 +158,8 @@
             filePath = "WhiteNoise/UI/Mix/MixView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "292"
-            endingLineNumber = "292"
+            startingLineNumber = "296"
+            endingLineNumber = "296"
             landmarkName = "setSoundsCollectionViewBottomInset(_:)"
             landmarkType = "7">
          </BreakpointContent>

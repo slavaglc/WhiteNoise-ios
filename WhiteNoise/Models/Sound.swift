@@ -36,22 +36,22 @@ class Sound: Hashable {
     //Sounds
     static func getAllSounds() -> [Sound] {
     [
-    Sound(name: "Airplane", imageName: "source_icons_airplane-rotation", trackName: "aircraft", category: "Vehicle", isLocked: false),
-     Sound(name: "Heavy rain", imageName: "source_icons_heavy-rain", trackName: "heavyrain", category: "Weather" , isLocked: false),
-     Sound(name: "Sea waves", imageName: "source_icons_sea-waves", trackName: "sea", category: "Water"  , isLocked: false),
-    Sound(name: "Brown noise", imageName: "brown_noise_icon", trackName: "brownnoise", category: "Noise"  , isLocked: false),
-    Sound(name: "Blue noise", imageName: "blue_noise_icon", trackName: "bluenoise", category: "Noise"  , isLocked: false),
-    Sound(name: "Car", imageName: "car_icon", trackName: "car", category: "Vehicle"  , isLocked: false),
-    Sound(name: "Creek", imageName: "creek_icon", trackName: "creek", category: "Water"  , isLocked: false),
-    Sound(name: "Lake", imageName: "lake_icon", trackName: "lake", category: "Water"  , isLocked: false),
-    Sound(name: "Ocean", imageName: "ocean_icon", trackName: "ocean", category: "Water"  , isLocked: false),
-    Sound(name: "Pink noise", imageName: "pink_noise_icon", trackName: "pinknoise", category: "Noise"  , isLocked: false),
-    Sound(name: "Rain", imageName: "rain_icon", trackName: "rain", category: "Rain"  , isLocked: false),
-    Sound(name: "Rain on puddle", imageName: "rain_on_puddles_icon", trackName: "rainonpuddle", category: "Rain"  , isLocked: false),
-    Sound(name: "Rain on leaves", imageName: "rain_on_the_leaves", trackName: "rainonleaves", category: "Rain"  , isLocked: false),
-    Sound(name: "River in forest", imageName: "river_in_forest_1_icon", trackName: "forestriver", category: "Water"  , isLocked: false),
-    Sound(name: "Thunderstorm", imageName: "thunderstorm_icon", trackName: "thunder", category: "Rain"  , isLocked: false),
-    Sound(name: "Train", imageName: "train_icon", trackName: "train", category: "Vehicle"  , isLocked: false),
+    Sound(name: "Airplane", imageName: "ventilator_1_icon_hd", trackName: "aircraft", category: "Vehicle", isLocked: false),
+     Sound(name: "Heavy rain", imageName: "rainfall_icon_hd", trackName: "heavyrain", category: "Rain" , isLocked: false),
+     Sound(name: "Sea waves", imageName: "ocean_icon_hd", trackName: "sea", category: "Water"  , isLocked: false),
+    Sound(name: "Brown noise", imageName: "brown_noise_icon_hd", trackName: "brownnoise", category: "Noise"  , isLocked: false),
+    Sound(name: "Blue noise", imageName: "blue_noise_icon_hd", trackName: "bluenoise", category: "Noise"  , isLocked: false),
+    Sound(name: "Car", imageName: "car_icon_hd", trackName: "car", category: "Vehicle"  , isLocked: false),
+    Sound(name: "Creek", imageName: "creek_icon_hd", trackName: "creek", category: "Water"  , isLocked: false),
+    Sound(name: "Lake", imageName: "lake_icon_hd", trackName: "lake", category: "Water"  , isLocked: false),
+    Sound(name: "Ocean", imageName: "ocean_icon_hd", trackName: "ocean", category: "Water"  , isLocked: false),
+    Sound(name: "Pink noise", imageName: "pink_noise_icon_hd", trackName: "pinknoise", category: "Noise"  , isLocked: false),
+    Sound(name: "Rain", imageName: "rain_icon_hd", trackName: "rain", category: "Rain"  , isLocked: false),
+    Sound(name: "Rain on puddle", imageName: "rain_on_puddles_icon_hd", trackName: "rainonpuddle", category: "Rain"  , isLocked: false),
+    Sound(name: "Rain on leaves", imageName: "rain_on_the_leaves_hd", trackName: "rainonleaves", category: "Rain"  , isLocked: false),
+    Sound(name: "River in forest", imageName: "river_in_forest_1_icon_hd", trackName: "forestriver", category: "Water"  , isLocked: false),
+    Sound(name: "Thunderstorm", imageName: "thunderstorm_icon_hd", trackName: "thunder", category: "Rain"  , isLocked: false),
+    Sound(name: "Train", imageName: "train_icon_hd", trackName: "train", category: "Vehicle"  , isLocked: false),
     
     ]
     }

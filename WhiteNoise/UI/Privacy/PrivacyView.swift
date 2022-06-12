@@ -102,19 +102,10 @@ class PrivacyView: UIView {
         
         // scrollView
         NSLayoutConstraint.activate([
-//            scrollView.rightAnchor.constraint(equalTo: rightAnchor),
             scrollView.topAnchor.constraint(equalTo: topAnchor),
             scrollView.widthAnchor.constraint(equalTo: widthAnchor),
             scrollView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
         ])
-        
-        // label
-//        NSLayoutConstraint.activate([
-//            label.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: 19),
-//            label.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: -32),
-//            label.widthAnchor.constraint(equalToConstant: 100),
-//            label.heightAnchor.constraint(equalToConstant: 40)
-//        ])
         
         // text
         NSLayoutConstraint.activate([
@@ -122,7 +113,6 @@ class PrivacyView: UIView {
             text.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.9),
             text.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 32),
             text.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
-//            text.heightAnchor.constraint(equalTo: scrollView.contentLayoutGuide.heightAnchor),
         ])
     }
     

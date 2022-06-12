@@ -9,8 +9,8 @@ import AVFoundation
 
 
 enum PlayingState: String {
-    case play = "pause_icon"
-    case pause = "play_icon"
+    case play = "pause_icon_hd"
+    case pause = "play_icon_hd"
     
 }
 

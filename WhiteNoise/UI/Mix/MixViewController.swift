@@ -35,11 +35,13 @@ final class MixViewController: UIViewController {
         mainView.getCustomTabBar().isHidden = false
         navigationController?.navigationBar.isHidden = true
         mainView.setCollectionViewSettings()
+        mainView.setCustomBarAppearence()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         mainView.setCollectionViewSettings()
+        
     }
     
     override func viewDidLoad() {
