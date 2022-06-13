@@ -31,7 +31,6 @@
 		5A8FB7C9280C550600D44CA6 /* UICircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8FB7C8280C550600D44CA6 /* UICircle.swift */; };
 		5A8FB7CD280C70C300D44CA6 /* MixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8FB7CC280C70C300D44CA6 /* MixView.swift */; };
 		5A8FB7CF280C70E300D44CA6 /* MixViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8FB7CE280C70E300D44CA6 /* MixViewController.swift */; };
-		5A945F31280DCC60001AA3C4 /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = 5A945F30280DCC60001AA3C4 /* readme.md */; };
 		5A945F34280DCFCF001AA3C4 /* PrivacyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A945F33280DCFCF001AA3C4 /* PrivacyView.swift */; };
 		5A945F36280DCFF4001AA3C4 /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A945F35280DCFF4001AA3C4 /* PrivacyViewController.swift */; };
 		5AAB52CB281355F7003C53E3 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB52CA281355F7003C53E3 /* UIView.swift */; };
@@ -48,6 +47,12 @@
 		5AAB52E52813EC8C003C53E3 /* CustomUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB52E42813EC8C003C53E3 /* CustomUIViewController.swift */; };
 		5AB9A8B0280D82E9009895BC /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9A8AF280D82E9009895BC /* HapticManager.swift */; };
 		5AE64C9728130650007F5CED /* SettingItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE64C9628130650007F5CED /* SettingItemCell.swift */; };
+		F91327B92857C427006D0EF6 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91327B82857C427006D0EF6 /* DatabaseManager.swift */; };
+		F91327BC2857C44E006D0EF6 /* MixDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F91327BA2857C44E006D0EF6 /* MixDataModel.xcdatamodeld */; };
+		F91327C82857CD01006D0EF6 /* MixModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91327C52857CD01006D0EF6 /* MixModel+CoreDataProperties.swift */; };
+		F91D3DB02857CFF400208BE1 /* MixModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91D3DAD2857CFF400208BE1 /* MixModel+CoreDataClass.swift */; };
+		F91D3DB12857CFF400208BE1 /* MixModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91D3DAE2857CFF400208BE1 /* MixModel+CoreDataProperties.swift */; };
+		F91D3DB22857CFF400208BE1 /* MixModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91D3DAF2857CFF400208BE1 /* MixModel+CoreDataProperties.swift */; };
 		F91EF2DA284A85BC00CE84DC /* AdvancedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91EF2D9284A85BC00CE84DC /* AdvancedTextField.swift */; };
 		F91EF2DC284BD14000CE84DC /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91EF2DB284BD14000CE84DC /* UIViewController.swift */; };
 		F928288C281F00E9003CDCDD /* ImageBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F928288B281F00E9003CDCDD /* ImageBackgroundView.swift */; };
@@ -131,7 +136,6 @@
 		5A8FB7C8280C550600D44CA6 /* UICircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICircle.swift; sourceTree = "<group>"; };
 		5A8FB7CC280C70C300D44CA6 /* MixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixView.swift; sourceTree = "<group>"; };
 		5A8FB7CE280C70E300D44CA6 /* MixViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixViewController.swift; sourceTree = "<group>"; };
-		5A945F30280DCC60001AA3C4 /* readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = "<group>"; };
 		5A945F33280DCFCF001AA3C4 /* PrivacyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyView.swift; sourceTree = "<group>"; };
 		5A945F35280DCFF4001AA3C4 /* PrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
 		5AAB52CA281355F7003C53E3 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
@@ -148,6 +152,12 @@
 		5AAB52E42813EC8C003C53E3 /* CustomUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIViewController.swift; sourceTree = "<group>"; };
 		5AB9A8AF280D82E9009895BC /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		5AE64C9628130650007F5CED /* SettingItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItemCell.swift; sourceTree = "<group>"; };
+		F91327B82857C427006D0EF6 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		F91327BB2857C44E006D0EF6 /* MixDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MixDataModel.xcdatamodel; sourceTree = "<group>"; };
+		F91327C52857CD01006D0EF6 /* MixModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MixModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F91D3DAD2857CFF400208BE1 /* MixModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MixModel+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F91D3DAE2857CFF400208BE1 /* MixModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MixModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F91D3DAF2857CFF400208BE1 /* MixModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MixModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F91EF2D9284A85BC00CE84DC /* AdvancedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedTextField.swift; sourceTree = "<group>"; };
 		F91EF2DB284BD14000CE84DC /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		F928288B281F00E9003CDCDD /* ImageBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageBackgroundView.swift; sourceTree = "<group>"; };
@@ -238,9 +248,12 @@
 		5A8841AB280B4DA800A8291B = {
 			isa = PBXGroup;
 			children = (
-				5A945F30280DCC60001AA3C4 /* readme.md */,
+				F91D3DAD2857CFF400208BE1 /* MixModel+CoreDataClass.swift */,
+				F91D3DAE2857CFF400208BE1 /* MixModel+CoreDataProperties.swift */,
+				F91D3DAF2857CFF400208BE1 /* MixModel+CoreDataProperties.swift */,
 				5A8841B6280B4DA800A8291B /* WhiteNoise */,
 				5A8841B5280B4DA800A8291B /* Products */,
+				F91D3DA62857CD7500208BE1 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -291,6 +304,7 @@
 				F9DA4F8528469DA0008F703D /* MixManager.swift */,
 				5AB9A8AF280D82E9009895BC /* HapticManager.swift */,
 				F9EEF5642852737C00ED109F /* AudioManager.swift */,
+				F91327B82857C427006D0EF6 /* DatabaseManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -301,6 +315,7 @@
 				5AAB52D8281357B7003C53E3 /* FilterTag.swift */,
 				5AAB52D9281357B7003C53E3 /* Sound.swift */,
 				5A8FB7BE280C216D00D44CA6 /* Time.swift */,
+				F91327BD2857C458006D0EF6 /* Database */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -398,6 +413,22 @@
 				5AAB52CF28135795003C53E3 /* FilterTagCollectionViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		F91327BD2857C458006D0EF6 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				F91327BA2857C44E006D0EF6 /* MixDataModel.xcdatamodeld */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		F91D3DA62857CD7500208BE1 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				F91327C52857CD01006D0EF6 /* MixModel+CoreDataProperties.swift */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		F91EF2D8284A859500CE84DC /* subviews */ = {
@@ -570,7 +601,6 @@
 				5A8FB7B8280BDF5200D44CA6 /* Nunito-Bold.ttf in Resources */,
 				F9EEF55828526CCB00ED109F /* forestriver.wav in Resources */,
 				F9EEF55628526CCB00ED109F /* forestriverslow.wav in Resources */,
-				5A945F31280DCC60001AA3C4 /* readme.md in Resources */,
 				F9EEF55928526CCB00ED109F /* waterfall.wav in Resources */,
 				F9EEF56128526CCB00ED109F /* pinknoise.wav in Resources */,
 				F9EEF54228526CCB00ED109F /* dryer.wav in Resources */,
@@ -621,11 +651,15 @@
 				5A8FB7CD280C70C300D44CA6 /* MixView.swift in Sources */,
 				F9DA4F8D284964DA008F703D /* CustomVisualEffect.swift in Sources */,
 				5A8841CC280B5EA300A8291B /* PlansleepView.swift in Sources */,
+				F91D3DB22857CFF400208BE1 /* MixModel+CoreDataProperties.swift in Sources */,
+				F91327C82857CD01006D0EF6 /* MixModel+CoreDataProperties.swift in Sources */,
+				F91D3DB02857CFF400208BE1 /* MixModel+CoreDataClass.swift in Sources */,
 				5A8FB7BD280C1D3D00D44CA6 /* StorageManager.swift in Sources */,
 				5A62AAF12811A8C6003667D2 /* SettingsFrameBackgroundView.swift in Sources */,
 				5AAB52DD28135879003C53E3 /* NameOfClass.swift in Sources */,
 				5A8FB7BF280C216D00D44CA6 /* Time.swift in Sources */,
 				F9EEF5652852737C00ED109F /* AudioManager.swift in Sources */,
+				F91D3DB12857CFF400208BE1 /* MixModel+CoreDataProperties.swift in Sources */,
 				5A8841B8280B4DA800A8291B /* AppDelegate.swift in Sources */,
 				5AAB52D628135795003C53E3 /* CustomTabBar.swift in Sources */,
 				F9DA4F80284229C2008F703D /* BottomMenu.swift in Sources */,
@@ -634,11 +668,13 @@
 				F9688C0E28412AED005542B0 /* YourMixViewController.swift in Sources */,
 				5A8FB7AE280BDA9400D44CA6 /* MyNavigationController.swift in Sources */,
 				5AAB52DB281357B7003C53E3 /* Sound.swift in Sources */,
+				F91327B92857C427006D0EF6 /* DatabaseManager.swift in Sources */,
 				F9DC15F72814679700B1EE9B /* UIImage.swift in Sources */,
 				5AAB52DF2813D366003C53E3 /* UIColor.swift in Sources */,
 				F9DA4F8628469DA0008F703D /* MixManager.swift in Sources */,
 				5A8841BA280B4DA800A8291B /* SceneDelegate.swift in Sources */,
 				F928288C281F00E9003CDCDD /* ImageBackgroundView.swift in Sources */,
+				F91327BC2857C44E006D0EF6 /* MixDataModel.xcdatamodeld in Sources */,
 				5AAB52DA281357B7003C53E3 /* FilterTag.swift in Sources */,
 				5AAB52D728135795003C53E3 /* Circle.swift in Sources */,
 				F9DA4F7E284155C8008F703D /* YourMixTableViewCell.swift in Sources */,
@@ -858,6 +894,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F91327BA2857C44E006D0EF6 /* MixDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F91327BB2857C44E006D0EF6 /* MixDataModel.xcdatamodel */,
+			);
+			currentVersion = F91327BB2857C44E006D0EF6 /* MixDataModel.xcdatamodel */;
+			path = MixDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 5A8841AC280B4DA800A8291B /* Project object */;
 }
