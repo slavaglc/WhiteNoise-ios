@@ -23,6 +23,7 @@ final class AdvancedAlertView: UIScrollView {
     public var textField: UITextField?
     public var elements: [AlertElementType]?
     public var beforeCloseAction = {}
+    public var textFields = Array<UITextField>()
     private weak var advancedAlertVC: AdvancedAlertViewController?
     
     
@@ -254,6 +255,7 @@ final class AdvancedAlertView: UIScrollView {
         textField.autocorrectionType = .no
         textField.heightAnchor.constraint(greaterThanOrEqualToConstant: 30)
             .isActive = true
+        textFields.append(textField)
         return textField
     }
     

@@ -4,16 +4,13 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="sounds" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="SoundModel" inverseName="mix" inverseEntity="SoundModel"/>
     </entity>
-    <entity name="SoundModel" representedClassName="MixModel" syncable="YES">
-        <attribute name="category" optional="YES" attributeType="String"/>
-        <attribute name="imageName" optional="YES" attributeType="String"/>
-        <attribute name="isLocked" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+    <entity name="SoundModel" representedClassName="SoundModel" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="trackName" optional="YES" attributeType="String"/>
+        <attribute name="volume" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <relationship name="mix" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MixModel" inverseName="sounds" inverseEntity="MixModel"/>
     </entity>
     <elements>
         <element name="MixModel" positionX="-63" positionY="-18" width="128" height="59"/>
-        <element name="SoundModel" positionX="-45" positionY="9" width="128" height="119"/>
+        <element name="SoundModel" positionX="-45" positionY="9" width="128" height="74"/>
     </elements>
 </model>

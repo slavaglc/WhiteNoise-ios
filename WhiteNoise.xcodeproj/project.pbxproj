@@ -49,13 +49,13 @@
 		5AE64C9728130650007F5CED /* SettingItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE64C9628130650007F5CED /* SettingItemCell.swift */; };
 		F91327B92857C427006D0EF6 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91327B82857C427006D0EF6 /* DatabaseManager.swift */; };
 		F91327BC2857C44E006D0EF6 /* MixDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F91327BA2857C44E006D0EF6 /* MixDataModel.xcdatamodeld */; };
-		F91327C82857CD01006D0EF6 /* MixModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91327C52857CD01006D0EF6 /* MixModel+CoreDataProperties.swift */; };
-		F91D3DB02857CFF400208BE1 /* MixModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91D3DAD2857CFF400208BE1 /* MixModel+CoreDataClass.swift */; };
-		F91D3DB12857CFF400208BE1 /* MixModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91D3DAE2857CFF400208BE1 /* MixModel+CoreDataProperties.swift */; };
-		F91D3DB22857CFF400208BE1 /* MixModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91D3DAF2857CFF400208BE1 /* MixModel+CoreDataProperties.swift */; };
 		F91EF2DA284A85BC00CE84DC /* AdvancedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91EF2D9284A85BC00CE84DC /* AdvancedTextField.swift */; };
 		F91EF2DC284BD14000CE84DC /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91EF2DB284BD14000CE84DC /* UIViewController.swift */; };
 		F928288C281F00E9003CDCDD /* ImageBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F928288B281F00E9003CDCDD /* ImageBackgroundView.swift */; };
+		F932A20A28590D5200AE0C48 /* SoundModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F932A20628590D5200AE0C48 /* SoundModel+CoreDataClass.swift */; };
+		F932A20B28590D5200AE0C48 /* SoundModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F932A20728590D5200AE0C48 /* SoundModel+CoreDataProperties.swift */; };
+		F932A20C28590D5200AE0C48 /* MixModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F932A20828590D5200AE0C48 /* MixModel+CoreDataClass.swift */; };
+		F932A20F285A6BCD00AE0C48 /* MixModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F932A20E285A6BCD00AE0C48 /* MixModel+CoreDataProperties.swift */; };
 		F9688C0C28412ADF005542B0 /* YourMixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9688C0B28412ADF005542B0 /* YourMixView.swift */; };
 		F9688C0E28412AED005542B0 /* YourMixViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9688C0D28412AED005542B0 /* YourMixViewController.swift */; };
 		F9DA4F7E284155C8008F703D /* YourMixTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA4F7D284155C8008F703D /* YourMixTableViewCell.swift */; };
@@ -154,13 +154,13 @@
 		5AE64C9628130650007F5CED /* SettingItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItemCell.swift; sourceTree = "<group>"; };
 		F91327B82857C427006D0EF6 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		F91327BB2857C44E006D0EF6 /* MixDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MixDataModel.xcdatamodel; sourceTree = "<group>"; };
-		F91327C52857CD01006D0EF6 /* MixModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MixModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		F91D3DAD2857CFF400208BE1 /* MixModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MixModel+CoreDataClass.swift"; sourceTree = "<group>"; };
-		F91D3DAE2857CFF400208BE1 /* MixModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MixModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		F91D3DAF2857CFF400208BE1 /* MixModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MixModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F91EF2D9284A85BC00CE84DC /* AdvancedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedTextField.swift; sourceTree = "<group>"; };
 		F91EF2DB284BD14000CE84DC /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		F928288B281F00E9003CDCDD /* ImageBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageBackgroundView.swift; sourceTree = "<group>"; };
+		F932A20628590D5200AE0C48 /* SoundModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SoundModel+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F932A20728590D5200AE0C48 /* SoundModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SoundModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F932A20828590D5200AE0C48 /* MixModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MixModel+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F932A20E285A6BCD00AE0C48 /* MixModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MixModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F9688C0B28412ADF005542B0 /* YourMixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourMixView.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		F9688C0D28412AED005542B0 /* YourMixViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourMixViewController.swift; sourceTree = "<group>"; };
 		F9DA4F7D284155C8008F703D /* YourMixTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourMixTableViewCell.swift; sourceTree = "<group>"; };
@@ -248,9 +248,10 @@
 		5A8841AB280B4DA800A8291B = {
 			isa = PBXGroup;
 			children = (
-				F91D3DAD2857CFF400208BE1 /* MixModel+CoreDataClass.swift */,
-				F91D3DAE2857CFF400208BE1 /* MixModel+CoreDataProperties.swift */,
-				F91D3DAF2857CFF400208BE1 /* MixModel+CoreDataProperties.swift */,
+				F932A20E285A6BCD00AE0C48 /* MixModel+CoreDataProperties.swift */,
+				F932A20628590D5200AE0C48 /* SoundModel+CoreDataClass.swift */,
+				F932A20728590D5200AE0C48 /* SoundModel+CoreDataProperties.swift */,
+				F932A20828590D5200AE0C48 /* MixModel+CoreDataClass.swift */,
 				5A8841B6280B4DA800A8291B /* WhiteNoise */,
 				5A8841B5280B4DA800A8291B /* Products */,
 				F91D3DA62857CD7500208BE1 /* Recovered References */,
@@ -426,7 +427,6 @@
 		F91D3DA62857CD7500208BE1 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				F91327C52857CD01006D0EF6 /* MixModel+CoreDataProperties.swift */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -639,6 +639,7 @@
 				5AAB52E52813EC8C003C53E3 /* CustomUIViewController.swift in Sources */,
 				5A13588D280E8D0800DE431D /* PaywallView.swift in Sources */,
 				F91EF2DC284BD14000CE84DC /* UIViewController.swift in Sources */,
+				F932A20B28590D5200AE0C48 /* SoundModel+CoreDataProperties.swift in Sources */,
 				5A13588F280E8D1400DE431D /* PaywallViewController.swift in Sources */,
 				5A8841BC280B4DA800A8291B /* PlansleepViewController.swift in Sources */,
 				5A945F36280DCFF4001AA3C4 /* PrivacyViewController.swift in Sources */,
@@ -650,20 +651,19 @@
 				F9DA4F8928493CB8008F703D /* AdvancedAlertViewController.swift in Sources */,
 				5A8FB7CD280C70C300D44CA6 /* MixView.swift in Sources */,
 				F9DA4F8D284964DA008F703D /* CustomVisualEffect.swift in Sources */,
+				F932A20F285A6BCD00AE0C48 /* MixModel+CoreDataProperties.swift in Sources */,
 				5A8841CC280B5EA300A8291B /* PlansleepView.swift in Sources */,
-				F91D3DB22857CFF400208BE1 /* MixModel+CoreDataProperties.swift in Sources */,
-				F91327C82857CD01006D0EF6 /* MixModel+CoreDataProperties.swift in Sources */,
-				F91D3DB02857CFF400208BE1 /* MixModel+CoreDataClass.swift in Sources */,
+				F932A20A28590D5200AE0C48 /* SoundModel+CoreDataClass.swift in Sources */,
 				5A8FB7BD280C1D3D00D44CA6 /* StorageManager.swift in Sources */,
 				5A62AAF12811A8C6003667D2 /* SettingsFrameBackgroundView.swift in Sources */,
 				5AAB52DD28135879003C53E3 /* NameOfClass.swift in Sources */,
 				5A8FB7BF280C216D00D44CA6 /* Time.swift in Sources */,
 				F9EEF5652852737C00ED109F /* AudioManager.swift in Sources */,
-				F91D3DB12857CFF400208BE1 /* MixModel+CoreDataProperties.swift in Sources */,
 				5A8841B8280B4DA800A8291B /* AppDelegate.swift in Sources */,
 				5AAB52D628135795003C53E3 /* CustomTabBar.swift in Sources */,
 				F9DA4F80284229C2008F703D /* BottomMenu.swift in Sources */,
 				5A8FB7C9280C550600D44CA6 /* UICircle.swift in Sources */,
+				F932A20C28590D5200AE0C48 /* MixModel+CoreDataClass.swift in Sources */,
 				F9DA4F8B28493CD4008F703D /* AdvancedAlertView.swift in Sources */,
 				F9688C0E28412AED005542B0 /* YourMixViewController.swift in Sources */,
 				5A8FB7AE280BDA9400D44CA6 /* MyNavigationController.swift in Sources */,

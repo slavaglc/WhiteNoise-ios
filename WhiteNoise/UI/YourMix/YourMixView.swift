@@ -88,8 +88,14 @@ final class YourMixView: UIView {
     }
     
     private func saveMix(button: UIButton, alertController: AdvancedAlertViewController) {
-        print("saved")
-        alertController.close()
+        guard let name = alertController.advancedAlertView.textFields.first?.text else { return }
+        DatabaseManager.shared.save(mixName: name, sounds: sounds) { success, error in
+            if success {
+                alertController.close()
+            } else if let error = error {
+                print(error.localizedDescription)
+            }
+        }
     }
     
     private func denySaving(button: UIButton, alertController: AdvancedAlertViewController) {
