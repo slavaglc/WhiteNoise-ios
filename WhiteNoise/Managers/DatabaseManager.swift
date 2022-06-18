@@ -49,6 +49,31 @@ final class DatabaseManager {
         }
     }
     
+    func getSounds(from mixModel: MixModel) -> [Sound] {
+        let sounds = Sound.getAllSounds()
+        var soundsDict: [String: Float] = [:]
+        let mixSoundsArray = mixModel.sounds!.array as! [SoundModel]
+        mixSoundsArray.forEach { soundModel in
+            soundsDict[soundModel.name!] = soundModel.volume
+        }
+        let filtredSounds = sounds.filter {
+            soundsDict.keys.contains($0.name)
+        }
+        return filtredSounds
+    }
+    
+    func getMixes()  -> [MixModel] {
+       let mixFetchRequest = MixModel.fetchRequest()
+        do {
+            let mixList = try context.fetch(mixFetchRequest)
+            return mixList
+        } catch(let error) {
+            print(error.localizedDescription)
+        }
+        return []
+    }
+    
+    
     
     private func createSoundModels(sounds: [Sound], for mix: MixModel) {
         return sounds.forEach { sound in
@@ -59,5 +84,4 @@ final class DatabaseManager {
             mix.addToSounds(soundModel)
         }
     }
-    
 }

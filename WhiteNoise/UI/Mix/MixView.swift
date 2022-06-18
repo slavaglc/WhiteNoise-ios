@@ -11,7 +11,23 @@ import UIKit
 final class MixView: UIView {
     
     private enum ViewState: String {
-        case Create, Saved
+        case create = "Create", saved = "Saved"
+    }
+    
+    private var viewState = ViewState.create {
+        didSet {
+            switch viewState {
+            case .create:
+                savedMixesView.isHidden = true
+                filterTagCollectionView.isHidden = false
+                soundsCollectionView.isHidden = false
+            case .saved:
+                filterTagCollectionView.isHidden = true
+                soundsCollectionView.isHidden = true
+                savedMixesView.isHidden = false
+            }
+            
+        }
     }
     
     private let filterTags = FilterTag.getAllFilterTags()
@@ -23,6 +39,8 @@ final class MixView: UIView {
         
     private weak var mixViewDisplayLogic: MixViewDisplayLogic!
     
+    
+//        MARK: - UI Elements
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -97,12 +115,20 @@ final class MixView: UIView {
     }()
     
     private lazy var segmentControl: CustomSegmentedControl = {
-        let titles = [ViewState.Create.rawValue,
-                      ViewState.Saved.rawValue
+        let titles = [ViewState.create.rawValue,
+                      ViewState.saved.rawValue
         ]
         let control = CustomSegmentedControl(frame: CGRect.zero, buttonTitle: titles)
+        control.delegate = self
         control.translatesAutoresizingMaskIntoConstraints = false
         return control
+    }()
+    
+    private lazy var savedMixesView: SavedMixesView = {
+        let view = SavedMixesView()
+        view.isHidden = viewState == .create ? true : false
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     private lazy var customTabBar: CustomTabBar = {
@@ -110,15 +136,11 @@ final class MixView: UIView {
         customTabBar.translatesAutoresizingMaskIntoConstraints = false
         return customTabBar
     }()
-    
+    // MARK: - Initialization
     convenience init(viewController: MixViewDisplayLogic) {
         self.init()
         mixViewDisplayLogic = viewController
         setPrimarySettings()
-    }
-    
-    public func getCustomTabBar() -> CustomTabBar {
-        customTabBar
     }
     // MARK: - Scroll methods
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
@@ -138,6 +160,10 @@ final class MixView: UIView {
     }
     
     // MARK: - Actions
+    
+    public func getCustomTabBar() -> CustomTabBar {
+        customTabBar
+    }
     
     @objc
     private func buttonClicked() {
@@ -204,6 +230,7 @@ final class MixView: UIView {
         addSubview(segmentControl)
         addSubview(filterTagCollectionView)
         addSubview(soundsCollectionView)
+        addSubview(savedMixesView)
         setCustomTabBarSettings()
         setupConstraints()
         setActions()
@@ -252,6 +279,15 @@ final class MixView: UIView {
         soundsCollectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
             .isActive = true
         soundsCollectionView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor)
+            .isActive = true
+        
+        savedMixesView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.9)
+            .isActive = true
+        savedMixesView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor)
+            .isActive = true
+        savedMixesView.topAnchor.constraint(equalTo: segmentControl.bottomAnchor, constant: 10)
+            .isActive = true
+        savedMixesView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
             .isActive = true
         
         
@@ -384,4 +420,17 @@ extension MixView: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
         customTabBar.setNumberForBadge(number: playingSounds.count)
     }
     
+}
+
+extension MixView: CustomSegmentedControlDelegate {
+    func change(to index: Int) {
+        switch index {
+        case 0:
+            viewState = .create
+        case 1:
+            viewState = .saved
+        default:
+            break
+        }
+    }
 }

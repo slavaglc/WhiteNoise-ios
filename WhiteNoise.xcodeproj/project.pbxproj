@@ -47,6 +47,9 @@
 		5AAB52E52813EC8C003C53E3 /* CustomUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB52E42813EC8C003C53E3 /* CustomUIViewController.swift */; };
 		5AB9A8B0280D82E9009895BC /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9A8AF280D82E9009895BC /* HapticManager.swift */; };
 		5AE64C9728130650007F5CED /* SettingItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE64C9628130650007F5CED /* SettingItemCell.swift */; };
+		F90C8260285DD75800E61761 /* SavedMixesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90C825F285DD75800E61761 /* SavedMixesView.swift */; };
+		F90C8263285DDCD200E61761 /* SavedMixTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90C8262285DDCD200E61761 /* SavedMixTableViewCell.swift */; };
+		F90C8265285E306600E61761 /* MixBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90C8264285E306600E61761 /* MixBar.swift */; };
 		F91327B92857C427006D0EF6 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91327B82857C427006D0EF6 /* DatabaseManager.swift */; };
 		F91327BC2857C44E006D0EF6 /* MixDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F91327BA2857C44E006D0EF6 /* MixDataModel.xcdatamodeld */; };
 		F91EF2DA284A85BC00CE84DC /* AdvancedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91EF2D9284A85BC00CE84DC /* AdvancedTextField.swift */; };
@@ -152,6 +155,9 @@
 		5AAB52E42813EC8C003C53E3 /* CustomUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIViewController.swift; sourceTree = "<group>"; };
 		5AB9A8AF280D82E9009895BC /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		5AE64C9628130650007F5CED /* SettingItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItemCell.swift; sourceTree = "<group>"; };
+		F90C825F285DD75800E61761 /* SavedMixesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedMixesView.swift; sourceTree = "<group>"; };
+		F90C8262285DDCD200E61761 /* SavedMixTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedMixTableViewCell.swift; sourceTree = "<group>"; };
+		F90C8264285E306600E61761 /* MixBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixBar.swift; sourceTree = "<group>"; };
 		F91327B82857C427006D0EF6 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		F91327BB2857C44E006D0EF6 /* MixDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MixDataModel.xcdatamodel; sourceTree = "<group>"; };
 		F91EF2D9284A85BC00CE84DC /* AdvancedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedTextField.swift; sourceTree = "<group>"; };
@@ -403,6 +409,7 @@
 				5AAB52D128135795003C53E3 /* CustomTabBar.swift */,
 				5AAB52D228135795003C53E3 /* Circle.swift */,
 				F928288B281F00E9003CDCDD /* ImageBackgroundView.swift */,
+				F90C8261285DDCA800E61761 /* SavedMixes */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -414,6 +421,16 @@
 				5AAB52CF28135795003C53E3 /* FilterTagCollectionViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		F90C8261285DDCA800E61761 /* SavedMixes */ = {
+			isa = PBXGroup;
+			children = (
+				F90C825F285DD75800E61761 /* SavedMixesView.swift */,
+				F90C8262285DDCD200E61761 /* SavedMixTableViewCell.swift */,
+				F90C8264285E306600E61761 /* MixBar.swift */,
+			);
+			path = SavedMixes;
 			sourceTree = "<group>";
 		};
 		F91327BD2857C458006D0EF6 /* Database */ = {
@@ -642,6 +659,7 @@
 				F932A20B28590D5200AE0C48 /* SoundModel+CoreDataProperties.swift in Sources */,
 				5A13588F280E8D1400DE431D /* PaywallViewController.swift in Sources */,
 				5A8841BC280B4DA800A8291B /* PlansleepViewController.swift in Sources */,
+				F90C8265285E306600E61761 /* MixBar.swift in Sources */,
 				5A945F36280DCFF4001AA3C4 /* PrivacyViewController.swift in Sources */,
 				5A8FB7C7280C460E00D44CA6 /* UIPageIndicatorView.swift in Sources */,
 				5A8FB7CF280C70E300D44CA6 /* MixViewController.swift in Sources */,
@@ -661,6 +679,7 @@
 				F9EEF5652852737C00ED109F /* AudioManager.swift in Sources */,
 				5A8841B8280B4DA800A8291B /* AppDelegate.swift in Sources */,
 				5AAB52D628135795003C53E3 /* CustomTabBar.swift in Sources */,
+				F90C8263285DDCD200E61761 /* SavedMixTableViewCell.swift in Sources */,
 				F9DA4F80284229C2008F703D /* BottomMenu.swift in Sources */,
 				5A8FB7C9280C550600D44CA6 /* UICircle.swift in Sources */,
 				F932A20C28590D5200AE0C48 /* MixModel+CoreDataClass.swift in Sources */,
@@ -675,6 +694,7 @@
 				5A8841BA280B4DA800A8291B /* SceneDelegate.swift in Sources */,
 				F928288C281F00E9003CDCDD /* ImageBackgroundView.swift in Sources */,
 				F91327BC2857C44E006D0EF6 /* MixDataModel.xcdatamodeld in Sources */,
+				F90C8260285DD75800E61761 /* SavedMixesView.swift in Sources */,
 				5AAB52DA281357B7003C53E3 /* FilterTag.swift in Sources */,
 				5AAB52D728135795003C53E3 /* Circle.swift in Sources */,
 				F9DA4F7E284155C8008F703D /* YourMixTableViewCell.swift in Sources */,
