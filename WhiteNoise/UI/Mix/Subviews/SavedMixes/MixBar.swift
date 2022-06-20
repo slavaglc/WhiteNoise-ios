@@ -10,6 +10,14 @@ import UIKit
 
 final class MixBar: UIView {
     
+    
+    var playingState = AudioManager.shared.playbackState {
+        didSet {
+            AudioManager.shared.playbackState = playingState
+            playbackButton.setImage(UIImage(named: playingState.rawValue), for: .normal)
+        }
+    }
+    
     private lazy var backgroundView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 25
@@ -23,12 +31,40 @@ final class MixBar: UIView {
         let stackView = UIStackView()
         stackView.alignment = .center
         stackView.contentMode = .scaleToFill
-        stackView.distribution = .fillEqually
+        stackView.distribution = .equalCentering
+        stackView.isLayoutMarginsRelativeArrangement = true
         stackView.axis = .horizontal
-        stackView.spacing = 12
+        stackView.spacing = 5
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
+    
+    private lazy var playbackButton: UIButton = {
+        let button = UIButton()
+        let image = UIImage(named: playingState.rawValue)?.scalePreservingAspectRatio(targetSize: CGSize(width: 300, height: 300))
+        button.setImage(image, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private lazy var additionButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("+1", for: .normal)
+        button.titleLabel?.font = UIFont(name: "Nunito-Regular", size: 18)
+        button.titleLabel?.textAlignment = .left
+        button.tintColor = #colorLiteral(red: 0.6352941176, green: 0.6705882353, blue: 0.9450980392, alpha: 1)  //#A2ABF1
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private lazy var optionsButton: UIButton = {
+        let button = UIButton()
+        let image = UIImage(named: "playlist_options_icon")?.scalePreservingAspectRatio(targetSize: CGSize(width: 40, height: 40))
+        button.setImage(image, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     
     
     override init(frame: CGRect) {
@@ -44,10 +80,15 @@ final class MixBar: UIView {
     
     private func setPrimarySettings() {
         addSubview(backgroundView)
+        backgroundView.addSubview(playbackButton)
+        backgroundView.addSubview(optionsButton)
+        backgroundView.addSubview(additionButton)
         backgroundView.addSubview(stackView)
     }
     
     private func setupConstraints() {
+        let padding = 10.0
+        
         backgroundView.widthAnchor.constraint(equalTo: widthAnchor)
             .isActive = true
         backgroundView.heightAnchor.constraint(equalTo: heightAnchor)
@@ -57,17 +98,44 @@ final class MixBar: UIView {
         backgroundView.centerYAnchor.constraint(equalTo: centerYAnchor)
             .isActive = true
         
-        
-        stackView.widthAnchor.constraint(equalTo: backgroundView.widthAnchor, multiplier: 0.9)
+        playbackButton.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: padding)
+            .isActive = true
+        playbackButton.heightAnchor.constraint(equalTo: stackView.heightAnchor)
+            .isActive = true
+        playbackButton.widthAnchor.constraint(equalTo: playbackButton.heightAnchor)
+            .isActive = true
+        playbackButton.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor)
             .isActive = true
         
-        stackView.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: 10)
+        additionButton.trailingAnchor.constraint(equalTo: optionsButton.leadingAnchor, constant: -padding)
+            .isActive = true
+        additionButton.heightAnchor.constraint(equalTo: stackView.heightAnchor)
+            .isActive = true
+        additionButton.widthAnchor.constraint(equalTo: additionButton.heightAnchor, multiplier: 0.5)
+            .isActive = true
+        additionButton.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor)
             .isActive = true
         
-        stackView.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor, constant: -10)
+        optionsButton.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -padding)
             .isActive = true
-        stackView.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor)
-            .isActive = true // temporally
+        optionsButton.heightAnchor.constraint(equalTo: stackView.heightAnchor)
+            .isActive = true
+        optionsButton.widthAnchor.constraint(equalTo: optionsButton.heightAnchor)
+            .isActive = true
+        optionsButton.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor)
+            .isActive = true
+        
+        
+        stackView.leadingAnchor.constraint(equalTo: playbackButton.trailingAnchor, constant: (2 * padding))
+            .isActive = true
+        stackView.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: padding)
+            .isActive = true
+        stackView.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor, constant: -padding)
+            .isActive = true
+        
+        stackView.trailingAnchor.constraint(equalTo: additionButton.leadingAnchor, constant: -(padding))
+            .isActive = true
+        
     }
     
     func setMixBarParameters(for sounds: [Sound]) {
@@ -95,6 +163,7 @@ final class MixBar: UIView {
     private func createImagebackgroundView() -> ImageBackgroundView {
         let view = ImageBackgroundView()
         view.backgroundColor = #colorLiteral(red: 0.1333333333, green: 0.168627451, blue: 0.4509803922, alpha: 1) //#222B73
+        view.layer.cornerRadius = 17
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }
@@ -107,8 +176,14 @@ final class MixBar: UIView {
     }
     
     private func setupSoundIconConstraints(imageView: UIImageView, imageBackgroundView: ImageBackgroundView) {
+        
 //        imageBackgroundView.heightAnchor.constraint(equalTo: imageBackgroundView.widthAnchor)
 //            .isActive = true
+        imageBackgroundView.heightAnchor.constraint(equalTo: stackView.heightAnchor)
+            .isActive = true
+        imageBackgroundView.widthAnchor.constraint(equalTo: imageBackgroundView.heightAnchor)
+            .isActive = true
+        
         imageView.centerXAnchor.constraint(equalTo: imageBackgroundView.centerXAnchor)
             .isActive = true
         imageView.centerYAnchor.constraint(equalTo: imageBackgroundView.centerYAnchor)

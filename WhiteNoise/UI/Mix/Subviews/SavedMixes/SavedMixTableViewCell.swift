@@ -58,7 +58,7 @@ final class SavedMixTableViewCell: UITableViewCell {
     
     private func setupConstraints() {
        
-        let height = 70.0
+        let height = 75.0
         let padding = 10.0
         
         mixBar.widthAnchor.constraint(equalTo: widthAnchor)
