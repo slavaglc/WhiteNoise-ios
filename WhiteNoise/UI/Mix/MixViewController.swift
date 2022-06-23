@@ -55,7 +55,6 @@ final class MixViewController: UIViewController {
     }
     
     private func saveMix(button: UIButton, alertController: AdvancedAlertViewController) {
-        print("saved")
         alertController.close()
     }
     

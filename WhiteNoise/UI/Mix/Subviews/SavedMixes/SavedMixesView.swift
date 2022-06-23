@@ -13,7 +13,7 @@ final class SavedMixesView: UIView {
     
     private var mixes = Array<MixModel>()
     
-    private lazy var mixesTableView: UITableView = {
+    lazy var mixesTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self

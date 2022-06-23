@@ -25,6 +25,7 @@ final class MixView: UIView {
                 filterTagCollectionView.isHidden = true
                 soundsCollectionView.isHidden = true
                 savedMixesView.isHidden = false
+                savedMixesView.mixesTableView.reloadData()
             }
             
         }

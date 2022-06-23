@@ -47,6 +47,7 @@ final class SavedMixTableViewCell: UITableViewCell {
         nameLabel.text = mix.name
         let sounds = DatabaseManager.shared.getSounds(from: mix)
         mixBar.setMixBarParameters(for: sounds)
+        mixBar.layoutSubviews()
     }
     
     private func setPrimarySettings() {

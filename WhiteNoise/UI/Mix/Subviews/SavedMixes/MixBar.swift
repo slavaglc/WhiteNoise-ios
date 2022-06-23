@@ -18,6 +18,9 @@ final class MixBar: UIView {
         }
     }
     
+    private var sounds = Array<Sound>()
+    
+    
     private lazy var backgroundView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 25
@@ -54,6 +57,7 @@ final class MixBar: UIView {
         button.titleLabel?.textAlignment = .left
         button.tintColor = #colorLiteral(red: 0.6352941176, green: 0.6705882353, blue: 0.9450980392, alpha: 1)  //#A2ABF1
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.isHidden = true
         return button
     }()
     
@@ -76,6 +80,25 @@ final class MixBar: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        let soundIconWidth: CGFloat = stackView.bounds.height
+        
+        removeSoundIcons()        
+            let possiblePlaces = (stackView.frame.width / soundIconWidth).rounded(.down)
+        if !possiblePlaces.isNaN {
+            let possiblePlacesInt = Int(possiblePlaces)
+            (0..<possiblePlacesInt).forEach { iteration in
+                if iteration < sounds.count {
+                addSoundIcon(for: sounds[iteration])
+                }
+                let additionCount = sounds.count - possiblePlacesInt
+                additionButton.isHidden = additionCount > 0 ? false : true
+                additionButton.setTitle("+\(additionCount)", for: .normal)
+            }
+        }
     }
     
     private func setPrimarySettings() {
@@ -136,12 +159,16 @@ final class MixBar: UIView {
         stackView.trailingAnchor.constraint(equalTo: additionButton.leadingAnchor, constant: -(padding))
             .isActive = true
         
+        
     }
     
     func setMixBarParameters(for sounds: [Sound]) {
-        sounds.forEach { sound in
-            addSoundIcon(for: sound)
-        }
+//        sounds.forEach { sound in
+//            addSoundIcon(for: sound)
+//        }
+        
+        self.sounds = sounds
+        layoutSubviews()
     }
     
     func removeSoundIcons() {
@@ -176,11 +203,6 @@ final class MixBar: UIView {
     }
     
     private func setupSoundIconConstraints(imageView: UIImageView, imageBackgroundView: ImageBackgroundView) {
-        
-//        imageBackgroundView.heightAnchor.constraint(equalTo: imageBackgroundView.widthAnchor)
-//            .isActive = true
-        imageBackgroundView.heightAnchor.constraint(equalTo: stackView.heightAnchor)
-            .isActive = true
         imageBackgroundView.widthAnchor.constraint(equalTo: imageBackgroundView.heightAnchor)
             .isActive = true
         
