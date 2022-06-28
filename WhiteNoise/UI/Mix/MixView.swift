@@ -10,9 +10,11 @@ import UIKit
 
 final class MixView: UIView {
     
+    
     private enum ViewState: String {
         case create = "Create", saved = "Saved"
     }
+    
     
     private var viewState = ViewState.create {
         didSet {

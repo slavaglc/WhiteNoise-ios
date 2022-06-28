@@ -11,7 +11,10 @@ import AVFoundation
 enum PlayingState: String {
     case play = "pause_icon_hd"
     case pause = "play_icon_hd"
-    
+}
+
+enum MixType {
+    case current, saved
 }
 
 final class AudioManager {
@@ -23,20 +26,26 @@ final class AudioManager {
         didSet {
             switch playbackState {
             case .play:
-                playAllSounds()
+                playAllSounds(mixType)
             case .pause:
-                pauseAllSounds()
+                pauseAllSounds(mixType)
             }
         }
     }
     
+    var mixType: MixType = .current
+    
     
     var players = [URL:AVAudioPlayer]()
+    var playersForSavedMix = [URL: AVAudioPlayer]()
     var duplicatePlayers = [AVAudioPlayer]()
     
     
-    func prepareToPlay(sound: Sound, completion: ()->() = {}) {
+    
+    func prepareToPlay(sound: Sound, mixType: MixType = .current, completion: ()->() = {}) {
 
+        var players = mixType == .current ? players : playersForSavedMix
+        
         sound.isPlaying = true
         let soundFileNameURL = URL(fileURLWithPath: Bundle.main.path(forResource: sound.trackName, ofType: "wav")!)
         guard !players.contains(where: { element in
@@ -55,14 +64,7 @@ final class AudioManager {
                } else { // player is in use, create a new, duplicate, player and use that instead
 
                    let duplicatePlayer = try! AVAudioPlayer(contentsOf: soundFileNameURL as URL)
-                   //use 'try!' because we know the URL worked before.
-
-//                   duplicatePlayer.delegate = self
-                   //assign delegate for duplicatePlayer so delegate can remove the duplicate once it's stopped playing
-
                    duplicatePlayers.append(duplicatePlayer)
-                   //add duplicate to array so it doesn't get removed from memory before finishing
-
                    duplicatePlayer.prepareToPlay()
                    if playbackState == .play {
                        duplicatePlayer.play()
@@ -71,7 +73,12 @@ final class AudioManager {
            } else { //player has not been found, create a new player with the URL if possible
                do{
                    let player = try AVAudioPlayer(contentsOf: soundFileNameURL)
-                   players[soundFileNameURL] = player
+                   if mixType == .current {
+                       self.players[soundFileNameURL] = player
+                   } else {
+                       playersForSavedMix[soundFileNameURL] = player
+                   }
+                   
                    player.volume = sound.volume
                    player.numberOfLoops = -1
                    player.prepareToPlay()
@@ -86,10 +93,14 @@ final class AudioManager {
        }
     
     
-    func playAllSounds() {
+    func playAllSounds(_ mixType: MixType = .current) {
+        
+        let players = mixType == .current ? players : playersForSavedMix
         players.forEach { playerDict in
             playerDict.value.play()
         }
+        
+        print("players count:", players.count)
     }
     
     func stopSounds(sounds: [Sound]) {
@@ -98,16 +109,42 @@ final class AudioManager {
         }
     }
     
-    func pauseAllSounds() {
-        players.forEach { playerDict in
-            playerDict.value.pause()
+    func addSavedSoundsToPlayback(sounds: [Sound]) {
+        sounds.forEach { sound in
+            prepareToPlay(sound: sound, mixType: .saved)
         }
     }
+    
+    func pauseAllSounds(_ mixType: MixType) {
+        if mixType == .current {
+            players.forEach { playerDict in
+                playerDict.value.pause()
+            }
+        } else {
+            stopAllSounds(mixType: .saved)
+        }
+    }
+    
+    func stopAllSounds(mixType: MixType = .current) {
+        if mixType == .current {
+        players.forEach { playerDict in
+            playerDict.value.stop()
+        }
+        players.removeAll()
+        } else {
+            playersForSavedMix.forEach { playerDict in
+                playerDict.value.stop()
+            }
+            playersForSavedMix.removeAll()
+        }
+    }
+    
     
     func stopPlayback(sound: Sound, completion: @escaping ()->() = {}) {
         sound.isPlaying = false
         smoothlyStop(sound: sound, duration: 0.7, completion: completion)
     }
+    
     
     func setVolume(for sound: Sound) {
         let soundFileNameURL = URL(fileURLWithPath: Bundle.main.path(forResource: sound.trackName, ofType: "wav")!)
@@ -117,7 +154,7 @@ final class AudioManager {
     
     private func smoothlyStop(sound: Sound, duration: Double, completion: @escaping ()->() = {}) {
         let soundFileNameURL = URL(fileURLWithPath: Bundle.main.path(forResource: sound.trackName, ofType: "wav")!)
-        guard let player = players[soundFileNameURL] else { return }
+        guard let player = mixType == .current ? players[soundFileNameURL]  : playersForSavedMix[soundFileNameURL] else { return }
         player.setVolume(0.0, fadeDuration: duration)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + duration) { [weak self] in

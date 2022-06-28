@@ -15,6 +15,7 @@ protocol MixViewDisplayLogic: AnyObject {
 
 final class MixViewController: UIViewController {
     
+    
     private lazy var mainView: MixView = {
         let view = MixView(viewController: self)
         view.backgroundColor = .fromNormalRgb(red: 11, green: 16, blue: 51)
@@ -28,6 +29,8 @@ final class MixViewController: UIViewController {
     override func loadView() {
         view = mainView
     }
+    
+   
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -52,6 +55,10 @@ final class MixViewController: UIViewController {
         super.viewWillDisappear(animated)
         mainView.getCustomTabBar().isHidden = true
         navigationController?.navigationBar.isHidden = false
+    }
+    
+    func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
     }
     
     private func saveMix(button: UIButton, alertController: AdvancedAlertViewController) {

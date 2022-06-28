@@ -8,11 +8,20 @@
 import UIKit
 import CoreData
 
+
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+
+final class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    var orientationLock = UIInterfaceOrientationMask.all
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
+//        let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
         return true
+    }
+    
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+            return self.orientationLock
     }
 
     // MARK: UISceneSession Lifecycle
@@ -24,6 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
 
     }
+    
     
     // MARK: - Core Data stack
 

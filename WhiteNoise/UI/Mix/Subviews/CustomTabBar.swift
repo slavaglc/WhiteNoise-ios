@@ -17,6 +17,7 @@ final class CustomTabBar: UIView {
     
     var playingState = AudioManager.shared.playbackState {
         didSet {
+            AudioManager.shared.mixType = .current
             AudioManager.shared.playbackState = playingState
             playButton.setImage(UIImage(named: playingState.rawValue), for: .normal)
         }

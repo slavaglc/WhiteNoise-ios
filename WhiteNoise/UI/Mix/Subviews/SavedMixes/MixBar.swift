@@ -13,6 +13,7 @@ final class MixBar: UIView {
     
     var playingState = AudioManager.shared.playbackState {
         didSet {
+            AudioManager.shared.mixType = .saved
             AudioManager.shared.playbackState = playingState
             playbackButton.setImage(UIImage(named: playingState.rawValue), for: .normal)
         }
@@ -47,6 +48,7 @@ final class MixBar: UIView {
         let image = UIImage(named: playingState.rawValue)?.scalePreservingAspectRatio(targetSize: CGSize(width: 300, height: 300))
         button.setImage(image, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(playSounds), for: .touchUpInside)
         return button
     }()
     
@@ -82,11 +84,16 @@ final class MixBar: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
+    
+    @objc func playSounds() {
+        AudioManager.shared.addSavedSoundsToPlayback(sounds: sounds)
+        playingState = playingState == .play ? .pause : .play
+    }
+    
+    public func setSoundsLayout() {
         let soundIconWidth: CGFloat = stackView.bounds.height
         
-        removeSoundIcons()        
+        removeSoundIcons()
             let possiblePlaces = (stackView.frame.width / soundIconWidth).rounded(.down)
         if !possiblePlaces.isNaN {
             let possiblePlacesInt = Int(possiblePlaces)
@@ -101,12 +108,36 @@ final class MixBar: UIView {
         }
     }
     
+    func setMixBarParameters(for sounds: [Sound]) {
+        
+//        sounds.forEach { sound in
+//            addSoundIcon(for: sound)
+//        }
+        removeSoundIcons()
+        self.sounds = sounds
+        
+//        layoutSubviews()
+    }
+    
+    func removeSoundIcons() {
+        stackView.arrangedSubviews.forEach { view in
+            stackView.removeArrangedSubview(view)
+            view.removeFromSuperview()
+        }
+    }
+    
+    @objc func rotated() {
+        setSoundsLayout()
+    }
+    
     private func setPrimarySettings() {
         addSubview(backgroundView)
         backgroundView.addSubview(playbackButton)
         backgroundView.addSubview(optionsButton)
         backgroundView.addSubview(additionButton)
         backgroundView.addSubview(stackView)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(rotated), name: UIDevice.orientationDidChangeNotification, object: nil)
     }
     
     private func setupConstraints() {
@@ -158,25 +189,10 @@ final class MixBar: UIView {
         
         stackView.trailingAnchor.constraint(equalTo: additionButton.leadingAnchor, constant: -(padding))
             .isActive = true
-        
-        
     }
     
-    func setMixBarParameters(for sounds: [Sound]) {
-//        sounds.forEach { sound in
-//            addSoundIcon(for: sound)
-//        }
-        
-        self.sounds = sounds
-        layoutSubviews()
-    }
     
-    func removeSoundIcons() {
-        stackView.arrangedSubviews.forEach { view in
-            stackView.removeArrangedSubview(view)
-            view.removeFromSuperview()
-        }
-    }
+  
     
     private func addSoundIcon(for sound: Sound) {
         let imageBackgroundView = createImagebackgroundView()

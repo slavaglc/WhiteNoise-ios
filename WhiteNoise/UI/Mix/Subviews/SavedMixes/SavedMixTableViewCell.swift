@@ -39,8 +39,12 @@ final class SavedMixTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        
-        mixBar.removeSoundIcons()
+       
+//        mixBar.removeSoundIcons()
+    }
+    
+    public func refreshCell() {
+        mixBar.setSoundsLayout()
     }
     
     public func setCellParameters(mix: MixModel) {

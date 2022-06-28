@@ -64,5 +64,17 @@ extension SavedMixesView: UITableViewDataSource ,UITableViewDelegate {
         cell.setCellParameters(mix: mixes[indexPath.row])
         return cell
     }
+    
+//    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        guard let cell = cell as? SavedMixTableViewCell else { return }
+//        cell.refreshCell()
+//        print("visible rows:", indexPath.row)
+//    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let cell = cell as? SavedMixTableViewCell else { return }
+        cell.refreshCell()
+    }
+    
 }
 
