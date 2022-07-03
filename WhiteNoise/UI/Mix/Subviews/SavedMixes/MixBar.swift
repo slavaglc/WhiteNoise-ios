@@ -131,12 +131,17 @@ final class MixBar: UIView {
             (0..<possiblePlacesInt).forEach { iteration in
                 if iteration < sounds.count {
                 addSoundIcon(for: sounds[iteration])
+                } else {
+                    stackView.addArrangedSubview(createSpacerView())
                 }
                 let additionCount = sounds.count - possiblePlacesInt
                 additionButton.isHidden = additionCount > 0 ? false : true
                 additionButton.setTitle("+\(additionCount)", for: .normal)
             }
         }
+        
+        
+        
     }
     
     func setMixBarParameters(for sounds: [Sound]) {
@@ -251,6 +256,12 @@ final class MixBar: UIView {
         return imageView
     }
     
+    private func createSpacerView() -> UIView {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }
+    
     private func setupSoundIconConstraints(imageView: UIImageView, imageBackgroundView: ImageBackgroundView) {
         imageBackgroundView.widthAnchor.constraint(equalTo: imageBackgroundView.heightAnchor)
             .isActive = true
@@ -271,14 +282,13 @@ extension MixBar: PlaybackProtocol {
     func changeViewPlaybackState(to state: PlaybackState, for number: PlaybackViewDestination = .all) {
         switch number {
         case .all:
-            
             if state == .pause {
-                playbackButton.setImage(UIImage(named: state.rawValue), for: .normal)
+                playbackButton.setImage(UIImage(named: state.rawValue)?.scalePreservingAspectRatio(targetSize: CGSize(width: 300, height: 300)), for: .normal)
             }
 //            playbackButton.setImage(UIImage(named: state.rawValue), for: .normal)
         case .number(let num):
             if trackNumber == num {
-            playbackButton.setImage(UIImage(named: state.rawValue), for: .normal)
+                playbackButton.setImage(UIImage(named: state.rawValue)?.scalePreservingAspectRatio(targetSize: CGSize(width: 300, height: 300)), for: .normal)
             }
         }
 //        playbackState = state
