@@ -11,6 +11,8 @@ import UIKit
 final class SavedMixTableViewCell: UITableViewCell {
     
     
+    var trackNumber: Int?
+    
     private lazy var mixBar: MixBar = {
         let mixBar = MixBar()
         mixBar.translatesAutoresizingMaskIntoConstraints = false
@@ -39,7 +41,8 @@ final class SavedMixTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-       
+        trackNumber = nil
+        mixBar.trackNumber = trackNumber
 //        mixBar.removeSoundIcons()
     }
     
@@ -47,11 +50,13 @@ final class SavedMixTableViewCell: UITableViewCell {
         mixBar.setSoundsLayout()
     }
     
-    public func setCellParameters(mix: MixModel) {
+    public func setCellParameters(mix: MixModel, trackNumber: Int) {
         nameLabel.text = mix.name
+        self.trackNumber = trackNumber
         let sounds = DatabaseManager.shared.getSounds(from: mix)
         mixBar.setMixBarParameters(for: sounds)
         mixBar.layoutSubviews()
+        mixBar.trackNumber = trackNumber
     }
     
     private func setPrimarySettings() {

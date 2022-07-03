@@ -61,7 +61,7 @@ extension SavedMixesView: UITableViewDataSource ,UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SavedMixTableViewCell.nameOfClass, for: indexPath) as? SavedMixTableViewCell else { return UITableViewCell() }
-        cell.setCellParameters(mix: mixes[indexPath.row])
+        cell.setCellParameters(mix: mixes[indexPath.row], trackNumber: indexPath.row)
         return cell
     }
     

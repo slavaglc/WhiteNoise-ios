@@ -8,9 +8,18 @@
 import AVFoundation
 
 
-enum PlayingState: String {
+protocol PlaybackProtocol: AnyObject {
+//    var playbackState: PlaybackState { get set }
+    func changeViewPlaybackState(to state: PlaybackState, for number: PlaybackViewDestination)
+}
+
+enum PlaybackState: String {
     case play = "pause_icon_hd"
     case pause = "play_icon_hd"
+}
+
+enum PlaybackViewDestination {
+    case all, number(_ number: Int)
 }
 
 enum MixType {
@@ -22,11 +31,12 @@ final class AudioManager {
     
     static let shared = AudioManager()
     
-    var playbackState = PlayingState.pause {
+    var playbackState = PlaybackState.pause {
         didSet {
             switch playbackState {
             case .play:
                 playAllSounds(mixType)
+//                changeViewsState(to: playbackState, mixType: mixType)
             case .pause:
                 pauseAllSounds(mixType)
             }
@@ -34,17 +44,50 @@ final class AudioManager {
     }
     
     var mixType: MixType = .current
-    
+    var playingNumber: Int?
     
     var players = [URL:AVAudioPlayer]()
     var playersForSavedMix = [URL: AVAudioPlayer]()
     var duplicatePlayers = [AVAudioPlayer]()
+    var mainPlaybackView: PlaybackProtocol?
+    var playbackViews: [PlaybackProtocol] = []
     
     
+    func changePlaybackState(to state: PlaybackState, mixType: MixType, number: PlaybackViewDestination = .all) {
+        self.mixType = mixType
+        playbackState = state
+        changeViewsState(to: state, mixType: mixType, for: number)
+        
+        switch number {
+        case .all:
+            playingNumber = nil
+        case .number(let value):
+            if playingNumber != value && state == .pause {
+                changeViewsState(to: state, mixType: mixType, for: .all)
+            }
+            playingNumber = value
+        }
+        
+//        mainPlaybackView?.changeViewPlaybackState(to: state, for: nil)
+        
+//        changeViewsState(to: state, mixType: mixType)
+        
+//        if mixType == .saved {
+//            playbackViews.forEach { playbackView in
+//                playbackView.changeViewPlaybackState(to: state, for: number)
+//            }
+//        }
+        
+//        if mixType == .saved {
+//            playbackViews.forEach { playbackView in
+//                playbackView.changeViewPlaybackState(to: state, for: number)
+//            }
+//        }
+    }
     
     func prepareToPlay(sound: Sound, mixType: MixType = .current, completion: ()->() = {}) {
 
-        var players = mixType == .current ? players : playersForSavedMix
+        let players = mixType == .current ? players : playersForSavedMix
         
         sound.isPlaying = true
         let soundFileNameURL = URL(fileURLWithPath: Bundle.main.path(forResource: sound.trackName, ofType: "wav")!)
@@ -96,6 +139,8 @@ final class AudioManager {
     func playAllSounds(_ mixType: MixType = .current) {
         
         let players = mixType == .current ? players : playersForSavedMix
+        
+//       pauseAllSounds(mixType)
         players.forEach { playerDict in
             playerDict.value.play()
         }
@@ -135,6 +180,7 @@ final class AudioManager {
             playersForSavedMix.forEach { playerDict in
                 playerDict.value.stop()
             }
+            
             playersForSavedMix.removeAll()
         }
     }
@@ -163,6 +209,23 @@ final class AudioManager {
             sound.volume = 0.5 // return to default value
             completion()
         }
+    }
+    
+    private func changeViewsState(to state: PlaybackState, mixType: MixType, for number: PlaybackViewDestination = .all) {
+//        if mixType == .current {
+//            mainPlaybackView?.changeViewPlaybackState(to: state, for: nil)
+//        } else {
+//            playbackViews.forEach { playbackView in
+//                playbackView.changeViewPlaybackState(to: state, for: number)
+//                mainPlaybackView?.changeViewPlaybackState(to: state, for: nil)
+//            }
+//        }
+        mainPlaybackView?.changeViewPlaybackState(to: state, for: .all)
+        playbackViews.forEach { playbackView in
+                       playbackView.changeViewPlaybackState(to: state, for: number)
+//                       mainPlaybackView?.changeViewPlaybackState(to: state, for: nil)
+                   }
+        
     }
     
 }

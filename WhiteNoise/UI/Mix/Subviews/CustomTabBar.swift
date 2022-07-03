@@ -13,15 +13,17 @@ enum BarButtonType: Int, CaseIterable {
     case play, mixer, saveMix, timer, clearAll
 }
 
-final class CustomTabBar: UIView {
+final class CustomTabBar: UIView  {
     
-    var playingState = AudioManager.shared.playbackState {
-        didSet {
-            AudioManager.shared.mixType = .current
-            AudioManager.shared.playbackState = playingState
-            playButton.setImage(UIImage(named: playingState.rawValue), for: .normal)
-        }
-    }
+//    var playbackState = AudioManager.shared.playbackState {
+//        didSet {
+////            AudioManager.shared.mixType = .current
+////            AudioManager.shared.playbackState = playbackState
+//
+////            AudioManager.shared.changePlaybackState(to: playbackState, mixType: .current)
+////            playButton.setImage(UIImage(named: playbackState.rawValue), for: .normal)
+//        }
+//    }
     
     private var actions: [BarButtonType: ()->()] = [:]
     
@@ -48,7 +50,9 @@ final class CustomTabBar: UIView {
     
     private lazy var playButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.setImage(UIImage(named: playingState.rawValue), for: .normal)
+//        button.setImage(UIImage(named: playbackState.rawValue), for: .normal)
+        let playbackState = AudioManager.shared.playbackState
+        button.setImage(UIImage(named: playbackState.rawValue), for: .normal)
         button.addTarget(self, action: #selector(buttonPressed(button:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.tag = BarButtonType.play.rawValue
@@ -127,11 +131,15 @@ final class CustomTabBar: UIView {
     
     public func togglePlaybackState() {
 //        AudioManager.shared.playbackState = playingState
-        playingState = playingState == .play ? .pause : .play
+//        playbackState = playbackState == .play ? .pause : .play
+        let playbackState = AudioManager.shared.playbackState
+        
+        AudioManager.shared.pauseAllSounds(.saved)
+        AudioManager.shared.changePlaybackState(to: playbackState == .play ? .pause : .play, mixType: .current)
     }
     
     public func setPlaybackState() {
-        playingState = AudioManager.shared.playbackState
+//        playbackState = AudioManager.shared.playbackState
     }
     
     @objc private func buttonPressed(button: UIButton) {
@@ -139,6 +147,8 @@ final class CustomTabBar: UIView {
     }
     
     private func setPrimarySettings() {
+        AudioManager.shared.mainPlaybackView = self
+        
         backgroundView.addSubview(stackView)
         addSubview(backgroundView)
         stackView.addArrangedSubview(playButton)
@@ -185,3 +195,13 @@ final class CustomTabBar: UIView {
             .isActive = true
     }
 }
+
+extension CustomTabBar: PlaybackProtocol {
+    func changeViewPlaybackState(to state: PlaybackState, for number: PlaybackViewDestination = .all) {
+        playButton.setImage(UIImage(named: state.rawValue), for: .normal)
+    }
+    
+    
+}
+
+

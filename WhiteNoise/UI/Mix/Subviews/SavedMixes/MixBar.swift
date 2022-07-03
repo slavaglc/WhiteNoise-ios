@@ -11,13 +11,20 @@ import UIKit
 final class MixBar: UIView {
     
     
-    var playingState = AudioManager.shared.playbackState {
-        didSet {
-            AudioManager.shared.mixType = .saved
-            AudioManager.shared.playbackState = playingState
-            playbackButton.setImage(UIImage(named: playingState.rawValue), for: .normal)
-        }
-    }
+//    var playbackState = AudioManager.shared.playbackState {
+//        didSet {
+////            AudioManager.shared.mixType = .saved
+////            AudioManager.shared.playbackState = playbackState
+//
+////            AudioManager.shared.changePlaybackState(to: playbackState, mixType: .saved)
+////            playbackButton.setImage(UIImage(named: playbackState.rawValue), for: .normal)
+//        }
+//    }
+    
+    var playbackState = AudioManager.shared.playbackState
+    
+    
+    var trackNumber: Int?
     
     private var sounds = Array<Sound>()
     
@@ -45,7 +52,8 @@ final class MixBar: UIView {
     
     private lazy var playbackButton: UIButton = {
         let button = UIButton()
-        let image = UIImage(named: playingState.rawValue)?.scalePreservingAspectRatio(targetSize: CGSize(width: 300, height: 300))
+        let pauseStateImageName = PlaybackState.pause.rawValue
+        let image = UIImage(named: pauseStateImageName)?.scalePreservingAspectRatio(targetSize: CGSize(width: 300, height: 300))
         button.setImage(image, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(playSounds), for: .touchUpInside)
@@ -86,8 +94,31 @@ final class MixBar: UIView {
     
     
     @objc func playSounds() {
+        var playbackState = AudioManager.shared.playbackState
+        let mixType = AudioManager.shared.mixType
+        
+        AudioManager.shared.pauseAllSounds(.current)
+        AudioManager.shared.pauseAllSounds(.saved)
+        
+//        if playbackState == .play && mixType == .current {
+//            AudioManager.shared.pauseAllSounds(.current)
+//        } else if playbackState == .play && mixType == .saved {
+//            AudioManager.shared.pauseAllSounds(.saved)
+//        }
+        
+        guard let trackNumber = trackNumber else { return }
+        let playingNumber = AudioManager.shared.playingNumber
         AudioManager.shared.addSavedSoundsToPlayback(sounds: sounds)
-        playingState = playingState == .play ? .pause : .play
+        playbackState = playbackState == .pause ? .play : .pause
+        if AudioManager.shared.mixType == .current {
+//            AudioManager.shared.pauseAllSounds(.current)
+            playbackState = .play
+        }
+       
+        
+        
+        AudioManager.shared.changePlaybackState(to: playbackState, mixType: .saved, number: .number(trackNumber))
+        
     }
     
     public func setSoundsLayout() {
@@ -131,6 +162,8 @@ final class MixBar: UIView {
     }
     
     private func setPrimarySettings() {
+        AudioManager.shared.playbackViews.append(self)
+        
         addSubview(backgroundView)
         backgroundView.addSubview(playbackButton)
         backgroundView.addSubview(optionsButton)
@@ -232,4 +265,24 @@ final class MixBar: UIView {
             .isActive = true
     }
     
+}
+
+extension MixBar: PlaybackProtocol {
+    func changeViewPlaybackState(to state: PlaybackState, for number: PlaybackViewDestination = .all) {
+        switch number {
+        case .all:
+            
+            if state == .pause {
+                playbackButton.setImage(UIImage(named: state.rawValue), for: .normal)
+            }
+//            playbackButton.setImage(UIImage(named: state.rawValue), for: .normal)
+        case .number(let num):
+            if trackNumber == num {
+            playbackButton.setImage(UIImage(named: state.rawValue), for: .normal)
+            }
+        }
+//        playbackState = state
+        
+        
+    }
 }

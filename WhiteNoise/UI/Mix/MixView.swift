@@ -174,17 +174,6 @@ final class MixView: UIView {
     }
     
     
-    @objc private func segmentDidChange(_ segmentControl: UISegmentedControl) {
-        switch segmentControl.selectedSegmentIndex {
-        case 0:
-            break
-        case 1:
-            break
-        default:
-            break
-        }
-    }
-    
     private func playButtonTapped() {
         customTabBar.togglePlaybackState()
         print("playButton")
@@ -219,7 +208,7 @@ final class MixView: UIView {
     }
     
     public func setCustomBarAppearence() {
-        customTabBar.playingState = AudioManager.shared.playbackState
+//        customTabBar.playbackState = AudioManager.shared.playbackState
     }
     
     public func setCustomTabBarAppearence() {
