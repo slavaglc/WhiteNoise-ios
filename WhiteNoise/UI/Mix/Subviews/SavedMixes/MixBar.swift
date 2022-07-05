@@ -100,23 +100,13 @@ final class MixBar: UIView {
         AudioManager.shared.pauseAllSounds(.current)
         AudioManager.shared.pauseAllSounds(.saved)
         
-//        if playbackState == .play && mixType == .current {
-//            AudioManager.shared.pauseAllSounds(.current)
-//        } else if playbackState == .play && mixType == .saved {
-//            AudioManager.shared.pauseAllSounds(.saved)
-//        }
-        
         guard let trackNumber = trackNumber else { return }
         let playingNumber = AudioManager.shared.playingNumber
         AudioManager.shared.addSavedSoundsToPlayback(sounds: sounds)
         playbackState = playbackState == .pause ? .play : .pause
         if AudioManager.shared.mixType == .current {
-//            AudioManager.shared.pauseAllSounds(.current)
             playbackState = .play
         }
-       
-        
-        
         AudioManager.shared.changePlaybackState(to: playbackState, mixType: .saved, number: .number(trackNumber))
         
     }

@@ -89,11 +89,12 @@ final class AudioManager {
 
         let players = mixType == .current ? players : playersForSavedMix
         
-        sound.isPlaying = true
+        sound.isPlaying = mixType == .current ? true : sound.isPlaying
+        
         let soundFileNameURL = URL(fileURLWithPath: Bundle.main.path(forResource: sound.trackName, ofType: "wav")!)
         guard !players.contains(where: { element in
             element.key == soundFileNameURL
-        }) else { return }
+        }) else { return completion()}
 
            if let player = players[soundFileNameURL] { //player for sound has been found
                if player.isPlaying == false { //player is not in use, so use that one
@@ -150,6 +151,7 @@ final class AudioManager {
     
     func stopSounds(sounds: [Sound]) {
         sounds.forEach { sound in
+            sound.isPlaying = false
             stopPlayback(sound: sound)
         }
     }
@@ -187,7 +189,7 @@ final class AudioManager {
     
     
     func stopPlayback(sound: Sound, completion: @escaping ()->() = {}) {
-        sound.isPlaying = false
+        sound.isPlaying =  mixType == .current ? false : sound.isPlaying
         smoothlyStop(sound: sound, duration: 0.7, completion: completion)
     }
     
@@ -200,7 +202,7 @@ final class AudioManager {
     
     private func smoothlyStop(sound: Sound, duration: Double, completion: @escaping ()->() = {}) {
         let soundFileNameURL = URL(fileURLWithPath: Bundle.main.path(forResource: sound.trackName, ofType: "wav")!)
-        guard let player = mixType == .current ? players[soundFileNameURL]  : playersForSavedMix[soundFileNameURL] else { return }
+        guard let player = mixType == .current ? players[soundFileNameURL]  : playersForSavedMix[soundFileNameURL] else { return completion() }
         player.setVolume(0.0, fadeDuration: duration)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + duration) { [weak self] in

@@ -383,10 +383,9 @@ extension MixView: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
                 return }
             let sound = filtredSounds[indexPath.item]
             cell.isUserInteractionEnabled = false
-            AudioManager.shared.prepareToPlay(sound: sound) {
+            AudioManager.shared.prepareToPlay(sound: sound, mixType: .current) {
                 cell.isUserInteractionEnabled = true
             }
-            
             cell.setBackgroundStyle(selectedStyle: .selected(animated: true))
             break
         default:
@@ -402,7 +401,9 @@ extension MixView: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
             guard !filtredSounds[indexPath.item].isLocked else { return }
 //            filtredSounds[indexPath.item].isPlaying = false
             cell.isUserInteractionEnabled = false
-            AudioManager.shared.stopPlayback(sound: filtredSounds[indexPath.item]) {
+            let sound = filtredSounds[indexPath.item]
+            sound.isPlaying = false
+            AudioManager.shared.stopPlayback(sound: sound) {
                 cell.isUserInteractionEnabled = true
             }
             cell.setBackgroundStyle(selectedStyle: .unselected(animated: true))
