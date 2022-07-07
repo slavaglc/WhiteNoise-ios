@@ -190,6 +190,8 @@ final class MixView: UIView {
     
     private func setTimerButtonTapped() {
         print("saveTimerButton tapped")
+        let timerVC = TimerViewController()
+        viewController?.show(timerVC, sender: nil)
     }
     
     

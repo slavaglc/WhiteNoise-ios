@@ -10,4 +10,21 @@ import Foundation
 struct Time: Codable {
     let hour: Int
     let minute: Int
+    
+    static func getAllMinutes() -> [Int] {
+        var minutes = [Int]()
+        (1...60).forEach { number in
+            minutes.append(number)
+        }
+        return minutes
+    }
+    
+    static func getAllMinutesString() -> [String] {
+       let minutes = getAllMinutes()
+        var minuteStrings = [String]()
+        minutes.forEach { number in
+            minuteStrings.append("\(number) min")
+        }
+        return minuteStrings
+    }
 }

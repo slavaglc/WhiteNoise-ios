@@ -86,6 +86,7 @@ final class YourMixView: UIView {
         bottomMenu.setAction(for: .saveMix, action: showSaveMixAlert)
         bottomMenu.setAction(for: .play, action: playSounds)
         bottomMenu.setAction(for: .clearAll, action: clearAllSounds)
+        bottomMenu.setAction(for: .timer, action: showTimerVC)
     }
     
     private func saveMix(button: UIButton, alertController: AdvancedAlertViewController) {
@@ -143,7 +144,13 @@ final class YourMixView: UIView {
             mixesTableView.deleteRows(at: indexPaths, with: .automatic)
         }
     }
-//   MARK: - Layout
+    
+    private func showTimerVC() {
+        let timerVC = TimerViewController()
+        viewController?.show(timerVC, sender: nil)
+    }
+
+    //   MARK: - Layout
     
     private func setPrimarySettings() {
         backgroundColor = .fromNormalRgb(red: 11, green: 16, blue: 51)

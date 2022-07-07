@@ -61,6 +61,8 @@
 		F932A20F285A6BCD00AE0C48 /* MixModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F932A20E285A6BCD00AE0C48 /* MixModel+CoreDataProperties.swift */; };
 		F9688C0C28412ADF005542B0 /* YourMixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9688C0B28412ADF005542B0 /* YourMixView.swift */; };
 		F9688C0E28412AED005542B0 /* YourMixViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9688C0D28412AED005542B0 /* YourMixViewController.swift */; };
+		F9D780CD28761B6F00C34548 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D780CC28761B6F00C34548 /* TimerView.swift */; };
+		F9D780D028761BA100C34548 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D780CF28761BA100C34548 /* TimerViewController.swift */; };
 		F9DA4F7E284155C8008F703D /* YourMixTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA4F7D284155C8008F703D /* YourMixTableViewCell.swift */; };
 		F9DA4F80284229C2008F703D /* BottomMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA4F7F284229C2008F703D /* BottomMenu.swift */; };
 		F9DA4F8428436BF6008F703D /* VerticalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA4F8328436BF6008F703D /* VerticalButton.swift */; };
@@ -169,6 +171,8 @@
 		F932A20E285A6BCD00AE0C48 /* MixModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MixModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F9688C0B28412ADF005542B0 /* YourMixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourMixView.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		F9688C0D28412AED005542B0 /* YourMixViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourMixViewController.swift; sourceTree = "<group>"; };
+		F9D780CC28761B6F00C34548 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		F9D780CF28761BA100C34548 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		F9DA4F7D284155C8008F703D /* YourMixTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourMixTableViewCell.swift; sourceTree = "<group>"; };
 		F9DA4F7F284229C2008F703D /* BottomMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomMenu.swift; sourceTree = "<group>"; };
 		F9DA4F8328436BF6008F703D /* VerticalButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalButton.swift; sourceTree = "<group>"; };
@@ -362,6 +366,7 @@
 		5A8FB7CA280C5A3200D44CA6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				F9D780CE28761B7A00C34548 /* Timer */,
 				F9DA4F8728493C91008F703D /* AdvancedAlert */,
 				F9688C0A28412A80005542B0 /* YourMix */,
 				5A62AAE82811774C003667D2 /* Settings */,
@@ -475,6 +480,15 @@
 				F9DA4F8328436BF6008F703D /* VerticalButton.swift */,
 			);
 			path = subviews;
+			sourceTree = "<group>";
+		};
+		F9D780CE28761B7A00C34548 /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				F9D780CC28761B6F00C34548 /* TimerView.swift */,
+				F9D780CF28761BA100C34548 /* TimerViewController.swift */,
+			);
+			path = Timer;
 			sourceTree = "<group>";
 		};
 		F9DA4F8728493C91008F703D /* AdvancedAlert */ = {
@@ -665,6 +679,7 @@
 				5A8FB7CF280C70E300D44CA6 /* MixViewController.swift in Sources */,
 				5AAB52CB281355F7003C53E3 /* UIView.swift in Sources */,
 				5A945F34280DCFCF001AA3C4 /* PrivacyView.swift in Sources */,
+				F9D780D028761BA100C34548 /* TimerViewController.swift in Sources */,
 				5AAB52D328135795003C53E3 /* SoundCollectionViewCell.swift in Sources */,
 				F9DA4F8928493CB8008F703D /* AdvancedAlertViewController.swift in Sources */,
 				5A8FB7CD280C70C300D44CA6 /* MixView.swift in Sources */,
@@ -672,6 +687,7 @@
 				F932A20F285A6BCD00AE0C48 /* MixModel+CoreDataProperties.swift in Sources */,
 				5A8841CC280B5EA300A8291B /* PlansleepView.swift in Sources */,
 				F932A20A28590D5200AE0C48 /* SoundModel+CoreDataClass.swift in Sources */,
+				F9D780CD28761B6F00C34548 /* TimerView.swift in Sources */,
 				5A8FB7BD280C1D3D00D44CA6 /* StorageManager.swift in Sources */,
 				5A62AAF12811A8C6003667D2 /* SettingsFrameBackgroundView.swift in Sources */,
 				5AAB52DD28135879003C53E3 /* NameOfClass.swift in Sources */,

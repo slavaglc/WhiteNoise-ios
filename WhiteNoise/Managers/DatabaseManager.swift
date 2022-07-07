@@ -59,6 +59,10 @@ final class DatabaseManager {
         let filtredSounds = sounds.filter {
             soundsDict.keys.contains($0.name)
         }
+        
+        filtredSounds.forEach { sound in
+            sound.volume = soundsDict[sound.name] ?? 0.5
+        }
         return filtredSounds
     }
     
