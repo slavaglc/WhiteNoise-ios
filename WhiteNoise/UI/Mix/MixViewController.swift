@@ -30,8 +30,6 @@ final class MixViewController: UIViewController {
         view = mainView
     }
     
-   
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         view.removeAllViewsFromNavigation()
@@ -43,7 +41,7 @@ final class MixViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        mainView.setCollectionViewSettings()
+        mainView.didAppear()
         
     }
     

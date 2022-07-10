@@ -84,27 +84,7 @@ final class TimerView: UIView {
     }
     
     public func didLayoutSubviews() {
-        for i in 0..<picker.subviews.count {
-            if i == 1 {
-                let selectionIndicator = picker.subviews[i]
-                let componentWidth = 300.0
-//                picker.subviews[i].isHidden = true // hides selection indicator
-                selectionIndicator.layer.borderWidth = 3
-                selectionIndicator.layer.cornerRadius = 17
-                selectionIndicator.translatesAutoresizingMaskIntoConstraints = false
-                selectionIndicator.widthAnchor.constraint(equalToConstant: componentWidth)
-                    .isActive = true
-                selectionIndicator.centerYAnchor.constraint(equalTo: picker.centerYAnchor)
-                    .isActive = true
-                selectionIndicator.centerXAnchor.constraint(equalTo: picker.centerXAnchor)
-                    .isActive = true
-                selectionIndicator.heightAnchor.constraint(equalToConstant: 100)
-                    .isActive = true
-                
-              
-                picker.subviews[i].layer.borderColor = #colorLiteral(red: 0.6352941176, green: 0.6705882353, blue: 0.9450980392, alpha: 1).cgColor //#A2ABF1
-            }
-        }
+       setSelectionIndicator()
     }
     
     private func setPrimarySettings() {
@@ -156,6 +136,29 @@ final class TimerView: UIView {
         button.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -padding)
             .isActive = true
         
+    }
+    
+    private func setSelectionIndicator() {
+        for i in 0..<picker.subviews.count {
+            if i == 1 {
+                let selectionIndicator = picker.subviews[i]
+                let componentWidth = 250.0
+                let rowHeight = picker.rowSize(forComponent: .zero).height
+                selectionIndicator.layer.borderWidth = 3
+                selectionIndicator.layer.cornerRadius = 17
+                selectionIndicator.translatesAutoresizingMaskIntoConstraints = false
+                selectionIndicator.widthAnchor.constraint(equalToConstant: componentWidth)
+                    .isActive = true
+                selectionIndicator.centerYAnchor.constraint(equalTo: picker.centerYAnchor)
+                    .isActive = true
+                selectionIndicator.centerXAnchor.constraint(equalTo: picker.centerXAnchor)
+                    .isActive = true
+                selectionIndicator.heightAnchor.constraint(equalToConstant: rowHeight)
+                    .isActive = true
+                
+                picker.subviews[i].layer.borderColor = #colorLiteral(red: 0.6352941176, green: 0.6705882353, blue: 0.9450980392, alpha: 1).cgColor //#A2ABF1
+            }
+        }
     }
 }
 

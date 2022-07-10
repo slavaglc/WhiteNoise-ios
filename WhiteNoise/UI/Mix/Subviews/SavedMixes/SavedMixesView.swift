@@ -36,11 +36,19 @@ final class SavedMixesView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    public func didAppear() {
+        refreshSavedMixes()
+    }
+    
+    public func refreshSavedMixes() {
+        mixes = DatabaseManager.shared.getMixes()
+        mixesTableView.reloadData()
+    }
+    
     private func setPrimarySettings() {
         backgroundColor = .clear
         addSubview(mixesTableView)
-        mixes = DatabaseManager.shared.getMixes()
-        mixesTableView.reloadData()
+//        refreshSavedMixes()
     }
     
     private func setupConstraints() {
@@ -53,7 +61,7 @@ final class SavedMixesView: UIView {
     }
 }
 
-extension SavedMixesView: UITableViewDataSource ,UITableViewDelegate {
+extension SavedMixesView: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         mixes.count

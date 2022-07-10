@@ -53,6 +53,19 @@ final class AudioManager {
     var playbackViews: [PlaybackProtocol] = []
     
     
+    private init() {
+        defer {
+            do {
+                try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.mixWithOthers, .allowAirPlay])
+                print("Playback OK")
+                try AVAudioSession.sharedInstance().setActive(true)
+                print("Session is Active")
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
     func changePlaybackState(to state: PlaybackState, mixType: MixType, number: PlaybackViewDestination = .all) {
         self.mixType = mixType
         playbackState = state

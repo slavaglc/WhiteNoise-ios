@@ -18,21 +18,10 @@ final class MixView: UIView {
     
     private var viewState = ViewState.create {
         didSet {
-            switch viewState {
-            case .create:
-                savedMixesView.isHidden = true
-                filterTagCollectionView.isHidden = false
-                soundsCollectionView.isHidden = false
-            case .saved:
-                filterTagCollectionView.isHidden = true
-                soundsCollectionView.isHidden = true
-                savedMixesView.isHidden = false
-                savedMixesView.mixesTableView.reloadData()
-            }
-            
+            setSelectedView(viewState: viewState)
         }
     }
-    
+//    private let nc = NotificationCenter.default
     private let filterTags = FilterTag.getAllFilterTags()
     private var sounds = Sound.getAllSounds()
     private var filtredSounds = Array<Sound>()
@@ -139,12 +128,29 @@ final class MixView: UIView {
         customTabBar.translatesAutoresizingMaskIntoConstraints = false
         return customTabBar
     }()
-    // MARK: - Initialization
+    
+    // MARK: - Initialization and lifecycle
+    
     convenience init(viewController: MixViewDisplayLogic) {
         self.init()
         mixViewDisplayLogic = viewController
         setPrimarySettings()
     }
+    
+    public func didAppear() {
+        setCollectionViewSettings()
+        savedMixesView.didAppear()
+    }
+    
+//    @objc private func appMovedToForeground() {
+//        print("Returned to foreground...")
+//        print("Selected index:", segmentControl.selectedIndex)
+////        let segmentIndex = segmentControl.selectedIndex
+////        DispatchQueue.main.asyncAfter(deadline: .now()) {
+////            self.segmentControl.setIndex(index: segmentIndex)
+////        }
+//    }
+    
     // MARK: - Scroll methods
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         customTabBar.halfFadeOut()
@@ -173,7 +179,6 @@ final class MixView: UIView {
             viewController?.navigationController?.pushViewController(SettingsViewController(), animated: true)
     }
     
-    
     private func playButtonTapped() {
         customTabBar.togglePlaybackState()
         print("playButton")
@@ -194,7 +199,20 @@ final class MixView: UIView {
         viewController?.show(timerVC, sender: nil)
     }
     
-    
+    private func setSelectedView(viewState: ViewState) {
+        print("Current ViewState:", viewState)
+        switch viewState {
+        case .create:
+            savedMixesView.isHidden = true
+            filterTagCollectionView.isHidden = false
+            soundsCollectionView.isHidden = false
+        case .saved:
+            filterTagCollectionView.isHidden = true
+            soundsCollectionView.isHidden = true
+            savedMixesView.isHidden = false
+            savedMixesView.mixesTableView.reloadData()
+        }
+    }
     
     // MARK: - GUI Settings
     
@@ -202,7 +220,6 @@ final class MixView: UIView {
         let indexPath = IndexPath(item: 0, section: 0)
         collectionView(filterTagCollectionView, didSelectItemAt: indexPath)
         filterTagCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-        
     }
     
     public func setCollectionViewAppearence() {
@@ -218,6 +235,8 @@ final class MixView: UIView {
     }
     
     private func setPrimarySettings() {
+//        nc.addObserver(self, selector: #selector(appMovedToForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+        
         headerStackView.addArrangedSubview(upgradeButton)
         headerStackView.addArrangedSubview(settingsButton)
         addSubview(headerStackView)
@@ -416,9 +435,10 @@ extension MixView: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
     }
     
 }
-
+// MARK: - Custom Segment Control Methods
 extension MixView: CustomSegmentedControlDelegate {
     func change(to index: Int) {
+        
         switch index {
         case 0:
             viewState = .create

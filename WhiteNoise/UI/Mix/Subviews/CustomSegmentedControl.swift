@@ -8,7 +8,7 @@ protocol CustomSegmentedControlDelegate: AnyObject {
 
 final class CustomSegmentedControl: UIView {
     private var buttonTitles:[String]!
-    private var buttons: [UIButton]!
+    private var buttons: [UIButton] = []
     private var selectorView: UIView!
     
     var textColor:UIColor = .white
@@ -28,6 +28,13 @@ final class CustomSegmentedControl: UIView {
         super.draw(rect)
         self.backgroundColor = UIColor.clear
         updateView()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        if !buttons.isEmpty {
+        setIndex(index: self.selectedIndex)
+        }
     }
     
     func setButtonTitles(buttonTitles:[String]) {
