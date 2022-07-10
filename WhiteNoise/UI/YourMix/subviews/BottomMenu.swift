@@ -14,14 +14,15 @@ final class BottomMenu: UIView {
 //        case pause = "pause.fill"
 //    }
     
-    private var playingState = AudioManager.shared.playbackState {
-        didSet {
-            playButton.setImage(UIImage(systemName: playingState == .play ? "pause.fill" : "play.fill")?
-                .scalePreservingAspectRatio(targetSize: CGSize(width: 30, height: 30)), for: .normal)
-            playButton.setTitle(playingState == .play ? "Pause" : "Play", for: .normal)
-            AudioManager.shared.playbackState = playingState
-        }
-    }
+//    private var playingState = AudioManager.shared.playbackState
+//    {
+//       didSet {
+//           playButton.setImage(UIImage(systemName: playingState == .play ? "pause.fill" : "play.fill")?
+//               .scalePreservingAspectRatio(targetSize: CGSize(width: 30, height: 30)), for: .normal)
+//           playButton.setTitle(playingState == .play ? "Pause" : "Play", for: .normal)
+//           AudioManager.shared.playbackState = playingState
+//       }
+//   }
     
     private var actions: [BarButtonType: ()->()] = [:]
     
@@ -53,7 +54,8 @@ final class BottomMenu: UIView {
     
     private lazy var playButton: SVVerticalButton = {
         let button = SVVerticalButton(type: .system)
-        let image = UIImage(systemName: playingState == .play ? "pause.fill" : "play.fill" )?.scalePreservingAspectRatio(targetSize: CGSize(width: 30, height: 30)).withTintColor(#colorLiteral(red: 0.6352941176, green: 0.6705882353, blue: 0.9450980392, alpha: 1)) //#A2ABF1
+        let image = UIImage(systemName: AudioManager.shared.playbackState == .play ? "pause.fill" : "play.fill" )?.scalePreservingAspectRatio(targetSize: CGSize(width: 30, height: 30)).withTintColor(#colorLiteral(red: 0.6352941176, green: 0.6705882353, blue: 0.9450980392, alpha: 1)) //#A2ABF1
+        let title = AudioManager.shared.playbackState == .play ? "Pause" : "Play"
         button.setImage(image, for: .normal)
         button.setTitle("Play", for: .normal)
         button.addTarget(self, action: #selector(buttonPressed(button:)), for: .touchUpInside)
@@ -117,8 +119,10 @@ final class BottomMenu: UIView {
             actions[buttonType] = action
     }
     
-    public func tooglePlaybackState() {
-        playingState = playingState == .play ? .pause : .play
+    public func togglePlaybackState() {
+//        playingState = playingState == .play ? .pause : .play
+        let neededState: PlaybackState = AudioManager.shared.playbackState == .pause ? .play : .pause
+        AudioManager.shared.changePlaybackState(to: neededState, mixType: .current)
     }
     
     @objc private func buttonPressed(button: UIButton) {
@@ -126,6 +130,8 @@ final class BottomMenu: UIView {
     }
     
     private func setPrimarySettings() {
+        AudioManager.shared.yourMixPlaybackView = self
+        
         backgroundView.addSubview(stackView)
         addSubview(backgroundView)
         stackView.addArrangedSubview(clearButton)
@@ -170,4 +176,12 @@ final class BottomMenu: UIView {
     }
     
     
+}
+
+extension BottomMenu: PlaybackProtocol {
+    func changeViewPlaybackState(to state: PlaybackState, for number: PlaybackViewDestination) {
+        let image = UIImage(systemName: state == .pause ? "play.fill" : "pause.fill")?.scalePreservingAspectRatio(targetSize: CGSize(width: 30, height: 30)).withTintColor(#colorLiteral(red: 0.6352941176, green: 0.6705882353, blue: 0.9450980392, alpha: 1)) //#A2ABF1
+        playButton.setImage(image, for: .normal)
+        playButton.setTitle(state == .pause ? "Play" : "Pause", for: .normal)
+    }
 }

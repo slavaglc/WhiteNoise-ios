@@ -132,7 +132,7 @@ final class YourMixView: UIView {
            
     
     private func playSounds() {
-        bottomMenu.tooglePlaybackState()
+        bottomMenu.togglePlaybackState()
     }
     
     private func clearAllSounds() {

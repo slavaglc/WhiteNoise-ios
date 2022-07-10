@@ -50,6 +50,7 @@ final class AudioManager {
     var playersForSavedMix = [URL: AVAudioPlayer]()
     var duplicatePlayers = [AVAudioPlayer]()
     var mainPlaybackView: PlaybackProtocol?
+    var yourMixPlaybackView: PlaybackProtocol?
     var playbackViews: [PlaybackProtocol] = []
     
     
@@ -57,9 +58,7 @@ final class AudioManager {
         defer {
             do {
                 try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.mixWithOthers, .allowAirPlay])
-                print("Playback OK")
                 try AVAudioSession.sharedInstance().setActive(true)
-                print("Session is Active")
             } catch {
                 print(error)
             }
@@ -236,6 +235,7 @@ final class AudioManager {
 //            }
 //        }
         mainPlaybackView?.changeViewPlaybackState(to: state, for: .all)
+        yourMixPlaybackView?.changeViewPlaybackState(to: state, for: .all)
         playbackViews.forEach { playbackView in
                        playbackView.changeViewPlaybackState(to: state, for: number)
 //                       mainPlaybackView?.changeViewPlaybackState(to: state, for: nil)
