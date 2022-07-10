@@ -121,6 +121,7 @@ final class BottomMenu: UIView {
     
     public func togglePlaybackState() {
 //        playingState = playingState == .play ? .pause : .play
+        AudioManager.shared.pauseAllSounds(.saved)
         let neededState: PlaybackState = AudioManager.shared.playbackState == .pause ? .play : .pause
         AudioManager.shared.changePlaybackState(to: neededState, mixType: .current)
     }

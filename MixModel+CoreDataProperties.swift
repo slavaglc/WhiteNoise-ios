@@ -2,7 +2,7 @@
 //  MixModel+CoreDataProperties.swift
 //  WhiteNoise
 //
-//  Created by Вячеслав Макаров on 15.06.2022.
+//  Created by Вячеслав Макаров on 10.07.2022.
 //
 //
 
@@ -17,6 +17,7 @@ extension MixModel {
     }
 
     @NSManaged public var name: String?
+    @NSManaged public var minutes: Int16
     @NSManaged public var sounds: NSOrderedSet?
 
 }

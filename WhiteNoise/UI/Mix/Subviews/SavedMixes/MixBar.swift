@@ -76,6 +76,7 @@ final class MixBar: UIView {
         let image = UIImage(named: "playlist_options_icon")?.scalePreservingAspectRatio(targetSize: CGSize(width: 40, height: 40))
         button.setImage(image, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(showOptions), for: .touchUpInside)
         return button
     }()
     
@@ -109,6 +110,17 @@ final class MixBar: UIView {
         }
         AudioManager.shared.changePlaybackState(to: playbackState, mixType: .saved, number: .number(trackNumber))
         
+    }
+    
+    @objc func showOptions() {
+        let alertController = UIAlertController(title: "Mix options", message: "Choose options", preferredStyle: .actionSheet)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { action in
+            print("deleted")
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alertController.addAction(deleteAction)
+        alertController.addAction(cancelAction)
+        viewController?.present(alertController, animated: true)
     }
     
     public func setSoundsLayout() {

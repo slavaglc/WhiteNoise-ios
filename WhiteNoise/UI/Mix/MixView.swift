@@ -404,6 +404,9 @@ extension MixView: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
                 return }
             let sound = filtredSounds[indexPath.item]
             cell.isUserInteractionEnabled = false
+            AudioManager.shared.pauseAllSounds(.saved)
+//            AudioManager.shared.changeViewsState(to: .pause, mixType: .saved)
+            AudioManager.shared.changePlaybackState(to: .pause, mixType: .saved)
             AudioManager.shared.prepareToPlay(sound: sound, mixType: .current) {
                 cell.isUserInteractionEnabled = true
             }

@@ -212,6 +212,15 @@ final class AudioManager {
         player.setVolume(sound.volume, fadeDuration: 1)
     }
     
+    func changeViewsState(to state: PlaybackState, mixType: MixType, for number: PlaybackViewDestination = .all) {
+        mainPlaybackView?.changeViewPlaybackState(to: state, for: .all)
+        yourMixPlaybackView?.changeViewPlaybackState(to: state, for: .all)
+        playbackViews.forEach { playbackView in
+                       playbackView.changeViewPlaybackState(to: state, for: number)
+                   }
+        
+    }
+    
     private func smoothlyStop(sound: Sound, duration: Double, completion: @escaping ()->() = {}) {
         let soundFileNameURL = URL(fileURLWithPath: Bundle.main.path(forResource: sound.trackName, ofType: "wav")!)
         guard let player = mixType == .current ? players[soundFileNameURL]  : playersForSavedMix[soundFileNameURL] else { return completion() }
@@ -225,22 +234,6 @@ final class AudioManager {
         }
     }
     
-    private func changeViewsState(to state: PlaybackState, mixType: MixType, for number: PlaybackViewDestination = .all) {
-//        if mixType == .current {
-//            mainPlaybackView?.changeViewPlaybackState(to: state, for: nil)
-//        } else {
-//            playbackViews.forEach { playbackView in
-//                playbackView.changeViewPlaybackState(to: state, for: number)
-//                mainPlaybackView?.changeViewPlaybackState(to: state, for: nil)
-//            }
-//        }
-        mainPlaybackView?.changeViewPlaybackState(to: state, for: .all)
-        yourMixPlaybackView?.changeViewPlaybackState(to: state, for: .all)
-        playbackViews.forEach { playbackView in
-                       playbackView.changeViewPlaybackState(to: state, for: number)
-//                       mainPlaybackView?.changeViewPlaybackState(to: state, for: nil)
-                   }
-        
-    }
+
     
 }
