@@ -92,7 +92,7 @@ final class SoundCollectionViewCell: UICollectionViewCell, CAAnimationDelegate {
         
     }
     
-    
+
     public func setCellParameters(sound: Sound) {
         imageBackgroundView.isHidden = false
         let image = UIImage(named: sound.imageName)

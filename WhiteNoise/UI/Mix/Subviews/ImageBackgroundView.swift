@@ -17,6 +17,7 @@ final class ImageBackgroundView: UIView, CAAnimationDelegate {
     private var gradientColorSet: [[CGColor]] = [[#colorLiteral(red: 0.7882352941, green: 0.6352941176, blue: 0.9450980392, alpha: 1).cgColor, #colorLiteral(red: 0.4549019608, green: 0.2196078431, blue: 0.9568627451, alpha: 1).cgColor]]
     private var colorIndex: Int = 0
     
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         initialize()
@@ -40,7 +41,10 @@ final class ImageBackgroundView: UIView, CAAnimationDelegate {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        gradientLayer.frame = self.bounds
+        gradientLayer.frame = self.frame
+        gradientLayer.bounds = self.bounds
+//        gradientLayer.masksToBounds = true
+        
     }
     
     private func initialize() {
