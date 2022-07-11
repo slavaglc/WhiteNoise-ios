@@ -11,9 +11,8 @@ import UIKit
 
 final class SavedMixesView: UIView {
     
-    
-    
     private var mixes = Array<MixModel>()
+    private var customTabBar: CustomTabBar?
     
     lazy var mixesTableView: UITableView = {
         let tableView = UITableView()
@@ -23,7 +22,8 @@ final class SavedMixesView: UIView {
         tableView.separatorStyle = .none
         tableView.rowHeight = 150
         tableView.backgroundColor = .clear
-        
+        tableView.contentInset.bottom = 100
+        tableView.showsVerticalScrollIndicator = false
         tableView.register(SavedMixTableViewCell.self, forCellReuseIdentifier: SavedMixTableViewCell.nameOfClass)
         return tableView
     }()
@@ -38,7 +38,8 @@ final class SavedMixesView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func didAppear() {
+    public func refreshData(withTabBar customTabBar: CustomTabBar? = nil) {
+        self.customTabBar = customTabBar
         refreshSavedMixes()
     }
     
@@ -61,8 +62,25 @@ final class SavedMixesView: UIView {
         mixesTableView.heightAnchor.constraint(equalTo: heightAnchor)
             .isActive = true
     }
+    
+    // MARK: - Scroll methods
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        customTabBar?.halfFadeOut()
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        customTabBar?.halfFadeIn()
+    }
+    
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        customTabBar?.halfFadeOut()
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        customTabBar?.halfFadeIn()
+    }
 }
-
+// MARK: - TableView Methods
 extension SavedMixesView: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

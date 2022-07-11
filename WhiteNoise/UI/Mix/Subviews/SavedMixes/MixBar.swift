@@ -100,13 +100,13 @@ final class MixBar: UIView {
     
     @objc func playSounds() {
         var playbackState = AudioManager.shared.playbackState
-        let mixType = AudioManager.shared.mixType
+        
         
         AudioManager.shared.pauseAllSounds(.current)
         AudioManager.shared.pauseAllSounds(.saved)
         
         guard let trackNumber = trackNumber else { return }
-        let playingNumber = AudioManager.shared.playingNumber
+        
         AudioManager.shared.addSavedSoundsToPlayback(sounds: sounds)
         playbackState = playbackState == .pause ? .play : .pause
         if AudioManager.shared.mixType == .current {
@@ -118,13 +118,16 @@ final class MixBar: UIView {
     
     @objc func showOptions() {
         let alertController = UIAlertController(title: "Mix options", message: "Choose options", preferredStyle: .actionSheet)
+        
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [weak self] action in
             print("deleted")
             self?.delegate?.deleteMix()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
         alertController.addAction(deleteAction)
         alertController.addAction(cancelAction)
+      
         viewController?.present(alertController, animated: true)
     }
     
@@ -152,14 +155,8 @@ final class MixBar: UIView {
     }
     
     func setMixBarParameters(for sounds: [Sound]) {
-        
-//        sounds.forEach { sound in
-//            addSoundIcon(for: sound)
-//        }
         removeSoundIcons()
         self.sounds = sounds
-        
-//        layoutSubviews()
     }
     
     func removeSoundIcons() {

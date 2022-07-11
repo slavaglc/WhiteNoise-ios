@@ -15,6 +15,9 @@ final class MixView: UIView {
         case create = "Create", saved = "Saved"
     }
     
+    public var playingSounds: [Sound] {
+        sounds.filter {$0.isPlaying}
+    }
     
     private var viewState = ViewState.create {
         didSet {
@@ -25,14 +28,18 @@ final class MixView: UIView {
     private let filterTags = FilterTag.getAllFilterTags()
     private var sounds = Sound.getAllSounds()
     private var filtredSounds = Array<Sound>()
-    private var playingSounds: [Sound] {
-        sounds.filter {$0.isPlaying}
-    }
         
     private weak var mixViewDisplayLogic: MixViewDisplayLogic!
     
     
 //        MARK: - UI Elements
+    
+    lazy var customTabBar: CustomTabBar = {
+        let customTabBar = CustomTabBar()
+        customTabBar.translatesAutoresizingMaskIntoConstraints = false
+        return customTabBar
+    }()
+    
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -102,6 +109,7 @@ final class MixView: UIView {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .clear
         collectionView.register(SoundCollectionViewCell.self, forCellWithReuseIdentifier: SoundCollectionViewCell.nameOfClass)
+        collectionView.showsVerticalScrollIndicator = false
         collectionView.allowsMultipleSelection = true
         return collectionView
     }()
@@ -123,11 +131,7 @@ final class MixView: UIView {
         return view
     }()
     
-    private lazy var customTabBar: CustomTabBar = {
-        let customTabBar = CustomTabBar()
-        customTabBar.translatesAutoresizingMaskIntoConstraints = false
-        return customTabBar
-    }()
+    
     
     // MARK: - Initialization and lifecycle
     
@@ -137,9 +141,9 @@ final class MixView: UIView {
         setPrimarySettings()
     }
     
-    public func didAppear() {
+    public func refreshData() {
         setCollectionViewSettings()
-        savedMixesView.didAppear()
+        savedMixesView.refreshData(withTabBar: customTabBar)
     }
     
 //    @objc private func appMovedToForeground() {
