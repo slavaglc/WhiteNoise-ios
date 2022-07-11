@@ -11,6 +11,8 @@ import UIKit
 
 final class SavedMixesView: UIView {
     
+    
+    
     private var mixes = Array<MixModel>()
     
     lazy var mixesTableView: UITableView = {
@@ -70,14 +72,10 @@ extension SavedMixesView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SavedMixTableViewCell.nameOfClass, for: indexPath) as? SavedMixTableViewCell else { return UITableViewCell() }
         cell.setCellParameters(mix: mixes[indexPath.row], trackNumber: indexPath.row)
+        cell.delegate = self
         return cell
     }
-    
-//    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        guard let cell = cell as? SavedMixTableViewCell else { return }
-//        cell.refreshCell()
-//        print("visible rows:", indexPath.row)
-//    }
+
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let cell = cell as? SavedMixTableViewCell else { return }
@@ -85,4 +83,21 @@ extension SavedMixesView: UITableViewDataSource, UITableViewDelegate {
     }
     
 }
+
+extension SavedMixesView: SavedMixTableViewCellDelegate {
+    func delete(at cell: SavedMixTableViewCell) {
+        guard let indexPath = mixesTableView.indexPath(for: cell) else { return }
+        
+        mixesTableView.performBatchUpdates {
+            mixesTableView.deleteRows(at: [indexPath], with: .fade)
+            DatabaseManager.shared.delete(mixModel: mixes[indexPath.row]) {
+                mixes.remove(at: indexPath.row)
+            }
+        }
+        
+    }
+    
+    
+}
+
 

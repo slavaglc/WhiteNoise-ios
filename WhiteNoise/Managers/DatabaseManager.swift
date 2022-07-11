@@ -77,6 +77,20 @@ final class DatabaseManager {
         return []
     }
     
+    func delete(mixModel: MixModel, completion: ()->() = {}) {
+             do {
+                 mixModel.sounds?.forEach { soundModel in
+                     guard let soundModel = soundModel as? SoundModel else { return }
+                     context.delete(soundModel)
+                 }
+                 context.delete(mixModel)
+                 try context.save()
+                 completion()
+             } catch(let error) {
+                 print(error.localizedDescription)
+             }
+         }
+    
     
     
     private func createSoundModels(sounds: [Sound], for mix: MixModel) {

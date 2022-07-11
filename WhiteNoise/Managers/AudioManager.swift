@@ -213,8 +213,10 @@ final class AudioManager {
     }
     
     func changeViewsState(to state: PlaybackState, mixType: MixType, for number: PlaybackViewDestination = .all) {
+        
         mainPlaybackView?.changeViewPlaybackState(to: state, for: .all)
         yourMixPlaybackView?.changeViewPlaybackState(to: state, for: .all)
+        
         playbackViews.forEach { playbackView in
                        playbackView.changeViewPlaybackState(to: state, for: number)
                    }

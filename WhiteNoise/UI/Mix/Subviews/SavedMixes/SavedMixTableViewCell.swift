@@ -8,10 +8,15 @@
 import UIKit
 
 
+protocol SavedMixTableViewCellDelegate {
+    func delete(at cell: SavedMixTableViewCell)
+}
+
 final class SavedMixTableViewCell: UITableViewCell {
     
     
     var trackNumber: Int?
+    var delegate: SavedMixTableViewCellDelegate?
     
     private lazy var mixBar: MixBar = {
         let mixBar = MixBar()
@@ -57,6 +62,7 @@ final class SavedMixTableViewCell: UITableViewCell {
         mixBar.setMixBarParameters(for: sounds)
         mixBar.layoutSubviews()
         mixBar.trackNumber = trackNumber
+        mixBar.delegate = self
     }
     
     private func setPrimarySettings() {
@@ -86,4 +92,10 @@ final class SavedMixTableViewCell: UITableViewCell {
             .isActive = true
     }
     
+}
+
+extension SavedMixTableViewCell: MixBarDelegate {
+    func deleteMix() {
+        delegate?.delete(at: self)
+    }
 }

@@ -8,6 +8,11 @@
 import UIKit
 
 
+protocol MixBarDelegate {
+    func deleteMix()
+}
+
+
 final class MixBar: UIView {
     
     
@@ -22,9 +27,8 @@ final class MixBar: UIView {
 //    }
     
     var playbackState = AudioManager.shared.playbackState
-    
-    
     var trackNumber: Int?
+    var delegate: MixBarDelegate?
     
     private var sounds = Array<Sound>()
     
@@ -114,8 +118,9 @@ final class MixBar: UIView {
     
     @objc func showOptions() {
         let alertController = UIAlertController(title: "Mix options", message: "Choose options", preferredStyle: .actionSheet)
-        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { action in
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [weak self] action in
             print("deleted")
+            self?.delegate?.deleteMix()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         alertController.addAction(deleteAction)
