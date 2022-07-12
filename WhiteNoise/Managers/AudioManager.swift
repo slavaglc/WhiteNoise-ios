@@ -53,6 +53,7 @@ final class AudioManager {
     var yourMixPlaybackView: PlaybackProtocol?
     var playbackViews: [PlaybackProtocol] = []
     private var counter: Int16 = 0
+    private var finishSeconds: Int16 = 0
     private var timerIsStarted = false
     
     private init() {
@@ -225,9 +226,10 @@ final class AudioManager {
     }
     
     func setTimer(to finishSeconds: Int16) {
+        self.finishSeconds = finishSeconds
         let timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] (t) in
             self?.counter += 1
-            guard let counter = self?.counter else { t.invalidate(); return }
+            guard let counter = self?.counter, let finishSeconds = self?.finishSeconds else { t.invalidate(); return }
             if counter < finishSeconds {
                 print("time \(counter)")
             } else {

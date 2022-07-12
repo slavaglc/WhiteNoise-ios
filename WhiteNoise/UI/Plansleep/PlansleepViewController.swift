@@ -22,4 +22,8 @@ final class PlansleepViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         mainView.viewDidAppear(animated)
     }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 }

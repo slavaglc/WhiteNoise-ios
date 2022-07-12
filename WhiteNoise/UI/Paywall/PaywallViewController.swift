@@ -22,4 +22,8 @@ class PaywallViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         paywallView.viewDidAppear(animated)
     }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 }

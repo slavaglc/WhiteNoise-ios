@@ -140,20 +140,20 @@ class PaywallView: UIView {
     func viewDidAppear(_ animated: Bool) {
         removeAllViewsFromNavigation()
         
-        viewController?.navigationController?.navigationBar.topItem?.setHidesBackButton(true, animated: false)
-        
-        // closeBtn
-        NSLayoutConstraint.activate([
-            closeBtn.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: -32),
-            closeBtn.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            closeBtn.widthAnchor.constraint(equalToConstant: 40),
-            closeBtn.heightAnchor.constraint(equalToConstant: 40)
-        ])
         
         subSelect = SubSelect.YEAR
     }
     
     private func setUpConstraints() {
+        // closeBtn
+        let topPadding = 10.0
+        NSLayoutConstraint.activate([
+            closeBtn.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: topPadding),
+            closeBtn.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            closeBtn.widthAnchor.constraint(equalToConstant: 40),
+            closeBtn.heightAnchor.constraint(equalToConstant: 40)
+        ])
+        
         // backgroundImage
         NSLayoutConstraint.activate([
             backgroundImage.leadingAnchor.constraint(equalTo: leadingAnchor),

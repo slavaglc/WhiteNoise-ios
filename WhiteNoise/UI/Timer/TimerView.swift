@@ -85,6 +85,9 @@ final class TimerView: UIView {
         let row = picker.selectedRow(inComponent: .zero)
         let remainMinutes = minutes[row] * 60
         AudioManager.shared.setTimer(to: remainMinutes)
+        print("Minutes to set:", minutes[row])
+        print("Seconds to set:", remainMinutes)
+        timerViewController?.closeDisplay()
     }
     
     @objc func closeDisplay() {

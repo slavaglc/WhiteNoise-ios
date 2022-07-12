@@ -47,7 +47,7 @@ class UIPageIndicatorView: UIView {
         if selectedItem == 0 {
             // view2
             NSLayoutConstraint.activate([
-                view2.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0),
+                view2.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
                 view2.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
                 view2.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
                 view2.widthAnchor.constraint(equalToConstant: 8)
@@ -55,15 +55,15 @@ class UIPageIndicatorView: UIView {
             
             // view1
             NSLayoutConstraint.activate([
-                view1.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0),
+                view1.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
                 view1.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
                 view1.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
-                view1.rightAnchor.constraint(equalTo: view2.leftAnchor, constant: -8)
+                view1.trailingAnchor.constraint(equalTo: view2.leadingAnchor, constant: -8)
             ])
         } else {
             // view1
             NSLayoutConstraint.activate([
-                view1.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0),
+                view1.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
                 view1.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
                 view1.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
                 view1.widthAnchor.constraint(equalToConstant: 8)
@@ -71,10 +71,10 @@ class UIPageIndicatorView: UIView {
             
             // view2
             NSLayoutConstraint.activate([
-                view2.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0),
+                view2.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
                 view2.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
                 view2.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
-                view2.leftAnchor.constraint(equalTo: view1.rightAnchor, constant: -8)
+                view2.leadingAnchor.constraint(equalTo: view1.trailingAnchor, constant: 8)
             ])
         }
     }

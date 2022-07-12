@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "Icon-40.png",
+      "filename" : "Icon-20@2x.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "20x20"
@@ -13,28 +13,46 @@
       "size" : "20x20"
     },
     {
-      "filename" : "Icon-29@2x.png",
+      "filename" : "Icon-29.png",
+      "idiom" : "iphone",
+      "scale" : "1x",
+      "size" : "29x29"
+    },
+    {
+      "filename" : "AppleWatch-Icon-29@2x.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "29x29"
     },
     {
-      "filename" : "Icon-29@3x.png",
+      "filename" : "AppleWatch-Icon-29@3x.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "29x29"
     },
     {
-      "filename" : "Icon-40@2x.png",
+      "filename" : "AppleWatch-Icon-40@2x.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
-      "filename" : "Icon-60@2x-1.png",
+      "filename" : "Icon-40@3x.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "40x40"
+    },
+    {
+      "filename" : "Icon-57.png",
+      "idiom" : "iphone",
+      "scale" : "1x",
+      "size" : "57x57"
+    },
+    {
+      "filename" : "Icon-57@2x.png",
+      "idiom" : "iphone",
+      "scale" : "2x",
+      "size" : "57x57"
     },
     {
       "filename" : "Icon-60@2x.png",

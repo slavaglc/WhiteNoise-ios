@@ -189,9 +189,10 @@ class PlansleepView: UIView {
     }
     
     private func setUpConstraint() {
+        let topPadding = 10.0
         // label
         NSLayoutConstraint.activate([
-            label.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: -32),
+            label.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: topPadding),
             label.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 16),
             label.widthAnchor.constraint(equalToConstant: 200),
             label.heightAnchor.constraint(equalToConstant: 40)
@@ -207,7 +208,7 @@ class PlansleepView: UIView {
         
         // indicator
         NSLayoutConstraint.activate([
-            indicator.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -16),
+            indicator.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             indicator.topAnchor.constraint(equalTo: label.centerYAnchor, constant: -0),
             indicator.widthAnchor.constraint(equalToConstant: 40),
             indicator.heightAnchor.constraint(equalToConstant: 8)
@@ -223,7 +224,7 @@ class PlansleepView: UIView {
         
         // labelForPicker
         NSLayoutConstraint.activate([
-            labelForPicker.leftAnchor.constraint(equalTo: picker.safeAreaLayoutGuide.leftAnchor),
+            labelForPicker.leadingAnchor.constraint(equalTo: picker.safeAreaLayoutGuide.leadingAnchor),
             labelForPicker.topAnchor.constraint(equalTo: picker.topAnchor),
             labelForPicker.widthAnchor.constraint(equalTo: picker.widthAnchor),
             labelForPicker.bottomAnchor.constraint(equalTo: picker.bottomAnchor)
@@ -232,7 +233,7 @@ class PlansleepView: UIView {
         // skip button
         NSLayoutConstraint.activate([
             skipButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -8),
-            skipButton.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 16),
+            skipButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
             skipButton.widthAnchor.constraint(equalToConstant: 90),
             skipButton.heightAnchor.constraint(equalToConstant: 60)
         ])
@@ -240,8 +241,8 @@ class PlansleepView: UIView {
         // next button
         NSLayoutConstraint.activate([
             nextButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -8),
-            nextButton.leftAnchor.constraint(equalTo: skipButton.rightAnchor, constant: 16),
-            nextButton.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -16),
+            nextButton.leadingAnchor.constraint(equalTo: skipButton.trailingAnchor, constant: 16),
+            nextButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             nextButton.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
