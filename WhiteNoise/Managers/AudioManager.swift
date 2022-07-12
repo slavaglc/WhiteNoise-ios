@@ -52,7 +52,8 @@ final class AudioManager {
     var mainPlaybackView: PlaybackProtocol?
     var yourMixPlaybackView: PlaybackProtocol?
     var playbackViews: [PlaybackProtocol] = []
-    
+    private var counter: Int16 = 0
+    private var timerIsStarted = false
     
     private init() {
         defer {
@@ -191,10 +192,9 @@ final class AudioManager {
         }
         players.removeAll()
         } else {
-            playersForSavedMix.forEach { playerDict in
-                playerDict.value.stop()
-            }
             
+            playersForSavedMix.forEach { playerDict in
+                playerDict.value.stop()}
             playersForSavedMix.removeAll()
         }
     }
@@ -204,6 +204,7 @@ final class AudioManager {
         sound.isPlaying =  mixType == .current ? false : sound.isPlaying
         smoothlyStop(sound: sound, duration: 0.7, completion: completion)
     }
+    
     
     
     func setVolume(for sound: Sound) {
@@ -221,6 +222,33 @@ final class AudioManager {
                        playbackView.changeViewPlaybackState(to: state, for: number)
                    }
         
+    }
+    
+    func setTimer(to finishSeconds: Int16) {
+        let timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] (t) in
+            self?.counter += 1
+            guard let counter = self?.counter else { t.invalidate(); return }
+            if counter < finishSeconds {
+                print("time \(counter)")
+            } else {
+                guard let mixType = self?.mixType else { return }
+                self?.changePlaybackState(to: .pause, mixType: mixType)
+                self?.counter = .zero
+                self?.timerIsStarted = false
+                t.invalidate()
+            }
+        }
+        
+        
+        if !timerIsStarted {
+            timerIsStarted = true
+            timer.fire()
+        } else {
+            timer.invalidate()
+            timerIsStarted = true
+            counter = .zero
+            timer.fire()
+        }
     }
     
     private func smoothlyStop(sound: Sound, duration: Double, completion: @escaping ()->() = {}) {

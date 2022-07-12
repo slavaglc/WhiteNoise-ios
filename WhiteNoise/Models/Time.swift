@@ -11,8 +11,8 @@ struct Time: Codable {
     let hour: Int
     let minute: Int
     
-    static func getAllMinutes() -> [Int] {
-        var minutes = [Int]()
+    static func getAllMinutes() -> [Int16] {
+        var minutes = [Int16]()
         (1...60).forEach { number in
             minutes.append(number)
         }

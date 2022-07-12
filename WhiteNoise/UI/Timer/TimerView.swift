@@ -11,9 +11,10 @@ import UIKit
 final class TimerView: UIView {
     
    
-    private weak var timerViewController: TimerViewController?
-    
     let minutesString = Time.getAllMinutesString()
+    let minutes = Time.getAllMinutes()
+    
+    private weak var timerViewController: TimerViewController?
     
     private lazy var headerStackView: UIStackView = {
         let stackView = UIStackView()
@@ -60,6 +61,7 @@ final class TimerView: UIView {
         button.tintColor = #colorLiteral(red: 0.862745098, green: 0.8784313725, blue: 1, alpha: 1) //#DCE0FF
         button.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 18)
         button.layer.cornerRadius = 17
+        button.addTarget(self, action: #selector(setTimerButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -79,9 +81,16 @@ final class TimerView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    @objc func setTimerButtonTapped() {
+        let row = picker.selectedRow(inComponent: .zero)
+        let remainMinutes = minutes[row] * 60
+        AudioManager.shared.setTimer(to: remainMinutes)
+    }
+    
     @objc func closeDisplay() {
         timerViewController?.closeDisplay()
     }
+    
     
     public func didLayoutSubviews() {
        setSelectionIndicator()
