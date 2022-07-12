@@ -63,8 +63,8 @@ final class MixViewController: UIViewController {
         let sounds = mainView.playingSounds
         DatabaseManager.shared.save(mixName: name, sounds: sounds) { success, error in
             if success {
-                alertController.close()
                 mainView.refreshData()
+                alertController.close()
             } else if let error = error {
                 print(error.localizedDescription)
             }

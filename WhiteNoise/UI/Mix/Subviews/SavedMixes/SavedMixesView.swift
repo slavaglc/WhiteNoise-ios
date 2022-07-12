@@ -46,6 +46,7 @@ final class SavedMixesView: UIView {
     public func refreshSavedMixes() {
         mixes = DatabaseManager.shared.getMixes()
         mixesTableView.reloadData()
+        mixesTableView.layoutSubviews()
     }
     
     private func setPrimarySettings() {

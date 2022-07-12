@@ -103,8 +103,6 @@ final class YourMixView: UIView {
     private func denySaving(button: UIButton, alertController: AdvancedAlertViewController) {
         let mixes = DatabaseManager.shared.getMixes()
         print("mixes:", mixes)
-        let soundModels = mixes.last?.sounds?.count
-        print("mixesSounds:", mixes.last?.sounds?.count)
         let sounds = DatabaseManager.shared.getSounds(from: mixes.last!)
         print("sounds:", sounds.first!.name)  //temporary
         alertController.close()

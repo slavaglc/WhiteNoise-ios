@@ -126,8 +126,8 @@
             filePath = "WhiteNoise/UI/YourMix/YourMixView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
             landmarkName = "setPrimarySettings()"
             landmarkType = "7">
          </BreakpointContent>
