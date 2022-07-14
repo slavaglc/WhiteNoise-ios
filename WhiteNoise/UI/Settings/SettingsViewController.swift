@@ -7,7 +7,8 @@
 
 import UIKit
 
-class SettingsViewController: CustomUIViewController {
+
+final class SettingsViewController: CustomUIViewController {
     private lazy var settingsView: SettingsView = {
         let view = SettingsView()
         view.backgroundColor = .fromNormalRgb(red: 11, green: 16, blue: 51)

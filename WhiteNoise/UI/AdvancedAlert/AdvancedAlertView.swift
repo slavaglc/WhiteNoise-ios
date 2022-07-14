@@ -191,12 +191,12 @@ final class AdvancedAlertView: UIScrollView {
     }
     
     private func setBlurEffect() {
-        let blurEffect = UIBlurEffect(style: .dark)
+        let blurEffect = UIBlurEffect(style: .systemMaterialDark)
         let blurEffectView = CustomVisualEffectView(effect: blurEffect, intensity: 0.1)
         
         blurEffectView.frame = bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        insertSubview(blurEffectView, at: 0)
+        insertSubview(blurEffectView, at: .zero)
     }
     
     private func setupElements() {

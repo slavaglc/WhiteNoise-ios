@@ -7,7 +7,8 @@
 
 import UIKit
 
-class PaywallViewController: UIViewController {
+
+final class PaywallViewController: UIViewController {
     private lazy var paywallView: PaywallView = {
         let view = PaywallView()
         view.backgroundColor = .fromNormalRgb(red: 11, green: 16, blue: 51)

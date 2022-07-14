@@ -7,7 +7,8 @@
 
 import UIKit
 
-class PaywallView: UIView {
+
+final class PaywallView: UIView {
     private enum SubSelect {
         case YEAR
         case MONTH
@@ -42,7 +43,7 @@ class PaywallView: UIView {
     }()
     
     private lazy var subButton: UIButton = {
-        let view = UIButton()
+        let view = UIButton(type: .system)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .fromNormalRgb(red: 90, green: 107, blue: 255)
         view.layer.cornerRadius = 16
@@ -55,7 +56,7 @@ class PaywallView: UIView {
     }()
     
     private lazy var sub1Button: UIButton = {
-        let view = UIButton()
+        let view = UIButton(type: .system)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .fromNormalRgb(red: 201, green: 162, blue: 241)
         view.layer.cornerRadius = 16
@@ -72,7 +73,7 @@ class PaywallView: UIView {
     }()
     
     private lazy var sub2Button: UIButton = {
-        let view = UIButton()
+        let view = UIButton(type: .system)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .fromNormalRgb(red: 201, green: 162, blue: 241)
         view.layer.cornerRadius = 16

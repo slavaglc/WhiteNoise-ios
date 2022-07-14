@@ -7,7 +7,8 @@
 
 import UIKit
 
-class SettingItemCell: UITableViewCell {
+
+final class SettingItemCell: UITableViewCell {
     private lazy var image: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false

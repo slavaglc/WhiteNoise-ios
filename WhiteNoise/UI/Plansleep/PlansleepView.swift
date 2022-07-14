@@ -103,7 +103,7 @@ class PlansleepView: UIView {
     
     // bottom skip button
     private lazy var skipButton: UIButton = {
-        let view = UIButton()
+        let view = UIButton(type: .system)
         view.tag = Tags.buttonSkip
         view.translatesAutoresizingMaskIntoConstraints = false
         view.setTitle("Skip", for: .normal)
@@ -116,7 +116,7 @@ class PlansleepView: UIView {
     
     // bottom next button
     private lazy var nextButton: UIButton = {
-        let view = UIButton()
+        let view = UIButton(type: .system)
         view.tag = Tags.buttonNext
         view.translatesAutoresizingMaskIntoConstraints = false
         view.setTitle("Next", for: .normal)

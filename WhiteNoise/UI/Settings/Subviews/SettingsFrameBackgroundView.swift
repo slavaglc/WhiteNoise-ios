@@ -7,7 +7,8 @@
 
 import UIKit
 
-class SettingsFrameBackgroundView: UIView {
+
+final class SettingsFrameBackgroundView: UIView {
     override func draw(_ rect: CGRect) {
         let path = UIBezierPath(ovalIn: rect)
         UIColor.green.setFill()

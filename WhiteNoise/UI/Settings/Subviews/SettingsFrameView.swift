@@ -7,7 +7,8 @@
 
 import UIKit
 
-class SettingsFrameView: UIView {
+
+final class SettingsFrameView: UIView {
     private lazy var background: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -64,7 +65,7 @@ class SettingsFrameView: UIView {
     }()
     
     private lazy var button: UIButton = {
-        let view = UIButton()
+        let view = UIButton(type: .system)
         view.tag = 0
         view.translatesAutoresizingMaskIntoConstraints = false
         view.setTitle("Try Free & Subscribe", for: .normal)
