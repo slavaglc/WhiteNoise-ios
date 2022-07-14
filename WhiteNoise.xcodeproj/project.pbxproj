@@ -59,6 +59,7 @@
 		F932A20B28590D5200AE0C48 /* SoundModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F932A20728590D5200AE0C48 /* SoundModel+CoreDataProperties.swift */; };
 		F932A20C28590D5200AE0C48 /* MixModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F932A20828590D5200AE0C48 /* MixModel+CoreDataClass.swift */; };
 		F932A20F285A6BCD00AE0C48 /* MixModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F932A20E285A6BCD00AE0C48 /* MixModel+CoreDataProperties.swift */; };
+		F95D5D652880A0DF0013BC92 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95D5D642880A0DF0013BC92 /* NotificationManager.swift */; };
 		F9688C0C28412ADF005542B0 /* YourMixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9688C0B28412ADF005542B0 /* YourMixView.swift */; };
 		F9688C0E28412AED005542B0 /* YourMixViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9688C0D28412AED005542B0 /* YourMixViewController.swift */; };
 		F9D780CD28761B6F00C34548 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D780CC28761B6F00C34548 /* TimerView.swift */; };
@@ -118,7 +119,7 @@
 		5A13588C280E8D0800DE431D /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
 		5A13588E280E8D1400DE431D /* PaywallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallViewController.swift; sourceTree = "<group>"; };
 		5A62AAE92811776A003667D2 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		5A62AAEB281177A0003667D2 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		5A62AAEB281177A0003667D2 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		5A62AAEE28118CF8003667D2 /* SettingsFrameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFrameView.swift; sourceTree = "<group>"; };
 		5A62AAF02811A8C6003667D2 /* SettingsFrameBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFrameBackgroundView.swift; sourceTree = "<group>"; };
 		5A8841B4280B4DA800A8291B /* WhiteNoise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhiteNoise.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -169,6 +170,7 @@
 		F932A20728590D5200AE0C48 /* SoundModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SoundModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F932A20828590D5200AE0C48 /* MixModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MixModel+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F932A20E285A6BCD00AE0C48 /* MixModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MixModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F95D5D642880A0DF0013BC92 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		F9688C0B28412ADF005542B0 /* YourMixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourMixView.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		F9688C0D28412AED005542B0 /* YourMixViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourMixViewController.swift; sourceTree = "<group>"; };
 		F9D780CC28761B6F00C34548 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 				5AB9A8AF280D82E9009895BC /* HapticManager.swift */,
 				F9EEF5642852737C00ED109F /* AudioManager.swift */,
 				F91327B82857C427006D0EF6 /* DatabaseManager.swift */,
+				F95D5D642880A0DF0013BC92 /* NotificationManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -717,6 +720,7 @@
 				F9DA4F8428436BF6008F703D /* VerticalButton.swift in Sources */,
 				5A62AAEF28118CF8003667D2 /* SettingsFrameView.swift in Sources */,
 				5AE64C9728130650007F5CED /* SettingItemCell.swift in Sources */,
+				F95D5D652880A0DF0013BC92 /* NotificationManager.swift in Sources */,
 				5A62AAEA2811776A003667D2 /* SettingsViewController.swift in Sources */,
 				5A62AAEC281177A0003667D2 /* SettingsView.swift in Sources */,
 				5AAB52D528135795003C53E3 /* CustomSegmentedControl.swift in Sources */,

@@ -132,6 +132,7 @@ class PlansleepView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        NotificationsManager.shared.setEnabled(true)
         
         // add all views
         addSubview(label)
@@ -153,12 +154,21 @@ class PlansleepView: UIView {
         removeAllViewsFromNavigation()
     }
     
+    func didLayoutSubviews() {
+        setSelectionIndicator()
+    }
+    
     @objc
     private func buttonDidTapped(sender: UIButton) {
         HapticManager.shared.notify(notificationType: .success)
         
         switch sender.tag {
         case Tags.buttonNext:
+            
+            let hour = picker.selectedRow(inComponent: .zero)
+            let minute = picker.selectedRow(inComponent: 1)
+            
+            
             picker.changeAnimationByAlpha()
             label2.changeAnimationByAlpha(change: {
                 self.viewState = .wakeUp
@@ -170,6 +180,8 @@ class PlansleepView: UIView {
                     sleep: Time(hour: lastTime[0], minute: lastTime[1]),
                     wakeup: Time(hour: picker.selectedRow(inComponent: 0), minute: picker.selectedRow(inComponent: 1))
                 )
+            
+            setReminder()
             viewController?.navigationController?.popViewController(animated: true)
             //viewController?.navigationController?.pushViewController(MixViewController(), animated: true)
             break
@@ -185,6 +197,15 @@ class PlansleepView: UIView {
             break
         default:
             break
+        }
+    }
+    
+    private func setReminder() {
+        if let sleepTime = StorageManager.shared.getSleepTime() {
+            let hour = sleepTime.hour
+            let minute = sleepTime.minute
+            NotificationsManager.shared.stop()
+            NotificationsManager.shared.start(title: "Are you getting ready to bed?", body: "White Noise will help you!", hour: hour, minute: minute)
         }
     }
     
@@ -217,7 +238,8 @@ class PlansleepView: UIView {
         // picker
         NSLayoutConstraint.activate([
             picker.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor),
-            picker.topAnchor.constraint(equalTo: label2.bottomAnchor),
+            picker.topAnchor.constraint(lessThanOrEqualTo: label2.bottomAnchor),
+            picker.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
             picker.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor),
             picker.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
         ])
@@ -246,6 +268,29 @@ class PlansleepView: UIView {
             nextButton.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
+    
+    private func setSelectionIndicator() {
+        for i in 0..<picker.subviews.count {
+            if i == 1 {
+                let selectionIndicator = picker.subviews[i]
+                let componentWidth = 250.0
+                let rowHeight = picker.rowSize(forComponent: .zero).height
+                selectionIndicator.layer.borderWidth = 3
+                selectionIndicator.layer.cornerRadius = 17
+                selectionIndicator.translatesAutoresizingMaskIntoConstraints = false
+                selectionIndicator.widthAnchor.constraint(equalToConstant: componentWidth)
+                    .isActive = true
+                selectionIndicator.centerYAnchor.constraint(equalTo: picker.centerYAnchor)
+                    .isActive = true
+                selectionIndicator.centerXAnchor.constraint(equalTo: picker.centerXAnchor)
+                    .isActive = true
+                selectionIndicator.heightAnchor.constraint(equalToConstant: rowHeight)
+                    .isActive = true
+                
+                picker.subviews[i].layer.borderColor = #colorLiteral(red: 0.6352941176, green: 0.6705882353, blue: 0.9450980392, alpha: 1).cgColor //#A2ABF1
+            }
+        }
+    }
 }
 
 // time picker delegate
@@ -264,7 +309,7 @@ extension PlansleepView: UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-        return 60.0 // item height
+        return 100.0 // item height
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {

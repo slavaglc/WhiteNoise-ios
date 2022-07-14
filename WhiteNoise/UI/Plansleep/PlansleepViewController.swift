@@ -20,7 +20,13 @@ final class PlansleepViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         mainView.viewDidAppear(animated)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        mainView.didLayoutSubviews()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

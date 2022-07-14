@@ -20,25 +20,41 @@ class StorageManager {
         return manager
     }()
     
-    // get sleep time
+    /// get sleep time
     func getSleepTime() -> Time? {
-        return UserDefaults.standard
-            .object(forKey: StorageKey.sleepTime) as! Time?
+        let decoder = JSONDecoder()
+       guard let jsonObject = UserDefaults.standard
+        .object(forKey: StorageKey.sleepTime) as? Data else { return nil }
+        do {
+        let decoded = try decoder.decode(Time.self, from: jsonObject)
+            return decoded
+        } catch {
+           print("DECODER ERROR")
+        }
+        return nil
     }
     
-    // get wakeup time
+    /// get wakeup time
     func getWakeUpTime() -> Time? {
-        return UserDefaults.standard
-            .object(forKey: StorageKey.wakeupTime) as! Time?
+        let decoder = JSONDecoder()
+       guard let jsonObject = UserDefaults.standard
+        .object(forKey: StorageKey.wakeupTime) as? Data else { return nil }
+        do {
+        let decoded = try decoder.decode(Time.self, from: jsonObject)
+            return decoded
+        } catch {
+           print("DECODER ERROR")
+        }
+        return nil
     }
     
-    // get app runs count
+    /// get app runs count
     func getRunsCount() -> Int {
         return UserDefaults.standard
             .integer(forKey: StorageKey.runsCount)
     }
     
-    // set sleep time
+    /// set sleep time
     func setTimes(sleep: Time, wakeup: Time) {
         let encoder = JSONEncoder()
         
@@ -55,7 +71,7 @@ class StorageManager {
         }
     }
     
-    // increase runs counter
+    /// increase runs counter
     func increaseRunsCount() {
         UserDefaults.standard
             .set(getRunsCount() + 1, forKey: StorageKey.runsCount)
