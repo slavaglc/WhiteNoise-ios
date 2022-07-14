@@ -46,7 +46,10 @@ final class SavedMixesView: UIView {
     public func refreshSavedMixes() {
         mixes = DatabaseManager.shared.getMixes()
         mixesTableView.reloadData()
-        mixesTableView.layoutSubviews()
+        mixesTableView.visibleCells.forEach { cell in
+            guard let cell = cell as? SavedMixTableViewCell else { return }
+            cell.refreshCell()
+        }
     }
     
     private func setPrimarySettings() {
@@ -91,15 +94,18 @@ extension SavedMixesView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SavedMixTableViewCell.nameOfClass, for: indexPath) as? SavedMixTableViewCell else { return UITableViewCell() }
         cell.setCellParameters(mix: mixes[indexPath.row], trackNumber: indexPath.row)
+        cell.refreshCell()
         cell.delegate = self
         return cell
     }
 
     
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let cell = cell as? SavedMixTableViewCell else { return }
         cell.refreshCell()
     }
+    
     
 }
 
