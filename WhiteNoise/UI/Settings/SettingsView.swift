@@ -32,8 +32,9 @@ final class SettingsView: CustomUIView {
         return view
     }()
     
-    private lazy var framez: SettingsFrameView = {
+    private lazy var settingsFrame: SettingsFrameView = {
         let view = SettingsFrameView(settingsView: self)
+        view.isHidden = true //temporary
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
@@ -62,7 +63,7 @@ final class SettingsView: CustomUIView {
         // add views
         addSubview(closeBtn)
         addSubview(label)
-        addSubview(framez)
+        addSubview(settingsFrame)
         addSubview(tableView)
         
         setUpConstraints()
@@ -79,7 +80,7 @@ final class SettingsView: CustomUIView {
 //        viewController?.navigationController?.navigationBar.barTintColor = .fromNormalRgb(red: 11, green: 16, blue: 51)
 //        viewController?.navigationController?.navigationBar.topItem?.setHidesBackButton(true, animated: false)
         
-        framez.viewDidAppear(animated)
+        settingsFrame.viewDidAppear(animated)
     }
     
     private func setUpConstraints() {
@@ -99,17 +100,18 @@ final class SettingsView: CustomUIView {
             label.heightAnchor.constraint(equalToConstant: 40)
         ])
         
-        // framez
+        // settingsFrame
         NSLayoutConstraint.activate([
-            framez.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
-            framez.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.9),
-            framez.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 10),
-            framez.heightAnchor.constraint(equalToConstant: 240),
+            settingsFrame.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
+            settingsFrame.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.9),
+            settingsFrame.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 10),
+            settingsFrame.heightAnchor.constraint(equalToConstant: 240),
         ])
         
         // tableView
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: framez.bottomAnchor, constant: 32),
+//            tableView.topAnchor.constraint(equalTo: settingsFrame.bottomAnchor, constant: 32), добавить после того, как внедрим подписку
+            tableView.topAnchor.constraint(equalTo: closeBtn.bottomAnchor, constant: 16.0), // Временно
             tableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)

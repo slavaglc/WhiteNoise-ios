@@ -72,6 +72,7 @@ final class MixView: UIView {
         button.backgroundColor = #colorLiteral(red: 0.662745098, green: 0.7058823529, blue: 1, alpha: 1)
             .withAlphaComponent(0.1)
         button.tintColor = #colorLiteral(red: 0.862745098, green: 0.8784313725, blue: 1, alpha: 1)
+        button.alpha = 0
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
