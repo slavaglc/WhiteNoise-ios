@@ -272,7 +272,7 @@ final class AdvancedAlertView: UIScrollView {
 extension AdvancedAlertView: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
 //        setContentOffset(CGPoint(x: 0, y: 300), animated: true)
-        return true
+        true
     }
 }
 

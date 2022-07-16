@@ -62,6 +62,8 @@
 		F95D5D652880A0DF0013BC92 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95D5D642880A0DF0013BC92 /* NotificationManager.swift */; };
 		F9688C0C28412ADF005542B0 /* YourMixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9688C0B28412ADF005542B0 /* YourMixView.swift */; };
 		F9688C0E28412AED005542B0 /* YourMixViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9688C0D28412AED005542B0 /* YourMixViewController.swift */; };
+		F9881BA228820DC500395F03 /* MixerSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9881BA128820DC500395F03 /* MixerSettingsView.swift */; };
+		F9881BA528820DF000395F03 /* MixerSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9881BA428820DF000395F03 /* MixerSettingsViewController.swift */; };
 		F9D780CD28761B6F00C34548 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D780CC28761B6F00C34548 /* TimerView.swift */; };
 		F9D780D028761BA100C34548 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D780CF28761BA100C34548 /* TimerViewController.swift */; };
 		F9DA4F7E284155C8008F703D /* YourMixTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA4F7D284155C8008F703D /* YourMixTableViewCell.swift */; };
@@ -173,6 +175,8 @@
 		F95D5D642880A0DF0013BC92 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		F9688C0B28412ADF005542B0 /* YourMixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourMixView.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		F9688C0D28412AED005542B0 /* YourMixViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourMixViewController.swift; sourceTree = "<group>"; };
+		F9881BA128820DC500395F03 /* MixerSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixerSettingsView.swift; sourceTree = "<group>"; };
+		F9881BA428820DF000395F03 /* MixerSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixerSettingsViewController.swift; sourceTree = "<group>"; };
 		F9D780CC28761B6F00C34548 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		F9D780CF28761BA100C34548 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		F9DA4F7D284155C8008F703D /* YourMixTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourMixTableViewCell.swift; sourceTree = "<group>"; };
@@ -369,6 +373,7 @@
 		5A8FB7CA280C5A3200D44CA6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				F9881BA328820DCB00395F03 /* MixerSettings */,
 				F9D780CE28761B7A00C34548 /* Timer */,
 				F9DA4F8728493C91008F703D /* AdvancedAlert */,
 				F9688C0A28412A80005542B0 /* YourMix */,
@@ -483,6 +488,15 @@
 				F9DA4F8328436BF6008F703D /* VerticalButton.swift */,
 			);
 			path = subviews;
+			sourceTree = "<group>";
+		};
+		F9881BA328820DCB00395F03 /* MixerSettings */ = {
+			isa = PBXGroup;
+			children = (
+				F9881BA128820DC500395F03 /* MixerSettingsView.swift */,
+				F9881BA428820DF000395F03 /* MixerSettingsViewController.swift */,
+			);
+			path = MixerSettings;
 			sourceTree = "<group>";
 		};
 		F9D780CE28761B7A00C34548 /* Timer */ = {
@@ -667,6 +681,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F91EF2DA284A85BC00CE84DC /* AdvancedTextField.swift in Sources */,
+				F9881BA228820DC500395F03 /* MixerSettingsView.swift in Sources */,
 				5AB9A8B0280D82E9009895BC /* HapticManager.swift in Sources */,
 				F9688C0C28412ADF005542B0 /* YourMixView.swift in Sources */,
 				5AAB52E32813EC3C003C53E3 /* CustomUIView.swift in Sources */,
@@ -724,6 +739,7 @@
 				5A62AAEA2811776A003667D2 /* SettingsViewController.swift in Sources */,
 				5A62AAEC281177A0003667D2 /* SettingsView.swift in Sources */,
 				5AAB52D528135795003C53E3 /* CustomSegmentedControl.swift in Sources */,
+				F9881BA528820DF000395F03 /* MixerSettingsViewController.swift in Sources */,
 				5AAB52D428135795003C53E3 /* FilterTagCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -862,7 +878,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = R2TF4J9L8G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WhiteNoise/Info.plist;
@@ -875,7 +891,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = kotleni.WhiteNoise;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -890,7 +906,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = R2TF4J9L8G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WhiteNoise/Info.plist;
@@ -903,7 +919,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = kotleni.WhiteNoise;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

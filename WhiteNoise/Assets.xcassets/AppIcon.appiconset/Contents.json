@@ -1,118 +1,73 @@
 {
   "images" : [
     {
-      "filename" : "Icon-20@2x.png",
+      "filename" : "Icon-20@2x Large.jpeg",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "20x20"
     },
     {
-      "filename" : "Icon-20@3x.png",
+      "filename" : "Icon-20@3x Large.jpeg",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "20x20"
     },
     {
-      "filename" : "Icon-29.png",
+      "filename" : "Icon-29 Large.jpeg",
       "idiom" : "iphone",
       "scale" : "1x",
       "size" : "29x29"
     },
     {
-      "filename" : "AppleWatch-Icon-29@2x.png",
+      "filename" : "Icon-29@2x Large.jpeg",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "29x29"
     },
     {
-      "filename" : "AppleWatch-Icon-29@3x.png",
+      "filename" : "Icon-29@3x Large.jpeg",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "29x29"
     },
     {
-      "filename" : "AppleWatch-Icon-40@2x.png",
+      "filename" : "Icon-40@2x Large.jpeg",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
-      "filename" : "Icon-40@3x.png",
+      "filename" : "Icon-40@3x Large.jpeg",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "40x40"
     },
     {
-      "filename" : "Icon-57.png",
+      "filename" : "Icon-57 Large.jpeg",
       "idiom" : "iphone",
       "scale" : "1x",
       "size" : "57x57"
     },
     {
-      "filename" : "Icon-57@2x.png",
+      "filename" : "Icon-57@2x Large.jpeg",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "57x57"
     },
     {
-      "filename" : "Icon-60@2x.png",
+      "filename" : "Icon-60@2x Large.jpeg",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "60x60"
     },
     {
-      "filename" : "Icon-60@3x.png",
+      "filename" : "Icon-60@3x Large.jpeg",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "60x60"
     },
     {
-      "idiom" : "ipad",
-      "scale" : "1x",
-      "size" : "20x20"
-    },
-    {
-      "idiom" : "ipad",
-      "scale" : "2x",
-      "size" : "20x20"
-    },
-    {
-      "idiom" : "ipad",
-      "scale" : "1x",
-      "size" : "29x29"
-    },
-    {
-      "idiom" : "ipad",
-      "scale" : "2x",
-      "size" : "29x29"
-    },
-    {
-      "idiom" : "ipad",
-      "scale" : "1x",
-      "size" : "40x40"
-    },
-    {
-      "idiom" : "ipad",
-      "scale" : "2x",
-      "size" : "40x40"
-    },
-    {
-      "idiom" : "ipad",
-      "scale" : "1x",
-      "size" : "76x76"
-    },
-    {
-      "idiom" : "ipad",
-      "scale" : "2x",
-      "size" : "76x76"
-    },
-    {
-      "idiom" : "ipad",
-      "scale" : "2x",
-      "size" : "83.5x83.5"
-    },
-    {
-      "filename" : "iTunesArtwork-1024.png",
+      "filename" : "iTunesArtwork-1024 Large.jpeg",
       "idiom" : "ios-marketing",
       "scale" : "1x",
       "size" : "1024x1024"
