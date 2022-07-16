@@ -19,9 +19,9 @@ final class SettingItemCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
         self.backgroundColor = .clear
         self.addSubview(self.image)
+        setSelectionStyle()
     }
     
     required init?(coder: NSCoder) {
@@ -36,5 +36,11 @@ final class SettingItemCell: UITableViewCell {
         ])
         
         image.image = UIImage(named: imageName)
+    }
+    
+    private func setSelectionStyle() {
+        let selectionColor = UIView() as UIView
+        selectionColor.backgroundColor = UIColor.fromNormalRgb(red: 22, green: 29, blue: 83)
+        selectedBackgroundView = selectionColor
     }
 }

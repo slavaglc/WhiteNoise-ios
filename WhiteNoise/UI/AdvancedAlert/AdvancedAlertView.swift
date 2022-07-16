@@ -13,9 +13,17 @@ enum AlertElementType {
     case title(text: String)
     case image(imageName: String)
     case label(text: String)
-    case textField(placeholder: String)
+    case textField(placeholder: String, text: String = "",
+                   changedValueAction: (_ textField: UITextField, _ advancedAlertVC: AdvancedAlertViewController)->() = {_,_ in },
+                   beginEditingAction: (_ textField: UITextField, _ advancedAlertVC: AdvancedAlertViewController)->() = {_,_ in },
+                   endEditingAction: (_ textField: UITextField, _ advancedAlertVC: AdvancedAlertViewController)->() = {_,_ in }
+                    )
     case closeButton
     case button(title: String, action: (_ button: UIButton, _ alertController: AdvancedAlertViewController)->())
+    case action(action: (_ alertController: AdvancedAlertViewController)->())
+    case willSetupAction(action: (_ alertController: AdvancedAlertViewController)->())
+    case didSetupAction(action: (_ alertController: AdvancedAlertViewController)->())
+    case didAppearAction(action: (_ alertController: AdvancedAlertViewController)->())
 }
 
 final class AdvancedAlertView: UIScrollView {
@@ -24,7 +32,13 @@ final class AdvancedAlertView: UIScrollView {
     public var elements: [AlertElementType]?
     public var beforeCloseAction = {}
     public var textFields = Array<UITextField>()
+    public var buttons = Array<UIButton>()
+    private var beginEditingTFActions = Array<(_ textField: UITextField, _ alertController: AdvancedAlertViewController)->()>()
+    private var endEditingTFActions = Array<(_ textField: UITextField, _ alertController: AdvancedAlertViewController)->()>()
+    private var changedValueTFActions = Array<(_ textField: UITextField, _ alertController: AdvancedAlertViewController)->()>()
+    
     private weak var advancedAlertVC: AdvancedAlertViewController?
+    
     
     
 //    MARK: - UI-Elements
@@ -84,7 +98,17 @@ final class AdvancedAlertView: UIScrollView {
         setupConstraints()
     }
 //  MARK: - Actions
-   
+    
+    public func didAppear() {
+        elements?.forEach{ element in
+            if case .didAppearAction(action: let action) = element {
+                guard let advancedAlertVC = advancedAlertVC else { return }
+                action(advancedAlertVC)
+            }
+        }
+    }
+    
+    
     public func close() {
         closeDisplay()
     }
@@ -96,7 +120,13 @@ final class AdvancedAlertView: UIScrollView {
         }
     }
     
-    @objc func keyboardWillShow(notification:NSNotification){
+    @objc private func textFieldValueChanged(textField: UITextField) {
+        guard let advancedAlertVC = advancedAlertVC else { return }
+        guard changedValueTFActions.indices.contains(textField.tag) else { return }
+        changedValueTFActions[textField.tag](textField, advancedAlertVC)
+    }
+    
+    @objc private func keyboardWillShow(notification:NSNotification){
         guard let userInfo = notification.userInfo else { return }
         var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
         keyboardFrame = convert(keyboardFrame, from: nil)
@@ -106,9 +136,27 @@ final class AdvancedAlertView: UIScrollView {
         contentSize = self.frame.size
     }
 
-    @objc func keyboardWillHide(notification:NSNotification) {
+    @objc private func keyboardWillHide(notification:NSNotification) {
         let contentInset:UIEdgeInsets = UIEdgeInsets.zero
         self.contentInset = contentInset
+    }
+    
+    private func performWillSetupAction() {
+        elements?.forEach { element in
+            if case .willSetupAction(let action) = element {
+                guard let advancedAlertVC = advancedAlertVC else { return }
+                action(advancedAlertVC)
+            }
+        }
+    }
+    
+    private func performDidSetupAction() {
+        elements?.forEach { element in
+            if case .didSetupAction(let action) = element {
+                guard let advancedAlertVC = advancedAlertVC else { return }
+                action(advancedAlertVC)
+            }
+        }
     }
     
     
@@ -203,6 +251,7 @@ final class AdvancedAlertView: UIScrollView {
         let spacerView =  UIView()
         spacerView.setContentHuggingPriority(.defaultLow, for: .horizontal)
         buttonsStackView.addArrangedSubview(spacerView)
+        performWillSetupAction()
         
         guard let elements = elements else { return }
         elements.forEach { element in
@@ -213,14 +262,21 @@ final class AdvancedAlertView: UIScrollView {
                 contentStackView.addArrangedSubview(getImageView(imageName: imageName))
             case .label(text: let text):
                 contentStackView.addArrangedSubview(getLabel(text: text))
-            case .textField(placeholder: let placeholder):
-                contentStackView.addArrangedSubview(getTextField(placeholder: placeholder))
+            case .textField(placeholder: let placeholder, text: let text, changedValueAction: let changedValueAction, beginEditingAction: let beginEditingAction, endEditingAction: let endEditingAction):
+                contentStackView.addArrangedSubview(getTextField(placeholder: placeholder, text: text, beginEditingAction: beginEditingAction, endEditingAction: endEditingAction, changedValueTFAction: changedValueAction))
             case .closeButton:
                 closeButton.isHidden = false
             case .button(title: let title, action: let action):
                 buttonsStackView.addArrangedSubview(getButton(withTitle: title, withAction: action))
+            case .action(action: let action):
+                guard let advancedAlertVC = advancedAlertVC else { break }
+                action(advancedAlertVC)
+            default:
+                break
             }
         }
+        
+        performDidSetupAction()
     }
     
     private func getButton(withTitle title: String, withAction passedAction: @escaping (_ button: UIButton, _ alertController: AdvancedAlertViewController)->() = {button , advancedAlertVC in }) -> UIButton {
@@ -233,6 +289,8 @@ final class AdvancedAlertView: UIScrollView {
         button.tintColor = #colorLiteral(red: 0.862745098, green: 0.8784313725, blue: 1, alpha: 1) //#DCE0FF
         button.setTitle(title, for: .normal)
         button.titleLabel?.font = UIFont(name: "Nunito", size: 25)
+        buttons.append(button)
+        button.tag = buttons.count - 1
 //        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }
@@ -245,17 +303,32 @@ final class AdvancedAlertView: UIScrollView {
         return label
     }
     
-    private func getTextField(placeholder: String) -> AdvancedTextField {
+    private func getTextField(placeholder: String, text: String, beginEditingAction:        @escaping
+                              (_ textField: UITextField, _ alertController: AdvancedAlertViewController)->() = {_,_ in },
+                              endEditingAction:
+        @escaping
+                              (_ textField: UITextField, _ alertController: AdvancedAlertViewController)->() = {_,_ in },
+                              changedValueTFAction:
+        @escaping
+                              (_ textField: UITextField, _ alertController: AdvancedAlertViewController)->() = {_,_ in }
+    ) -> AdvancedTextField {
         let textField = AdvancedTextField(borderStyle: .bottom(borderColor: #colorLiteral(red: 0.6352941176, green: 0.6705882353, blue: 0.9450980392, alpha: 1)))//#A2ABF1
         textField.delegate = self
         textField.placeholder = placeholder
+        textField.text = text
         textField.placeholderColor = #colorLiteral(red: 0.6352941176, green: 0.6705882353, blue: 0.9450980392, alpha: 1) //#A2ABF1
         textField.textColor = #colorLiteral(red: 0.862745098, green: 0.8784313725, blue: 1, alpha: 1) //#DCE0FF
         textField.font = UIFont(name: "Nunito-Bold", size: 18)
         textField.autocorrectionType = .no
         textField.heightAnchor.constraint(greaterThanOrEqualToConstant: 30)
             .isActive = true
+        textField.addTarget(self, action: #selector(textFieldValueChanged(textField:)), for: .editingChanged)
         textFields.append(textField)
+        textField.tag = textFields.count - 1
+        beginEditingTFActions.append(beginEditingAction)
+        endEditingTFActions.append(endEditingAction)
+        changedValueTFActions.append(changedValueTFAction)
+        
         return textField
     }
     
@@ -273,6 +346,26 @@ extension AdvancedAlertView: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
 //        setContentOffset(CGPoint(x: 0, y: 300), animated: true)
         true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        guard let advancedAlertVC = advancedAlertVC else { return }
+        guard !beginEditingTFActions.isEmpty else { return }
+        beginEditingTFActions[textField.tag](textField, advancedAlertVC)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        guard let advancedAlertVC = advancedAlertVC else { return }
+        guard !endEditingTFActions.isEmpty else { return }
+        endEditingTFActions[textField.tag](textField, advancedAlertVC)
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let maxLength: Int8 = 35
+        let currentString = (textField.text ?? "") as NSString
+        let newString = currentString.replacingCharacters(in: range, with: string)
+        
+        return newString.count <= maxLength
     }
 }
 

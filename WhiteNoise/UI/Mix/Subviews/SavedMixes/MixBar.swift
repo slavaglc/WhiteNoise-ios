@@ -10,6 +10,7 @@ import UIKit
 
 protocol MixBarDelegate {
     func deleteMix()
+    func showOptions(for mixModel: MixModel?)
 }
 
 
@@ -30,6 +31,7 @@ final class MixBar: UIView {
     var trackNumber: Int?
     var delegate: MixBarDelegate?
     
+    private var mixModel: MixModel?
     private var sounds = Array<Sound>()
     
     
@@ -92,6 +94,11 @@ final class MixBar: UIView {
         setupConstraints()
     }
     
+    convenience init(mixModel: MixModel) {
+        self.init()
+        self.mixModel = mixModel
+    }
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -117,18 +124,20 @@ final class MixBar: UIView {
     }
     
     @objc func showOptions() {
-        let alertController = UIAlertController(title: "Mix options", message: "Choose options", preferredStyle: .actionSheet)
+//        let alertController = UIAlertController(title: "Mix options", message: "Choose options", preferredStyle: .actionSheet)
+//
+//        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [weak self] action in
+//            print("deleted")
+//            self?.delegate?.deleteMix()
+//        }
+//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+//
+//        alertController.addAction(deleteAction)
+//        alertController.addAction(cancelAction)
+//
+//        viewController?.present(alertController, animated: true)
         
-        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [weak self] action in
-            print("deleted")
-            self?.delegate?.deleteMix()
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-        
-        alertController.addAction(deleteAction)
-        alertController.addAction(cancelAction)
-      
-        viewController?.present(alertController, animated: true)
+        delegate?.showOptions(for: mixModel)
     }
     
     public func setSoundsLayout() {
@@ -154,9 +163,10 @@ final class MixBar: UIView {
         
     }
     
-    func setMixBarParameters(for sounds: [Sound]) {
+    func setMixBarParameters(for sounds: [Sound], mixModel: MixModel) {
         removeSoundIcons()
         self.sounds = sounds
+        self.mixModel = mixModel
     }
     
     func removeSoundIcons() {

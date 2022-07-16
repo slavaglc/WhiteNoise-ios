@@ -18,4 +18,9 @@ extension UIViewController {
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
+    
+    func showAdvancedAlert(_ elements: [AlertElementType]) {
+        let alertVC = AdvancedAlertViewController(elements: elements)
+        self.present(alertVC, animated: false)
+    }
 }

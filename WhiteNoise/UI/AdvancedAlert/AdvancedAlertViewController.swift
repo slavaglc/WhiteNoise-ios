@@ -28,7 +28,11 @@ final class AdvancedAlertViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         advancedAlertView.alpha = 1
-        advancedAlertView.alertBackground.fadeInFromLeftSide()
+        advancedAlertView.alertBackground.fadeInFromLeftSide { [weak self] in
+            self?.advancedAlertView.didAppear()
+        }
+        
+        
     }
     
     public func close() {

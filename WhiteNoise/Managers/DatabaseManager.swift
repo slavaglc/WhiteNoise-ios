@@ -92,6 +92,14 @@ final class DatabaseManager {
              }
          }
     
+    func renameMix(for mixModel: MixModel, to newName: String) {
+        mixModel.name = newName
+        do {
+        try context.save()
+        } catch(let error) {
+            print(error.localizedDescription)
+        }
+    }
     
     
     private func createSoundModels(sounds: [Sound], for mix: MixModel) {

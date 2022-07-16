@@ -10,6 +10,7 @@ import UIKit
 
 protocol SavedMixTableViewCellDelegate {
     func delete(at cell: SavedMixTableViewCell)
+    func showOptions(for mixModel: MixModel?, delegate: MixerSettingDelegate)
 }
 
 final class SavedMixTableViewCell: UITableViewCell {
@@ -17,6 +18,7 @@ final class SavedMixTableViewCell: UITableViewCell {
     
     var trackNumber: Int?
     var delegate: SavedMixTableViewCellDelegate?
+    private var mixModel: MixModel?
     
     private lazy var mixBar: MixBar = {
         let mixBar = MixBar()
@@ -58,10 +60,11 @@ final class SavedMixTableViewCell: UITableViewCell {
     
     public func setCellParameters(mix: MixModel, trackNumber: Int) {
         nameLabel.text = mix.name
+        self.mixModel = mix
         self.trackNumber = trackNumber
         let sounds = DatabaseManager.shared.getSounds(from: mix)
         print("sounds for cell:", sounds)
-        mixBar.setMixBarParameters(for: sounds)
+        mixBar.setMixBarParameters(for: sounds, mixModel: mix)
         mixBar.layoutSubviews()
         mixBar.trackNumber = trackNumber
         mixBar.delegate = self
@@ -96,8 +99,13 @@ final class SavedMixTableViewCell: UITableViewCell {
     
 }
 
-extension SavedMixTableViewCell: MixBarDelegate {
+extension SavedMixTableViewCell: MixBarDelegate, MixerSettingDelegate {
     func deleteMix() {
         delegate?.delete(at: self)
     }
+    
+    func showOptions(for mixModel: MixModel?) {
+        delegate?.showOptions(for: mixModel, delegate: self)
+    }
 }
+

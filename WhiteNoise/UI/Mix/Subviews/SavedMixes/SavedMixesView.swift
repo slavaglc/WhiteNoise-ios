@@ -14,6 +14,7 @@ final class SavedMixesView: UIView {
     private var mixes = Array<MixModel>()
     private var customTabBar: CustomTabBar?
     
+    
     lazy var mixesTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -109,7 +110,16 @@ extension SavedMixesView: UITableViewDataSource, UITableViewDelegate {
     
 }
 
+
+//MARK: - SaveMixTableViewCellDelegate methods
 extension SavedMixesView: SavedMixTableViewCellDelegate {
+    func showOptions(for mixModel: MixModel?, delegate: MixerSettingDelegate) {
+        guard let mixModel = mixModel else { return }
+
+        viewController?.show(MixerSettingsViewController(mixModel: mixModel, delegate: delegate), sender: nil)
+    }
+    
+    
     func delete(at cell: SavedMixTableViewCell) {
         guard let indexPath = mixesTableView.indexPath(for: cell) else { return }
         
@@ -119,8 +129,9 @@ extension SavedMixesView: SavedMixTableViewCellDelegate {
                 mixes.remove(at: indexPath.row)
             }
         }
-        
     }
+    
+    
     
     
 }

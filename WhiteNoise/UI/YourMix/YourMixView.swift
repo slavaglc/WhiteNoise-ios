@@ -104,8 +104,12 @@ final class YourMixView: UIView {
         let mixes = DatabaseManager.shared.getMixes()
         print("mixes:", mixes)
         let sounds = DatabaseManager.shared.getSounds(from: mixes.last!)
-        print("sounds:", sounds.first!.name)  //temporary
         alertController.close()
+    }
+    
+    private func showKeyboardInAlert(alertController: AdvancedAlertViewController) {
+        let textField = alertController.advancedAlertView.textFields.last
+        textField?.becomeFirstResponder()
     }
     
     private func showSaveMixAlert() {
@@ -113,7 +117,8 @@ final class YourMixView: UIView {
             .title(text: "Name your mix"),
             .textField(placeholder: "Name"),
             .button(title: "Deny", action: denySaving(button:alertController:)),
-            .button(title: "Apply", action: saveMix(button:alertController:))
+            .button(title: "Apply", action: saveMix(button:alertController:)),
+            .didAppearAction(action: showKeyboardInAlert(alertController:))
         ]
         let advancedAlertVC = AdvancedAlertViewController(elements: elements)
         yourMixViewController?.present(advancedAlertVC, animated: false)

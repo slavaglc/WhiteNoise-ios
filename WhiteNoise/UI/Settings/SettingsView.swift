@@ -8,6 +8,9 @@
 import UIKit
 
 final class SettingsView: CustomUIView {
+    
+    let items = SettingType.AppSettings.allCases
+    
     private lazy var label: UILabel = {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -40,7 +43,7 @@ final class SettingsView: CustomUIView {
         let view = UITableView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .clear
-        view.register(SettingItemCell.self, forCellReuseIdentifier: "ItemCell")
+        view.register(SettingItemCell.self, forCellReuseIdentifier: SettingItemCell.nameOfClass)
         view.separatorStyle = .none
         view.dataSource = self
         view.delegate = self
@@ -48,10 +51,10 @@ final class SettingsView: CustomUIView {
         return view
     }()
     
-    let items = [
-        "SettingsContactUs", "SettingsInviteFriend", "SettingsPrivacyPolicy",
-        "SettingsRateUs", "SettingsSetReminder"
-    ]
+//    let items = [
+//        "SettingsContactUs", "SettingsInviteFriend", "SettingsPrivacyPolicy",
+//        "SettingsRateUs", "SettingsSetReminder"
+//    ]
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -118,32 +121,25 @@ final class SettingsView: CustomUIView {
         viewController?.navigationController?.popViewController(animated: true)
     }
     
-    private func itemSelected(pos: Int) {
-        switch pos {
-        case 0:
+    private func itemSelected(setting: SettingType.AppSettings) {
+        switch setting {
+        case .contactUs:
             var components = URLComponents(string: "youremail@test.com")
             components?.queryItems = [URLQueryItem(name: "subject", value: "Your Subject")]
 
             if let mailUrl = components?.url {
                 UIApplication.shared.open(mailUrl, options: [:], completionHandler: nil)
             }
-            break
-        case 1:
+        case .inviteFriend:
             guard let url = URL(string: "https://google.com") else { return }
             UIApplication.shared.open(url)
-            break
-        case 2:
+        case .privacyPolicy:
             viewController?.navigationController?.pushViewController(PrivacyViewController(), animated: true)
-            break
-        case 3:
+        case .rateUs:
             guard let url = URL(string: "https://google.com") else { return }
             UIApplication.shared.open(url)
-            break
-        case 4:
+        case .setReminder:
             viewController?.navigationController?.pushViewController(PlansleepViewController(), animated: true)
-            break
-        default:
-            break
         }
     }
     
@@ -158,10 +154,9 @@ extension SettingsView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell")! as! SettingItemCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingItemCell.nameOfClass)! as? SettingItemCell else { return UITableViewCell() }
         let item = items[indexPath.row]
-        
-        cell.updateCell(imageName: item)
+        cell.updateCell(imageName: item.rawValue)
         
         return cell
     }
@@ -174,12 +169,6 @@ extension SettingsView: UITableViewDataSource {
 extension SettingsView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        itemSelected(pos: indexPath.row)
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let selectionColor = UIView() as UIView
-        selectionColor.backgroundColor = UIColor.fromNormalRgb(red: 22, green: 29, blue: 83)
-        cell.selectedBackgroundView = selectionColor
+        itemSelected(setting: items[indexPath.row])
     }
 }

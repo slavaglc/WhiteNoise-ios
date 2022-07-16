@@ -47,6 +47,7 @@
 		5AAB52E52813EC8C003C53E3 /* CustomUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB52E42813EC8C003C53E3 /* CustomUIViewController.swift */; };
 		5AB9A8B0280D82E9009895BC /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9A8AF280D82E9009895BC /* HapticManager.swift */; };
 		5AE64C9728130650007F5CED /* SettingItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE64C9628130650007F5CED /* SettingItemCell.swift */; };
+		F90166C02882EDEF005E8BDD /* EnumTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90166BF2882EDEF005E8BDD /* EnumTypes.swift */; };
 		F90C8260285DD75800E61761 /* SavedMixesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90C825F285DD75800E61761 /* SavedMixesView.swift */; };
 		F90C8263285DDCD200E61761 /* SavedMixTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90C8262285DDCD200E61761 /* SavedMixTableViewCell.swift */; };
 		F90C8265285E306600E61761 /* MixBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90C8264285E306600E61761 /* MixBar.swift */; };
@@ -160,6 +161,7 @@
 		5AAB52E42813EC8C003C53E3 /* CustomUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIViewController.swift; sourceTree = "<group>"; };
 		5AB9A8AF280D82E9009895BC /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		5AE64C9628130650007F5CED /* SettingItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItemCell.swift; sourceTree = "<group>"; };
+		F90166BF2882EDEF005E8BDD /* EnumTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumTypes.swift; sourceTree = "<group>"; };
 		F90C825F285DD75800E61761 /* SavedMixesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedMixesView.swift; sourceTree = "<group>"; };
 		F90C8262285DDCD200E61761 /* SavedMixTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedMixTableViewCell.swift; sourceTree = "<group>"; };
 		F90C8264285E306600E61761 /* MixBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixBar.swift; sourceTree = "<group>"; };
@@ -330,6 +332,7 @@
 		5A8FB7C1280C29AA00D44CA6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F90166BF2882EDEF005E8BDD /* EnumTypes.swift */,
 				5AAB52D8281357B7003C53E3 /* FilterTag.swift */,
 				5AAB52D9281357B7003C53E3 /* Sound.swift */,
 				5A8FB7BE280C216D00D44CA6 /* Time.swift */,
@@ -726,6 +729,7 @@
 				5AAB52DF2813D366003C53E3 /* UIColor.swift in Sources */,
 				F9DA4F8628469DA0008F703D /* MixManager.swift in Sources */,
 				5A8841BA280B4DA800A8291B /* SceneDelegate.swift in Sources */,
+				F90166C02882EDEF005E8BDD /* EnumTypes.swift in Sources */,
 				F928288C281F00E9003CDCDD /* ImageBackgroundView.swift in Sources */,
 				F91327BC2857C44E006D0EF6 /* MixDataModel.xcdatamodeld in Sources */,
 				F90C8260285DD75800E61761 /* SavedMixesView.swift in Sources */,

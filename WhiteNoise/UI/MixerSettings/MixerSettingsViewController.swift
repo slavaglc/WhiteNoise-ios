@@ -7,9 +7,22 @@
 
 import UIKit
 
-class MixerSettingsViewController: UIViewController {
+protocol MixerSettingDelegate {
+    func deleteMix()
+}
 
-    private lazy var mixerSettingsView = MixerSettingsView()
+final class MixerSettingsViewController: UIViewController {
+
+    var mixModel: MixModel?
+    private var delegate: MixerSettingDelegate?
+    
+    private lazy var mixerSettingsView = MixerSettingsView(viewController: self, mixModel: mixModel)
+    
+    convenience init(mixModel: MixModel, delegate: MixerSettingDelegate) {
+        self.init()
+        self.mixModel = mixModel
+        self.delegate = delegate
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +32,18 @@ class MixerSettingsViewController: UIViewController {
     
     override func loadView() {
         view = mixerSettingsView
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    public func closeDisplay() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    public func deleteSelectedMix() {
+        delegate?.deleteMix()
     }
 
     /*

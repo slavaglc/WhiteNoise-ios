@@ -76,6 +76,11 @@ final class MixViewController: UIViewController {
         alertController.close()
     }
     
+    private func showKeyboardInAlert(alertController: AdvancedAlertViewController) {
+        let textField = alertController.advancedAlertView.textFields.last
+        textField?.becomeFirstResponder()
+    }
+    
     
 }
 
@@ -85,10 +90,10 @@ extension MixViewController: MixViewDisplayLogic {
             .title(text: "Name your mix"),
             .textField(placeholder: "Name"),
             .button(title: "Deny", action: denySaving(button:alertController:)),
-            .button(title: "Apply", action: saveMix(button:alertController:))
+            .button(title: "Apply", action: saveMix(button:alertController:)),
+            .didAppearAction(action: showKeyboardInAlert(alertController:))
         ]
-        let advancedAlertVC = AdvancedAlertViewController(elements: elements)
-        present(advancedAlertVC, animated: false)
+        showAdvancedAlert(elements)
     }
     
     func getNavigationController() -> UINavigationController? {
