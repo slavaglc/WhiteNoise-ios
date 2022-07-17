@@ -8,8 +8,8 @@
 import Foundation
 
 struct Time: Codable {
-    let hour: Int
-    let minute: Int
+    let hour: Int8
+    let minute: Int8
     
     static func getAllMinutes() -> [Int16] {
         var minutes = [Int16]()

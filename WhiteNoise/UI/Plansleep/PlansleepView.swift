@@ -20,12 +20,12 @@ class PlansleepView: UIView {
         static let buttonBack = 3
     }
     
-    private var lastTime = [20, 30]
+    private var lastTime: [Int8] = [20, 30]
     private var viewState: ViewState = ViewState.sleep {
         didSet {
             if viewState == .wakeUp {
-                lastTime[0] = picker.selectedRow(inComponent: 0)
-                lastTime[1] = picker.selectedRow(inComponent: 1)
+                lastTime[0] = Int8(picker.selectedRow(inComponent: .zero))
+                lastTime[1] = Int8(picker.selectedRow(inComponent: 1))
                 
                 label2.text = "When you wake up?"
                 skipButton.setTitle("Back", for: .normal)
@@ -42,8 +42,8 @@ class PlansleepView: UIView {
                 nextButton.tag = Tags.buttonNext
                 skipButton.tag = Tags.buttonSkip
                 
-                picker.selectRow(lastTime[0], inComponent: 0, animated: false)
-                picker.selectRow(lastTime[1], inComponent: 1, animated: false)
+                picker.selectRow(Int(lastTime[0]), inComponent: 0, animated: false)
+                picker.selectRow(Int(lastTime[1]), inComponent: 1, animated: false)
                 
                 indicator.selectItem(pos: 0)
             }
@@ -160,15 +160,12 @@ class PlansleepView: UIView {
     
     @objc
     private func buttonDidTapped(sender: UIButton) {
+        let hour = Int8(picker.selectedRow(inComponent: .zero))
+        let minute = Int8(picker.selectedRow(inComponent: 1))
         HapticManager.shared.notify(notificationType: .success)
         
         switch sender.tag {
         case Tags.buttonNext:
-            
-            let hour = picker.selectedRow(inComponent: .zero)
-            let minute = picker.selectedRow(inComponent: 1)
-            
-            
             picker.changeAnimationByAlpha()
             label2.changeAnimationByAlpha(change: {
                 self.viewState = .wakeUp
@@ -178,16 +175,14 @@ class PlansleepView: UIView {
             StorageManager.shared
                 .setTimes(
                     sleep: Time(hour: lastTime[0], minute: lastTime[1]),
-                    wakeup: Time(hour: picker.selectedRow(inComponent: 0), minute: picker.selectedRow(inComponent: 1))
+                    wakeup: Time(hour: hour, minute: minute)
                 )
             
             setReminder()
-            viewController?.navigationController?.popViewController(animated: true)
-            //viewController?.navigationController?.pushViewController(MixViewController(), animated: true)
+            showNextVC()
             break
         case Tags.buttonSkip:
-            viewController?.navigationController?.popViewController(animated: true)
-            //viewController?.navigationController?.pushViewController(MixViewController(), animated: true)
+            showNextVC()
             break
         case Tags.buttonBack:
             picker.changeAnimationByAlpha()
@@ -199,6 +194,16 @@ class PlansleepView: UIView {
             break
         }
     }
+    
+    private func showNextVC() {
+        let runsCount = StorageManager.shared.getRunsCount()
+        if runsCount > 1 {
+            viewController?.navigationController?.popViewController(animated: true)
+        } else {
+            viewController?.show(MixViewController(), sender: nil)
+        }
+    }
+    
     
     private func setReminder() {
         if let sleepTime = StorageManager.shared.getSleepTime() {

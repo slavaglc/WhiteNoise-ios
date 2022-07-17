@@ -12,7 +12,7 @@ class NotificationsManager {
     static let shared = NotificationsManager()
     
     /// Start new notifications task
-    func start(title: String, body: String, hour: Int, minute: Int) {
+    func start(title: String, body: String, hour: Int8, minute: Int8) {
         let content = UNMutableNotificationContent()
         content.title = title
         content.body = body
@@ -20,8 +20,8 @@ class NotificationsManager {
         var dateComponents = DateComponents()
         dateComponents.calendar = Calendar.current
 
-        dateComponents.hour = hour
-        dateComponents.minute = minute
+        dateComponents.hour = Int(hour)
+        dateComponents.minute = Int(minute)
            
         // create the trigger as a repeating event.
         let trigger = UNCalendarNotificationTrigger(

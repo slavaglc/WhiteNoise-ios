@@ -14,12 +14,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
         
-        window = UIWindow(windowScene: scene)
-//        window?.rootViewController = MyNavigationController(rootViewController: YourMixViewController())
-        window?.rootViewController = MyNavigationController(rootViewController: MixViewController())
-        window?.makeKeyAndVisible()
-        
         StorageManager.shared.increaseRunsCount()
+        let runNumber = StorageManager.shared.getRunsCount()
+        window = UIWindow(windowScene: scene)
+        window?.rootViewController = MyNavigationController(rootViewController: runNumber <= 1 ? PlansleepViewController() : MixViewController())
+        window?.makeKeyAndVisible()
         
         #if DEBUG
         print("Running debug build.")
