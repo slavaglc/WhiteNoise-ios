@@ -37,17 +37,17 @@ final class MixViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
 //        mainView.setCollectionViewSettings()
         mainView.setCustomBarAppearence()
+        mainView.refreshData()
     }
     
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if isFirstLaunch {
-            print("isFirstLaunch:", isFirstLaunch)
             mainView.setCollectionViewSettings()
             isFirstLaunch = false
         }
-        mainView.refreshData()
+//        mainView.refreshData()
     }
     
     override func viewDidLoad() {

@@ -63,7 +63,6 @@ final class SavedMixTableViewCell: UITableViewCell {
         self.mixModel = mix
         self.trackNumber = trackNumber
         let sounds = DatabaseManager.shared.getSounds(from: mix)
-        print("sounds for cell:", sounds)
         mixBar.setMixBarParameters(for: sounds, mixModel: mix)
         mixBar.layoutSubviews()
         mixBar.trackNumber = trackNumber

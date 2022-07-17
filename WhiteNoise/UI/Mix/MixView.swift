@@ -144,12 +144,7 @@ final class MixView: UIView {
     
     public func refreshData() {
 //        setCollectionViewSettings()
-        soundsCollectionView.fadeOut()
         soundsCollectionView.reloadData()
-        soundsCollectionView.performBatchUpdates {
-            soundsCollectionView.fadeIn()
-        }
-        
         savedMixesView.refreshData(withTabBar: customTabBar)
     }
     
@@ -196,7 +191,6 @@ final class MixView: UIView {
     
     private func playButtonTapped() {
         customTabBar.togglePlaybackState()
-        print("playButton")
     }
     
     private func mixerButtonTapped() {
@@ -204,18 +198,15 @@ final class MixView: UIView {
     }
     
     private func saveMixTapped() {
-        print("saveMixButton tapped")
         mixViewDisplayLogic.showSaveMixAlert()
     }
     
     private func setTimerButtonTapped() {
-        print("saveTimerButton tapped")
         let timerVC = TimerViewController()
         viewController?.show(timerVC, sender: nil)
     }
     
     private func setSelectedView(viewState: ViewState) {
-        print("Current ViewState:", viewState)
         switch viewState {
         case .create:
             savedMixesView.isHidden = true
@@ -373,7 +364,7 @@ extension MixView: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
             
         case soundsCollectionView:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SoundCollectionViewCell.nameOfClass, for: indexPath) as? SoundCollectionViewCell else { return UICollectionViewCell() }
-            
+            cell.contentView.isHidden = true
             let sound = filtredSounds[indexPath.item]
             if sound.isPlaying {
                 soundsCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
@@ -382,6 +373,7 @@ extension MixView: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
             customTabBar.setNumberForBadge(number: playingSounds.count)
             
             cell.setCellParameters(sound: sound)
+            cell.contentView.fadeIn(duration: 0.4, completionAnimation: {})
             return cell
         case filterTagCollectionView:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterTagCollectionViewCell.nameOfClass, for: indexPath) as? FilterTagCollectionViewCell else { return UICollectionViewCell() }

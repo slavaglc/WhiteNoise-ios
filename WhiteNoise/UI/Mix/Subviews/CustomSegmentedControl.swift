@@ -6,10 +6,16 @@ protocol CustomSegmentedControlDelegate: AnyObject {
     func change(to index:Int)
 }
 
-final class CustomSegmentedControl: UIView {
+final class CustomSegmentedControl: UIView, CAAnimationDelegate {
     private var buttonTitles:[String]!
     private var buttons: [UIButton] = []
     private var selectorView: UIView!
+    
+    let gradientLayer = CAGradientLayer()
+    let gradientColors = [
+        UIColor(red: 0.79, green: 0.634, blue: 0.946, alpha: 1).cgColor,
+        UIColor(red: 0.456, green: 0.22, blue: 0.958, alpha: 1).cgColor
+    ]
     
     var textColor:UIColor = .white
     var selectorViewColor: UIColor = #colorLiteral(red: 0.465685904, green: 0.3625613451, blue: 0.8644735217, alpha: 1)
@@ -26,7 +32,7 @@ final class CustomSegmentedControl: UIView {
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-        self.backgroundColor = UIColor.clear
+        self.backgroundColor = .clear
         updateView()
     }
     
@@ -60,12 +66,28 @@ final class CustomSegmentedControl: UIView {
                 let selectorPosition = frame.width/CGFloat(buttonTitles.count) * CGFloat(buttonIndex)
                 selectedIndex = buttonIndex
                 delegate?.change(to: selectedIndex)
+                
+                animateGradient(to: selectedIndex)
                 UIView.animate(withDuration: 0.3) {
                     self.selectorView.frame.origin.x = selectorPosition
                 }
                 btn.setTitleColor(selectorTextColor, for: .normal)
             }
         }
+    }
+    
+    
+    private func animateGradient(to index: Int) {
+        let currentColors: [CGColor] = index == 0 ? gradientColors.reversed() : gradientColors
+        let toColor: [CGColor] = currentColors.reversed()
+        let gradientAnimation = CABasicAnimation(keyPath: "colors")
+        gradientAnimation.delegate = self
+        gradientAnimation.duration = 0.5
+        gradientAnimation.fromValue = currentColors
+        gradientAnimation.toValue = toColor
+        gradientAnimation.fillMode = .forwards
+        gradientAnimation.isRemovedOnCompletion = false
+        gradientLayer.add(gradientAnimation, forKey: "colors")
     }
 }
 
@@ -93,8 +115,25 @@ extension CustomSegmentedControl {
     private func configSelectorView() {
         let selectorWidth = frame.width / CGFloat(self.buttonTitles.count)
         selectorView = UIView(frame: CGRect(x: 0, y: self.frame.height, width: selectorWidth, height: 2))
-        selectorView.backgroundColor = selectorViewColor
+        
+        gradientLayer.colors = gradientColors
+        
+//        gradientLayer.locations = [0 , 1]
+        gradientLayer.startPoint = CGPoint(x: 0.25, y: 0.5)
+        gradientLayer.endPoint = CGPoint(x: 0.75, y: 0.5)
+        gradientLayer.cornerRadius = 1.5
+//        gradientLayer.transform = CATransform3DMakeAffineTransform(CGAffineTransform(a: 1.21, b: -1.14, c: 1.14, d: 5.3, tx: -0.66, ty: -1.61))
+       
+        selectorView.layer.insertSublayer(gradientLayer, at: .zero)
+//        selectorView.layer.addSublayer(gradientLayer)
+        
+//        selectorView.backgroundColor = selectorViewColor
+        
+        gradientLayer.bounds = selectorView.bounds
         addSubview(selectorView)
+       
+       
+        gradientLayer.anchorPoint = CGPoint(x: 0, y: 0)
     }
     
     private func createButton() {
@@ -109,6 +148,6 @@ extension CustomSegmentedControl {
             button.setTitleColor(textColor, for: .normal)
             buttons.append(button)
         }
-        buttons[0].setTitleColor(selectorTextColor, for: .normal)
+        buttons[.zero].setTitleColor(selectorTextColor, for: .normal)
     }
 }
