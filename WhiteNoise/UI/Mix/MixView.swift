@@ -143,7 +143,13 @@ final class MixView: UIView {
     }
     
     public func refreshData() {
-        setCollectionViewSettings()
+//        setCollectionViewSettings()
+        soundsCollectionView.fadeOut()
+        soundsCollectionView.reloadData()
+        soundsCollectionView.performBatchUpdates {
+            soundsCollectionView.fadeIn()
+        }
+        
         savedMixesView.refreshData(withTabBar: customTabBar)
     }
     
@@ -158,18 +164,22 @@ final class MixView: UIView {
     
     // MARK: - Scroll methods
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        guard scrollView == soundsCollectionView else { return }
         customTabBar.halfFadeOut()
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        guard scrollView == soundsCollectionView else { return }
         customTabBar.halfFadeIn()
     }
     
     func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        guard scrollView == soundsCollectionView else { return }
         customTabBar.halfFadeOut()
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        guard scrollView == soundsCollectionView else { return }
         customTabBar.halfFadeIn()
     }
     
@@ -222,9 +232,9 @@ final class MixView: UIView {
     // MARK: - GUI Settings
     
     public func setCollectionViewSettings() {
-        let indexPath = IndexPath(item: 0, section: 0)
+        let indexPath = IndexPath(item: .zero, section: .zero)
         collectionView(filterTagCollectionView, didSelectItemAt: indexPath)
-        filterTagCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+        filterTagCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
     }
     
     public func setCollectionViewAppearence() {
@@ -363,6 +373,7 @@ extension MixView: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
             
         case soundsCollectionView:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SoundCollectionViewCell.nameOfClass, for: indexPath) as? SoundCollectionViewCell else { return UICollectionViewCell() }
+            
             let sound = filtredSounds[indexPath.item]
             if sound.isPlaying {
                 soundsCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)

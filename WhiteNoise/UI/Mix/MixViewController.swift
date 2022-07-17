@@ -14,6 +14,7 @@ protocol MixViewDisplayLogic: AnyObject {
 
 final class MixViewController: UIViewController {
     
+    private var isFirstLaunch = true
     
     private lazy var mainView: MixView = {
         let view = MixView(viewController: self)
@@ -34,14 +35,19 @@ final class MixViewController: UIViewController {
         view.removeAllViewsFromNavigation()
         mainView.getCustomTabBar().isHidden = false
         navigationController?.navigationBar.isHidden = true
-        mainView.setCollectionViewSettings()
+//        mainView.setCollectionViewSettings()
         mainView.setCustomBarAppearence()
     }
     
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        if isFirstLaunch {
+            print("isFirstLaunch:", isFirstLaunch)
+            mainView.setCollectionViewSettings()
+            isFirstLaunch = false
+        }
         mainView.refreshData()
-        
     }
     
     override func viewDidLoad() {

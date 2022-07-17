@@ -81,13 +81,16 @@ final class FilterTagCollectionViewCell: UICollectionViewCell {
     
     func setSelectedStyle() {
         gradient.colors = [#colorLiteral(red: 0.7882352941, green: 0.6352941176, blue: 0.9450980392, alpha: 1).cgColor, #colorLiteral(red: 0.4549019608, green: 0.2196078431, blue: 0.9568627451, alpha: 1).cgColor] //#C9A2F1 #7438F4
-        gradient.frame = view.bounds
+        gradient.frame = view.frame
+        gradient.bounds = view.bounds
         gradient.locations = [0, 1]
         gradient.startPoint = CGPoint(x: 0.25, y: 0.5)
         gradient.endPoint = CGPoint(x: 0.75, y: 0.5)
         view.layer.borderColor = UIColor.clear.cgColor
-        view.layer.addSublayer(gradient)
-        view.bringSubviewToFront(label)
+      
+        self.view.layer.addSublayer(gradient)
+        self.view.bringSubviewToFront(label)
+        
         
     }
     

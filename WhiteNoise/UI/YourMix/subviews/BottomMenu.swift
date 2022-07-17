@@ -57,7 +57,7 @@ final class BottomMenu: UIView {
         let image = UIImage(systemName: AudioManager.shared.playbackState == .play ? "pause.fill" : "play.fill" )?.scalePreservingAspectRatio(targetSize: CGSize(width: 30, height: 30)).withTintColor(#colorLiteral(red: 0.6352941176, green: 0.6705882353, blue: 0.9450980392, alpha: 1)) //#A2ABF1
         let title = AudioManager.shared.playbackState == .play ? "Pause" : "Play"
         button.setImage(image, for: .normal)
-        button.setTitle("Play", for: .normal)
+        button.setTitle(title, for: .normal)
         button.addTarget(self, action: #selector(buttonPressed(button:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.tag = BarButtonType.play.rawValue
