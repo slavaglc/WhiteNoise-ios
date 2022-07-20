@@ -371,7 +371,7 @@ extension MixView: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
 //                cell.setBackgroundStyle(selectedStyle: .selected(animated: false))
             }
             customTabBar.setNumberForBadge(number: playingSounds.count)
-            
+            cell.delegate = self
             cell.setCellParameters(sound: sound)
             cell.contentView.fadeIn(duration: 0.4, completionAnimation: {})
             return cell
@@ -418,7 +418,7 @@ extension MixView: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
             AudioManager.shared.prepareToPlay(sound: sound, mixType: .current) {
                 cell.isUserInteractionEnabled = true
             }
-            cell.setBackgroundStyle(selectedStyle: .selected(animated: true))
+            cell.setBackgroundStyle(selectedStyle: .selected(animated: true, volume: sound.volume))
             break
         default:
             return
@@ -458,5 +458,20 @@ extension MixView: CustomSegmentedControlDelegate {
         default:
             break
         }
+    }
+}
+
+// MARK: - SoundCollectionViewCell Methods
+extension MixView: SoundCollectionViewCellDelegate {
+    func selectingVolumeBegan(in cell: SoundCollectionViewCell) {
+        guard let indexPath = soundsCollectionView.indexPath(for: cell) else { return }
+        collectionView(soundsCollectionView, didSelectItemAt: indexPath)
+        soundsCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .bottom)
+    }
+    
+    func selectingVolumeEnded(in cell: SoundCollectionViewCell) {
+        guard let indexPath = soundsCollectionView.indexPath(for: cell) else { return }
+        collectionView(soundsCollectionView, didDeselectItemAt: indexPath)
+        soundsCollectionView.deselectItem(at: indexPath, animated: true)
     }
 }

@@ -37,7 +37,7 @@ final class MixViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
 //        mainView.setCollectionViewSettings()
         mainView.setCustomBarAppearence()
-        mainView.refreshData()
+//        mainView.refreshData()
     }
     
     
@@ -47,8 +47,9 @@ final class MixViewController: UIViewController {
             mainView.setCollectionViewSettings()
             isFirstLaunch = false
         }
-//        mainView.refreshData()
+        mainView.refreshData()
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
