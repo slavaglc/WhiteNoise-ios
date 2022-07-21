@@ -70,6 +70,7 @@ final class ImageBackgroundView: UIView, CAAnimationDelegate {
     }
     
     private func setSelectedStyle(animated: Bool, volume: Float) {
+//        print("selected volume:", volume)
         self.volume = volume
         gradientLayer.isHidden = false
         layoutSubviews()

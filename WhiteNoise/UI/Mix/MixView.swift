@@ -366,13 +366,22 @@ extension MixView: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SoundCollectionViewCell.nameOfClass, for: indexPath) as? SoundCollectionViewCell else { return UICollectionViewCell() }
             cell.contentView.isHidden = true
             let sound = filtredSounds[indexPath.item]
-            if sound.isPlaying {
-                soundsCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
-//                cell.setBackgroundStyle(selectedStyle: .selected(animated: false))
-            }
-            customTabBar.setNumberForBadge(number: playingSounds.count)
             cell.delegate = self
             cell.setCellParameters(sound: sound)
+            
+            
+            if cell.isSelected {
+            print("selected Sound: \(sound.name)")
+            }
+            
+            
+            if sound.isPlaying {
+                soundsCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
+                cell.setBackgroundStyle(selectedStyle: .selected(animated: false, volume: sound.volume))
+            }
+            customTabBar.setNumberForBadge(number: playingSounds.count)
+//            cell.delegate = self
+//            cell.setCellParameters(sound: sound)
             cell.contentView.fadeIn(duration: 0.4, completionAnimation: {})
             return cell
         case filterTagCollectionView:
