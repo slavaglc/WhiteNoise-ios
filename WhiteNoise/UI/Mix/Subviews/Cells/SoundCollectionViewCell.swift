@@ -35,7 +35,6 @@ final class SoundCollectionViewCell: UICollectionViewCell {
     
     private var sound: Sound = Sound(name: "Placholder Sound", imageName: "", trackName: "", category: "", isLocked: false)
     
-//    private  let gradient: CAGradientLayer = CAGradientLayer()
     
     private var gradientColorSet: [[CGColor]] = []
     private var colorIndex: Int = 0
