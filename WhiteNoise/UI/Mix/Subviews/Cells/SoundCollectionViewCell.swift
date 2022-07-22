@@ -48,9 +48,6 @@ final class SoundCollectionViewCell: UICollectionViewCell {
             
         }
     }
-//    private lazy var gradientLayer: CAGradientLayer = {
-//        CAGradientLayer()
-//    }()
     
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
@@ -226,6 +223,5 @@ final class SoundCollectionViewCell: UICollectionViewCell {
         case .unselected(_):
             imageView.image = imageView.image?.tint(with: .lightGray)
         }
-        
     }
 }
