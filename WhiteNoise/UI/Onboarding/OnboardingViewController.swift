@@ -23,9 +23,9 @@ final class OnboardingViewController: UIViewController {
     
     let colors: [UIColor] =  [
         .clear,
-        .yellow,
-        .red,
-        .green
+        .clear,
+        .clear,
+        .clear
     ]
     
     private let buttonsStackView: UIStackView = {
@@ -62,10 +62,11 @@ final class OnboardingViewController: UIViewController {
         button.backgroundColor =  #colorLiteral(red: 0.3529411765, green: 0.4196078431, blue: 0.9333333333, alpha: 1) //#5A6BEE
         button.tintColor = #colorLiteral(red: 0.862745098, green: 0.8784313725, blue: 1, alpha: 1) //#DCE0FF
         button.layer.cornerRadius = 17
+        button.tag = 1
         button.setTitle("Next", for: .normal)
         button.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 18)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(startButtonTapped(sender:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(buttonTapped(sender:)), for: .touchUpInside)
         return button
     }()
     
@@ -90,17 +91,25 @@ final class OnboardingViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
         
-    @objc private func startButtonTapped(sender: UIButton) {
-        sender.isEnabled = false
-        let onboardingVC = OnboardingViewController()
-        show(onboardingVC, sender: nil)
+    @objc private func buttonTapped(sender: UIButton) {
+        switch sender.tag {
+        case 1:
+            setNextPage()
+        default:
+            break
+        }
     }
     
     @objc private func pageControlDidChange(sender: UIPageControl) {
         let screenPoint = UIScreen.main.bounds.width
         let currentPageFloat = CGFloat(sender.currentPage)
-        
-        scrollView.setContentOffset(CGPoint(x: (screenPoint * currentPageFloat), y: 0), animated: true)
+        let pointY = scrollView.bounds.minY
+        scrollView.setContentOffset(CGPoint(x: (screenPoint * currentPageFloat), y: pointY), animated: true)
+    }
+    
+    private func setNextPage() {
+        pageControl.currentPage += 1
+        pageControlDidChange(sender: pageControl)
     }
         
         private func setGUISettings() {
@@ -185,9 +194,16 @@ final class OnboardingViewController: UIViewController {
 
 extension OnboardingViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.isDragging {
         let width = UIScreen.main.bounds.width
         pageControl.currentPage = Int(floorf(Float(scrollView.contentOffset.x) / Float(width)))
+        }
     }
+    
+//    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+//        let width = UIScreen.main.bounds.width
+//        pageControl.currentPage = Int(floorf(Float(scrollView.contentOffset.x) / Float(width)))
+//    }
 }
 
     

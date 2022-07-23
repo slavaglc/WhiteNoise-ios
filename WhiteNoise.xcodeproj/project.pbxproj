@@ -82,6 +82,8 @@
 		F9EBBA28288BFB5100D2087C /* SecondPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EBBA27288BFB5100D2087C /* SecondPage.swift */; };
 		F9EBBA2A288BFB6B00D2087C /* ThirdPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EBBA29288BFB6B00D2087C /* ThirdPage.swift */; };
 		F9EBBA2C288BFB8200D2087C /* ReviewsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EBBA2B288BFB8200D2087C /* ReviewsPage.swift */; };
+		F9EBBA2F288C7DAC00D2087C /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EBBA2E288C7DAC00D2087C /* ReviewView.swift */; };
+		F9EBBA32288C8C2A00D2087C /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EBBA31288C8C2A00D2087C /* Review.swift */; };
 		F9EEF53C28526CCB00ED109F /* music.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF51428526CCB00ED109F /* music.wav */; };
 		F9EEF53D28526CCB00ED109F /* shower.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF51528526CCB00ED109F /* shower.wav */; };
 		F9EEF53E28526CCB00ED109F /* whitenoise.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF51628526CCB00ED109F /* whitenoise.wav */; };
@@ -203,6 +205,8 @@
 		F9EBBA27288BFB5100D2087C /* SecondPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondPage.swift; sourceTree = "<group>"; };
 		F9EBBA29288BFB6B00D2087C /* ThirdPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPage.swift; sourceTree = "<group>"; };
 		F9EBBA2B288BFB8200D2087C /* ReviewsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsPage.swift; sourceTree = "<group>"; };
+		F9EBBA2E288C7DAC00D2087C /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
+		F9EBBA31288C8C2A00D2087C /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		F9EEF51428526CCB00ED109F /* music.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = music.wav; sourceTree = "<group>"; };
 		F9EEF51528526CCB00ED109F /* shower.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = shower.wav; sourceTree = "<group>"; };
 		F9EEF51628526CCB00ED109F /* whitenoise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = whitenoise.wav; sourceTree = "<group>"; };
@@ -351,6 +355,7 @@
 				5AAB52D8281357B7003C53E3 /* FilterTag.swift */,
 				5AAB52D9281357B7003C53E3 /* Sound.swift */,
 				5A8FB7BE280C216D00D44CA6 /* Time.swift */,
+				F9EBBA31288C8C2A00D2087C /* Review.swift */,
 				F91327BD2857C458006D0EF6 /* Database */,
 			);
 			path = Models;
@@ -554,8 +559,17 @@
 				F9EBBA27288BFB5100D2087C /* SecondPage.swift */,
 				F9EBBA29288BFB6B00D2087C /* ThirdPage.swift */,
 				F9EBBA2B288BFB8200D2087C /* ReviewsPage.swift */,
+				F9EBBA30288C7DB100D2087C /* Subviews */,
 			);
 			path = Pages;
+			sourceTree = "<group>";
+		};
+		F9EBBA30288C7DB100D2087C /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				F9EBBA2E288C7DAC00D2087C /* ReviewView.swift */,
+			);
+			path = Subviews;
 			sourceTree = "<group>";
 		};
 		F9EEF51328526CCB00ED109F /* sounds */ = {
@@ -755,6 +769,7 @@
 				5A8FB7BF280C216D00D44CA6 /* Time.swift in Sources */,
 				F9EEF5652852737C00ED109F /* AudioManager.swift in Sources */,
 				5A8841B8280B4DA800A8291B /* AppDelegate.swift in Sources */,
+				F9EBBA2F288C7DAC00D2087C /* ReviewView.swift in Sources */,
 				5AAB52D628135795003C53E3 /* CustomTabBar.swift in Sources */,
 				F90C8263285DDCD200E61761 /* SavedMixTableViewCell.swift in Sources */,
 				F9DA4F80284229C2008F703D /* BottomMenu.swift in Sources */,
@@ -785,6 +800,7 @@
 				5A62AAEA2811776A003667D2 /* SettingsViewController.swift in Sources */,
 				F9EBBA2C288BFB8200D2087C /* ReviewsPage.swift in Sources */,
 				F9EBBA24288B365700D2087C /* OnboardingViewController.swift in Sources */,
+				F9EBBA32288C8C2A00D2087C /* Review.swift in Sources */,
 				5A62AAEC281177A0003667D2 /* SettingsView.swift in Sources */,
 				5AAB52D528135795003C53E3 /* CustomSegmentedControl.swift in Sources */,
 				F9881BA528820DF000395F03 /* MixerSettingsViewController.swift in Sources */,

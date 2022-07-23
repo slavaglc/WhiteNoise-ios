@@ -42,7 +42,7 @@ final class WelcomeViewController: UIViewController {
         button.setTitle("Start", for: .normal)
         button.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 18)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(startButtonTapped(sender:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(buttonTapped(sender:)), for: .touchUpInside)
         return button
     }()
     
@@ -57,7 +57,7 @@ final class WelcomeViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc private func startButtonTapped(sender: UIButton) {
+    @objc private func buttonTapped(sender: UIButton) {
         sender.isEnabled = false
         let onboardingVC = OnboardingViewController()
         show(onboardingVC, sender: nil)

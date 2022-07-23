@@ -12,7 +12,7 @@ final class FirstPage: UIView {
     
     private lazy var backgroundImageView: UIImageView = {
         let bounds = UIScreen.main.bounds
-        let backgroundImage = UIImage(named: "SecondScreenBackground")?.scalePreservingAspectRatio(targetSize: CGSize(width: (bounds.width * 1.8), height: (bounds.width * 1.8)))
+        let backgroundImage = UIImage(named: "FirstScreenBackground")?.scalePreservingAspectRatio(targetSize: CGSize(width: (bounds.width * 1.8), height: (bounds.width * 1.8)))
         let imageView = UIImageView(image: backgroundImage)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -49,11 +49,12 @@ final class FirstPage: UIView {
     private func setupConstraints() {
         let padding = 19.0
         let height = 120.0
-        backgroundImageView.topAnchor.constraint(equalTo: topAnchor, constant: -150)
-            .isActive = true
+//        backgroundImageView.topAnchor.constraint(equalTo: topAnchor, constant: -150)
+//            .isActive = true
         backgroundImageView.centerXAnchor.constraint(equalTo: centerXAnchor)
             .isActive = true
-
+        backgroundImageView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -150)
+            .isActive = true
         
 //        label.topAnchor.constraint(equalTo: backgroundImageView.bottomAnchor)
 //            .isActive = true
