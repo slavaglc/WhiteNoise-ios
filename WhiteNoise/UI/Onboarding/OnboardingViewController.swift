@@ -14,15 +14,38 @@ final class OnboardingViewController: UIViewController {
             return .lightContent
         }
     
-    private let scrollView: UIScrollView = {
+    let views: [UIView] = [
+        FirstPage(),
+        SecondPage(),
+        ThirdPage(),
+        ReviewsPage()
+    ]
+    
+    let colors: [UIColor] =  [
+        .clear,
+        .yellow,
+        .red,
+        .green
+    ]
+    
+    private let buttonsStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.distribution = .fillProportionally
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+        
+    private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.isPagingEnabled = true
-        scrollView.backgroundColor = .orange
+        scrollView.delegate = self
+        scrollView.showsHorizontalScrollIndicator = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
-        
-    private let pageControl: UIPageControl = {
+    
+    private lazy var pageControl: UIPageControl = {
         let pageControl = UIPageControl()
         pageControl.numberOfPages = 4
         pageControl.currentPageIndicatorTintColor = #colorLiteral(red: 0.3529411765, green: 0.4196078431, blue: 0.9333333333, alpha: 1) //#5A6BEE
@@ -30,10 +53,11 @@ final class OnboardingViewController: UIViewController {
         let indicatorImage = UIImage(named: "Page_Indicator")
         pageControl.preferredIndicatorImage = indicatorImage
         pageControl.translatesAutoresizingMaskIntoConstraints = false
+        pageControl.addTarget(self, action: #selector(pageControlDidChange(sender:)), for: .valueChanged)
         return pageControl
     }()
     
-    private let nextButton: UIButton = {
+    private lazy var nextButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor =  #colorLiteral(red: 0.3529411765, green: 0.4196078431, blue: 0.9333333333, alpha: 1) //#5A6BEE
         button.tintColor = #colorLiteral(red: 0.862745098, green: 0.8784313725, blue: 1, alpha: 1) //#DCE0FF
@@ -41,11 +65,11 @@ final class OnboardingViewController: UIViewController {
         button.setTitle("Next", for: .normal)
         button.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 18)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(OnboardingViewController.self, action: #selector(startButtonTapped(sender:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(startButtonTapped(sender:)), for: .touchUpInside)
         return button
     }()
     
-    private let skipButton: UIButton = {
+    private lazy var skipButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor =  .clear
         button.tintColor = #colorLiteral(red: 0.862745098, green: 0.8784313725, blue: 1, alpha: 1) //#DCE0FF
@@ -56,32 +80,28 @@ final class OnboardingViewController: UIViewController {
         return button
     }()
     
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        setGUISettings()
+    }
     
-    private let buttonsStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.distribution = .fillProportionally
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-    }()
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
         
+    @objc private func startButtonTapped(sender: UIButton) {
+        sender.isEnabled = false
+        let onboardingVC = OnboardingViewController()
+        show(onboardingVC, sender: nil)
+    }
+    
+    @objc private func pageControlDidChange(sender: UIPageControl) {
+        let screenPoint = UIScreen.main.bounds.width
+        let currentPageFloat = CGFloat(sender.currentPage)
         
-        override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-            super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-            setGUISettings()
-        }
-        
-        
-        required init?(coder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
-        
-        @objc private func startButtonTapped(sender: UIButton) {
-            sender.isEnabled = false
-            let onboardingVC = OnboardingViewController()
-            show(onboardingVC, sender: nil)
-        }
+        scrollView.setContentOffset(CGPoint(x: (screenPoint * currentPageFloat), y: 0), animated: true)
+    }
         
         private func setGUISettings() {
             view.backgroundColor = #colorLiteral(red: 0.0431372549, green: 0.06274509804, blue: 0.2, alpha: 1)  //#0B1033
@@ -140,28 +160,35 @@ final class OnboardingViewController: UIViewController {
         }
     
     private func  setPages() {
-        let colors: [UIColor] =  [
-            .blue,
-            .yellow,
-            .red,
-            .green
-        ]
+        scrollView.contentSize.width = UIScreen.main.bounds.width * CGFloat(views.count)
         
-//        for x in 0..<4 {
-//            let page = UIView()
-//            page.backgroundColor = colors[x]
-//            scrollView.addSubview(page)
-//            page.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
-//                .isActive = true
-//            if scrollView.subviews.count > 2 {
-//            page.leadingAnchor.constraint(equalTo: scrollView.subviews.last!.trailingAnchor)
-//                .isActive = true
-//            }
-//            page.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
-//                .isActive = true
-//        }
+        for (index, page) in views.enumerated() {
+            page.translatesAutoresizingMaskIntoConstraints = false
+            page.backgroundColor = colors[index]
+            scrollView.addSubview(page)
+            page.widthAnchor.constraint(equalTo: view.widthAnchor)
+                .isActive = true
+            page.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
+                .isActive = true
+            
+            
+            if index == .zero {
+                page.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor)
+                    .isActive = true
+            } else {
+                page.leadingAnchor.constraint(equalTo: views[index-1].trailingAnchor)
+                    .isActive = true
+            }
+        }
     }
+}
+
+extension OnboardingViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let width = UIScreen.main.bounds.width
+        pageControl.currentPage = Int(floorf(Float(scrollView.contentOffset.x) / Float(width)))
     }
+}
 
     
 

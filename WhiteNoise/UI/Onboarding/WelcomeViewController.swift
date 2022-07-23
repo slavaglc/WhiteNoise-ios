@@ -21,7 +21,6 @@ final class WelcomeViewController: UIViewController {
         let imageView = UIImageView(image: backgroundImage)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
-        
     }()
     
     private lazy var label: UILabel = {

@@ -78,6 +78,10 @@
 		F9EBBA1F288B1D6D00D2087C /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EBBA1E288B1D6D00D2087C /* WelcomeViewController.swift */; };
 		F9EBBA22288B2B8500D2087C /* Nunito-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9EBBA21288B2B6400D2087C /* Nunito-Semibold.ttf */; };
 		F9EBBA24288B365700D2087C /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EBBA23288B365700D2087C /* OnboardingViewController.swift */; };
+		F9EBBA26288BFB3300D2087C /* FirstPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EBBA25288BFB3300D2087C /* FirstPage.swift */; };
+		F9EBBA28288BFB5100D2087C /* SecondPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EBBA27288BFB5100D2087C /* SecondPage.swift */; };
+		F9EBBA2A288BFB6B00D2087C /* ThirdPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EBBA29288BFB6B00D2087C /* ThirdPage.swift */; };
+		F9EBBA2C288BFB8200D2087C /* ReviewsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EBBA2B288BFB8200D2087C /* ReviewsPage.swift */; };
 		F9EEF53C28526CCB00ED109F /* music.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF51428526CCB00ED109F /* music.wav */; };
 		F9EEF53D28526CCB00ED109F /* shower.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF51528526CCB00ED109F /* shower.wav */; };
 		F9EEF53E28526CCB00ED109F /* whitenoise.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF51628526CCB00ED109F /* whitenoise.wav */; };
@@ -195,6 +199,10 @@
 		F9EBBA1E288B1D6D00D2087C /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		F9EBBA21288B2B6400D2087C /* Nunito-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Semibold.ttf"; sourceTree = "<group>"; };
 		F9EBBA23288B365700D2087C /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		F9EBBA25288BFB3300D2087C /* FirstPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstPage.swift; sourceTree = "<group>"; };
+		F9EBBA27288BFB5100D2087C /* SecondPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondPage.swift; sourceTree = "<group>"; };
+		F9EBBA29288BFB6B00D2087C /* ThirdPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPage.swift; sourceTree = "<group>"; };
+		F9EBBA2B288BFB8200D2087C /* ReviewsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsPage.swift; sourceTree = "<group>"; };
 		F9EEF51428526CCB00ED109F /* music.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = music.wav; sourceTree = "<group>"; };
 		F9EEF51528526CCB00ED109F /* shower.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = shower.wav; sourceTree = "<group>"; };
 		F9EEF51628526CCB00ED109F /* whitenoise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = whitenoise.wav; sourceTree = "<group>"; };
@@ -534,8 +542,20 @@
 			children = (
 				F9EBBA1E288B1D6D00D2087C /* WelcomeViewController.swift */,
 				F9EBBA23288B365700D2087C /* OnboardingViewController.swift */,
+				F9EBBA2D288BFB9B00D2087C /* Pages */,
 			);
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		F9EBBA2D288BFB9B00D2087C /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+				F9EBBA25288BFB3300D2087C /* FirstPage.swift */,
+				F9EBBA27288BFB5100D2087C /* SecondPage.swift */,
+				F9EBBA29288BFB6B00D2087C /* ThirdPage.swift */,
+				F9EBBA2B288BFB8200D2087C /* ReviewsPage.swift */,
+			);
+			path = Pages;
 			sourceTree = "<group>";
 		};
 		F9EEF51328526CCB00ED109F /* sounds */ = {
@@ -717,6 +737,7 @@
 				5A8FB7C7280C460E00D44CA6 /* UIPageIndicatorView.swift in Sources */,
 				5A8FB7CF280C70E300D44CA6 /* MixViewController.swift in Sources */,
 				5AAB52CB281355F7003C53E3 /* UIView.swift in Sources */,
+				F9EBBA26288BFB3300D2087C /* FirstPage.swift in Sources */,
 				5A945F34280DCFCF001AA3C4 /* PrivacyView.swift in Sources */,
 				F9D780D028761BA100C34548 /* TimerViewController.swift in Sources */,
 				5AAB52D328135795003C53E3 /* SoundCollectionViewCell.swift in Sources */,
@@ -746,6 +767,7 @@
 				F91327B92857C427006D0EF6 /* DatabaseManager.swift in Sources */,
 				F9DC15F72814679700B1EE9B /* UIImage.swift in Sources */,
 				5AAB52DF2813D366003C53E3 /* UIColor.swift in Sources */,
+				F9EBBA2A288BFB6B00D2087C /* ThirdPage.swift in Sources */,
 				F9DA4F8628469DA0008F703D /* MixManager.swift in Sources */,
 				5A8841BA280B4DA800A8291B /* SceneDelegate.swift in Sources */,
 				F90166C02882EDEF005E8BDD /* EnumTypes.swift in Sources */,
@@ -756,10 +778,12 @@
 				5AAB52D728135795003C53E3 /* Circle.swift in Sources */,
 				F9DA4F7E284155C8008F703D /* YourMixTableViewCell.swift in Sources */,
 				F9DA4F8428436BF6008F703D /* VerticalButton.swift in Sources */,
+				F9EBBA28288BFB5100D2087C /* SecondPage.swift in Sources */,
 				5A62AAEF28118CF8003667D2 /* SettingsFrameView.swift in Sources */,
 				5AE64C9728130650007F5CED /* SettingItemCell.swift in Sources */,
 				F95D5D652880A0DF0013BC92 /* NotificationManager.swift in Sources */,
 				5A62AAEA2811776A003667D2 /* SettingsViewController.swift in Sources */,
+				F9EBBA2C288BFB8200D2087C /* ReviewsPage.swift in Sources */,
 				F9EBBA24288B365700D2087C /* OnboardingViewController.swift in Sources */,
 				5A62AAEC281177A0003667D2 /* SettingsView.swift in Sources */,
 				5AAB52D528135795003C53E3 /* CustomSegmentedControl.swift in Sources */,
