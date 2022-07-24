@@ -163,7 +163,7 @@ final class SoundCollectionViewCell: UICollectionViewCell {
     
     private func setGesturesSettings() {
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(longPressed(gesture:)))
-        longPressGesture.minimumPressDuration = 0.3
+        longPressGesture.minimumPressDuration = 0.1
         addGestureRecognizer(longPressGesture)
     }
     

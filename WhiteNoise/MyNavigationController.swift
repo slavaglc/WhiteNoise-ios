@@ -26,14 +26,11 @@ final class MyNavigationController: UINavigationController, UINavigationControll
         super.viewDidLoad()
         if let delegate = UIApplication.shared.delegate as? AppDelegate {
             delegate.orientationLock = UIInterfaceOrientationMask.portrait
-              }
+        }
     }
     
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         viewController.navigationItem.setHidesBackButton(true, animated: false)
-        
     }
-   
-    
 }

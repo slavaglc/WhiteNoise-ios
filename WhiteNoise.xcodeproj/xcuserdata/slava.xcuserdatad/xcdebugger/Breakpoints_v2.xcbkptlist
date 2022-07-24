@@ -206,8 +206,8 @@
             filePath = "WhiteNoise/Managers/AudioManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
             landmarkName = "playAllSounds(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -222,8 +222,8 @@
             filePath = "WhiteNoise/Managers/AudioManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "prepareToPlay(sound:mixType:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -238,8 +238,8 @@
             filePath = "WhiteNoise/Managers/AudioManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
             landmarkName = "playAllSounds(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -254,8 +254,8 @@
             filePath = "WhiteNoise/Managers/AudioManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
             landmarkName = "playAllSounds(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -417,6 +417,22 @@
             startingLineNumber = "83"
             endingLineNumber = "83"
             landmarkName = "animateGradient(to:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "840CD21C-20CC-477C-AE6B-BCAC680274D5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WhiteNoise/UI/Mix/Subviews/SavedMixes/SavedMixesView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "refreshData(withTabBar:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

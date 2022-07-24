@@ -5,6 +5,7 @@
 //  Created by Victor Varenik on 21.04.2022.
 //
 
+import StoreKit
 import UIKit
 
 final class SettingsView: CustomUIView {
@@ -52,10 +53,10 @@ final class SettingsView: CustomUIView {
         return view
     }()
     
-//    let items = [
-//        "SettingsContactUs", "SettingsInviteFriend", "SettingsPrivacyPolicy",
-//        "SettingsRateUs", "SettingsSetReminder"
-//    ]
+    //    let items = [
+    //        "SettingsContactUs", "SettingsInviteFriend", "SettingsPrivacyPolicy",
+    //        "SettingsRateUs", "SettingsSetReminder"
+    //    ]
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -76,9 +77,9 @@ final class SettingsView: CustomUIView {
     override func viewDidAppear(_ animated: Bool) {
         removeAllViewsFromNavigation()
         
-//        viewController?.navigationController?.navigationBar.barStyle = .black
-//        viewController?.navigationController?.navigationBar.barTintColor = .fromNormalRgb(red: 11, green: 16, blue: 51)
-//        viewController?.navigationController?.navigationBar.topItem?.setHidesBackButton(true, animated: false)
+        //        viewController?.navigationController?.navigationBar.barStyle = .black
+        //        viewController?.navigationController?.navigationBar.barTintColor = .fromNormalRgb(red: 11, green: 16, blue: 51)
+        //        viewController?.navigationController?.navigationBar.topItem?.setHidesBackButton(true, animated: false)
         
         settingsFrame.viewDidAppear(animated)
     }
@@ -110,7 +111,7 @@ final class SettingsView: CustomUIView {
         
         // tableView
         NSLayoutConstraint.activate([
-//            tableView.topAnchor.constraint(equalTo: settingsFrame.bottomAnchor, constant: 32), добавить после того, как внедрим подписку
+            //            tableView.topAnchor.constraint(equalTo: settingsFrame.bottomAnchor, constant: 32), добавить после того, как внедрим подписку
             tableView.topAnchor.constraint(equalTo: closeBtn.bottomAnchor, constant: 16.0), // Временно
             tableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
@@ -126,20 +127,19 @@ final class SettingsView: CustomUIView {
     private func itemSelected(setting: SettingType.AppSettings) {
         switch setting {
         case .contactUs:
-            var components = URLComponents(string: "youremail@test.com")
-            components?.queryItems = [URLQueryItem(name: "subject", value: "Your Subject")]
-
+            var components = URLComponents(string: "slava9611@gmail.com")
+            components?.queryItems = [URLQueryItem(name: "subject", value: "Subject about WhiteNoise app")]
+            components?.scheme = "mailto"
             if let mailUrl = components?.url {
+                
                 UIApplication.shared.open(mailUrl, options: [:], completionHandler: nil)
             }
         case .inviteFriend:
-            guard let url = URL(string: "https://google.com") else { return }
-            UIApplication.shared.open(url)
+            presentShareSheet()
         case .privacyPolicy:
             viewController?.navigationController?.pushViewController(PrivacyViewController(), animated: true)
         case .rateUs:
-            guard let url = URL(string: "https://google.com") else { return }
-            UIApplication.shared.open(url)
+            presentRatingWindow()
         case .setReminder:
             viewController?.navigationController?.pushViewController(PlansleepViewController(), animated: true)
         }
@@ -148,6 +148,22 @@ final class SettingsView: CustomUIView {
     func subButtonClick() {
         viewController?.navigationController?.pushViewController(PaywallViewController(), animated: true)
     }
+    
+    private func presentShareSheet() {
+        guard let appURL = URL(string: "https://apps.apple.com/ru/app/white-point-noise/id1634811540") else { return }
+        let activityVC = UIActivityViewController(activityItems: [appURL], applicationActivities: nil)
+        
+        activityVC.popoverPresentationController?.sourceView = tableView
+        activityVC.popoverPresentationController?.sourceRect = tableView.frame
+        viewController?.present(activityVC, animated: true)
+        
+    }
+    
+    private func presentRatingWindow() {
+        guard let scene = window?.windowScene else { return }
+        SKStoreReviewController.requestReview(in: scene)
+    }
+    
 }
 
 extension SettingsView: UITableViewDataSource {

@@ -100,8 +100,6 @@ extension SavedMixesView: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
 
-    
-    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let cell = cell as? SavedMixTableViewCell else { return }
         cell.refreshCell()

@@ -9,7 +9,7 @@ import AVFoundation
 
 
 protocol PlaybackProtocol: AnyObject {
-//    var playbackState: PlaybackState { get set }
+    //    var playbackState: PlaybackState { get set }
     func changeViewPlaybackState(to state: PlaybackState, for number: PlaybackViewDestination)
 }
 
@@ -27,7 +27,7 @@ enum MixType {
 }
 
 final class AudioManager {
-
+    
     
     static let shared = AudioManager()
     
@@ -36,7 +36,6 @@ final class AudioManager {
             switch playbackState {
             case .play:
                 playAllSounds(mixType)
-//                changeViewsState(to: playbackState, mixType: mixType)
             case .pause:
                 pauseAllSounds(mixType)
             }
@@ -81,26 +80,10 @@ final class AudioManager {
             }
             playingNumber = value
         }
-        
-//        mainPlaybackView?.changeViewPlaybackState(to: state, for: nil)
-        
-//        changeViewsState(to: state, mixType: mixType)
-        
-//        if mixType == .saved {
-//            playbackViews.forEach { playbackView in
-//                playbackView.changeViewPlaybackState(to: state, for: number)
-//            }
-//        }
-        
-//        if mixType == .saved {
-//            playbackViews.forEach { playbackView in
-//                playbackView.changeViewPlaybackState(to: state, for: number)
-//            }
-//        }
     }
     
     func prepareToPlay(sound: Sound, mixType: MixType = .current, completion: ()->() = {}) {
-
+        
         let players = mixType == .current ? players : playersForSavedMix
         
         sound.isPlaying = mixType == .current ? true : sound.isPlaying
@@ -109,58 +92,58 @@ final class AudioManager {
         guard !players.contains(where: { element in
             element.key == soundFileNameURL
         }) else { return completion()}
-
-           if let player = players[soundFileNameURL] { //player for sound has been found
-               if player.isPlaying == false { //player is not in use, so use that one
-                   player.numberOfLoops = -1
-                   player.volume = sound.volume
-                   player.prepareToPlay()
-                   if playbackState == .play {
-                       player.play()
-                   }
-
-               } else { // player is in use, create a new, duplicate, player and use that instead
-
-                   let duplicatePlayer = try! AVAudioPlayer(contentsOf: soundFileNameURL as URL)
-                   duplicatePlayers.append(duplicatePlayer)
-                   duplicatePlayer.prepareToPlay()
-                   if playbackState == .play {
-                       duplicatePlayer.play()
-                   }
-               }
-           } else { //player has not been found, create a new player with the URL if possible
-               do{
-                   let player = try AVAudioPlayer(contentsOf: soundFileNameURL)
-                   if mixType == .current {
-                       self.players[soundFileNameURL] = player
-                   } else {
-                       playersForSavedMix[soundFileNameURL] = player
-                   }
-                   
-                   player.volume = sound.volume
-                   player.numberOfLoops = -1
-                   player.prepareToPlay()
-                   if playbackState == .play {
-                       player.play()
-                   }
-               } catch {
-                   print("Could not play sound file!")
-               }
-           }
+        
+        if let player = players[soundFileNameURL] { //player for sound has been found
+            if player.isPlaying == false { //player is not in use, so use that one
+                player.numberOfLoops = -1
+                player.volume = sound.volume
+                player.prepareToPlay()
+                if playbackState == .play {
+                    player.play()
+                }
+                
+            } else { // player is in use, create a new, duplicate, player and use that instead
+                
+                let duplicatePlayer = try! AVAudioPlayer(contentsOf: soundFileNameURL as URL)
+                duplicatePlayers.append(duplicatePlayer)
+                duplicatePlayer.prepareToPlay()
+                if playbackState == .play {
+                    duplicatePlayer.play()
+                }
+            }
+        } else { //player has not been found, create a new player with the URL if possible
+            do{
+                let player = try AVAudioPlayer(contentsOf: soundFileNameURL)
+                if mixType == .current {
+                    self.players[soundFileNameURL] = player
+                } else {
+                    playersForSavedMix[soundFileNameURL] = player
+                }
+                
+                player.volume = sound.volume
+                player.numberOfLoops = -1
+                player.prepareToPlay()
+                if playbackState == .play {
+                    player.play()
+                }
+            } catch {
+                print("Could not play sound file!")
+            }
+        }
         completion()
-       }
+    }
     
     
     func playAllSounds(_ mixType: MixType = .current) {
         
         let players = mixType == .current ? players : playersForSavedMix
         
-//       pauseAllSounds(mixType)
+        //       pauseAllSounds(mixType)
         players.forEach { playerDict in
             playerDict.value.play()
         }
         
-//        print("players count:", players.count)
+        //        print("players count:", players.count)
     }
     
     func stopSounds(sounds: [Sound]) {
@@ -188,10 +171,10 @@ final class AudioManager {
     
     func stopAllSounds(mixType: MixType = .current) {
         if mixType == .current {
-        players.forEach { playerDict in
-            playerDict.value.stop()
-        }
-        players.removeAll()
+            players.forEach { playerDict in
+                playerDict.value.stop()
+            }
+            players.removeAll()
         } else {
             
             playersForSavedMix.forEach { playerDict in
@@ -220,8 +203,8 @@ final class AudioManager {
         yourMixPlaybackView?.changeViewPlaybackState(to: state, for: .all)
         
         playbackViews.forEach { playbackView in
-                       playbackView.changeViewPlaybackState(to: state, for: number)
-                   }
+            playbackView.changeViewPlaybackState(to: state, for: number)
+        }
         
     }
     
@@ -261,11 +244,8 @@ final class AudioManager {
         DispatchQueue.main.asyncAfter(deadline: .now() + duration) { [weak self] in
             player.stop()
             self?.players.removeValue(forKey: soundFileNameURL)
-            sound.volume = 0.5 // return to default value
+            sound.volume = 1.0 // return to default value
             completion()
         }
     }
-    
-
-    
 }

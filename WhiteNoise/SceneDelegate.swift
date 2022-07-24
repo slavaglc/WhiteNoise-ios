@@ -16,8 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         StorageManager.shared.increaseRunsCount()
         let runNumber = StorageManager.shared.getRunsCount()
         window = UIWindow(windowScene: scene)
-//        window?.rootViewController = MyNavigationController(rootViewController: runNumber <= 1 ? PlansleepViewController() : MixViewController())
-        window?.rootViewController = MyNavigationController(rootViewController: WelcomeViewController())
+        window?.rootViewController = MyNavigationController(rootViewController: runNumber <= 1 ? WelcomeViewController() : MixViewController())
         window?.makeKeyAndVisible()
         
         #if DEBUG
