@@ -45,7 +45,6 @@ final class SoundCollectionViewCell: UICollectionViewCell {
             } else {
                 volumeIsSelecting = false
             }
-            
         }
     }
     
@@ -214,14 +213,49 @@ final class SoundCollectionViewCell: UICollectionViewCell {
     
     func setBackgroundStyle(selectedStyle: SelectedStyle) {
         //            print("volume in Cell:", sound.volume)
+        
         imageBackgroundView.setStyle(selectedStyle: selectedStyle)
-        
-        
         switch selectedStyle {
-        case .selected(animated: _):
+        case .selected(animated: let animated, volume: _):
+            if animated { animateSelection(duration: 0.6, withStyle: selectedStyle) } else {
+//            imageBackgroundView.setStyle(selectedStyle: selectedStyle)
             imageView.image = imageView.image?.tint(with: .white)
+            }
         case .unselected(_):
+            imageBackgroundView.setStyle(selectedStyle: selectedStyle)
             imageView.image = imageView.image?.tint(with: .lightGray)
         }
     }
+    
+    private func animateSelection(duration: Double, withStyle selectedStyle: SelectedStyle) {
+        guard gestureRecognizers?.first?.state != .began else { return }
+        isUserInteractionEnabled = false
+        let soundImage = imageView.image
+        imageView.image = UIImage(named: "sound_volume_icon")
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + duration) { [weak self] in
+            self?.imageView.image = soundImage?.withTintColor(.white)
+            self?.isUserInteractionEnabled = true
+        }
+
+//        UIView.animate(withDuration: 0.3) { [unowned self] in
+//            imageBackgroundView.transform = imageBackgroundView.transform.scaledBy(x: 0.9, y: 0.9)
+//        } completion: { [weak self] isFinished in
+//            if isFinished {
+//                print("finished")
+//                self?.returnSizeAnimation(withStyle: selectedStyle)
+//            }
+//        }
+    }
+//
+//    private func returnSizeAnimation(withStyle selectedStyle: SelectedStyle) {
+//        UIView.animate(withDuration: 0.25) { [unowned self] in
+//            imageBackgroundView.transform = imageBackgroundView.transform.scaledBy(x: 1.1, y: 1.1)
+//        } completion: { [weak self] isFinished in
+//            if isFinished {
+//                self?.imageBackgroundView.setStyle(selectedStyle: selectedStyle)
+//            }
+//        }
+//    }
 }
+

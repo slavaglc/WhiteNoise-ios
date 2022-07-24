@@ -5,7 +5,7 @@
 //  Created by Victor Varenik on 21.04.2022.
 //
 
-import StoreKit
+//import StoreKit
 import UIKit
 
 final class SettingsView: CustomUIView {
@@ -35,7 +35,7 @@ final class SettingsView: CustomUIView {
     
     private lazy var settingsFrame: SettingsFrameView = {
         let view = SettingsFrameView(settingsView: self)
-        view.isHidden = true //temporary
+//        view.isHidden = true //temporary
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
@@ -111,8 +111,8 @@ final class SettingsView: CustomUIView {
         
         // tableView
         NSLayoutConstraint.activate([
-            //            tableView.topAnchor.constraint(equalTo: settingsFrame.bottomAnchor, constant: 32), добавить после того, как внедрим подписку
-            tableView.topAnchor.constraint(equalTo: closeBtn.bottomAnchor, constant: 16.0), // Временно
+            tableView.topAnchor.constraint(equalTo: settingsFrame.bottomAnchor, constant: 32), //добавить после того, как внедрим подписку
+//            tableView.topAnchor.constraint(equalTo: closeBtn.bottomAnchor, constant: 16.0), // Временно
             tableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
@@ -160,8 +160,26 @@ final class SettingsView: CustomUIView {
     }
     
     private func presentRatingWindow() {
-        guard let scene = window?.windowScene else { return }
-        SKStoreReviewController.requestReview(in: scene)
+        let elements: [AlertElementType] = [
+            .title(text: "Rate us"),
+            .label(text: "Would you like to share your rating for the application?"),
+            .button(title: "No", action: cancelAction(button:alert:)),
+            .button(title: "Yes", action: presentRequestReview(button:alert:))
+        ]
+        viewController?.showAdvancedAlert(elements)
+    }
+    
+    private func presentRequestReview(button: UIButton, alert: AdvancedAlertViewController) {
+//        guard let scene = window?.windowScene else { return }
+//        SKStoreReviewController.requestReview(in: scene)
+        guard let url = URL(string: "https://apps.apple.com/app/white-point-noise/id1634811540?action=write-review") else {alert.close(); return}
+        UIApplication.shared.open(url)
+    
+        alert.close()
+    }
+    
+    private func cancelAction(button: UIButton, alert: AdvancedAlertViewController) {
+        alert.close()
     }
     
 }

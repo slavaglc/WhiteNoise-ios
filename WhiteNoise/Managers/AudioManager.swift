@@ -244,7 +244,7 @@ final class AudioManager {
         DispatchQueue.main.asyncAfter(deadline: .now() + duration) { [weak self] in
             player.stop()
             self?.players.removeValue(forKey: soundFileNameURL)
-            sound.volume = 1.0 // return to default value
+            sound.volume = 0.5 // return to default value
             completion()
         }
     }

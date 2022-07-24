@@ -32,7 +32,7 @@ class Sound: Hashable {
     let category: String
     var isPlaying = false
     var isLocked: Bool
-    var volume: Float = 1.0
+    var volume: Float = 0.5
     
     //Sounds
     static func getAllSounds() -> [Sound] {

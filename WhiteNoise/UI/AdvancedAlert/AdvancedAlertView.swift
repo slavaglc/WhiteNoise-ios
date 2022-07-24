@@ -299,6 +299,7 @@ final class AdvancedAlertView: UIScrollView {
         let label = UILabel()
         label.font = UIFont(name: "Nunito-Bold", size: 18)
         label.textColor = #colorLiteral(red: 0.6352941176, green: 0.6705882353, blue: 0.9450980392, alpha: 1)  //#A2ABF1
+        label.numberOfLines = 0
         label.text = text
         return label
     }
