@@ -10,12 +10,18 @@ import UIKit
 
 final class PaywallViewController: UIViewController {
     private lazy var paywallView: PaywallView = {
-        let view = PaywallView()
+        let view = PaywallView(isFirstLaunch: isFirstLaunch)
         view.backgroundColor = .fromNormalRgb(red: 11, green: 16, blue: 51)
         
         return view
     }()
     
+    private var isFirstLaunch = false
+    
+    convenience init(isFirstLaunch: Bool = false) {
+        self.init()
+        self.isFirstLaunch = isFirstLaunch
+    }
     override func loadView() {
         view = paywallView
     }

@@ -84,6 +84,7 @@
 		F9EBBA2C288BFB8200D2087C /* ReviewsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EBBA2B288BFB8200D2087C /* ReviewsPage.swift */; };
 		F9EBBA2F288C7DAC00D2087C /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EBBA2E288C7DAC00D2087C /* ReviewView.swift */; };
 		F9EBBA32288C8C2A00D2087C /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EBBA31288C8C2A00D2087C /* Review.swift */; };
+		F9EBBA34288D4F5D00D2087C /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EBBA33288D4F5D00D2087C /* UIDevice.swift */; };
 		F9EEF53C28526CCB00ED109F /* music.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF51428526CCB00ED109F /* music.wav */; };
 		F9EEF53D28526CCB00ED109F /* shower.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF51528526CCB00ED109F /* shower.wav */; };
 		F9EEF53E28526CCB00ED109F /* whitenoise.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9EEF51628526CCB00ED109F /* whitenoise.wav */; };
@@ -207,6 +208,7 @@
 		F9EBBA2B288BFB8200D2087C /* ReviewsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsPage.swift; sourceTree = "<group>"; };
 		F9EBBA2E288C7DAC00D2087C /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
 		F9EBBA31288C8C2A00D2087C /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		F9EBBA33288D4F5D00D2087C /* UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
 		F9EEF51428526CCB00ED109F /* music.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = music.wav; sourceTree = "<group>"; };
 		F9EEF51528526CCB00ED109F /* shower.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = shower.wav; sourceTree = "<group>"; };
 		F9EEF51628526CCB00ED109F /* whitenoise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = whitenoise.wav; sourceTree = "<group>"; };
@@ -378,6 +380,7 @@
 				5AAB52CA281355F7003C53E3 /* UIView.swift */,
 				F9DC15F62814679700B1EE9B /* UIImage.swift */,
 				5AAB52DE2813D366003C53E3 /* UIColor.swift */,
+				F9EBBA33288D4F5D00D2087C /* UIDevice.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -793,6 +796,7 @@
 				5AAB52D728135795003C53E3 /* Circle.swift in Sources */,
 				F9DA4F7E284155C8008F703D /* YourMixTableViewCell.swift in Sources */,
 				F9DA4F8428436BF6008F703D /* VerticalButton.swift in Sources */,
+				F9EBBA34288D4F5D00D2087C /* UIDevice.swift in Sources */,
 				F9EBBA28288BFB5100D2087C /* SecondPage.swift in Sources */,
 				5A62AAEF28118CF8003667D2 /* SettingsFrameView.swift in Sources */,
 				5AE64C9728130650007F5CED /* SettingItemCell.swift in Sources */,

@@ -24,8 +24,11 @@ final class MixView: UIView {
             setSelectedView(viewState: viewState)
         }
     }
+    
+    private var isFirstAppearence = true
 //    private let nc = NotificationCenter.default
     private let filterTags = FilterTag.getAllFilterTags()
+    private let deviceName = UIDevice.modelName
     private var sounds = Sound.getAllSounds()
     private var filtredSounds = Array<Sound>()
         
@@ -72,8 +75,8 @@ final class MixView: UIView {
         button.backgroundColor = #colorLiteral(red: 0.662745098, green: 0.7058823529, blue: 1, alpha: 1)
             .withAlphaComponent(0.1)
         button.tintColor = #colorLiteral(red: 0.862745098, green: 0.8784313725, blue: 1, alpha: 1)
-        button.alpha = 0
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(upgrateButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -142,9 +145,13 @@ final class MixView: UIView {
         setPrimarySettings()
     }
     
-    public func refreshData() {
-//        setCollectionViewSettings()
-        soundsCollectionView.reloadData()
+    public func refreshSoundsData() {
+        if let indexPaths = soundsCollectionView.indexPathsForSelectedItems {
+        soundsCollectionView.reloadItems(at: indexPaths)
+        }
+    }
+    
+    public func refreshSavedMixData() {
         savedMixesView.refreshData(withTabBar: customTabBar)
     }
     
@@ -189,6 +196,11 @@ final class MixView: UIView {
             viewController?.navigationController?.pushViewController(SettingsViewController(), animated: true)
     }
     
+    @objc private func upgrateButtonTapped() {
+        mixViewDisplayLogic.showPaywallVC()
+        upgradeButton.isEnabled = false
+    }
+    
     private func playButtonTapped() {
         customTabBar.togglePlaybackState()
     }
@@ -216,7 +228,7 @@ final class MixView: UIView {
             filterTagCollectionView.isHidden = true
             soundsCollectionView.isHidden = true
             savedMixesView.isHidden = false
-            savedMixesView.mixesTableView.reloadData()
+            savedMixesView.refreshData(withTabBar: customTabBar)
         }
     }
     
@@ -238,6 +250,10 @@ final class MixView: UIView {
     
     public func setCustomTabBarAppearence() {
         customTabBar.setPlaybackState()
+    }
+    
+    public func refreshUIElements() {
+        upgradeButton.isEnabled = true
     }
     
     private func setPrimarySettings() {
@@ -394,10 +410,12 @@ extension MixView: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let height = (24.552 * 1.5 ) + 100 + 10 // 24.552 is font height of label
+        let heightForSound = (deviceName == "iPod9,1" || deviceName == "Simulator iPod touch (7th generation)") ? (24.552 * 1.5 ) + 70 + 10 : height
+        let widthForSound = (deviceName == "iPod9,1" || deviceName == "Simulator iPod touch (7th generation)") ? 70.0 : 100.0
         switch collectionView {
         case soundsCollectionView:
-            let height = (24.552 * 1.5 ) + 100 + 10 // 24.552 is font height of label
-            return CGSize(width: 100, height: height)
+            return CGSize(width: widthForSound, height: heightForSound)
         case filterTagCollectionView:
             return CGSize(width: 100, height: 50)
         default:

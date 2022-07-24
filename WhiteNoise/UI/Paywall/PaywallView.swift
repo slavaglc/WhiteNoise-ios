@@ -119,6 +119,8 @@ final class PaywallView: UIView {
         }
     }
     
+    private var isFirstLaunch: Bool = false
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -136,6 +138,11 @@ final class PaywallView: UIView {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+    }
+    
+    convenience init(isFirstLaunch: Bool = false) {
+        self.init()
+        self.isFirstLaunch = isFirstLaunch
     }
     
     func viewDidAppear(_ animated: Bool) {
@@ -162,8 +169,10 @@ final class PaywallView: UIView {
         ])
 
         // textImage
+        let deviceName = UIDevice.modelName
+        let textImagePadding = (deviceName == "iPod9,1" || deviceName == "Simulator iPod touch (7th generation)") ? -30.0 : 64.0
         NSLayoutConstraint.activate([
-            textImage.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 64),
+            textImage.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: textImagePadding),
             textImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
             textImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32),
         ])
@@ -195,7 +204,12 @@ final class PaywallView: UIView {
     
     @objc
     private func closeView(view: UIView) {
+        if isFirstLaunch {
+            let mixVC = MixViewController()
+            viewController?.show(mixVC, sender: nil)
+        } else {
         viewController?.navigationController?.popViewController(animated: true)
+        }
     }
     
     @objc

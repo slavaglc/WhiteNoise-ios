@@ -24,7 +24,6 @@ final class ReviewsPage: UIView {
         let button = UIButton(type: .system)
         button.titleLabel?.font = UIFont(name: "Nunito-Regular", size: 12)
         button.tintColor =  #colorLiteral(red: 0.6352941176, green: 0.6705882353, blue: 0.9450980392, alpha: 1)  //#A2ABF1
-//        button.titleLabel?.textColor = #colorLiteral(red: 0.6352941176, green: 0.6705882353, blue: 0.9450980392, alpha: 1)  //#A2ABF1
         button.titleLabel?.text = "Reviewer Reviewer Reviewer"
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -80,7 +79,10 @@ final class ReviewsPage: UIView {
         let screenPoint = UIScreen.main.bounds.width
         let currentPageFloat = CGFloat(sender.currentPage)
         let pointY = scrollView.bounds.minY
+        let reviews = Review.getAllReviews()
         scrollView.setContentOffset(CGPoint(x: (screenPoint * currentPageFloat), y: pointY), animated: true)
+        let reviewerName = reviews[pageControl.currentPage].name
+        reviewerButton.setTitle(reviewerName, for: .normal)
     }
     
     
@@ -100,26 +102,31 @@ final class ReviewsPage: UIView {
     }
     
     private func setupConstraints() {
+        let deviceName = UIDevice.modelName
         let reviewerPadding = 28.0
         let padding = 16.0
-        let topPadding = 119.0
+        let topPadding = (deviceName == "iPod9,1" || deviceName == "Simulator iPod touch (7th generation)") ? 50.0 : 85.0
         
-        
-        
+//        Label
         label.topAnchor.constraint(equalTo: topAnchor, constant: topPadding)
             .isActive = true
         label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding)
             .isActive = true
         
+//        ReviewHeaderStackView
+        
+        let headerTopConstant = (deviceName == "iPod9,1" || deviceName == "Simulator iPod touch (7th generation)") ? 15.0 : 130.0
+        reviewHeaderStackView.topAnchor.constraint(equalTo: label.bottomAnchor, constant: headerTopConstant)
+            .isActive = true
         reviewHeaderStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: reviewerPadding)
             .isActive = true
         reviewHeaderStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: padding)
             .isActive = true
         reviewHeaderStackView.heightAnchor.constraint(equalToConstant: padding)
             .isActive = true
-        reviewHeaderStackView.centerYAnchor.constraint(equalTo: centerYAnchor)
-            .isActive = true
+       
         
+//        ScrollView
         scrollView.topAnchor.constraint(equalTo: reviewHeaderStackView.bottomAnchor)
             .isActive = true
         scrollView.leadingAnchor.constraint(equalTo: leadingAnchor)
@@ -157,11 +164,23 @@ final class ReviewsPage: UIView {
 extension ReviewsPage: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.isDragging {
-            let width = UIScreen.main.bounds.width
-            let reviews = Review.getAllReviews()
-            pageControl.currentPage = Int(floorf(Float(scrollView.contentOffset.x) / Float(width)))
-            let reviewerName = reviews[pageControl.currentPage].name
-            reviewerButton.setTitle(reviewerName, for: .normal)
+            setCurrentPage()
         }
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        setCurrentPage()
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        setCurrentPage()
+    }
+    
+    func setCurrentPage() {
+        let width = UIScreen.main.bounds.width
+        let reviews = Review.getAllReviews()
+        pageControl.currentPage = Int(floorf(Float(scrollView.contentOffset.x) / Float(width)))
+        let reviewerName = reviews[pageControl.currentPage].name
+        reviewerButton.setTitle(reviewerName, for: .normal)
     }
 }

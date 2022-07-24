@@ -14,20 +14,6 @@ final class OnboardingViewController: UIViewController {
             return .lightContent
         }
     
-    let views: [UIView] = [
-        FirstPage(),
-        SecondPage(),
-        ThirdPage(),
-        ReviewsPage()
-    ]
-    
-    let colors: [UIColor] =  [
-        .clear,
-        .clear,
-        .clear,
-        .clear
-    ]
-    
     private let buttonsStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -47,7 +33,6 @@ final class OnboardingViewController: UIViewController {
     
     private lazy var pageControl: UIPageControl = {
         let pageControl = UIPageControl()
-        pageControl.numberOfPages = 4
         pageControl.currentPageIndicatorTintColor = #colorLiteral(red: 0.3529411765, green: 0.4196078431, blue: 0.9333333333, alpha: 1) //#5A6BEE
         pageControl.pageIndicatorTintColor =  #colorLiteral(red: 0.1215686275, green: 0.1529411765, blue: 0.4039215686, alpha: 1) //#1F2767
         let indicatorImage = UIImage(named: "Page_Indicator")
@@ -78,8 +63,16 @@ final class OnboardingViewController: UIViewController {
         button.setTitle("Skip", for: .normal)
         button.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 18)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(buttonTapped(sender:)), for: .touchUpInside)
         return button
     }()
+    
+    private lazy var pages: [UIView] = [
+        FirstPage(),
+        SecondPage(),
+        ThirdPage(),
+        ReviewsPage()
+    ]
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -94,9 +87,15 @@ final class OnboardingViewController: UIViewController {
     @objc private func buttonTapped(sender: UIButton) {
         switch sender.tag {
         case 1:
-            setNextPage()
+            if pageControl.currentPage == pages.indices.last {
+                sender.isEnabled = false
+                showPaywall()
+            } else {
+                setNextPage()
+            }
         default:
-            break
+            sender.isEnabled = false
+            showPaywall()
         }
     }
     
@@ -105,6 +104,11 @@ final class OnboardingViewController: UIViewController {
         let currentPageFloat = CGFloat(sender.currentPage)
         let pointY = scrollView.bounds.minY
         scrollView.setContentOffset(CGPoint(x: (screenPoint * currentPageFloat), y: pointY), animated: true)
+    }
+    
+    private func showPaywall() {
+        let paywallVC = PaywallViewController(isFirstLaunch: true)
+        show(paywallVC, sender: nil)
     }
     
     private func setNextPage() {
@@ -137,6 +141,7 @@ final class OnboardingViewController: UIViewController {
     }
     
     private func setPageControlSettings() {
+        pageControl.numberOfPages = pages.count
         let height = 52.0
         let padding = 10.0
         pageControl.widthAnchor.constraint(equalTo: view.widthAnchor)
@@ -168,12 +173,11 @@ final class OnboardingViewController: UIViewController {
                 .isActive = true
         }
     
-    private func  setPages() {
-        scrollView.contentSize.width = UIScreen.main.bounds.width * CGFloat(views.count)
+    private func setPages() {
+        scrollView.contentSize.width = UIScreen.main.bounds.width * CGFloat(pages.count)
         
-        for (index, page) in views.enumerated() {
+        for (index, page) in pages.enumerated() {
             page.translatesAutoresizingMaskIntoConstraints = false
-            page.backgroundColor = colors[index]
             scrollView.addSubview(page)
             page.widthAnchor.constraint(equalTo: view.widthAnchor)
                 .isActive = true
@@ -185,7 +189,7 @@ final class OnboardingViewController: UIViewController {
                 page.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor)
                     .isActive = true
             } else {
-                page.leadingAnchor.constraint(equalTo: views[index-1].trailingAnchor)
+                page.leadingAnchor.constraint(equalTo: pages[index-1].trailingAnchor)
                     .isActive = true
             }
         }
@@ -195,15 +199,22 @@ final class OnboardingViewController: UIViewController {
 extension OnboardingViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.isDragging {
-        let width = UIScreen.main.bounds.width
-        pageControl.currentPage = Int(floorf(Float(scrollView.contentOffset.x) / Float(width)))
+        setCurrentPage()
         }
     }
     
-//    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-//        let width = UIScreen.main.bounds.width
-//        pageControl.currentPage = Int(floorf(Float(scrollView.contentOffset.x) / Float(width)))
-//    }
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        setCurrentPage()
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        setCurrentPage()
+    }
+    
+    func setCurrentPage() {
+        let width = UIScreen.main.bounds.width
+        pageControl.currentPage = Int(floorf(Float(scrollView.contentOffset.x) / Float(width)))
+    }
 }
 
     

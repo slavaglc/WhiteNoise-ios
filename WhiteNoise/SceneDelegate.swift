@@ -13,7 +13,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
-        
         StorageManager.shared.increaseRunsCount()
         let runNumber = StorageManager.shared.getRunsCount()
         window = UIWindow(windowScene: scene)

@@ -10,6 +10,7 @@ import UIKit
 protocol MixViewDisplayLogic: AnyObject {
     func getNavigationController() -> UINavigationController?
     func showSaveMixAlert()
+    func showPaywallVC()
 }
 
 final class MixViewController: UIViewController {
@@ -37,17 +38,20 @@ final class MixViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
 //        mainView.setCollectionViewSettings()
         mainView.setCustomBarAppearence()
-//        mainView.refreshData()
+        mainView.refreshSoundsData()
     }
     
+
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if isFirstLaunch {
             mainView.setCollectionViewSettings()
+//            mainView.refreshData()
             isFirstLaunch = false
         }
-        mainView.refreshData()
+        mainView.refreshSavedMixData()
+        mainView.refreshUIElements()
     }
     
     
@@ -70,7 +74,7 @@ final class MixViewController: UIViewController {
         let sounds = mainView.playingSounds
         DatabaseManager.shared.save(mixName: name, sounds: sounds) { success, error in
             if success {
-                mainView.refreshData()
+                mainView.refreshSavedMixData()
                 alertController.close()
             } else if let error = error {
                 print(error.localizedDescription)
@@ -92,6 +96,11 @@ final class MixViewController: UIViewController {
 }
 
 extension MixViewController: MixViewDisplayLogic {
+    func showPaywallVC() {
+        let paywallVC = PaywallViewController()
+        show(paywallVC, sender: nil)
+    }
+    
     func showSaveMixAlert() {
         let elements: [AlertElementType] = [
             .title(text: "Name your mix"),
