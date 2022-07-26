@@ -127,6 +127,7 @@ final class ImageBackgroundView: UIView, CAAnimationDelegate {
         gradientLayer.opacity = 1
         gradientLayer.locations = [0.0, 0.7 , 1.0]
         //        gradientLayer.transform = CATransform3DMakeAffineTransform(CGAffineTransform(a: 1.21, b: -1.14, c: 1.14, d: 5.3, tx: -0.66, ty: -1.61))
+        guard gestureRecognizers?.first?.state != .began else { return }
         guard animated else {
             isAnimating = false
 //            layoutSubviews()

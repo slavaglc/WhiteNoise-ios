@@ -446,8 +446,8 @@
             filePath = "WhiteNoise/UI/Mix/Subviews/Cells/SoundCollectionViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "234"
-            endingLineNumber = "234"
+            startingLineNumber = "235"
+            endingLineNumber = "235"
             landmarkName = "animateSelection(duration:withStyle:)"
             landmarkType = "7">
          </BreakpointContent>

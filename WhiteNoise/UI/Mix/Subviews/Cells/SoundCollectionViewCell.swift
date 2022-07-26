@@ -214,11 +214,11 @@ final class SoundCollectionViewCell: UICollectionViewCell {
     func setBackgroundStyle(selectedStyle: SelectedStyle) {
         //            print("volume in Cell:", sound.volume)
         
-        imageBackgroundView.setStyle(selectedStyle: selectedStyle)
+//        imageBackgroundView.setStyle(selectedStyle: selectedStyle)
         switch selectedStyle {
         case .selected(animated: let animated, volume: _):
             if animated { animateSelection(duration: 0.6, withStyle: selectedStyle) } else {
-//            imageBackgroundView.setStyle(selectedStyle: selectedStyle)
+            imageBackgroundView.setStyle(selectedStyle: SelectedStyle.selected(animated: false, volume: sound.volume))
             imageView.image = imageView.image?.tint(with: .white)
             }
         case .unselected(_):
@@ -230,6 +230,7 @@ final class SoundCollectionViewCell: UICollectionViewCell {
     private func animateSelection(duration: Double, withStyle selectedStyle: SelectedStyle) {
         guard gestureRecognizers?.first?.state != .began else { return }
         isUserInteractionEnabled = false
+        imageBackgroundView.setStyle(selectedStyle: selectedStyle)
         let soundImage = imageView.image
         imageView.image = UIImage(named: "sound_volume_icon")
 
