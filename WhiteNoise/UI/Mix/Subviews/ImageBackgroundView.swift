@@ -6,13 +6,13 @@
 //
 
 import UIKit
-import CryptoKit
+
 
 enum SelectedStyle {
     case selected(animated: Bool, volume: Float), unselected(animated: Bool)
 }
 
-final class ImageBackgroundView: UIView, CAAnimationDelegate {
+final class ImageBackgroundView: UIView {
     
     private enum PositionAnimationType {
         case forward, back
@@ -24,6 +24,12 @@ final class ImageBackgroundView: UIView, CAAnimationDelegate {
     private var volume: Float = 0.0
     private var lastSize: CGSize = .zero
     private var isAnimating = false
+    
+    private lazy var volumeDamper: UIView = {
+        let view = UIView()
+        view.backgroundColor = .green
+        return view
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -55,20 +61,20 @@ final class ImageBackgroundView: UIView, CAAnimationDelegate {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        if self.window != nil, lastSize != .zero, gradientLayer.bounds.size != lastSize {
-            // React to the size change
-            if !isAnimating {
-                setGradientWidthByVolume()
-            }
-        } else {
-            gradientLayer.frame = self.frame
-            gradientLayer.bounds = self.bounds
-            if !isAnimating {
-                setGradientWidthByVolume()
-            }
-        }
-        
-        lastSize = gradientLayer.bounds.size
+//        if self.window != nil, lastSize != .zero, self.bounds.size != lastSize {
+//            // React to the size change
+//            if !isAnimating {
+//                setVolumeDamperPosition()
+//            }
+//        } else {
+////            gradientLayer.frame = self.frame
+////            gradientLayer.bounds = self.bounds
+////            if !isAnimating {
+////                setVolumeDamperPosition()
+////            }
+//        }
+        setVolumeDamperPosition()
+//        lastSize = self.bounds.size
     }
     
     override func layoutSublayers(of layer: CALayer) {
@@ -78,29 +84,17 @@ final class ImageBackgroundView: UIView, CAAnimationDelegate {
     func animationDidStart(_ anim: CAAnimation) {
         switch anim.value(forKey: "bounds") as? String {
         case "back":
-            setGradientWidthByVolume()
+            setVolumeDamperPosition()
         default:
             break
         }
     }
     
-    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        if flag {
-            switch anim.value(forKey: "bounds") as? String {
-            case "forward":
-                gradientLayer.bounds = self.bounds
-                animateBackPosistion()
-            case "back":
-                isAnimating = false
-            default:
-                break
-            }
-            
-        }
-    }
     
     private func initialize() {
+        addSubview(volumeDamper)
         backgroundColor = #colorLiteral(red: 0.0862745098, green: 0.1137254902, blue: 0.3254901961, alpha: 1)
+        volumeDamper.backgroundColor = backgroundColor
         layer.cornerRadius = 25
         clipsToBounds = true
         
@@ -116,6 +110,7 @@ final class ImageBackgroundView: UIView, CAAnimationDelegate {
     
     private func setSelectedStyle(animated: Bool, volume: Float) {
         //        print("selected volume:", volume)
+        volumeDamper.alpha = 1
         self.volume = volume
         gradientLayer.isHidden = false
         layoutSubviews()
@@ -134,13 +129,46 @@ final class ImageBackgroundView: UIView, CAAnimationDelegate {
             ;return }
         isAnimating = true
         //        animatePosistion(direction: .forward)
-        animatePosistion()
+//        animatePosistion()
+        animateVolumeDamperPosition()
         animateGradient()
     }
     
     private func setUnselectedStyle(animated: Bool) {
         guard animated else { gradientLayer.isHidden = true; return }
         gradientLayer.opacity = 0
+        animateVolumeDamperDissapear()
+//        volumeDamper.frame = self.frame
+    }
+    
+    private func animateVolumeDamperDissapear() {
+        UIView.animate(withDuration: 0.3) {
+            self.volumeDamper.frame.origin.x = self.frame.minX
+        } completion: { isFinished in
+            
+        }
+    }
+    
+    private func animateVolumeDamperPosition() {
+        self.volumeDamper.frame.origin.x = .zero
+        UIView.animate(withDuration: 0.5) {
+            self.volumeDamper.frame.origin.x = self.frame.maxX
+        } completion: { isFinished in
+            if isFinished {
+            animateCurrentPosition()
+            }
+        }
+        
+        func animateCurrentPosition() {
+            let width = frame.width
+            UIView.animate(withDuration: 0.3) {
+                self.volumeDamper.frame = self.frame
+                self.volumeDamper.frame.origin.x = width * CGFloat(self.volume)
+            } completion: { isFinished in
+                
+            }
+        }
+        
     }
     
     private func animateGradient() {
@@ -155,56 +183,12 @@ final class ImageBackgroundView: UIView, CAAnimationDelegate {
         gradientLayer.add(gradientAnimation, forKey: "colors")
     }
     
-    private func animatePosistion() {
-        gradientLayer.anchorPoint.x = .zero
-        let newBounds = self.frame
-        
-        let oldBounds = CGRect(x: .zero, y: .zero, width: 0, height: self.bounds.height)
-        //        let oldBounds: CGFloat = .zero
-        let boundsAnimation = CABasicAnimation(keyPath: "bounds")
-        boundsAnimation.setValue("forward", forKey: "bounds")
-        boundsAnimation.fromValue = oldBounds
-        boundsAnimation.toValue = newBounds
-        boundsAnimation.delegate = self
-        boundsAnimation.duration = 0.3
-        boundsAnimation.fillMode = .forwards
-        boundsAnimation.isRemovedOnCompletion = false
-        gradientLayer.add(boundsAnimation, forKey: "bounds")
-    }
-    
-    private func animateBackPosistion() {
-        let newBounds = CGRect(origin: gradientLayer.bounds.origin, size: CGSize(width: (gradientLayer.bounds.width * CGFloat(volume)), height: gradientLayer.bounds.height))
-        
-        let oldBounds = CGRect(origin: gradientLayer.bounds.origin, size: gradientLayer.bounds.size)
-        //        let oldBounds: CGFloat = .zero
-        let boundsAnimation = CABasicAnimation(keyPath: "bounds")
-        boundsAnimation.setValue("back", forKey: "bounds")
-        boundsAnimation.fromValue = oldBounds
-        boundsAnimation.toValue = newBounds
-        boundsAnimation.delegate = self
-        boundsAnimation.duration = 0.3
-        boundsAnimation.isRemovedOnCompletion = false
-        gradientLayer.add(boundsAnimation, forKey: "bounds")
-    }
-    
-    private func setGradientWidthByVolume() {
+    private func setVolumeDamperPosition() {
         gradientLayer.frame = self.frame
-        gradientLayer.frame.size.width *=  CGFloat(volume)
         gradientLayer.bounds = self.bounds
-        gradientLayer.bounds.size.width *=  CGFloat(volume)
+        let width = frame.width
+        volumeDamper.frame = self.frame
+        volumeDamper.frame.origin.x = width * CGFloat(volume)
     }
     
-    //    private func animatePosistion(direction: PositionAnimationType, pos: CGFloat = .zero, duration: CFTimeInterval = 0.5) {
-    ////        let zeroPosition: CGFloat = pos - (layer.bounds.width / 2)
-    ////        let newPosition =  direction == .forward ? layer.position.x  : zeroPosition
-    ////        let oldPosition: CGFloat = direction == .forward ? zeroPosition : layer.position.x
-    //        let newPosition = layer.bounds.width
-    //        let oldPosition: CGFloat = .zero
-    //
-    //        let boundsAnimation = CABasicAnimation(keyPath: "position.x")
-    //        boundsAnimation.fromValue = oldPosition
-    //        boundsAnimation.toValue = newPosition
-    //        boundsAnimation.duration = duration
-    //        gradientLayer.add(boundsAnimation, forKey: "position.x")
-    //    }
 }

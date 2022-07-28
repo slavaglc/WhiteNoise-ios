@@ -27,7 +27,7 @@ final class SoundCollectionViewCell: UICollectionViewCell {
         
     public var delegate: SoundCollectionViewCellDelegate?
     
-    private let opacityAnimation = CABasicAnimation(keyPath: "opacity")
+//    private let opacityAnimation = CABasicAnimation(keyPath: "opacity")
     
     private let color1: CGColor = #colorLiteral(red: 0.4901960784, green: 0.3254901961, blue: 0.8352941176, alpha: 1).cgColor
     private  let color2: CGColor = #colorLiteral(red: 0.7745779157, green: 0.7195857167, blue: 1, alpha: 1).cgColor
@@ -212,12 +212,9 @@ final class SoundCollectionViewCell: UICollectionViewCell {
     }
     
     func setBackgroundStyle(selectedStyle: SelectedStyle) {
-        //            print("volume in Cell:", sound.volume)
-        
-//        imageBackgroundView.setStyle(selectedStyle: selectedStyle)
         switch selectedStyle {
         case .selected(animated: let animated, volume: _):
-            if animated { animateSelection(duration: 0.6, withStyle: selectedStyle) } else {
+            if animated { animateSelection(duration: 0.8, withStyle: selectedStyle) } else {
             imageBackgroundView.setStyle(selectedStyle: SelectedStyle.selected(animated: false, volume: sound.volume))
             imageView.image = imageView.image?.tint(with: .white)
             }
