@@ -82,6 +82,38 @@ extension UIView {
         }
     }
     
+    func fadeInFromRightSide(completionAnimation: @escaping ()->() = {}) {
+        let targetCenter = center
+        center = CGPoint(x: targetCenter.x, y: targetCenter.y)
+        alpha = 0.0
+        isHidden = false
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            self?.center = CGPoint(x: 0, y: targetCenter.y)
+            self?.alpha = 1.0
+        } completion: { isFinished in
+            if isFinished {
+                completionAnimation()
+            }
+        }
+    }
+    
+    func fadeOutToRightSide(withOpaque: Bool = false  , completionAnimation: @escaping ()->() = {}) {
+        let targetCenter = center
+        center = CGPoint(x: 0, y: targetCenter.y)
+        alpha = 1.0
+        isHidden = false
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            self?.center = CGPoint(x: targetCenter.x, y: targetCenter.y)
+            self?.alpha = withOpaque ? 0.0 : 1
+        } completion: { [weak self] isFinished in
+            if isFinished {
+                self?.isHidden = true
+                self?.center = targetCenter
+                completionAnimation()
+            }
+        }
+    }
+    
     func fadeOut(completionAnimation: @escaping ()->() = {}) {
         alpha = 1.0
         isHidden = false

@@ -18,12 +18,13 @@ final class ImageBackgroundView: UIView {
         case forward, back
     }
     
+    public var withVolumeControl: Bool = false
     private let gradientLayer = CAGradientLayer()
     private var gradientColorSet: [[CGColor]] = [[#colorLiteral(red: 0.7882352941, green: 0.6352941176, blue: 0.9450980392, alpha: 1).cgColor, #colorLiteral(red: 0.4549019608, green: 0.2196078431, blue: 0.9568627451, alpha: 1).cgColor]]
     private var colorIndex: Int = 0
     private var volume: Float = 0.0
-    private var lastSize: CGSize = .zero
-    private var isAnimating = false
+    
+    
     
     private lazy var volumeDamper: UIView = {
         let view = UIView()
@@ -31,13 +32,10 @@ final class ImageBackgroundView: UIView {
         return view
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        initialize()
-    }
     
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
+    convenience init(withVolumeControl: Bool = false) {
+        self.init()
+        self.withVolumeControl = withVolumeControl
         initialize()
     }
     
@@ -61,20 +59,7 @@ final class ImageBackgroundView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-//        if self.window != nil, lastSize != .zero, self.bounds.size != lastSize {
-//            // React to the size change
-//            if !isAnimating {
-//                setVolumeDamperPosition()
-//            }
-//        } else {
-////            gradientLayer.frame = self.frame
-////            gradientLayer.bounds = self.bounds
-////            if !isAnimating {
-////                setVolumeDamperPosition()
-////            }
-//        }
         setVolumeDamperPosition()
-//        lastSize = self.bounds.size
     }
     
     override func layoutSublayers(of layer: CALayer) {
@@ -90,14 +75,12 @@ final class ImageBackgroundView: UIView {
         }
     }
     
-    
     private func initialize() {
-        addSubview(volumeDamper)
+        if withVolumeControl { addSubview(volumeDamper) }
         backgroundColor = #colorLiteral(red: 0.0862745098, green: 0.1137254902, blue: 0.3254901961, alpha: 1)
         volumeDamper.backgroundColor = backgroundColor
         layer.cornerRadius = 25
         clipsToBounds = true
-        
         setGradientSettings()
     }
     
@@ -109,27 +92,17 @@ final class ImageBackgroundView: UIView {
     }
     
     private func setSelectedStyle(animated: Bool, volume: Float) {
-        //        print("selected volume:", volume)
         volumeDamper.alpha = 1
         self.volume = volume
         gradientLayer.isHidden = false
         layoutSubviews()
         gradientLayer.colors = gradientColorSet.first
-        //        gradientLayer.startPoint = CGPoint(x: 0.25, y: 0.5)
-        //        gradientLayer.endPoint = CGPoint(x: 0.75, y: 0.5)
         gradientLayer.startPoint = CGPoint(x: 1.0, y: 0.0)
         gradientLayer.endPoint = CGPoint(x: 0.0, y: 1.0)
         gradientLayer.opacity = 1
         gradientLayer.locations = [0.0, 0.7 , 1.0]
-        //        gradientLayer.transform = CATransform3DMakeAffineTransform(CGAffineTransform(a: 1.21, b: -1.14, c: 1.14, d: 5.3, tx: -0.66, ty: -1.61))
         guard gestureRecognizers?.first?.state != .began else { return }
-        guard animated else {
-            isAnimating = false
-//            layoutSubviews()
-            ;return }
-        isAnimating = true
-        //        animatePosistion(direction: .forward)
-//        animatePosistion()
+        guard animated else { return }
         animateVolumeDamperPosition()
         animateGradient()
     }
@@ -138,14 +111,15 @@ final class ImageBackgroundView: UIView {
         guard animated else { gradientLayer.isHidden = true; return }
         gradientLayer.opacity = 0
         animateVolumeDamperDissapear()
-//        volumeDamper.frame = self.frame
     }
     
     private func animateVolumeDamperDissapear() {
         UIView.animate(withDuration: 0.3) {
             self.volumeDamper.frame.origin.x = self.frame.minX
         } completion: { isFinished in
-            
+            if isFinished {
+                
+            }
         }
     }
     

@@ -27,8 +27,6 @@ final class SoundCollectionViewCell: UICollectionViewCell {
         
     public var delegate: SoundCollectionViewCellDelegate?
     
-//    private let opacityAnimation = CABasicAnimation(keyPath: "opacity")
-    
     private let color1: CGColor = #colorLiteral(red: 0.4901960784, green: 0.3254901961, blue: 0.8352941176, alpha: 1).cgColor
     private  let color2: CGColor = #colorLiteral(red: 0.7745779157, green: 0.7195857167, blue: 1, alpha: 1).cgColor
     private   let color3: CGColor = #colorLiteral(red: 0.5406857133, green: 0.4216250181, blue: 1, alpha: 1).cgColor
@@ -56,7 +54,7 @@ final class SoundCollectionViewCell: UICollectionViewCell {
     }()
     
     private lazy var imageBackgroundView: ImageBackgroundView  = {
-        let view = ImageBackgroundView()
+        let view = ImageBackgroundView(withVolumeControl: true)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()

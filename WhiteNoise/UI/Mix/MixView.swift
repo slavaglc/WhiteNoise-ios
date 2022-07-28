@@ -187,8 +187,33 @@ final class MixView: UIView {
     
     // MARK: - Actions
     
+    
+    
     public func getCustomTabBar() -> CustomTabBar {
         customTabBar
+    }
+    
+    @objc
+    private func swipeHandler(gesture: UISwipeGestureRecognizer) {
+        switch gesture.state {
+        case .possible:
+            break
+        case .began:
+            break
+        case .changed:
+            break
+        case .ended:
+//             viewState = gesture.direction == .left ? .saved : .create
+            segmentControl.setIndex(index: gesture.direction == .left ? 1 : .zero)
+            change(to: gesture.direction == .left ? 1 : .zero)
+            
+        case .cancelled:
+            break
+        case .failed:
+            break
+        @unknown default:
+            break
+        }
     }
     
     @objc
@@ -269,6 +294,16 @@ final class MixView: UIView {
         setCustomTabBarSettings()
         setupConstraints()
         setActions()
+        setGestureSettings()
+    }
+    
+    private func setGestureSettings() {
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipeHandler(gesture:)))
+        swipeLeft.direction = .left
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(swipeHandler(gesture:)))
+        swipeRight.direction = .right
+        addGestureRecognizer(swipeLeft)
+        addGestureRecognizer(swipeRight)
     }
     
     private func setActions() {
