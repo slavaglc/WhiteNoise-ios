@@ -26,7 +26,7 @@ final class ImageBackgroundView: UIView {
     
     
     
-    private lazy var volumeDamper: UIView = {
+     lazy var volumeDamper: UIView = {
         let view = UIView()
         view.backgroundColor = .green
         return view
@@ -51,9 +51,12 @@ final class ImageBackgroundView: UIView {
     }
     
     public func setVolumeState(by location: CGPoint, for volume: inout Float) {
-        let width = location.x
-        gradientLayer.frame.size.width = width > 0 ? width : 0.1
-        volume = Float(width * 0.01)
+        setVolumeDamperPosition()
+        let position = Float(location.x)
+        let frameWidth = Float(bounds.width)
+//        gradientLayer.frame.size.width = width > 0 ? width : 0.1
+        volumeDamper.frame.origin.x = location.x
+        volume = position / frameWidth
         self.volume = volume
     }
     
@@ -69,19 +72,24 @@ final class ImageBackgroundView: UIView {
     func animationDidStart(_ anim: CAAnimation) {
         switch anim.value(forKey: "bounds") as? String {
         case "back":
-            setVolumeDamperPosition()
+//            setVolumeDamperPosition()
+            break
         default:
             break
         }
     }
     
     private func initialize() {
-        if withVolumeControl { addSubview(volumeDamper) }
         backgroundColor = #colorLiteral(red: 0.0862745098, green: 0.1137254902, blue: 0.3254901961, alpha: 1)
-        volumeDamper.backgroundColor = backgroundColor
+        if withVolumeControl { setVolumeDamperSettings() }
         layer.cornerRadius = 25
         clipsToBounds = true
         setGradientSettings()
+    }
+    
+    private func setVolumeDamperSettings() {
+        addSubview(volumeDamper)
+        volumeDamper.backgroundColor = backgroundColor
     }
     
     
@@ -160,9 +168,9 @@ final class ImageBackgroundView: UIView {
     private func setVolumeDamperPosition() {
         gradientLayer.frame = self.frame
         gradientLayer.bounds = self.bounds
-        let width = frame.width
-        volumeDamper.frame = self.frame
-        volumeDamper.frame.origin.x = width * CGFloat(volume)
+        let width = bounds.width
+        let xPosition = width * CGFloat(volume)
+        volumeDamper.frame = CGRect(x: xPosition, y: frame.origin.y, width: frame.width, height: frame.height)
     }
     
 }

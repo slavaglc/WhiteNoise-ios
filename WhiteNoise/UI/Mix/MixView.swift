@@ -11,6 +11,8 @@ import UIKit
 final class MixView: UIView {
     
     
+    private var volumeIsSelecting = false
+    
     private enum ViewState: String {
         case create = "Create", saved = "Saved"
     }
@@ -419,20 +421,11 @@ extension MixView: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
             let sound = filtredSounds[indexPath.item]
             cell.delegate = self
             cell.setCellParameters(sound: sound)
-            
-            
-            if cell.isSelected {
-            print("selected Sound: \(sound.name)")
-            }
-            
-            
             if sound.isPlaying {
                 soundsCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
                 cell.setBackgroundStyle(selectedStyle: .selected(animated: false, volume: sound.volume))
             }
             customTabBar.setNumberForBadge(number: playingSounds.count)
-//            cell.delegate = self
-//            cell.setCellParameters(sound: sound)
             cell.contentView.fadeIn(duration: 0.4, completionAnimation: {})
             return cell
         case filterTagCollectionView:

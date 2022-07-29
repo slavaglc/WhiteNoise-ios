@@ -16,7 +16,7 @@ final class SoundCollectionViewCell: UICollectionViewCell {
     
     override var isSelected: Bool {
         didSet {
-            colorIndex = 0
+            guard !touchBegan else { return }
             if isSelected {
                 setBackgroundStyle(selectedStyle: .selected(animated: false, volume: sound.volume))
             } else {
@@ -27,17 +27,12 @@ final class SoundCollectionViewCell: UICollectionViewCell {
         
     public var delegate: SoundCollectionViewCellDelegate?
     
-    private let color1: CGColor = #colorLiteral(red: 0.4901960784, green: 0.3254901961, blue: 0.8352941176, alpha: 1).cgColor
-    private  let color2: CGColor = #colorLiteral(red: 0.7745779157, green: 0.7195857167, blue: 1, alpha: 1).cgColor
-    private   let color3: CGColor = #colorLiteral(red: 0.5406857133, green: 0.4216250181, blue: 1, alpha: 1).cgColor
+  
     
     private var sound: Sound = Sound(name: "Placholder Sound", imageName: "", trackName: "", category: "", isLocked: false)
-    
-    
-    private var gradientColorSet: [[CGColor]] = []
-    private var colorIndex: Int = 0
     private var volumeIsSelecting = false {
         didSet {
+            touchBegan = volumeIsSelecting
             if isSelected {
                 setVolumeStyle()
             } else {
@@ -45,6 +40,7 @@ final class SoundCollectionViewCell: UICollectionViewCell {
             }
         }
     }
+    private var touchBegan = false
     
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
@@ -94,19 +90,21 @@ final class SoundCollectionViewCell: UICollectionViewCell {
         initialize()
     }
     
-
     override func prepareForReuse() {
         super.prepareForReuse()
         imageBackgroundView.isHidden = true
         label.text?.removeAll()
         imageView.image = nil
         setBackgroundStyle(selectedStyle: .unselected(animated: false))
-        
     }
+    
     
     @objc func longPressed(gesture: UIGestureRecognizer) {
         switch gesture.state {
+        case .possible:
+            touchBegan = true
         case .began:
+            touchBegan = true
             delegate?.selectingVolumeBegan(in: self)
             volumeIsSelecting = true
         case .changed:
@@ -194,7 +192,6 @@ final class SoundCollectionViewCell: UICollectionViewCell {
             .isActive = true
         soundLockImage.trailingAnchor.constraint(equalTo: imageBackgroundView.trailingAnchor, constant: -6)
             .isActive = true
-        
     }
     
     
@@ -212,8 +209,9 @@ final class SoundCollectionViewCell: UICollectionViewCell {
     func setBackgroundStyle(selectedStyle: SelectedStyle) {
         switch selectedStyle {
         case .selected(animated: let animated, volume: _):
-            if animated { animateSelection(duration: 0.8, withStyle: selectedStyle) } else {
-            imageBackgroundView.setStyle(selectedStyle: SelectedStyle.selected(animated: false, volume: sound.volume))
+            if animated  && !touchBegan { animateSelection(duration: 0.8, withStyle: selectedStyle) } else {
+                let volume = touchBegan ? .zero : sound.volume
+            imageBackgroundView.setStyle(selectedStyle: SelectedStyle.selected(animated: false, volume: volume))
             imageView.image = imageView.image?.tint(with: .white)
             }
         case .unselected(_):
