@@ -35,7 +35,8 @@ final class YourMixTableViewCell: UITableViewCell {
     }()
     
     private lazy var imageBackgroundView: ImageBackgroundView = {
-        let view = ImageBackgroundView()
+        let view = ImageBackgroundView(withVolumeControl: false)
+//        view.backgroundColor =  #colorLiteral(red: 0.0862745098, green: 0.1137254902, blue: 0.3254901961, alpha: 1) //#161D53
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
