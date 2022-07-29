@@ -106,6 +106,7 @@ final class SoundCollectionViewCell: UICollectionViewCell {
         case .began:
             touchBegan = true
             delegate?.selectingVolumeBegan(in: self)
+            setVolumeState(by: gesture.location(in: imageBackgroundView))
             volumeIsSelecting = true
         case .changed:
             setVolumeState(by: gesture.location(in: imageBackgroundView))
@@ -210,7 +211,8 @@ final class SoundCollectionViewCell: UICollectionViewCell {
         switch selectedStyle {
         case .selected(animated: let animated, volume: _):
             if animated  && !touchBegan { animateSelection(duration: 0.8, withStyle: selectedStyle) } else {
-                let volume = touchBegan ? .zero : sound.volume
+                
+                let volume = touchBegan ? getCurrentVolumePosition() : sound.volume
             imageBackgroundView.setStyle(selectedStyle: SelectedStyle.selected(animated: false, volume: volume))
             imageView.image = imageView.image?.tint(with: .white)
             }
@@ -218,6 +220,13 @@ final class SoundCollectionViewCell: UICollectionViewCell {
             imageBackgroundView.setStyle(selectedStyle: selectedStyle)
             imageView.image = imageView.image?.tint(with: .lightGray)
         }
+    }
+    
+    private func  getCurrentVolumePosition() -> Float {
+        guard let gestureRecognizer = gestureRecognizers?.last else { return 0.0 }
+        let locationX =  gestureRecognizer.location(in: imageBackgroundView).x
+        let position = Float(locationX / imageBackgroundView.frame.width)
+        return position
     }
     
     private func animateSelection(duration: Double, withStyle selectedStyle: SelectedStyle) {
