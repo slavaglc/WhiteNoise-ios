@@ -417,7 +417,6 @@
 			isa = PBXGroup;
 			children = (
 				5AAB52CC28135795003C53E3 /* Subviews */,
-				5A8FB7CC280C70C300D44CA6 /* MixView.swift */,
 				5A8FB7CE280C70E300D44CA6 /* MixViewController.swift */,
 			);
 			path = Mix;
@@ -449,6 +448,7 @@
 				5AAB52D128135795003C53E3 /* CustomTabBar.swift */,
 				5AAB52D228135795003C53E3 /* Circle.swift */,
 				F928288B281F00E9003CDCDD /* ImageBackgroundView.swift */,
+				F91A6CA828959D1A00D52AA8 /* MixView */,
 				F90C8261285DDCA800E61761 /* SavedMixes */,
 			);
 			path = Subviews;
@@ -479,6 +479,14 @@
 				F91327BA2857C44E006D0EF6 /* MixDataModel.xcdatamodeld */,
 			);
 			path = Database;
+			sourceTree = "<group>";
+		};
+		F91A6CA828959D1A00D52AA8 /* MixView */ = {
+			isa = PBXGroup;
+			children = (
+				5A8FB7CC280C70C300D44CA6 /* MixView.swift */,
+			);
+			path = MixView;
 			sourceTree = "<group>";
 		};
 		F91D3DA62857CD7500208BE1 /* Recovered References */ = {
