@@ -7,6 +7,14 @@ protocol CustomSegmentedControlDelegate: AnyObject {
 }
 
 final class CustomSegmentedControl: UIView, CAAnimationDelegate {
+    public var segmentsCount: Int {
+        buttonTitles.count
+    }
+    
+    public var segmentIndices: Range<Int> {
+        buttonTitles.indices
+    }
+    
     private var buttonTitles:[String]!
     private var buttons: [UIButton] = []
     private var selectorView: UIView!
@@ -48,7 +56,9 @@ final class CustomSegmentedControl: UIView, CAAnimationDelegate {
         self.updateView()
     }
     
-    func setIndex(index:Int) {
+    func setIndex(index:Int, animated: Bool = false) {
+        guard segmentIndices.contains(index) else { return }
+        if animated { animateGradient(to: index) }
         buttons.forEach({ $0.setTitleColor(textColor, for: .normal) })
         let button = buttons[index]
         selectedIndex = index

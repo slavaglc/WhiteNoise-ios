@@ -12,8 +12,7 @@ import UIKit
 final class SavedMixesView: UIView {
     
     private var mixes = Array<MixModel>()
-    private var customTabBar: CustomTabBar?
-    
+    private var mixDisplayLogic: MixViewDisplayLogic?
     
     lazy var mixesTableView: UITableView = {
         let tableView = UITableView()
@@ -39,8 +38,12 @@ final class SavedMixesView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func refreshData(withTabBar customTabBar: CustomTabBar? = nil) {
-        self.customTabBar = customTabBar
+    convenience init(displayLogic: MixViewDisplayLogic) {
+        self.init()
+        mixDisplayLogic = displayLogic
+    }
+    
+    public func refreshData() {
         refreshSavedMixes()
     }
     
@@ -60,7 +63,7 @@ final class SavedMixesView: UIView {
     }
     
     private func setupConstraints() {
-        mixesTableView.widthAnchor.constraint(equalTo: widthAnchor)
+        mixesTableView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9)
             .isActive = true
         mixesTableView.centerXAnchor.constraint(equalTo: centerXAnchor)
             .isActive = true
@@ -70,19 +73,19 @@ final class SavedMixesView: UIView {
     
     // MARK: - Scroll methods
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        customTabBar?.halfFadeOut()
+        mixDisplayLogic?.halfFadeOutTabBar()
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        customTabBar?.halfFadeIn()
+        mixDisplayLogic?.halfFadeInTabBar()
     }
     
     func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
-        customTabBar?.halfFadeOut()
+        mixDisplayLogic?.halfFadeOutTabBar()
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        customTabBar?.halfFadeIn()
+        mixDisplayLogic?.halfFadeInTabBar()
     }
 }
 // MARK: - TableView Methods

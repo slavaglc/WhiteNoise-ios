@@ -10,25 +10,10 @@ import UIKit
 
 final class MixView: UIView {
     
-    
-    private var volumeIsSelecting = false
-    
-    private enum ViewState: String {
-        case create = "Create", saved = "Saved"
-    }
-    
     public var playingSounds: [Sound] {
         sounds.filter {$0.isPlaying}
     }
     
-    private var viewState = ViewState.create {
-        didSet {
-            setSelectedView(viewState: viewState)
-        }
-    }
-    
-    private var isFirstAppearence = true
-//    private let nc = NotificationCenter.default
     private let filterTags = FilterTag.getAllFilterTags()
     private let deviceName = UIDevice.modelName
     private var sounds = Sound.getAllSounds()
@@ -39,12 +24,7 @@ final class MixView: UIView {
     
 //        MARK: - UI Elements
     
-    lazy var customTabBar: CustomTabBar = {
-        let customTabBar = CustomTabBar()
-        customTabBar.translatesAutoresizingMaskIntoConstraints = false
-        return customTabBar
-    }()
-    
+
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -53,44 +33,8 @@ final class MixView: UIView {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
-    
-    private lazy var headerStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.distribution = .equalCentering
-        stackView.spacing = 10
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-    }()
-    
-    private lazy var upgradeButton: UIButton = {
-        let button = UIButton(type: .system)
-        let image = UIImage(named: "lock_icon_hd")
-        button.setTitle(" Upgrate", for: .normal)
-        button.titleLabel?.font = UIFont(name: "Nunito-Semibold", size: 14)
-        button.titleLabel?.adjustsFontSizeToFitWidth = true
-        button.tintColor = .white
-        button.setImage(image, for: .normal)
-        button.layer.cornerRadius = 23
-        button.backgroundImage(for: .normal)
-        button.clipsToBounds = true
-        button.backgroundColor = #colorLiteral(red: 0.662745098, green: 0.7058823529, blue: 1, alpha: 1)
-            .withAlphaComponent(0.1)
-        button.tintColor = #colorLiteral(red: 0.862745098, green: 0.8784313725, blue: 1, alpha: 1)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(upgrateButtonTapped), for: .touchUpInside)
-        return button
-    }()
-    
-    private lazy var settingsButton: UIImageView = {
-        let image = UIImage(named: "settings_icon_hd")
-        let imageView = UIImageView(image: image)
-        let tap = UITapGestureRecognizer(target: self, action: #selector(buttonClicked))
-        imageView.addGestureRecognizer(tap)
-        imageView.isUserInteractionEnabled = true
-        return imageView
-    }()
-    
+
+ 
     private lazy var filterTagCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -120,30 +64,11 @@ final class MixView: UIView {
         return collectionView
     }()
     
-    private lazy var segmentControl: CustomSegmentedControl = {
-        let titles = [ViewState.create.rawValue,
-                      ViewState.saved.rawValue
-        ]
-        let control = CustomSegmentedControl(frame: CGRect.zero, buttonTitle: titles)
-        control.delegate = self
-        control.translatesAutoresizingMaskIntoConstraints = false
-        return control
-    }()
-    
-    private lazy var savedMixesView: SavedMixesView = {
-        let view = SavedMixesView()
-        view.isHidden = viewState == .create ? true : false
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    
-    
     // MARK: - Initialization and lifecycle
     
-    convenience init(viewController: MixViewDisplayLogic) {
+    convenience init(displayLogic: MixViewDisplayLogic) {
         self.init()
-        mixViewDisplayLogic = viewController
+        mixViewDisplayLogic = displayLogic
         setPrimarySettings()
     }
     
@@ -153,111 +78,28 @@ final class MixView: UIView {
         }
     }
     
-    public func refreshSavedMixData() {
-        savedMixesView.refreshData(withTabBar: customTabBar)
-    }
     
-//    @objc private func appMovedToForeground() {
-//        print("Returned to foreground...")
-//        print("Selected index:", segmentControl.selectedIndex)
-////        let segmentIndex = segmentControl.selectedIndex
-////        DispatchQueue.main.asyncAfter(deadline: .now()) {
-////            self.segmentControl.setIndex(index: segmentIndex)
-////        }
-//    }
-    
-    // MARK: - Scroll methods
+        // MARK: - Scroll methods
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         guard scrollView == soundsCollectionView else { return }
-        customTabBar.halfFadeOut()
+        mixViewDisplayLogic.halfFadeOutTabBar()
     }
-    
+
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         guard scrollView == soundsCollectionView else { return }
-        customTabBar.halfFadeIn()
+        mixViewDisplayLogic.halfFadeInTabBar()
     }
-    
+
     func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
         guard scrollView == soundsCollectionView else { return }
-        customTabBar.halfFadeOut()
+        mixViewDisplayLogic.halfFadeOutTabBar()
     }
-    
+
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         guard scrollView == soundsCollectionView else { return }
-        customTabBar.halfFadeIn()
+        mixViewDisplayLogic.halfFadeInTabBar()
     }
     
-    // MARK: - Actions
-    
-    
-    
-    public func getCustomTabBar() -> CustomTabBar {
-        customTabBar
-    }
-    
-    @objc
-    private func swipeHandler(gesture: UISwipeGestureRecognizer) {
-        switch gesture.state {
-        case .possible:
-            break
-        case .began:
-            break
-        case .changed:
-            break
-        case .ended:
-//             viewState = gesture.direction == .left ? .saved : .create
-            segmentControl.setIndex(index: gesture.direction == .left ? 1 : .zero)
-            change(to: gesture.direction == .left ? 1 : .zero)
-            
-        case .cancelled:
-            break
-        case .failed:
-            break
-        @unknown default:
-            break
-        }
-    }
-    
-    @objc
-    private func buttonClicked() {
-            viewController?.navigationController?.pushViewController(SettingsViewController(), animated: true)
-    }
-    
-    @objc private func upgrateButtonTapped() {
-        mixViewDisplayLogic.showPaywallVC()
-        upgradeButton.isEnabled = false
-    }
-    
-    private func playButtonTapped() {
-        customTabBar.togglePlaybackState()
-    }
-    
-    private func mixerButtonTapped() {
-        viewController?.show(YourMixViewController(sounds: playingSounds), sender: nil)
-    }
-    
-    private func saveMixTapped() {
-        mixViewDisplayLogic.showSaveMixAlert()
-    }
-    
-    private func setTimerButtonTapped() {
-        let timerVC = TimerViewController()
-        viewController?.show(timerVC, sender: nil)
-    }
-    
-    private func setSelectedView(viewState: ViewState) {
-        switch viewState {
-        case .create:
-            savedMixesView.isHidden = true
-            filterTagCollectionView.isHidden = false
-            soundsCollectionView.isHidden = false
-        case .saved:
-            filterTagCollectionView.isHidden = true
-            soundsCollectionView.isHidden = true
-            savedMixesView.isHidden = false
-            savedMixesView.refreshData(withTabBar: customTabBar)
-        }
-    }
     
     // MARK: - GUI Settings
     
@@ -270,80 +112,23 @@ final class MixView: UIView {
     public func setCollectionViewAppearence() {
         setCollectionViewSettings()
     }
-    
-    public func setCustomBarAppearence() {
-//        customTabBar.playbackState = AudioManager.shared.playbackState
-    }
-    
-    public func setCustomTabBarAppearence() {
-        customTabBar.setPlaybackState()
-    }
-    
-    public func refreshUIElements() {
-        upgradeButton.isEnabled = true
+ 
+    public func setSoundsCollectionViewBottomInset(_ inset: CGFloat) {
+        soundsCollectionView.contentInset.bottom = inset * 1.5
     }
     
     private func setPrimarySettings() {
-//        nc.addObserver(self, selector: #selector(appMovedToForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
-        
-        headerStackView.addArrangedSubview(upgradeButton)
-        headerStackView.addArrangedSubview(settingsButton)
-        addSubview(headerStackView)
-        addSubview(segmentControl)
         addSubview(filterTagCollectionView)
         addSubview(soundsCollectionView)
-        addSubview(savedMixesView)
-        setCustomTabBarSettings()
         setupConstraints()
-        setActions()
-        setGestureSettings()
-    }
-    
-    private func setGestureSettings() {
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipeHandler(gesture:)))
-        swipeLeft.direction = .left
-        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(swipeHandler(gesture:)))
-        swipeRight.direction = .right
-        addGestureRecognizer(swipeLeft)
-        addGestureRecognizer(swipeRight)
-    }
-    
-    private func setActions() {
-        customTabBar.setAction(for: .play, action: playButtonTapped)
-        customTabBar.setAction(for: .mixer, action: mixerButtonTapped)
-        customTabBar.setAction(for: .saveMix, action: saveMixTapped)
-        customTabBar.setAction(for: .timer, action: setTimerButtonTapped)
     }
     
     private func setupConstraints() {
-//        let spacing = UIScreen.main.bounds.size.width / 4
-        let spacing = 176.0
-        let horizontalBarHeight: CGFloat = 45
-        let padding = 16.0
-        let upgrateButtonWidth = 112.0
-
-        headerStackView.heightAnchor.constraint(equalToConstant: horizontalBarHeight)
-            .isActive = true
-        headerStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 5)
-            .isActive = true
-        headerStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding)
-            .isActive = true
-        headerStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding)
-            .isActive = true
-        settingsButton.widthAnchor.constraint(equalToConstant: horizontalBarHeight)
-            .isActive = true
-        settingsButton.heightAnchor.constraint(equalToConstant: horizontalBarHeight)
-            .isActive = true
-
-        
-
         filterTagCollectionView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor).isActive = true
         filterTagCollectionView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor).isActive = true
-        filterTagCollectionView.heightAnchor.constraint(equalTo: segmentControl.heightAnchor, multiplier: 1.5).isActive = true
-        filterTagCollectionView.topAnchor.constraint(equalTo: segmentControl.bottomAnchor, constant: 10)
+        filterTagCollectionView.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
+        filterTagCollectionView.topAnchor.constraint(equalTo: topAnchor, constant: 10)
             .isActive = true
-        
-        
         
         soundsCollectionView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.9).isActive = true
         soundsCollectionView.topAnchor.constraint(equalTo: filterTagCollectionView.bottomAnchor, constant: 16)
@@ -352,57 +137,8 @@ final class MixView: UIView {
             .isActive = true
         soundsCollectionView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor)
             .isActive = true
-        
-        savedMixesView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.9)
-            .isActive = true
-        savedMixesView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor)
-            .isActive = true
-        savedMixesView.topAnchor.constraint(equalTo: segmentControl.bottomAnchor, constant: 10)
-            .isActive = true
-        savedMixesView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
-            .isActive = true
-        
-        
-        headerStackView.setCustomSpacing(spacing, after: upgradeButton)
-        upgradeButton.heightAnchor.constraint(equalTo: headerStackView.heightAnchor)
-            .isActive = true
-        settingsButton.heightAnchor.constraint(equalTo: headerStackView.heightAnchor)
-            .isActive = true
-        settingsButton.widthAnchor.constraint(equalTo: settingsButton.heightAnchor)
-            .isActive = true
-        upgradeButton.widthAnchor.constraint(equalToConstant: upgrateButtonWidth)
-            .isActive = true
-        
-        segmentControl.centerXAnchor.constraint(equalTo: centerXAnchor)
-            .isActive = true
-        segmentControl.topAnchor.constraint(equalTo: headerStackView.bottomAnchor, constant: 36)
-            .isActive = true
-        segmentControl.widthAnchor.constraint(equalTo: widthAnchor)
-            .isActive = true
-        segmentControl.heightAnchor.constraint(equalToConstant: horizontalBarHeight)
-            .isActive = true
     }
-    
-    private func setCustomTabBarSettings() {
-        let height = 70.0
-        let bottomPadding = 50.0
-        guard let navigationController = mixViewDisplayLogic.getNavigationController() else { return }
-        navigationController.view.addSubview(customTabBar)
-        customTabBar.widthAnchor.constraint(equalTo: navigationController.view.widthAnchor, multiplier: 0.65)
-            .isActive = true
-        
-        customTabBar.heightAnchor.constraint(equalToConstant: height)
-            .isActive = true
-        customTabBar.centerXAnchor.constraint(equalTo: navigationController.view.centerXAnchor)
-            .isActive = true
-        customTabBar.bottomAnchor.constraint(equalTo: navigationController.view.bottomAnchor, constant: -bottomPadding)
-            .isActive = true
-        setSoundsCollectionViewBottomInset(height+bottomPadding)
-    }
-    
-    private func setSoundsCollectionViewBottomInset(_ inset: CGFloat) {
-        soundsCollectionView.contentInset.bottom = inset * 1.5
-    }
+ 
 }
 
 // MARK: - CollectionView methods
@@ -425,7 +161,8 @@ extension MixView: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
                 soundsCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
                 cell.setBackgroundStyle(selectedStyle: .selected(animated: false, volume: sound.volume))
             }
-            customTabBar.setNumberForBadge(number: playingSounds.count)
+//            customTabBar.setNumberForBadge(number: playingSounds.count)
+            mixViewDisplayLogic.setNumberForBadge(number: playingSounds.count)
             cell.contentView.fadeIn(duration: 0.4, completionAnimation: {})
             return cell
         case filterTagCollectionView:
@@ -478,7 +215,7 @@ extension MixView: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
         default:
             return
         }
-        customTabBar.setNumberForBadge(number: playingSounds.count)
+        mixViewDisplayLogic.setNumberForBadge(number: playingSounds.count)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -497,31 +234,18 @@ extension MixView: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
         default:
             return
         }
-        customTabBar.setNumberForBadge(number: playingSounds.count)
+        mixViewDisplayLogic.setNumberForBadge(number: playingSounds.count)
     }
     
 }
-// MARK: - Custom Segment Control Methods
-extension MixView: CustomSegmentedControlDelegate {
-    func change(to index: Int) {
-        
-        switch index {
-        case 0:
-            viewState = .create
-        case 1:
-            viewState = .saved
-        default:
-            break
-        }
-    }
-}
+
 
 // MARK: - SoundCollectionViewCell Methods
 extension MixView: SoundCollectionViewCellDelegate {
     func selectingVolumeBegan(in cell: SoundCollectionViewCell) {
         guard let indexPath = soundsCollectionView.indexPath(for: cell) else { return }
         collectionView(soundsCollectionView, didSelectItemAt: indexPath)
-        soundsCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .bottom)
+        soundsCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredVertically)
     }
     
     func selectingVolumeEnded(in cell: SoundCollectionViewCell) {

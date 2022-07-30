@@ -32,11 +32,18 @@ final class ImageBackgroundView: UIView {
         return view
     }()
     
+    private init() {
+        super.init(frame: .zero)
+    }
     
     convenience init(withVolumeControl: Bool = false) {
         self.init()
         self.withVolumeControl = withVolumeControl
         initialize()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     public func setStyle(selectedStyle: SelectedStyle) {
