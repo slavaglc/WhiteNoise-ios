@@ -38,7 +38,6 @@
 		5AAB52D428135795003C53E3 /* FilterTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB52CF28135795003C53E3 /* FilterTagCollectionViewCell.swift */; };
 		5AAB52D528135795003C53E3 /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB52D028135795003C53E3 /* CustomSegmentedControl.swift */; };
 		5AAB52D628135795003C53E3 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB52D128135795003C53E3 /* CustomTabBar.swift */; };
-		5AAB52D728135795003C53E3 /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB52D228135795003C53E3 /* Circle.swift */; };
 		5AAB52DA281357B7003C53E3 /* FilterTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB52D8281357B7003C53E3 /* FilterTag.swift */; };
 		5AAB52DB281357B7003C53E3 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB52D9281357B7003C53E3 /* Sound.swift */; };
 		5AAB52DD28135879003C53E3 /* NameOfClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB52DC28135879003C53E3 /* NameOfClass.swift */; };
@@ -162,7 +161,6 @@
 		5AAB52CF28135795003C53E3 /* FilterTagCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTagCollectionViewCell.swift; sourceTree = "<group>"; };
 		5AAB52D028135795003C53E3 /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
 		5AAB52D128135795003C53E3 /* CustomTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
-		5AAB52D228135795003C53E3 /* Circle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
 		5AAB52D8281357B7003C53E3 /* FilterTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTag.swift; sourceTree = "<group>"; };
 		5AAB52D9281357B7003C53E3 /* Sound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		5AAB52DC28135879003C53E3 /* NameOfClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameOfClass.swift; sourceTree = "<group>"; };
@@ -446,8 +444,6 @@
 				5AAB52CD28135795003C53E3 /* Cells */,
 				5AAB52D028135795003C53E3 /* CustomSegmentedControl.swift */,
 				5AAB52D128135795003C53E3 /* CustomTabBar.swift */,
-				5AAB52D228135795003C53E3 /* Circle.swift */,
-				F928288B281F00E9003CDCDD /* ImageBackgroundView.swift */,
 				F91A6CA828959D1A00D52AA8 /* MixView */,
 				F90C8261285DDCA800E61761 /* SavedMixes */,
 			);
@@ -457,8 +453,6 @@
 		5AAB52CD28135795003C53E3 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				5AAB52CE28135795003C53E3 /* SoundCollectionViewCell.swift */,
-				5AAB52CF28135795003C53E3 /* FilterTagCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -484,9 +478,28 @@
 		F91A6CA828959D1A00D52AA8 /* MixView */ = {
 			isa = PBXGroup;
 			children = (
+				F91A6CAA28959D6400D52AA8 /* Subviews */,
 				5A8FB7CC280C70C300D44CA6 /* MixView.swift */,
 			);
 			path = MixView;
+			sourceTree = "<group>";
+		};
+		F91A6CA928959D5C00D52AA8 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				5AAB52CE28135795003C53E3 /* SoundCollectionViewCell.swift */,
+				5AAB52CF28135795003C53E3 /* FilterTagCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		F91A6CAA28959D6400D52AA8 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				F928288B281F00E9003CDCDD /* ImageBackgroundView.swift */,
+				F91A6CA928959D5C00D52AA8 /* Cells */,
+			);
+			path = Subviews;
 			sourceTree = "<group>";
 		};
 		F91D3DA62857CD7500208BE1 /* Recovered References */ = {
@@ -801,7 +814,6 @@
 				F91327BC2857C44E006D0EF6 /* MixDataModel.xcdatamodeld in Sources */,
 				F90C8260285DD75800E61761 /* SavedMixesView.swift in Sources */,
 				5AAB52DA281357B7003C53E3 /* FilterTag.swift in Sources */,
-				5AAB52D728135795003C53E3 /* Circle.swift in Sources */,
 				F9DA4F7E284155C8008F703D /* YourMixTableViewCell.swift in Sources */,
 				F9DA4F8428436BF6008F703D /* VerticalButton.swift in Sources */,
 				F9EBBA34288D4F5D00D2087C /* UIDevice.swift in Sources */,
