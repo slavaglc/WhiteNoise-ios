@@ -10,6 +10,9 @@ import UIKit
 
 final class AdvancedAlertViewController: UIViewController {
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     public var elements: [AlertElementType]?
     public lazy var advancedAlertView = AdvancedAlertView(viewController: self, elements: elements)
@@ -31,9 +34,10 @@ final class AdvancedAlertViewController: UIViewController {
         advancedAlertView.alertBackground.fadeInFromLeftSide { [weak self] in
             self?.advancedAlertView.didAppear()
         }
-        
-        
+        advancedAlertView.layoutAfterAppearence()
     }
+    
+    
     
     public func close() {
         dismissKeyboard()

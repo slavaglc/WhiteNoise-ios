@@ -101,6 +101,13 @@ final class MixView: UIView {
     }
     
     
+//    MARK: - Actions
+    
+    private func tryToPlayLockedSound(for indexPath: IndexPath) {
+        soundsCollectionView.deselectItem(at: indexPath, animated: true)
+        mixViewDisplayLogic.showAlertForLockedSound(sound: filtredSounds[indexPath.row])
+    }
+    
     // MARK: - GUI Settings
     
     public func setCollectionViewSettings() {
@@ -200,7 +207,8 @@ extension MixView: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
             break
         case soundsCollectionView:
             guard let cell = collectionView.cellForItem(at: indexPath) as? SoundCollectionViewCell else { return }
-            guard !filtredSounds[indexPath.item].isLocked else { collectionView.deselectItem(at: indexPath, animated: true)
+            guard !filtredSounds[indexPath.item].isLocked else {
+                tryToPlayLockedSound(for: indexPath)
                 return }
             let sound = filtredSounds[indexPath.item]
             cell.isUserInteractionEnabled = false

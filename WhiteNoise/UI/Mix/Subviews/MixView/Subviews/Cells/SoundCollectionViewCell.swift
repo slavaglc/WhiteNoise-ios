@@ -73,7 +73,7 @@ final class SoundCollectionViewCell: UICollectionViewCell {
     }()
     
     private lazy var soundLockImage: UIImageView = {
-        let image = UIImage(named: "sound_lock_icon")
+        let image = UIImage(named: "sound_lock_icon_hd")
         let imageView = UIImageView(image: image)
         imageView.isHidden = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -104,11 +104,13 @@ final class SoundCollectionViewCell: UICollectionViewCell {
         case .possible:
             touchBegan = true
         case .began:
+            guard !sound.isLocked else { return }
             touchBegan = true
             delegate?.selectingVolumeBegan(in: self)
             setVolumeState(by: gesture.location(in: imageBackgroundView))
             volumeIsSelecting = true
         case .changed:
+            guard !sound.isLocked else { return }
             setVolumeState(by: gesture.location(in: imageBackgroundView))
         case .ended:
             volumeIsSelecting = false

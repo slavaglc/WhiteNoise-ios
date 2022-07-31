@@ -14,6 +14,7 @@ protocol MixViewDisplayLogic: AnyObject {
     func setNumberForBadge(number: Int)
     func halfFadeOutTabBar()
     func halfFadeInTabBar()
+    func showAlertForLockedSound(sound: Sound)
 }
 
 final class MixViewController: UIViewController {
@@ -50,6 +51,11 @@ final class MixViewController: UIViewController {
     
     lazy var customTabBar: CustomTabBar = {
         let customTabBar = CustomTabBar()
+        customTabBar.layer.cornerRadius = 23
+        customTabBar.layer.shadowRadius = 2
+        customTabBar.layer.shadowColor = UIColor.black.cgColor
+        customTabBar.layer.shadowOpacity = 0.3
+        customTabBar.layer.shadowOffset = CGSize(width: 0, height: 1.0)
         customTabBar.translatesAutoresizingMaskIntoConstraints = false
         return customTabBar
     }()
@@ -285,7 +291,7 @@ final class MixViewController: UIViewController {
     }
     
     
-    //MARK: - Alert Actions
+    //MARK: - Custom TabBar Actions
     private func playButtonTapped() {
         customTabBar.togglePlaybackState()
     }
@@ -323,7 +329,7 @@ final class MixViewController: UIViewController {
         }
         alertController.close()
     }
-    
+//    MARK: - Alert Actions
     private func denySaving(button: UIButton, alertController: AdvancedAlertViewController) {
         alertController.close()
     }
@@ -333,10 +339,30 @@ final class MixViewController: UIViewController {
         textField?.becomeFirstResponder()
     }
     
+    private func watchAd(button: UIButton, alertController: AdvancedAlertViewController) {
+        alertController.close()
+    }
     
+    private func unlockAllSounds(button: UIButton, alertController: AdvancedAlertViewController) {
+        alertController.close()
+        show(PaywallViewController(), sender: nil)
+    }
 }
 
 extension MixViewController: MixViewDisplayLogic {
+    
+    func showAlertForLockedSound(sound: Sound) {
+        let elements: [AlertElementType] = [
+            .title(text: "To unlock the sound you can"),
+            .image(imageName: sound.imageName),
+            .label(text: "Watch a short video to get this sound or get a premium and unlock all sounds"),
+            .closeButton,
+            .button(title: "Unlock all sounds", action: unlockAllSounds(button:alertController:)),
+            .button(title: "Watch ad", action: watchAd(button:alertController:))
+        ]
+        showAdvancedAlert(elements)
+    }
+    
     func halfFadeInTabBar() {
         customTabBar.halfFadeIn()
     }

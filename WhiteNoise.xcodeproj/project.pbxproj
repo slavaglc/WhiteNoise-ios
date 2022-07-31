@@ -441,20 +441,12 @@
 		5AAB52CC28135795003C53E3 /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
-				5AAB52CD28135795003C53E3 /* Cells */,
 				5AAB52D028135795003C53E3 /* CustomSegmentedControl.swift */,
 				5AAB52D128135795003C53E3 /* CustomTabBar.swift */,
 				F91A6CA828959D1A00D52AA8 /* MixView */,
 				F90C8261285DDCA800E61761 /* SavedMixes */,
 			);
 			path = Subviews;
-			sourceTree = "<group>";
-		};
-		5AAB52CD28135795003C53E3 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 		F90C8261285DDCA800E61761 /* SavedMixes */ = {

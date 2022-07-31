@@ -42,10 +42,17 @@ final class AdvancedAlertView: UIScrollView {
     
     
 //    MARK: - UI-Elements
+    
+    let spacerView =  UIView()
+    
     lazy var alertBackground: UIView = {
         let view = UIView()
         view.backgroundColor = #colorLiteral(red: 0.0862745098, green: 0.1137254902, blue: 0.3254901961, alpha: 1) //#161D53
         view.layer.cornerRadius = 23
+        view.layer.shadowRadius = 2
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = 0.3
+        view.layer.shadowOffset = CGSize(width: 0, height: 1.0)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -107,7 +114,7 @@ final class AdvancedAlertView: UIScrollView {
             }
         }
     }
-    
+        
     
     public func close() {
         closeDisplay()
@@ -161,8 +168,12 @@ final class AdvancedAlertView: UIScrollView {
     
     
 //    MARK: - Layout
+    
+    public func layoutAfterAppearence() {
+        layoutButtonTitles()
+    }
+    
     private func setPrimarySettings() {
-        
         delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
@@ -235,7 +246,19 @@ final class AdvancedAlertView: UIScrollView {
             .isActive = true
         buttonsStackView.bottomAnchor.constraint(equalTo: alertBackground.bottomAnchor, constant: -padding)
             .isActive = true
-        
+    }
+    
+    private func layoutButtonTitles() {
+        buttons.forEach { button in
+            if buttonIsMinimized(button: button) {
+                buttonsStackView.removeArrangedSubview(spacerView)
+                buttons.first?.contentHorizontalAlignment = .leading
+            }
+        }
+    }
+    
+    private func buttonIsMinimized(button: UIButton) -> Bool {
+        button.intrinsicContentSize.width > button.bounds.width
     }
     
     private func setBlurEffect() {
@@ -248,9 +271,6 @@ final class AdvancedAlertView: UIScrollView {
     }
     
     private func setupElements() {
-        let spacerView =  UIView()
-        spacerView.setContentHuggingPriority(.defaultLow, for: .horizontal)
-        buttonsStackView.addArrangedSubview(spacerView)
         performWillSetupAction()
         
         guard let elements = elements else { return }
@@ -276,9 +296,13 @@ final class AdvancedAlertView: UIScrollView {
             }
         }
         
+        buttonsStackView.insertArrangedSubview(spacerView, at: .zero)
+        spacerView.setContentHuggingPriority(.defaultLow, for: .horizontal)
         performDidSetupAction()
     }
     
+    
+//    MARK: - Creating UIElements
     private func getButton(withTitle title: String, withAction passedAction: @escaping (_ button: UIButton, _ alertController: AdvancedAlertViewController)->() = {button , advancedAlertVC in }) -> UIButton {
         let action = UIAction { [weak self] action in
             if let sender = action.sender as? UIButton {
@@ -288,7 +312,7 @@ final class AdvancedAlertView: UIScrollView {
         let button = UIButton(type: .system, primaryAction: action)
         button.tintColor = #colorLiteral(red: 0.862745098, green: 0.8784313725, blue: 1, alpha: 1) //#DCE0FF
         button.setTitle(title, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Nunito", size: 25)
+        button.titleLabel?.font = UIFont(name: "Nunito", size: 21)
         buttons.append(button)
         button.tag = buttons.count - 1
 //        button.translatesAutoresizingMaskIntoConstraints = false
@@ -336,8 +360,13 @@ final class AdvancedAlertView: UIScrollView {
     private func getImageView(imageName: String) -> UIImageView {
         let image = UIImage(named: imageName)
         let imageView = UIImageView(image: image)
+//        imageView.heightAnchor.constraint(equalToConstant: 60)
+//            .isActive = true
+        imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor)
+            .isActive = true
         return imageView
     }
+    
 
 }
 
