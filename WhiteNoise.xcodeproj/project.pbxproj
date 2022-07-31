@@ -52,6 +52,7 @@
 		F90C8265285E306600E61761 /* MixBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90C8264285E306600E61761 /* MixBar.swift */; };
 		F91327B92857C427006D0EF6 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91327B82857C427006D0EF6 /* DatabaseManager.swift */; };
 		F91327BC2857C44E006D0EF6 /* MixDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F91327BA2857C44E006D0EF6 /* MixDataModel.xcdatamodeld */; };
+		F91A6CAC2897198A00D52AA8 /* SoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91A6CAB2897198A00D52AA8 /* SoundView.swift */; };
 		F91EF2DA284A85BC00CE84DC /* AdvancedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91EF2D9284A85BC00CE84DC /* AdvancedTextField.swift */; };
 		F91EF2DC284BD14000CE84DC /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91EF2DB284BD14000CE84DC /* UIViewController.swift */; };
 		F928288C281F00E9003CDCDD /* ImageBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F928288B281F00E9003CDCDD /* ImageBackgroundView.swift */; };
@@ -175,6 +176,7 @@
 		F90C8264285E306600E61761 /* MixBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixBar.swift; sourceTree = "<group>"; };
 		F91327B82857C427006D0EF6 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		F91327BB2857C44E006D0EF6 /* MixDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MixDataModel.xcdatamodel; sourceTree = "<group>"; };
+		F91A6CAB2897198A00D52AA8 /* SoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundView.swift; sourceTree = "<group>"; };
 		F91EF2D9284A85BC00CE84DC /* AdvancedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedTextField.swift; sourceTree = "<group>"; };
 		F91EF2DB284BD14000CE84DC /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		F928288B281F00E9003CDCDD /* ImageBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageBackgroundView.swift; sourceTree = "<group>"; };
@@ -504,6 +506,7 @@
 		F91EF2D8284A859500CE84DC /* subviews */ = {
 			isa = PBXGroup;
 			children = (
+				F91A6CAB2897198A00D52AA8 /* SoundView.swift */,
 				F9DA4F8C284964DA008F703D /* CustomVisualEffect.swift */,
 				F91EF2D9284A85BC00CE84DC /* AdvancedTextField.swift */,
 			);
@@ -801,6 +804,7 @@
 				F9EBBA2A288BFB6B00D2087C /* ThirdPage.swift in Sources */,
 				F9DA4F8628469DA0008F703D /* MixManager.swift in Sources */,
 				5A8841BA280B4DA800A8291B /* SceneDelegate.swift in Sources */,
+				F91A6CAC2897198A00D52AA8 /* SoundView.swift in Sources */,
 				F90166C02882EDEF005E8BDD /* EnumTypes.swift in Sources */,
 				F928288C281F00E9003CDCDD /* ImageBackgroundView.swift in Sources */,
 				F91327BC2857C44E006D0EF6 /* MixDataModel.xcdatamodeld in Sources */,

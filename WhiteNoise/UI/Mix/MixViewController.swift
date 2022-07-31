@@ -354,7 +354,7 @@ extension MixViewController: MixViewDisplayLogic {
     func showAlertForLockedSound(sound: Sound) {
         let elements: [AlertElementType] = [
             .title(text: "To unlock the sound you can"),
-            .image(imageName: sound.imageName),
+            .sound(sound: sound),
             .label(text: "Watch a short video to get this sound or get a premium and unlock all sounds"),
             .closeButton,
             .button(title: "Unlock all sounds", action: unlockAllSounds(button:alertController:)),

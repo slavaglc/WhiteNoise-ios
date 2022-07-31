@@ -20,6 +20,7 @@ enum AlertElementType {
                     )
     case closeButton
     case button(title: String, action: (_ button: UIButton, _ alertController: AdvancedAlertViewController)->())
+    case sound(sound: Sound)
     case action(action: (_ alertController: AdvancedAlertViewController)->())
     case willSetupAction(action: (_ alertController: AdvancedAlertViewController)->())
     case didSetupAction(action: (_ alertController: AdvancedAlertViewController)->())
@@ -80,7 +81,8 @@ final class AdvancedAlertView: UIScrollView {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.spacing = 10
-        stackView.alignment = .fill
+//        stackView.alignment = .
+        stackView.alignment = .center
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -248,6 +250,10 @@ final class AdvancedAlertView: UIScrollView {
             .isActive = true
     }
     
+    private func setupConstraints(for soundView: UIView) {
+        
+    }
+    
     private func layoutButtonTitles() {
         buttons.forEach { button in
             if buttonIsMinimized(button: button) {
@@ -277,17 +283,23 @@ final class AdvancedAlertView: UIScrollView {
         elements.forEach { element in
             switch element {
             case .title(text: let text):
-                titleStackView.addArrangedSubview(getLabel(text: text))
+                titleStackView.addArrangedSubview(getTitleLabel(text: text))
             case .image(imageName: let imageName):
                 contentStackView.addArrangedSubview(getImageView(imageName: imageName))
             case .label(text: let text):
                 contentStackView.addArrangedSubview(getLabel(text: text))
             case .textField(placeholder: let placeholder, text: let text, changedValueAction: let changedValueAction, beginEditingAction: let beginEditingAction, endEditingAction: let endEditingAction):
-                contentStackView.addArrangedSubview(getTextField(placeholder: placeholder, text: text, beginEditingAction: beginEditingAction, endEditingAction: endEditingAction, changedValueTFAction: changedValueAction))
+                let textField = getTextField(placeholder: placeholder, text: text, beginEditingAction: beginEditingAction, endEditingAction: endEditingAction, changedValueTFAction: changedValueAction)
+                contentStackView.addArrangedSubview(textField)
+                textField.widthAnchor.constraint(equalTo: contentStackView.widthAnchor)
+                    .isActive = true
             case .closeButton:
                 closeButton.isHidden = false
             case .button(title: let title, action: let action):
                 buttonsStackView.addArrangedSubview(getButton(withTitle: title, withAction: action))
+            case .sound(sound: let sound):
+                let soundView = getSoundView(sound: sound)
+                contentStackView.addArrangedSubview(soundView)
             case .action(action: let action):
                 guard let advancedAlertVC = advancedAlertVC else { break }
                 action(advancedAlertVC)
@@ -319,10 +331,21 @@ final class AdvancedAlertView: UIScrollView {
         return button
     }
     
-    private func getLabel(text: String) -> UILabel {
+    private func getTitleLabel(text: String) -> UILabel {
         let label = UILabel()
         label.font = UIFont(name: "Nunito-Bold", size: 18)
         label.textColor = #colorLiteral(red: 0.6352941176, green: 0.6705882353, blue: 0.9450980392, alpha: 1)  //#A2ABF1
+        label.numberOfLines = 0
+        label.text = text
+        return label
+    }
+    
+    private func getLabel(text: String) -> UILabel {
+        let label = UILabel()
+        label.font = UIFont(name: "Nunito-Regular", size: 17)
+        label.textColor = #colorLiteral(red: 0.862745098, green: 0.8784313725, blue: 1, alpha: 1)  //#DCE0FF
+        label.lineBreakMode = .byWordWrapping
+        label.textAlignment = .center
         label.numberOfLines = 0
         label.text = text
         return label
@@ -360,11 +383,15 @@ final class AdvancedAlertView: UIScrollView {
     private func getImageView(imageName: String) -> UIImageView {
         let image = UIImage(named: imageName)
         let imageView = UIImageView(image: image)
-//        imageView.heightAnchor.constraint(equalToConstant: 60)
-//            .isActive = true
         imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor)
             .isActive = true
         return imageView
+    }
+    
+    private func getSoundView(sound: Sound) -> SoundView {
+        let soundView = SoundView(sound: sound, sideOfSquare: 98)
+        soundView.translatesAutoresizingMaskIntoConstraints = false
+        return soundView
     }
     
 

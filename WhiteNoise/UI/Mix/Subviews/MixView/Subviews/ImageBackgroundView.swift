@@ -28,7 +28,6 @@ final class ImageBackgroundView: UIView {
     
      lazy var volumeDamper: UIView = {
         let view = UIView()
-        view.backgroundColor = .green
         return view
     }()
     
