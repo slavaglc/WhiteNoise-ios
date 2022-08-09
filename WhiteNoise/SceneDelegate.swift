@@ -19,6 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = MyNavigationController(rootViewController: runNumber <= 1 ? WelcomeViewController() : MixViewController())
         window?.makeKeyAndVisible()
         
+        PremiumManager.shared.loadProducts()
+        
         #if DEBUG
         print("Running debug build.")
         #endif

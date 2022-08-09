@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import StoreKit
 
 
 final class PaywallView: UIView {
@@ -51,6 +52,7 @@ final class PaywallView: UIView {
         view.setTitleColor(UIColor.fromNormalRgb(red: 220, green: 224, blue: 224), for: .normal)
         view.setTitle("Try Free & Subscribe", for: .normal)
         view.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 22)
+        view.addTarget(self, action: #selector(purchase_tapped), for: .touchUpInside)
         
         return view
     }()
@@ -79,7 +81,7 @@ final class PaywallView: UIView {
         view.layer.cornerRadius = 16
         view.clipsToBounds = true
         view.setTitleColor(UIColor.fromNormalRgb(red: 15, green: 20, blue: 60), for: .normal)
-        view.setTitle("     Monthly\n     2$ / Month", for: .normal)
+        view.setTitle("     Monthly\n     {} / Month", for: .normal)
         view.titleLabel?.numberOfLines = 2
         view.contentHorizontalAlignment = .left
         view.titleLabel?.font = UIFont(name: "Nunito-Medium", size: 14)
@@ -132,6 +134,12 @@ final class PaywallView: UIView {
         addSubview(sub2Button)
         addSubview(closeBtn)
 //        viewController?.navigationController?.view.addSubview(closeBtn)
+//        
+//        let price1 = PremiumManager.shared.getProducts()[0].displayPrice
+//        let price2 = PremiumManager.shared.getProducts()[1].displayPrice
+//        
+//        sub2Button.setTitle(sub2Button.currentTitle!.replacingOccurrences(of: "{}", with: price1), for: .normal)
+//        
         
         setUpConstraints()
     }
@@ -200,6 +208,15 @@ final class PaywallView: UIView {
             sub1Button.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -16),
             sub1Button.heightAnchor.constraint(equalToConstant: 60)
         ])
+    }
+    
+    @objc
+    private func purchase_tapped(view: UIView) {
+        if view.tag == 0 { // year
+            PremiumManager.shared.purchase(premiumSubscribe: .yearly)
+        } else if view.tag == 1 { // month
+            PremiumManager.shared.purchase(premiumSubscribe: .mothly)
+        }
     }
     
     @objc
