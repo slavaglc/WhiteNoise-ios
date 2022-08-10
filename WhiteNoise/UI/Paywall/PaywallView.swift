@@ -10,10 +10,10 @@ import StoreKit
 
 
 final class PaywallView: UIView {
-    private enum SubSelect {
-        case YEAR
-        case MONTH
-    }
+//    private enum SubSelect {
+//        case YEAR
+//        case MONTH
+//    }
     
     private lazy var backgroundImage: UIImageView = {
         let view = UIImageView()
@@ -52,7 +52,7 @@ final class PaywallView: UIView {
         view.setTitleColor(UIColor.fromNormalRgb(red: 220, green: 224, blue: 224), for: .normal)
         view.setTitle("Try Free & Subscribe", for: .normal)
         view.titleLabel?.font = UIFont(name: "Nunito-Bold", size: 22)
-        view.addTarget(self, action: #selector(purchase_tapped), for: .touchUpInside)
+        view.addTarget(self, action: #selector(purchaseTapped), for: .touchUpInside)
         
         return view
     }()
@@ -64,7 +64,7 @@ final class PaywallView: UIView {
         view.layer.cornerRadius = 16
         view.clipsToBounds = true
         view.setTitleColor(UIColor.fromNormalRgb(red: 15, green: 20, blue: 60), for: .normal)
-        view.setTitle("     Yearly - 3 Day Trial Free\n     10$ / Year", for: .normal)
+        view.setTitle("     Yearly - 3 Day Trial Free\n     $YEARLY_PRICE$ / Year", for: .normal)
         view.titleLabel?.numberOfLines = 2
         view.contentHorizontalAlignment = .left
         view.titleLabel?.font = UIFont(name: "Nunito-Medium", size: 14)
@@ -91,9 +91,9 @@ final class PaywallView: UIView {
         return view
     }()
     
-    private var subSelect: SubSelect = SubSelect.YEAR {
+    private var subSelect: PremiumSubscribe = .yearly {
         didSet {
-            if(subSelect == SubSelect.YEAR) {
+            if(subSelect == .yearly) {
                 sub2Button.setTitleColor(UIColor.fromNormalRgb(red: 162, green: 171, blue: 241), for: .normal)
                 sub2Button.layer.borderWidth = 1
                 sub2Button.layer.borderColor = UIColor.fromNormalRgb(red: 162, green: 171, blue: 241).cgColor
@@ -153,11 +153,13 @@ final class PaywallView: UIView {
         self.isFirstLaunch = isFirstLaunch
     }
     
-    func viewDidAppear(_ animated: Bool) {
+    func willAppear(_ animated: Bool) {
+        subSelect = .yearly
+        setPrices()
+    }
+    
+    func didAppear(_ animated: Bool) {
         removeAllViewsFromNavigation()
-        
-        
-        subSelect = SubSelect.YEAR
     }
     
     private func setUpConstraints() {
@@ -211,12 +213,13 @@ final class PaywallView: UIView {
     }
     
     @objc
-    private func purchase_tapped(view: UIView) {
-        if view.tag == 0 { // year
-            PremiumManager.shared.purchase(premiumSubscribe: .yearly)
-        } else if view.tag == 1 { // month
-            PremiumManager.shared.purchase(premiumSubscribe: .mothly)
-        }
+    private func purchaseTapped(view: UIView) {
+        PremiumManager.shared.purchase(premiumSubscribe: subSelect)
+//        if view.tag == 0 { // year
+//            PremiumManager.shared.purchase(premiumSubscribe: .yearly)
+//        } else if view.tag == 1 { // month
+//            PremiumManager.shared.purchase(premiumSubscribe: .mothly)
+//        }
     }
     
     @objc
@@ -232,9 +235,14 @@ final class PaywallView: UIView {
     @objc
     private func selectSub(view: UIButton) {
         if view.tag == 0 { // year
-            subSelect = SubSelect.YEAR
+            subSelect = .yearly
         } else if view.tag == 1 { // month
-            subSelect = SubSelect.MONTH
+            subSelect = .mothly
         }
+    }
+    
+    private func setPrices() {
+        PremiumManager.shared.loadProducts()
+        print(PremiumManager.shared.getProducts().first?.id)
     }
 }

@@ -8,13 +8,13 @@
 import Foundation
 import StoreKit
 
+enum PremiumSubscribe: String, CaseIterable {
+    case mothly = "whitepointnoise.premium_month"
+    case yearly = "whitepointnoise.premium_year"
+}
+
 final class PremiumManager {
     static let shared = PremiumManager()
-    
-    enum PremiumSubscribe: String, CaseIterable {
-        case mothly = "whitepointnoise.premium_month"
-        case yearly = "whitepointnoise.premium_year"
-    }
     
     private var products: [Product] = []
     
@@ -31,9 +31,6 @@ final class PremiumManager {
             for product in products {
                 if product.id == premiumSubscribe.rawValue {
                     let result = try! await product.purchase()
-//                    switch result {
-//                    case .success(let cer)
-//                    }
                     print(result)
                 }
             }
