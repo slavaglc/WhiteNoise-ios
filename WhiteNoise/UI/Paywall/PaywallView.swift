@@ -81,7 +81,7 @@ final class PaywallView: UIView {
         view.layer.cornerRadius = 16
         view.clipsToBounds = true
         view.setTitleColor(UIColor.fromNormalRgb(red: 15, green: 20, blue: 60), for: .normal)
-        view.setTitle("     Monthly\n     {} / Month", for: .normal)
+        view.setTitle("     Monthly\n     $MONTHLY_PRICE$ / Month", for: .normal)
         view.titleLabel?.numberOfLines = 2
         view.contentHorizontalAlignment = .left
         view.titleLabel?.font = UIFont(name: "Nunito-Medium", size: 14)
@@ -215,11 +215,6 @@ final class PaywallView: UIView {
     @objc
     private func purchaseTapped(view: UIView) {
         PremiumManager.shared.purchase(premiumSubscribe: subSelect)
-//        if view.tag == 0 { // year
-//            PremiumManager.shared.purchase(premiumSubscribe: .yearly)
-//        } else if view.tag == 1 { // month
-//            PremiumManager.shared.purchase(premiumSubscribe: .mothly)
-//        }
     }
     
     @objc
@@ -234,15 +229,16 @@ final class PaywallView: UIView {
     
     @objc
     private func selectSub(view: UIButton) {
-        if view.tag == 0 { // year
-            subSelect = .yearly
-        } else if view.tag == 1 { // month
-            subSelect = .mothly
-        }
+        subSelect = view.tag == 0 ? .yearly : .monthly
     }
     
     private func setPrices() {
         PremiumManager.shared.loadProducts()
-        print(PremiumManager.shared.getProducts().first?.id)
+//        print(PremiumManager.shared.getProducts().first?.id)
+        let priceYearly = PremiumManager.shared.getPrice(for: .yearly) ?? "Not avaible"
+        let priceMonthly = PremiumManager.shared.getPrice(for: .monthly) ?? "Not availbe"
+        
+        sub1Button.setTitle(sub1Button.currentTitle?.replacingOccurrences(of: "$YEARLY_PRICE$", with: priceYearly), for: .normal)
+        sub2Button.setTitle(sub2Button.currentTitle?.replacingOccurrences(of: "$MONTHLY_PRICE$", with: priceMonthly), for: .normal)
     }
 }

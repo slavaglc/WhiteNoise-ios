@@ -9,7 +9,7 @@ import Foundation
 import StoreKit
 
 enum PremiumSubscribe: String, CaseIterable {
-    case mothly = "whitepointnoise.premium_month"
+    case monthly = "whitepointnoise.premium_month"
     case yearly = "whitepointnoise.premium_year"
 }
 
@@ -31,7 +31,19 @@ final class PremiumManager {
             for product in products {
                 if product.id == premiumSubscribe.rawValue {
                     let result = try! await product.purchase()
-                    print(result)
+                    
+                    switch result {
+                        
+                    case .success(_):
+                        print("sucess")
+                    case .userCancelled:
+                        print("userCancelled")
+                    case .pending:
+                        print("pending")
+                    @unknown default:
+                        print("error")
+                    }
+//                    print(result)
                 }
             }
         }
@@ -40,4 +52,15 @@ final class PremiumManager {
     func getProducts() -> [Product] {
         return products
     }
+    
+    func getPrice(for subscribe: PremiumSubscribe) -> String? {
+        for product in products {
+            if product.id == subscribe.rawValue {
+                return product.price.formatted()
+        }
+        }
+        return nil
+    }
+    
+    
 }
