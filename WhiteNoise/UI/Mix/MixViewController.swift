@@ -165,6 +165,7 @@ final class MixViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {

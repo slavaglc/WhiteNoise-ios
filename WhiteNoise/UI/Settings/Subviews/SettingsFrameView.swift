@@ -49,7 +49,7 @@ final class SettingsFrameView: UIView {
     private lazy var text1: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.image = UIImage(named: "FrameText2")
+        view.image = UIImage(named: "FrameText3")
         view.contentMode = .center
         
         return view

@@ -14,8 +14,8 @@ class Sound: Hashable {
     }
     
     func hash(into hasher: inout Hasher) {
-            hasher.combine(trackName)
-        }
+        hasher.combine(trackName)
+    }
     
     internal init(name: String, imageName: String, trackName: String, category: String, isPlaying: Bool = false, isLocked: Bool) {
         self.name = name
@@ -35,26 +35,37 @@ class Sound: Hashable {
     var volume: Float = 0.5
     
     //Sounds
-    static func getAllSounds() -> [Sound] {
-    [
-    Sound(name: "Airplane", imageName: "ventilator_1_icon_hd", trackName: "aircraft", category: "Vehicle", isLocked: false),
-     Sound(name: "Heavy rain", imageName: "rainfall_icon_hd", trackName: "heavyrain", category: "Rain" , isLocked: false),
-     Sound(name: "Sea waves", imageName: "ocean_icon_hd", trackName: "sea", category: "Water"  , isLocked: false),
-    Sound(name: "Brown noise", imageName: "brown_noise_icon_hd", trackName: "brownnoise", category: "Noise"  , isLocked: false),
-    Sound(name: "Blue noise", imageName: "blue_noise_icon_hd", trackName: "bluenoise", category: "Noise"  , isLocked: true),
-    Sound(name: "Car", imageName: "car_icon_hd", trackName: "car", category: "Vehicle"  , isLocked: false),
-    Sound(name: "Creek", imageName: "creek_icon_hd", trackName: "creek", category: "Water"  , isLocked: false),
-    Sound(name: "Lake", imageName: "lake_icon_hd", trackName: "lake", category: "Water"  , isLocked: false),
-    Sound(name: "Ocean", imageName: "ocean_icon_hd", trackName: "ocean", category: "Water"  , isLocked: true),
-    Sound(name: "Pink noise", imageName: "pink_noise_icon_hd", trackName: "pinknoise", category: "Noise"  , isLocked: true),
-    Sound(name: "Rain", imageName: "rain_icon_hd", trackName: "rain", category: "Rain"  , isLocked: false),
-    Sound(name: "Rain on puddle", imageName: "rain_on_puddles_icon_hd", trackName: "rainonpuddle", category: "Rain"  , isLocked: false),
-    Sound(name: "Rain on leaves", imageName: "rain_on_the_leaves_hd", trackName: "rainonleaves", category: "Rain"  , isLocked: false),
-    Sound(name: "River in forest", imageName: "river_in_forest_1_icon_hd", trackName: "forestriver", category: "Water"  , isLocked: false),
-    Sound(name: "Thunderstorm", imageName: "thunderstorm_icon_hd", trackName: "thunder", category: "Rain"  , isLocked: false),
-    Sound(name: "Train", imageName: "train_icon_hd", trackName: "train", category: "Vehicle"  , isLocked: false),
     
+    static private var sounds: [Sound] = [
+        Sound(name: "Airplane", imageName: "ventilator_1_icon_hd", trackName: "aircraft", category: "Vehicle", isLocked: false),
+        Sound(name: "Heavy rain", imageName: "rainfall_icon_hd", trackName: "heavyrain", category: "Rain" , isLocked: false),
+        Sound(name: "Sea waves", imageName: "ocean_icon_hd", trackName: "sea", category: "Water"  , isLocked: false),
+        Sound(name: "Brown noise", imageName: "brown_noise_icon_hd", trackName: "brownnoise", category: "Noise"  , isLocked: false),
+        Sound(name: "Blue noise", imageName: "blue_noise_icon_hd", trackName: "bluenoise", category: "Noise"  , isLocked: true),
+        Sound(name: "Car", imageName: "car_icon_hd", trackName: "car", category: "Vehicle"  , isLocked: false),
+        Sound(name: "Creek", imageName: "creek_icon_hd", trackName: "creek", category: "Water"  , isLocked: false),
+        Sound(name: "Lake", imageName: "lake_icon_hd", trackName: "lake", category: "Water"  , isLocked: false),
+        Sound(name: "Ocean", imageName: "ocean_icon_hd", trackName: "ocean", category: "Water"  , isLocked: true),
+        Sound(name: "Pink noise", imageName: "pink_noise_icon_hd", trackName: "pinknoise", category: "Noise"  , isLocked: true),
+        Sound(name: "Rain", imageName: "rain_icon_hd", trackName: "rain", category: "Rain"  , isLocked: false),
+        Sound(name: "Rain on puddle", imageName: "rain_on_puddles_icon_hd", trackName: "rainonpuddle", category: "Rain"  , isLocked: false),
+        Sound(name: "Rain on leaves", imageName: "rain_on_the_leaves_hd", trackName: "rainonleaves", category: "Rain"  , isLocked: false),
+        Sound(name: "River in forest", imageName: "river_in_forest_1_icon_hd", trackName: "forestriver", category: "Water"  , isLocked: false),
+        Sound(name: "Thunderstorm", imageName: "thunderstorm_icon_hd", trackName: "thunder", category: "Rain"  , isLocked: false),
+        Sound(name: "Train", imageName: "train_icon_hd", trackName: "train", category: "Vehicle"  , isLocked: false),
+        
     ]
+    
+    static func getAllSounds() -> [Sound] {
+        sounds
+    }
+    
+    static func unlockAllSounds(completion: ()->() = {}) {
+        let sounds = Sound.getAllSounds()
+        sounds.forEach { sound in
+            sound.isLocked = false
+        }
+        completion()
     }
 }
 

@@ -214,7 +214,18 @@ final class PaywallView: UIView {
     
     @objc
     private func purchaseTapped(view: UIView) {
-        PremiumManager.shared.purchase(premiumSubscribe: subSelect)
+        PremiumManager.shared.purchase(premiumSubscribe: subSelect) { result in
+            switch result {
+            case .success(_):
+                PremiumManager.shared.refreshEntities()
+            case .userCancelled:
+                break
+            case .pending:
+                break
+            @unknown default:
+                break
+            }
+        }
     }
     
     @objc
@@ -233,8 +244,6 @@ final class PaywallView: UIView {
     }
     
     private func setPrices() {
-        PremiumManager.shared.loadProducts()
-//        print(PremiumManager.shared.getProducts().first?.id)
         let priceYearly = PremiumManager.shared.getPrice(for: .yearly) ?? "Not avaible"
         let priceMonthly = PremiumManager.shared.getPrice(for: .monthly) ?? "Not availbe"
         

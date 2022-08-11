@@ -69,15 +69,9 @@ final class MixView: UIView {
     convenience init(displayLogic: MixViewDisplayLogic) {
         self.init()
         mixViewDisplayLogic = displayLogic
+        PremiumManager.shared.setEntityForPremium(entity: self)
         setPrimarySettings()
     }
-    
-    public func refreshSoundsData() {
-        if let indexPaths = soundsCollectionView.indexPathsForSelectedItems {
-        soundsCollectionView.reloadItems(at: indexPaths)
-        }
-    }
-    
     
         // MARK: - Scroll methods
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
@@ -103,10 +97,25 @@ final class MixView: UIView {
     
 //    MARK: - Actions
     
+    public func refreshSoundsData() {
+        if let indexPaths = soundsCollectionView.indexPathsForSelectedItems {
+        soundsCollectionView.reloadItems(at: indexPaths)
+        }
+    }
+    
+    public func checkPremiumSubscribtion() async {
+        guard await PremiumManager.shared.isPremiumExist() else { return }
+        Sound.unlockAllSounds()
+    }
+    
     private func tryToPlayLockedSound(for indexPath: IndexPath) {
         soundsCollectionView.deselectItem(at: indexPath, animated: true)
         mixViewDisplayLogic.showAlertForLockedSound(sound: filtredSounds[indexPath.row])
     }
+    
+  
+    
+    
     
     // MARK: - GUI Settings
     
@@ -260,5 +269,16 @@ extension MixView: SoundCollectionViewCellDelegate {
         guard let indexPath = soundsCollectionView.indexPath(for: cell) else { return }
         collectionView(soundsCollectionView, didDeselectItemAt: indexPath)
         soundsCollectionView.deselectItem(at: indexPath, animated: true)
+    }
+}
+
+// MARK: - Premium methods
+extension MixView: PremiumProtocol {
+    func premiumPurchased() {
+        Task.init {
+            guard await PremiumManager.shared.isPremiumExist() else { return }
+            Sound.unlockAllSounds()
+            soundsCollectionView.reloadData()
+        }
     }
 }
