@@ -97,10 +97,19 @@ final class MixView: UIView {
     
 //    MARK: - Actions
     
-    public func refreshSoundsData() {
+    public func refreshSelectedSoundsData() {
         if let indexPaths = soundsCollectionView.indexPathsForSelectedItems {
         soundsCollectionView.reloadItems(at: indexPaths)
         }
+    }
+    
+    public func refreshAllSoundsData() {
+        soundsCollectionView.reloadData()
+    }
+    
+    public func refreshSoundData(for indexPath: IndexPath) {
+            soundsCollectionView.reloadItems(at: [indexPath])
+        
     }
     
     public func checkPremiumSubscribtion() async {
@@ -110,11 +119,8 @@ final class MixView: UIView {
     
     private func tryToPlayLockedSound(for indexPath: IndexPath) {
         soundsCollectionView.deselectItem(at: indexPath, animated: true)
-        mixViewDisplayLogic.showAlertForLockedSound(sound: filtredSounds[indexPath.row])
+        mixViewDisplayLogic.showAlertForLockedSound(sound: filtredSounds[indexPath.row], for: indexPath)
     }
-    
-  
-    
     
     
     // MARK: - GUI Settings

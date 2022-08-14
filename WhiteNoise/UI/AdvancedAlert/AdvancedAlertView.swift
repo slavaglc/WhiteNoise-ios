@@ -20,7 +20,9 @@ enum AlertElementType {
                     )
     case closeButton
     case button(title: String, action: (_ button: UIButton, _ alertController: AdvancedAlertViewController)->())
+    case backgroundImage(image: UIImage, topPadding: CGFloat, bottomPadding: CGFloat, leftPadding: CGFloat, rightPadding: CGFloat)
     case sound(sound: Sound)
+    case spacer(height: CGFloat)
     case action(action: (_ alertController: AdvancedAlertViewController)->())
     case willSetupAction(action: (_ alertController: AdvancedAlertViewController)->())
     case didSetupAction(action: (_ alertController: AdvancedAlertViewController)->())
@@ -276,6 +278,7 @@ final class AdvancedAlertView: UIScrollView {
         insertSubview(blurEffectView, at: .zero)
     }
     
+    ///Arranges UI-elements
     private func setupElements() {
         performWillSetupAction()
         
@@ -293,10 +296,15 @@ final class AdvancedAlertView: UIScrollView {
                 contentStackView.addArrangedSubview(textField)
                 textField.widthAnchor.constraint(equalTo: contentStackView.widthAnchor)
                     .isActive = true
+                
+            case .spacer(height: let height):
+                contentStackView.addArrangedSubview(getSpacer(height: height))
             case .closeButton:
                 closeButton.isHidden = false
             case .button(title: let title, action: let action):
                 buttonsStackView.addArrangedSubview(getButton(withTitle: title, withAction: action))
+            case .backgroundImage(image: let image, topPadding: let top, bottomPadding: let bottom, leftPadding: let left, rightPadding: let right):
+                setBackgroundImage(image: image, topPadding: top, bottomPadding: bottom, leftPadding: left, rightPadding: right)
             case .sound(sound: let sound):
                 let soundView = getSoundView(sound: sound)
                 contentStackView.addArrangedSubview(soundView)
@@ -351,6 +359,17 @@ final class AdvancedAlertView: UIScrollView {
         return label
     }
     
+    private func getSpacer(height: CGFloat) -> UIView {
+        let spacer = UIView()
+        spacer.backgroundColor = .clear
+        spacer.heightAnchor.constraint(equalToConstant: height)
+            .isActive = true
+        spacer.translatesAutoresizingMaskIntoConstraints = false
+        return spacer
+    }
+    
+    
+    
     private func getTextField(placeholder: String, text: String, beginEditingAction:        @escaping
                               (_ textField: UITextField, _ alertController: AdvancedAlertViewController)->() = {_,_ in },
                               endEditingAction:
@@ -386,6 +405,28 @@ final class AdvancedAlertView: UIScrollView {
         imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor)
             .isActive = true
         return imageView
+    }
+    ///Sets background image for alert
+    private func setBackgroundImage(image: UIImage, topPadding: CGFloat, bottomPadding: CGFloat, leftPadding: CGFloat, rightPadding: CGFloat) {
+        let imageView = UIImageView(image: image)
+        
+//        alertBackground.addSubview(imageView)
+        alertBackground.insertSubview(imageView, at: .zero)
+        
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        alertBackground.clipsToBounds = true
+        
+        imageView.bottomAnchor.constraint(equalTo: alertBackground.bottomAnchor, constant: bottomPadding)
+            .isActive = true
+        imageView.leadingAnchor.constraint(equalTo: alertBackground.leadingAnchor, constant: leftPadding)
+            .isActive = true
+        imageView.trailingAnchor.constraint(equalTo: alertBackground.trailingAnchor, constant: rightPadding)
+            .isActive = true
+        imageView.topAnchor.constraint(equalTo: alertBackground.topAnchor, constant: topPadding)
+            .isActive = true
+
+        
+        
     }
     
     private func getSoundView(sound: Sound) -> SoundView {

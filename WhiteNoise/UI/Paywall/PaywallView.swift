@@ -59,12 +59,13 @@ final class PaywallView: UIView {
     
     private lazy var sub1Button: UIButton = {
         let view = UIButton(type: .system)
+        let buttonTitle = "     Yearly - 3 Day Trial Free\n     $YEARLY_PRICE$ / Year"
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .fromNormalRgb(red: 201, green: 162, blue: 241)
         view.layer.cornerRadius = 16
         view.clipsToBounds = true
         view.setTitleColor(UIColor.fromNormalRgb(red: 15, green: 20, blue: 60), for: .normal)
-        view.setTitle("     Yearly - 3 Day Trial Free\n     $YEARLY_PRICE$ / Year", for: .normal)
+        view.setTitle(buttonTitle, for: .normal)
         view.titleLabel?.numberOfLines = 2
         view.contentHorizontalAlignment = .left
         view.titleLabel?.font = UIFont(name: "Nunito-Medium", size: 14)
@@ -76,6 +77,8 @@ final class PaywallView: UIView {
     
     private lazy var sub2Button: UIButton = {
         let view = UIButton(type: .system)
+        let buttonTitle = "     Monthly\n     $MONTHLY_PRICE$ / Month"
+        
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .fromNormalRgb(red: 201, green: 162, blue: 241)
         view.layer.cornerRadius = 16
@@ -159,6 +162,7 @@ final class PaywallView: UIView {
     }
     
     func didAppear(_ animated: Bool) {
+        configureExistingSubscriptions()
         removeAllViewsFromNavigation()
     }
     
@@ -214,10 +218,13 @@ final class PaywallView: UIView {
     
     @objc
     private func purchaseTapped(view: UIView) {
-        PremiumManager.shared.purchase(premiumSubscribe: subSelect) { result in
+        PremiumManager.shared.purchase(premiumSubscribe: subSelect) { [weak self] result in
             switch result {
             case .success(_):
                 PremiumManager.shared.refreshEntities()
+                self?.closeView()
+//                self?.configureExistingSubscriptions()
+                
             case .userCancelled:
                 break
             case .pending:
@@ -229,7 +236,7 @@ final class PaywallView: UIView {
     }
     
     @objc
-    private func closeView(view: UIView) {
+    private func closeView() {
         if isFirstLaunch {
             let mixVC = MixViewController()
             viewController?.show(mixVC, sender: nil)
@@ -249,5 +256,28 @@ final class PaywallView: UIView {
         
         sub1Button.setTitle(sub1Button.currentTitle?.replacingOccurrences(of: "$YEARLY_PRICE$", with: priceYearly), for: .normal)
         sub2Button.setTitle(sub2Button.currentTitle?.replacingOccurrences(of: "$MONTHLY_PRICE$", with: priceMonthly), for: .normal)
+    }
+    
+    private func configureExistingSubscriptions() {
+        Task.init {
+            if await PremiumManager.shared.isPremiumExist(for: [.monthly]) {
+                let disabledTitle = "     Monthly - ALREADY HAVE"
+                sub2Button.setTitle(disabledTitle, for: .disabled)
+                subSelect = .yearly
+                DispatchQueue.main.async {
+                    self.sub2Button.isEnabled = false
+                }
+                
+                
+            } else if await PremiumManager.shared.isPremiumExist(for: [.yearly]) {
+                let disabledTitle = "     Yearly - ALREADY HAVE"
+                subSelect = .monthly
+                sub1Button.setTitle(disabledTitle, for: .disabled)
+                DispatchQueue.main.async {
+                    self.sub1Button.isEnabled = false
+                }
+            }
+        }
+        
     }
 }

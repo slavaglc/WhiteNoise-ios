@@ -11,9 +11,13 @@
 		<string>Nunito-Italic.ttf</string>
 		<string>Nunito-Bold.ttf</string>
 	</array>
+    <key>GADApplicationIdentifier</key>
+    <string>ca-app-pub-4375579747830843~1384390704</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
+		<false/>
+		<key>UIApplicationSupportsTabbedSceneCollection</key>
 		<false/>
 		<key>UISceneConfigurations</key>
 		<dict>

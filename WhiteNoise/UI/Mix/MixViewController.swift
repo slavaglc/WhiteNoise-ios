@@ -14,13 +14,17 @@ protocol MixViewDisplayLogic: AnyObject {
     func setNumberForBadge(number: Int)
     func halfFadeOutTabBar()
     func halfFadeInTabBar()
-    func showAlertForLockedSound(sound: Sound)
+    func showAlertForLockedSound(sound: Sound, for indexPath: IndexPath?)
 }
 
 final class MixViewController: UIViewController {
     
     private enum ViewState: String, CaseIterable {
         case create = "Create", saved = "Saved"
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     private var viewState = ViewState.create {
@@ -69,23 +73,32 @@ final class MixViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var upgradeButton: UIButton = {
-        let button = UIButton(type: .system)
-        let image = UIImage(named: "lock_icon_hd")
-        button.setTitle(" Upgrate", for: .normal)
-        button.titleLabel?.font = UIFont(name: "Nunito-Semibold", size: 14)
-        button.titleLabel?.adjustsFontSizeToFitWidth = true
-        button.tintColor = .white
-        button.setImage(image, for: .normal)
-        button.layer.cornerRadius = 23
-        button.backgroundImage(for: .normal)
-        button.clipsToBounds = true
-        button.backgroundColor = #colorLiteral(red: 0.662745098, green: 0.7058823529, blue: 1, alpha: 1)
-            .withAlphaComponent(0.1)
-        button.tintColor = #colorLiteral(red: 0.862745098, green: 0.8784313725, blue: 1, alpha: 1)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(upgrateButtonTapped), for: .touchUpInside)
-        return button
+    //    private lazy var upgradeButton: UIButton = {
+    //        let button = UIButton(type: .system)
+    //        let image = UIImage(named: "lock_icon_hd")
+    //        button.setTitle(" Upgrate", for: .normal)
+    //        button.titleLabel?.font = UIFont(name: "Nunito-Semibold", size: 14)
+    //        button.titleLabel?.adjustsFontSizeToFitWidth = true
+    //        button.tintColor = .white
+    //        button.setImage(image, for: .normal)
+    //        button.layer.cornerRadius = 23
+    //        button.backgroundImage(for: .normal)
+    //        button.clipsToBounds = true
+    //        button.backgroundColor = #colorLiteral(red: 0.662745098, green: 0.7058823529, blue: 1, alpha: 1)
+    //            .withAlphaComponent(0.1)
+    //        button.tintColor = #colorLiteral(red: 0.862745098, green: 0.8784313725, blue: 1, alpha: 1)
+    //        button.translatesAutoresizingMaskIntoConstraints = false
+    //        button.addTarget(self, action: #selector(upgrateButtonTapped), for: .touchUpInside)
+    //        return button
+    //    }()
+    
+    private lazy var upgradeButton: UIImageView = {
+        let image = UIImage(named: "UpgradeButton")
+        let imageView = UIImageView(image: image)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(upgrateButtonTapped))
+        imageView.addGestureRecognizer(tap)
+        imageView.isUserInteractionEnabled = true
+        return imageView
     }()
     
     private lazy var settingsButton: UIImageView = {
@@ -115,29 +128,19 @@ final class MixViewController: UIViewController {
         return scrollView
     }()
     
+    private var lockedSound: Sound?
+    private var lockedSoundIndexPath: IndexPath?
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
-    init() {
-        super.init(nibName: nil, bundle: nil)
+    override func loadView() {
+        super.loadView()
         setPrimarySettings()
     }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-//    override func loadView() {
-//        view = mainView
-//    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         view.removeAllViewsFromNavigation()
         navigationController?.navigationBar.isHidden = true
-        mainView.refreshSoundsData()
+        mainView.refreshSelectedSoundsData()
     }
     
     override func viewDidLayoutSubviews() {
@@ -155,10 +158,10 @@ final class MixViewController: UIViewController {
         super.viewDidAppear(animated)
         if isFirstLaunch {
             mainView.setCollectionViewSettings()
-//            mainView.refreshData()
+            //            mainView.refreshData()
             isFirstLaunch = false
         }
-        mainView.refreshSoundsData()
+        mainView.refreshSelectedSoundsData()
         savedMixesView.refreshData()
     }
     
@@ -250,7 +253,7 @@ final class MixViewController: UIViewController {
             .isActive = true
         customTabBar.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -bottomPadding)
             .isActive = true
-//        setSoundsCollectionViewBottomInset(height+bottomPadding)
+        //        setSoundsCollectionViewBottomInset(height+bottomPadding)
     }
     
     private func setupConstraints() {
@@ -258,7 +261,7 @@ final class MixViewController: UIViewController {
         let horizontalBarHeight: CGFloat = 45
         let padding = 16.0
         let upgrateButtonWidth = 112.0
-
+        
         headerStackView.heightAnchor.constraint(equalToConstant: horizontalBarHeight)
             .isActive = true
         headerStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5)
@@ -330,7 +333,7 @@ final class MixViewController: UIViewController {
         }
         alertController.close()
     }
-//    MARK: - Alert Actions
+    //    MARK: - Alert Actions
     private func denySaving(button: UIButton, alertController: AdvancedAlertViewController) {
         alertController.close()
     }
@@ -341,18 +344,43 @@ final class MixViewController: UIViewController {
     }
     
     private func watchAd(button: UIButton, alertController: AdvancedAlertViewController) {
+        if let lockedSoundIndexPath = lockedSoundIndexPath {
+            lockedSound?.isLocked = false
+            mainView.refreshSoundData(for: lockedSoundIndexPath)
+        }
+        guard let image = UIImage(named: "GiftImage") else { return }
+        let elements: [AlertElementType] = [
+            .closeButton,
+            .spacer(height: 150),
+            .backgroundImage(image: image, topPadding: 66, bottomPadding: 64, leftPadding: 13, rightPadding: -60)
+        ]
+        alertController.showAdvancedAlert(elements)
         alertController.close()
+        
     }
     
     private func unlockAllSounds(button: UIButton, alertController: AdvancedAlertViewController) {
         alertController.close()
         show(PaywallViewController(), sender: nil)
     }
+    
+    private func showCongratulationsAlert() {
+        guard let image = UIImage(named: "GiftImage") else { return }
+        let elements: [AlertElementType] = [
+            .closeButton,
+            .backgroundImage(image: image, topPadding: 0, bottomPadding: 0, leftPadding: 0, rightPadding: 0)
+        ]
+        showAdvancedAlert(elements)
+    }
+    
+    
 }
 
 extension MixViewController: MixViewDisplayLogic {
     
-    func showAlertForLockedSound(sound: Sound) {
+    func showAlertForLockedSound(sound: Sound, for indexPath: IndexPath? = nil) {
+        lockedSound = sound
+        lockedSoundIndexPath = indexPath
         let elements: [AlertElementType] = [
             .title(text: "To unlock the sound you can"),
             .sound(sound: sound),
@@ -395,7 +423,7 @@ extension MixViewController: MixViewDisplayLogic {
     func getNavigationController() -> UINavigationController? {
         navigationController
     }
-
+    
 }
 
 extension MixViewController: CustomSegmentedControlDelegate {
@@ -407,7 +435,7 @@ extension MixViewController: CustomSegmentedControlDelegate {
 extension MixViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.isDragging {
-        setCurrentPage()
+            setCurrentPage()
         }
     }
     

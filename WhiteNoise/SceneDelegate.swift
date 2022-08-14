@@ -7,23 +7,26 @@
 
 import UIKit
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
+       
         StorageManager.shared.increaseRunsCount()
         let runNumber = StorageManager.shared.getRunsCount()
         window = UIWindow(windowScene: scene)
         window?.rootViewController = MyNavigationController(rootViewController: runNumber <= 1 ? WelcomeViewController() : MixViewController())
         window?.makeKeyAndVisible()
+        preparePremiumVersion()
         
-        PremiumManager.shared.loadProducts()
         
-        #if DEBUG
-        print("Running debug build.")
-        #endif
+        
+        
+//        #if DEBUG
+//        print("Running debug build.")
+//        #endif
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -44,5 +47,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func sceneDidEnterBackground(_ scene: UIScene) {
         
+    }
+    
+    private func preparePremiumVersion() {
+        PremiumManager.shared.loadProducts()
+        Task.init {
+            guard await PremiumManager.shared.isPremiumExist() else { return }
+            Sound.unlockAllSounds()
+            PremiumManager.shared.refreshEntities()
+        }
     }
 }

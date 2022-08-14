@@ -56,6 +56,7 @@
 		F91A6CAC2897198A00D52AA8 /* SoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91A6CAB2897198A00D52AA8 /* SoundView.swift */; };
 		F91EF2DA284A85BC00CE84DC /* AdvancedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91EF2D9284A85BC00CE84DC /* AdvancedTextField.swift */; };
 		F91EF2DC284BD14000CE84DC /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91EF2DB284BD14000CE84DC /* UIViewController.swift */; };
+		F922BF9628A82A6E000F97F7 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = F922BF9528A82A6E000F97F7 /* GoogleMobileAds */; };
 		F928288C281F00E9003CDCDD /* ImageBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F928288B281F00E9003CDCDD /* ImageBackgroundView.swift */; };
 		F932A20A28590D5200AE0C48 /* SoundModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F932A20628590D5200AE0C48 /* SoundModel+CoreDataClass.swift */; };
 		F932A20B28590D5200AE0C48 /* SoundModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F932A20728590D5200AE0C48 /* SoundModel+CoreDataProperties.swift */; };
@@ -260,6 +261,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F922BF9628A82A6E000F97F7 /* GoogleMobileAds in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -659,6 +661,9 @@
 			dependencies = (
 			);
 			name = WhiteNoise;
+			packageProductDependencies = (
+				F922BF9528A82A6E000F97F7 /* GoogleMobileAds */,
+			);
 			productName = WhiteNoise;
 			productReference = 5A8841B4280B4DA800A8291B /* WhiteNoise.app */;
 			productType = "com.apple.product-type.application";
@@ -687,6 +692,9 @@
 				Base,
 			);
 			mainGroup = 5A8841AB280B4DA800A8291B;
+			packageReferences = (
+				F922BF9428A82A6E000F97F7 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+			);
 			productRefGroup = 5A8841B5280B4DA800A8291B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -902,6 +910,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				"OTHER_LDFLAGS[arch=*]" = "";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -982,6 +991,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
+				OTHER_LDFLAGS = "-ObjC";
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = kotleni.WhiteNoise;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1010,6 +1021,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = kotleni.WhiteNoise;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1040,6 +1052,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F922BF9428A82A6E000F97F7 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F922BF9528A82A6E000F97F7 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F922BF9428A82A6E000F97F7 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		F91327BA2857C44E006D0EF6 /* MixDataModel.xcdatamodeld */ = {

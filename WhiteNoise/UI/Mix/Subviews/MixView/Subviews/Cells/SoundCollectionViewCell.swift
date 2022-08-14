@@ -144,6 +144,10 @@ final class SoundCollectionViewCell: UICollectionViewCell {
         soundLockImage.isHidden = !sound.isLocked
     }
     
+    public func refreshLockStyle() {
+        soundLockImage.isHidden = !sound.isLocked
+    }
+    
     public func getFontHeight() -> CGFloat {
         label.font.lineHeight
     }
@@ -242,25 +246,14 @@ final class SoundCollectionViewCell: UICollectionViewCell {
             self?.imageView.image = soundImage?.withTintColor(.white)
             self?.isUserInteractionEnabled = true
         }
-
-//        UIView.animate(withDuration: 0.3) { [unowned self] in
-//            imageBackgroundView.transform = imageBackgroundView.transform.scaledBy(x: 0.9, y: 0.9)
-//        } completion: { [weak self] isFinished in
-//            if isFinished {
-//                print("finished")
-//                self?.returnSizeAnimation(withStyle: selectedStyle)
-//            }
-//        }
+        
     }
-//
-//    private func returnSizeAnimation(withStyle selectedStyle: SelectedStyle) {
-//        UIView.animate(withDuration: 0.25) { [unowned self] in
-//            imageBackgroundView.transform = imageBackgroundView.transform.scaledBy(x: 1.1, y: 1.1)
-//        } completion: { [weak self] isFinished in
-//            if isFinished {
-//                self?.imageBackgroundView.setStyle(selectedStyle: selectedStyle)
-//            }
-//        }
-//    }
 }
+
+
+//extension SoundCollectionViewCell: PremiumProtocol {
+//    func premiumPurchased() {
+//        refreshLockStyle()
+//    }
+//}
 

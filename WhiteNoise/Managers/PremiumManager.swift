@@ -44,14 +44,17 @@ final class PremiumManager {
             for product in products {
                 if product.id == premiumSubscribe.rawValue {
                     guard let result = try? await product.purchase() else { return }
-                    completion(result)
+                    DispatchQueue.main.async {
+                        completion(result)
+                    }
                 }
             }
         }
     }
     
     /// Check if premium subscribed
-    func isPremiumExist() async -> Bool {
+    func isPremiumExist(for premiumTypes: [PremiumSubscribe] = PremiumSubscribe.allCases) async -> Bool {
+        let productIds = premiumTypes.map{ $0.rawValue }
         guard let products = try? await Product.products(for: productIds) else { return false }
         guard !products.isEmpty else { return false }
         guard let state = await products.first?.currentEntitlement else { return false }

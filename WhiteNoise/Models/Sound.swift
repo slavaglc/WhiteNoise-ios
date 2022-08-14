@@ -56,8 +56,9 @@ class Sound: Hashable {
         
     ]
     
-    static func getAllSounds() -> [Sound] {
-        sounds
+    static func getAllSounds(unlocked: Bool = false) -> [Sound] {
+        if unlocked { Sound.unlockAllSounds() }
+        return sounds
     }
     
     static func unlockAllSounds(completion: ()->() = {}) {
