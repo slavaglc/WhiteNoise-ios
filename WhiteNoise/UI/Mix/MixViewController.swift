@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 protocol MixViewDisplayLogic: AnyObject {
     func getNavigationController() -> UINavigationController?
@@ -128,6 +129,14 @@ final class MixViewController: UIViewController {
         return scrollView
     }()
     
+    private lazy var banner: GADBannerView = {
+        let banner = GADBannerView()
+        banner.adUnitID = "ca-app-pub-4375579747830843/5801878367"
+        banner.load(GADRequest())
+        banner.backgroundColor = .orange
+        return banner
+    }()
+    
     private var lockedSound: Sound?
     private var lockedSoundIndexPath: IndexPath?
     
@@ -152,6 +161,8 @@ final class MixViewController: UIViewController {
             didLayout = true
         }
         
+        banner.frame = view.frame
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -168,6 +179,7 @@ final class MixViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        banner.rootViewController = self
         
     }
     
@@ -345,16 +357,18 @@ final class MixViewController: UIViewController {
     
     private func watchAd(button: UIButton, alertController: AdvancedAlertViewController) {
         if let lockedSoundIndexPath = lockedSoundIndexPath {
+            view.addSubview(banner)
+            
             lockedSound?.isLocked = false
             mainView.refreshSoundData(for: lockedSoundIndexPath)
         }
-        guard let image = UIImage(named: "GiftImage") else { return }
-        let elements: [AlertElementType] = [
-            .closeButton,
-            .spacer(height: 150),
-            .backgroundImage(image: image, topPadding: 66, bottomPadding: 64, leftPadding: 13, rightPadding: -60)
-        ]
-        alertController.showAdvancedAlert(elements)
+//        guard let image = UIImage(named: "GiftImage") else { return }
+//        let elements: [AlertElementType] = [
+//            .closeButton,
+//            .spacer(height: 150),
+//            .backgroundImage(image: image, topPadding: 66, bottomPadding: 64, leftPadding: 13, rightPadding: -60)
+//        ]
+//        alertController.showAdvancedAlert(elements)
         alertController.close()
         
     }
