@@ -366,11 +366,11 @@ final class MixViewController: UIViewController {
                            completionHandler: { [self] ad, error in
           if let error = error {
             print("[AD] Failed to load rewarded ad with error: \(error.localizedDescription)")
-              
+
             return
           }
           rewardedAd = ad
-          print("[AD] Rewarded ad loaded.")
+            print("[AD] Rewarded ad loaded")
         }
         )
     }
@@ -379,7 +379,7 @@ final class MixViewController: UIViewController {
         if let lockedSoundIndexPath = lockedSoundIndexPath {
             if let ad = rewardedAd {
                 let elements: [AlertElementType] = [
-                    //.title(text: "Loading"),
+                    .closeButton,
                     .label(text: "Waiting ad..."),
                 ]
                 
