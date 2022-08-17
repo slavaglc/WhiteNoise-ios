@@ -182,6 +182,7 @@ final class MixViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadAd()
         //banner.rootViewController = self
         
     }
@@ -358,43 +359,54 @@ final class MixViewController: UIViewController {
         textField?.becomeFirstResponder()
     }
     
+    private func loadAd() {
+        let request = GADRequest()
+        GADRewardedAd.load(withAdUnitID: adMobBannerKey,
+                           request: request,
+                           completionHandler: { [self] ad, error in
+          if let error = error {
+            print("[AD] Failed to load rewarded ad with error: \(error.localizedDescription)")
+              
+            return
+          }
+          rewardedAd = ad
+          print("[AD] Rewarded ad loaded.")
+        }
+        )
+    }
+    
     private func watchAd(button: UIButton, alertController: AdvancedAlertViewController) {
         if let lockedSoundIndexPath = lockedSoundIndexPath {
-            let request = GADRequest()
-            GADRewardedAd.load(withAdUnitID: adMobBannerKey,
-                               request: request,
-                               completionHandler: { [self] ad, error in
-              if let error = error {
-                print("Failed to load rewarded ad with error: \(error.localizedDescription)")
-                return
-              }
-              rewardedAd = ad
-                if let ad = rewardedAd {
-                    ad.present(fromRootViewController: self) {
-                      let reward = ad.adReward
-                      print("Reward received with currency \(reward.amount), amount \(reward.amount.doubleValue)")
-                      // TODO: Reward the user.
-                    }
-                  } else {
-                    print("Ad wasn't ready")
-                  }
-              print("Rewarded ad loaded.")
+            if let ad = rewardedAd {
+                let elements: [AlertElementType] = [
+                    //.title(text: "Loading"),
+                    .label(text: "Waiting ad..."),
+                ]
+                
+                // MARK: todo alertController.close()
+                alertController.showAdvancedAlert(elements)
+                
+                print("[AD] Try ad present")
+                ad.present(fromRootViewController: self) {
+                    let reward = ad.adReward
+                    print("[AD] Reward received with currency \(reward.amount), amount \(reward.amount.doubleValue)")
+                    
+                    // reward the user
+                    self.lockedSound?.isLocked = false
+                    self.mainView.refreshSoundData(for: lockedSoundIndexPath)
+                }
+            } else {
+                print("[AD] Ad not loaded")
+                guard let image = UIImage(named: "GiftImage") else { return }
+                let elements: [AlertElementType] = [
+                    .closeButton,
+                    .spacer(height: 150),
+                    .backgroundImage(image: image, topPadding: 66, bottomPadding: 64, leftPadding: 13, rightPadding: -60),
+                ]
+                // MARK: todo alertController.close()
+                alertController.showAdvancedAlert(elements)
             }
-            )
-              
-            
-            lockedSound?.isLocked = false
-            mainView.refreshSoundData(for: lockedSoundIndexPath)
         }
-//        guard let image = UIImage(named: "GiftImage") else { return }
-//        let elements: [AlertElementType] = [
-//            .closeButton,
-//            .spacer(height: 150),
-//            .backgroundImage(image: image, topPadding: 66, bottomPadding: 64, leftPadding: 13, rightPadding: -60)
-//        ]
-//        alertController.showAdvancedAlert(elements)
-        alertController.close()
-        
     }
     
     private func unlockAllSounds(button: UIButton, alertController: AdvancedAlertViewController) {
