@@ -273,10 +273,9 @@ final class MixViewController: UIViewController {
     }
     
     private func setupConstraints() {
-        let spacing = 176.0
+        
         let horizontalBarHeight: CGFloat = 45
         let padding = 16.0
-        let upgrateButtonWidth = 112.0
         
         headerStackView.heightAnchor.constraint(equalToConstant: horizontalBarHeight)
             .isActive = true
@@ -363,13 +362,13 @@ final class MixViewController: UIViewController {
         let request = GADRequest()
         GADRewardedAd.load(withAdUnitID: adMobBannerKey,
                            request: request,
-                           completionHandler: { [self] ad, error in
+                           completionHandler: { [self] advert, error in
           if let error = error {
             print("[AD] Failed to load rewarded ad with error: \(error.localizedDescription)")
 
             return
           }
-          rewardedAd = ad
+          rewardedAd = advert
             print("[AD] Rewarded ad loaded")
         }
         )
@@ -384,8 +383,9 @@ final class MixViewController: UIViewController {
                 ]
                 
                 // MARK: todo alertController.close()
-                alertController.showAdvancedAlert(elements)
-                
+                loadAd()
+                alertController.advancedAlertView.closeAction = { self.showAdvancedAlert(elements) }
+                alertController.close()
                 print("[AD] Try ad present")
                 ad.present(fromRootViewController: self) {
                     let reward = ad.adReward
@@ -404,7 +404,8 @@ final class MixViewController: UIViewController {
                     .backgroundImage(image: image, topPadding: 66, bottomPadding: 64, leftPadding: 13, rightPadding: -60),
                 ]
                 // MARK: todo alertController.close()
-                alertController.showAdvancedAlert(elements)
+                alertController.advancedAlertView.closeAction = { self.showAdvancedAlert(elements) }
+                alertController.close()
             }
         }
     }

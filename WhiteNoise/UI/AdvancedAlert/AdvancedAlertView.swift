@@ -36,6 +36,7 @@ final class AdvancedAlertView: UIScrollView {
     public var beforeCloseAction = {}
     public var textFields = Array<UITextField>()
     public var buttons = Array<UIButton>()
+    public var closeAction: () -> () = {}
     private var beginEditingTFActions = Array<(_ textField: UITextField, _ alertController: AdvancedAlertViewController)->()>()
     private var endEditingTFActions = Array<(_ textField: UITextField, _ alertController: AdvancedAlertViewController)->()>()
     private var changedValueTFActions = Array<(_ textField: UITextField, _ alertController: AdvancedAlertViewController)->()>()
@@ -127,7 +128,9 @@ final class AdvancedAlertView: UIScrollView {
     @objc private func closeDisplay() {
         fadeOut()
         alertBackground.fadeOutToLeftSide(withOpaque: true) { [weak self] in
-            self?.advancedAlertVC?.dismiss(animated: false)
+            self?.advancedAlertVC?.dismiss(animated: false, completion: {
+                self?.closeAction()
+            })
         }
     }
     
