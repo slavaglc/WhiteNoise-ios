@@ -57,16 +57,19 @@ final class PremiumManager {
         let productIds = premiumTypes.map{ $0.rawValue }
         guard let products = try? await Product.products(for: productIds) else { return false }
         guard !products.isEmpty else { return false }
-        guard let state = await products.first?.currentEntitlement else { return false }
         
-        switch state {
-        case .verified( _):
-            print(".verifed")
-            return true
-        case .unverified( _, _):
-            print(".unverified")
-            return true
+        for product in products  {
+            let state = await product.currentEntitlement
+            switch state {
+            case .verified( _):
+                return true
+            case .unverified( _, _):
+                return true
+            case .none:
+                continue
+            }
         }
+        return false
     }
     
     /// Returns all available products
@@ -94,4 +97,5 @@ final class PremiumManager {
             premiumEntity.premiumPurchased()
         }
     }
+    
 }

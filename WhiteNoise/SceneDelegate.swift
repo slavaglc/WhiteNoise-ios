@@ -50,8 +50,11 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func preparePremiumVersion() {
-        PremiumManager.shared.loadProducts()
+        print("prepare")
+        
+        
         Task.init {
+            PremiumManager.shared.loadProducts()
             guard await PremiumManager.shared.isPremiumExist() else { return }
             Sound.unlockAllSounds()
             PremiumManager.shared.refreshEntities()

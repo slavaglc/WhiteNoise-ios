@@ -260,6 +260,13 @@ final class PaywallView: UIView {
     
     private func configureExistingSubscriptions() {
         Task.init {
+            if await PremiumManager.shared.isPremiumExist() {
+                subButton.isEnabled = false
+                subButton.setTitle("Subscribed", for: .disabled)
+                subButton.titleLabel?.textColor = .gray
+                subButton.backgroundColor = .lightGray
+            }
+            
             if await PremiumManager.shared.isPremiumExist(for: [.monthly]) {
                 let disabledTitle = "     Monthly - ALREADY HAVE"
                 sub2Button.setTitle(disabledTitle, for: .disabled)
