@@ -8,6 +8,8 @@
 import UIKit
 import GoogleMobileAds
 
+let adMobBannerKey = "ca-app-pub-4375579747830843/5801878367"
+
 protocol MixViewDisplayLogic: AnyObject {
     func getNavigationController() -> UINavigationController?
     func showSaveMixAlert()
@@ -19,6 +21,7 @@ protocol MixViewDisplayLogic: AnyObject {
 }
 
 final class MixViewController: UIViewController {
+    private var rewardedAd: GADRewardedAd?
     
     private enum ViewState: String, CaseIterable {
         case create = "Create", saved = "Saved"
@@ -129,13 +132,13 @@ final class MixViewController: UIViewController {
         return scrollView
     }()
     
-    private lazy var banner: GADBannerView = {
-        let banner = GADBannerView()
-        banner.adUnitID = "ca-app-pub-4375579747830843/5801878367"
-        banner.load(GADRequest())
-        banner.backgroundColor = .orange
-        return banner
-    }()
+//    private lazy var banner: GADBannerView = {
+//        let banner = GADBannerView()
+//        banner.adUnitID = adMobBannerKey
+//        banner.load(gADRequest)
+//        banner.backgroundColor = .orange
+//        return banner
+//    }()
     
     private var lockedSound: Sound?
     private var lockedSoundIndexPath: IndexPath?
@@ -161,7 +164,7 @@ final class MixViewController: UIViewController {
             didLayout = true
         }
         
-        banner.frame = view.frame
+        //banner.frame = view.frame
         
     }
     
@@ -179,7 +182,7 @@ final class MixViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        banner.rootViewController = self
+        //banner.rootViewController = self
         
     }
     
@@ -357,7 +360,28 @@ final class MixViewController: UIViewController {
     
     private func watchAd(button: UIButton, alertController: AdvancedAlertViewController) {
         if let lockedSoundIndexPath = lockedSoundIndexPath {
-            view.addSubview(banner)
+            let request = GADRequest()
+            GADRewardedAd.load(withAdUnitID: adMobBannerKey,
+                               request: request,
+                               completionHandler: { [self] ad, error in
+              if let error = error {
+                print("Failed to load rewarded ad with error: \(error.localizedDescription)")
+                return
+              }
+              rewardedAd = ad
+                if let ad = rewardedAd {
+                    ad.present(fromRootViewController: self) {
+                      let reward = ad.adReward
+                      print("Reward received with currency \(reward.amount), amount \(reward.amount.doubleValue)")
+                      // TODO: Reward the user.
+                    }
+                  } else {
+                    print("Ad wasn't ready")
+                  }
+              print("Rewarded ad loaded.")
+            }
+            )
+              
             
             lockedSound?.isLocked = false
             mainView.refreshSoundData(for: lockedSoundIndexPath)
