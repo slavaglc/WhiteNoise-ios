@@ -404,7 +404,11 @@ final class MixViewController: UIViewController {
                     .backgroundImage(image: image, topPadding: 66, bottomPadding: 64, leftPadding: 13, rightPadding: -60),
                 ]
                 // MARK: todo alertController.close()
-                alertController.advancedAlertView.closeAction = { self.showAdvancedAlert(elements) }
+                alertController.advancedAlertView.closeAction = {
+                    self.showAdvancedAlert(elements);
+                    self.lockedSound?.isLocked = false
+                    self.mainView.refreshSoundData(for: lockedSoundIndexPath)
+                }
                 alertController.close()
             }
         }
@@ -415,14 +419,14 @@ final class MixViewController: UIViewController {
         show(PaywallViewController(), sender: nil)
     }
     
-    private func showCongratulationsAlert() {
-        guard let image = UIImage(named: "GiftImage") else { return }
-        let elements: [AlertElementType] = [
-            .closeButton,
-            .backgroundImage(image: image, topPadding: 0, bottomPadding: 0, leftPadding: 0, rightPadding: 0)
-        ]
-        showAdvancedAlert(elements)
-    }
+//    private func showCongratulationsAlert() {
+//        guard let image = UIImage(named: "GiftImage") else { return }
+//        let elements: [AlertElementType] = [
+//            .closeButton,
+//            .backgroundImage(image: image, topPadding: 0, bottomPadding: 0, leftPadding: 0, rightPadding: 0)
+//        ]
+//        showAdvancedAlert(elements)
+//    }
     
     
 }
