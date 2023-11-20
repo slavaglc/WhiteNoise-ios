@@ -1,2 +1,4 @@
-<a href="https://github.com/orgs/kotleni-archive/projects/2">Tracking</a><br>
-<a href="https://www.figma.com/file/jZ8AD4SzCuc8eUp8xHyj1F/White-Noise?node-id=0%3A1">Figma</a>
+<a href="https://apps.apple.com/ru/app/white-point-noise/id1634811540">AppStore page</a><br>
+
+🛠 UI and business logic development - <a href="https://github.com/slavaglc">Slavaglc</a><br>
+🪙 StoreKit implementation  - <a href="https://github.com/kotleni">Kotleni</a><br>
